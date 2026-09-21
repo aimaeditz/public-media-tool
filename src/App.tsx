@@ -13,24 +13,41 @@ import { LegalPage } from './pages/LegalPage';
 import { SignInPage } from './pages/SignInPage';
 import { SignUpPage } from './pages/SignUpPage';
 
+const BASE_PATH = '/public-media-tool';
+
+const getRelativePath = (pathname: string) => {
+  let p = pathname;
+  if (p.startsWith(BASE_PATH)) {
+    p = p.slice(BASE_PATH.length);
+  }
+  if (!p || p === '' || p === '/404.html' || p === '/index.html') {
+    return '/';
+  }
+  return p;
+};
+
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(
-    typeof window !== 'undefined' ? window.location.pathname || '/' : '/'
+    typeof window !== 'undefined'
+      ? getRelativePath(window.location.pathname + window.location.search)
+      : '/'
   );
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [initialSearchQuery, setInitialSearchQuery] = useState('');
 
   const navigate = (path: string) => {
-    setCurrentPath(path);
+    const relPath = getRelativePath(path);
+    setCurrentPath(relPath);
     if (typeof window !== 'undefined') {
-      window.history.pushState({}, '', path);
+      const fullPath = relPath === '/' ? BASE_PATH + '/' : BASE_PATH + relPath;
+      window.history.pushState({}, '', fullPath);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(window.location.pathname || '/');
+      setCurrentPath(getRelativePath(window.location.pathname + window.location.search));
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
     window.addEventListener('popstate', handlePopState);
@@ -47,12 +64,12 @@ export default function App() {
       return <HomePage navigate={navigate} onOpenSearchWithQuery={handleOpenSearchWithQuery} />;
     }
 
-    if (currentPath === '/tools') {
+    if (currentPath === '/tools' || currentPath.startsWith('/tools?')) {
       return <ToolsPage navigate={navigate} initialQuery={initialSearchQuery} />;
     }
 
     if (currentPath.startsWith('/tools/')) {
-      const slug = currentPath.replace('/tools/', '');
+      const slug = currentPath.replace('/tools/', '').split('?')[0];
       return <ToolDetailPage slug={slug} navigate={navigate} />;
     }
 
@@ -61,7 +78,7 @@ export default function App() {
     }
 
     if (currentPath.startsWith('/categories/')) {
-      const categorySlug = currentPath.replace('/categories/', '');
+      const categorySlug = currentPath.replace('/categories/', '').split('?')[0];
       return <CategoryDetailPage categorySlug={categorySlug} navigate={navigate} />;
     }
 

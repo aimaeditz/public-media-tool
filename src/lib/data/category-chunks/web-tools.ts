@@ -1,6 +1,6 @@
-import { Tool } from '../types';
+import { Tool } from '../../types';
 
-export const WEB_TOOLS: Tool[] = [
+export const tools: Tool[] = [
   {
     id: 'url-encoder-decoder',
     slug: 'url-encoder-decoder',

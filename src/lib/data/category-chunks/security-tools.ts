@@ -1,6 +1,6 @@
-import { Tool } from '../types';
+import { Tool } from '../../types';
 
-export const SECURITY_TOOLS: Tool[] = [
+export const tools: Tool[] = [
   {
     id: 'password-generator-checker',
     slug: 'password-generator-checker',
@@ -453,7 +453,7 @@ export const SECURITY_TOOLS: Tool[] = [
       { step: 2, title: 'Select time cost iterations', desc: 'Choose 1 to 3 iterations.' },
       { step: 3, title: 'Read OWASP configuration', desc: 'View recommended Argon2id config.' }
     ],
-    faqs: [{ question: 'Why won winner of Password Hashing Competition (PHC)?', answer: 'Argon2 won PHC in 2015 for superior resistance against side-channel and GPU attacks.' }]
+    faqs: [{ question: 'Why Argon2 won Password Hashing Competition (PHC)?', answer: 'Argon2 won PHC in 2015 for superior resistance against side-channel and GPU attacks.' }]
   },
   {
     id: 'jwt-secret-strength-checker',

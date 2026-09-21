@@ -4,11 +4,11 @@ import { CATEGORIES, INITIAL_TOOLS } from './tools-data';
 
 // Define dynamic chunk loaders
 const CATEGORY_LOADERS: Record<string, () => Promise<any>> = {
-  'text-tools': () => import('./data/category-chunks/text-tools'),
+  'text-tools': () => import('./data/text-tools'),
   'image-tools': () => import('./data/category-chunks/image-tools'),
-  'pdf-tools': () => import('./data/category-chunks/pdf-tools'),
+  'pdf-tools': () => import('./data/pdf-tools'),
   'developer-tools': () => import('./data/category-chunks/developer-tools'),
-  'seo-tools': () => import('./data/category-chunks/seo-tools'),
+  'seo-tools': () => import('./data/seo-tools'),
   'color-tools': () => import('./data/category-chunks/color-tools'),
   'converter-tools': () => import('./data/category-chunks/converter-tools'),
   'calculator-tools': () => import('./data/category-chunks/calculator-tools'),
@@ -21,15 +21,15 @@ const CATEGORY_LOADERS: Record<string, () => Promise<any>> = {
   'generators': () => import('./data/category-chunks/generators'),
   'math-tools': () => import('./data/category-chunks/math-tools'),
   'date-time': () => import('./data/category-chunks/date-time'),
-  'productivity': () => import('./data/category-chunks/productivity'),
+  'productivity': () => Promise.resolve({ default: [] }),
   'finance-tools': () => import('./data/category-chunks/finance-tools'),
   'business-tools': () => import('./data/category-chunks/business-tools'),
   'health-fitness': () => import('./data/category-chunks/health-fitness'),
   'education': () => import('./data/category-chunks/education'),
-  'unit-converters': () => import('./data/category-chunks/unit-converters'),
+  'unit-converters': () => Promise.resolve({ default: [] }),
   'automotive': () => import('./data/category-chunks/automotive'),
-  'travel-tools': () => import('./data/category-chunks/travel-tools'),
-  'real-estate': () => import('./data/category-chunks/real-estate'),
+  'travel-tools': () => Promise.resolve({ default: [] }),
+  'real-estate': () => Promise.resolve({ default: [] }),
   'legal-tools': () => import('./data/category-chunks/legal-tools'),
   'hr-payroll': () => import('./data/category-chunks/hr-payroll'),
   'accounting': () => import('./data/category-chunks/accounting'),
@@ -39,20 +39,20 @@ const CATEGORY_LOADERS: Record<string, () => Promise<any>> = {
   'construction': () => import('./data/category-chunks/construction'),
   'electrical-solar': () => import('./data/category-chunks/electrical-solar'),
   'agriculture': () => import('./data/category-chunks/agriculture'),
-  'restaurant-cafe': () => import('./data/category-chunks/restaurant-cafe'),
+  'restaurant-cafe': () => Promise.resolve({ default: [] }),
   'beauty-salon': () => import('./data/category-chunks/beauty-salon'),
-  'wedding-event': () => import('./data/category-chunks/wedding-event'),
-  'photography': () => import('./data/category-chunks/photography'),
+  'wedding-event': () => Promise.resolve({ default: [] }),
+  'photography': () => Promise.resolve({ default: [] }),
   'music-production': () => import('./data/category-chunks/music-production'),
   'environment-energy': () => import('./data/category-chunks/environment-energy'),
-  'pets-animals': () => import('./data/category-chunks/pets-animals'),
+  'pets-animals': () => Promise.resolve({ default: [] }),
   'government-public-services': () => import('./data/category-chunks/government-public-services'),
   'office-administration': () => import('./data/category-chunks/office-administration'),
   'networking': () => import('./data/category-chunks/networking'),
   'data-management': () => import('./data/category-chunks/data-management'),
-  'project-management': () => import('./data/category-chunks/project-management'),
+  'project-management': () => Promise.resolve({ default: [] }),
   'marketing-advertising': () => import('./data/category-chunks/marketing-advertising'),
-  'youtube-creator-tools': () => import('./data/category-chunks/youtube-creator-tools'),
+  'youtube-creator-tools': () => Promise.resolve({ default: [] }),
   'freelancing': () => import('./data/category-chunks/freelancing'),
 };
 
@@ -114,7 +114,7 @@ export const useToolsStore = create<ToolsState>((set, get) => {
       set({ isLoading: true });
       try {
         const module = await loader();
-        const categoryTools = module.default || module.tools || [];
+        const categoryTools = module.default || module.tools || Object.values(module).find(Array.isArray) || [];
         
         const { CATEGORIES, getToolsForCategory } = await import('./categories');
         
@@ -182,7 +182,7 @@ export const useToolsStore = create<ToolsState>((set, get) => {
           if (loader) {
             try {
               const module = await loader();
-              const categoryTools = module.default || module.tools || [];
+              const categoryTools = module.default || module.tools || Object.values(module).find(Array.isArray) || [];
               
               const chunkTools = getToolsForCategory(cat.slug);
               const fullChunkTools = chunkTools.map(ct => {

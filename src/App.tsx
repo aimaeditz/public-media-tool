@@ -20,18 +20,25 @@ const getRelativePath = (pathname: string) => {
   if (p.startsWith(BASE_PATH)) {
     p = p.slice(BASE_PATH.length);
   }
-  if (!p || p === '' || p === '/404.html' || p === '/index.html') {
+  if (!p || p === '' || p === '/' || p === '/404.html' || p === '/index.html') {
     return '/';
+  }
+  if (p.length > 1 && p.endsWith('/') && !p.includes('?')) {
+    p = p.slice(0, -1);
   }
   return p;
 };
 
+const getInitialPath = () => {
+  if (typeof window === 'undefined') return '/';
+  if (window.location.hash && window.location.hash.startsWith('#/')) {
+    return getRelativePath(window.location.hash.slice(1));
+  }
+  return getRelativePath(window.location.pathname + window.location.search);
+};
+
 export default function App() {
-  const [currentPath, setCurrentPath] = useState<string>(
-    typeof window !== 'undefined'
-      ? getRelativePath(window.location.pathname + window.location.search)
-      : '/'
-  );
+  const [currentPath, setCurrentPath] = useState<string>(getInitialPath());
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [initialSearchQuery, setInitialSearchQuery] = useState('');
 
@@ -47,11 +54,15 @@ export default function App() {
 
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(getRelativePath(window.location.pathname + window.location.search));
+      setCurrentPath(getInitialPath());
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
     window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    window.addEventListener('hashchange', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('hashchange', handlePopState);
+    };
   }, []);
 
   const handleOpenSearchWithQuery = (q: string) => {

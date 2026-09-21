@@ -55,7 +55,10 @@ export default function App() {
     const relPath = getRelativePath(path);
     setCurrentPath(relPath);
     if (typeof window !== 'undefined') {
-      const fullPath = relPath === '/' ? BASE_PATH + '/' : BASE_PATH + relPath;
+      const isGH = window.location.pathname.startsWith(BASE_PATH);
+      const fullPath = isGH
+        ? (relPath === '/' ? BASE_PATH + '/' : BASE_PATH + relPath)
+        : (relPath === '/' ? '/' : relPath);
       window.history.pushState({}, '', fullPath);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }

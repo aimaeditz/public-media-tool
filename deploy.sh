@@ -5,8 +5,12 @@ set -e
 echo "Building project..."
 npm run build
 
-echo "Adding dist folder to git..."
-git add dist -f
+echo "Syncing live directory..."
+mkdir -p live
+cp -r dist/* live/ || true
+
+echo "Adding dist and live folder to git..."
+git add dist live -f
 
 echo "Committing deployment build..."
 git commit -m "Deploy to GitHub Pages" || true

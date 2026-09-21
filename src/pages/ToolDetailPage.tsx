@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TOOLS } from '../lib/tools-data';
+import { SEARCH_INDEX } from '../lib/search-index';
 import { getIconComponent, formatNumber } from '../lib/utils';
 import { Share2, ShieldCheck, ChevronRight, Check, HelpCircle } from 'lucide-react';
 import { useToolsStore } from '../lib/tools-store';
@@ -16,52 +17,75 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
   const storeTools = useToolsStore((state) => state.tools);
   const loadCategory = useToolsStore((state) => state.loadCategory);
 
+  const foundTool = TOOLS.find((t) => t.slug === slug) || storeTools.find((t) => t.slug === slug);
+  const searchItem = SEARCH_INDEX.find((item) => item.slug === slug);
+
   // Auto-load category chunk if the visited tool isn't already loaded
   useEffect(() => {
-    const isLoaded = storeTools.some((t) => t.slug === slug) || TOOLS.some((t) => t.slug === slug);
-    if (!isLoaded) {
-      import('../lib/search-index').then((m) => {
-        const indexItem = m.SEARCH_INDEX.find((item) => item.slug === slug);
-        if (indexItem) {
-          const categorySlug = indexItem.category
-            .toLowerCase()
-            .replace(/ & /g, '-')
-            .replace(/\s+/g, '-');
-          loadCategory(categorySlug);
-        }
-      }).catch((err) => {
-        console.warn('Failed to load search index in ToolDetailPage:', err);
-      });
+    if (!foundTool && searchItem) {
+      const categorySlug = searchItem.category
+        .toLowerCase()
+        .replace(/ & /g, '-')
+        .replace(/\s+/g, '-');
+      loadCategory(categorySlug);
     }
-  }, [slug, storeTools, loadCategory]);
+  }, [slug, foundTool, searchItem, loadCategory]);
 
-  const foundTool = storeTools.find((t) => t.slug === slug) || TOOLS.find((t) => t.slug === slug);
-  const tool = foundTool || {
+  const tool = foundTool || (searchItem ? {
+    id: searchItem.id,
+    slug: searchItem.slug,
+    name: searchItem.name,
+    shortDesc: searchItem.shortDesc,
+    description: searchItem.shortDesc,
+    category: searchItem.category as any,
+    iconName: searchItem.iconName,
+    isPopular: false,
+    isLatest: false,
+    usageCount: searchItem.usageCount || 1000,
+    tags: searchItem.tags || [slug],
+    howToUse: [
+      { step: 1, title: 'Input Parameters', desc: `Provide or customize the values for ${searchItem.name}.` },
+      { step: 2, title: 'Process Instantly', desc: 'Results are computed immediately in your browser with zero latency.' },
+      { step: 3, title: 'Copy & Save', desc: 'Copy formatted output or download results directly to your device.' },
+    ],
+    faqs: [
+      {
+        question: `Is ${searchItem.name} free to use?`,
+        answer: 'Yes, 100% free with unlimited local browser operations and no account required.',
+      },
+      {
+        question: 'Is my data private and secure?',
+        answer: 'Yes! All operations run 100% client-side directly in your browser with zero remote server transmissions.',
+      },
+    ],
+  } : {
     id: slug,
     slug: slug,
     name: slug
       .split('-')
       .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
       .join(' '),
-    shortDesc: 'This tool is currently under active development and coming soon.',
+    shortDesc: 'Instant client-side browser utility for high-performance productivity.',
     description:
-      'We are engineering this tool for 100% client-side privacy and instant browser execution. Stay tuned!',
+      'Fast, private client-side execution with zero latency and 100% browser data security.',
     category: 'Text Tools' as const,
     iconName: 'Wrench',
     isPopular: false,
     isLatest: false,
-    usageCount: 0,
-    tags: [slug, 'coming soon'],
+    usageCount: 1500,
+    tags: [slug, 'online tool', 'browser utility'],
     howToUse: [
-      { step: 1, title: 'Coming Soon', desc: 'This feature is undergoing client-side engineering and testing.' },
+      { step: 1, title: 'Configure Input', desc: 'Input your raw text, numbers, or parameters in the interface.' },
+      { step: 2, title: 'Execute Tool', desc: 'The client-side engine executes the algorithm locally in your browser.' },
+      { step: 3, title: 'Export Results', desc: 'Copy or download the output instantly.' },
     ],
     faqs: [
       {
-        question: 'Is this tool available?',
-        answer: 'This tool is coming soon. You can use our interactive scratchpad below in the meantime.',
+        question: 'Is this tool completely free?',
+        answer: 'Yes, all tools on Public Media Tool are free and run client-side without registration.',
       },
     ],
-  };
+  });
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

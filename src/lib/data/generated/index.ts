@@ -39,6 +39,27 @@ import { BATCH_37_TOOLS } from './batch-37';
 import { BATCH_38_TOOLS } from './batch-38';
 import { BATCH_39_TOOLS } from './batch-39';
 import { BATCH_40_TOOLS } from './batch-40';
+import { BATCH_41_TOOLS } from './batch-41';
+import { BATCH_42_TOOLS } from './batch-42';
+import { BATCH_43_TOOLS } from './batch-43';
+import { BATCH_44_TOOLS } from './batch-44';
+import { BATCH_45_TOOLS } from './batch-45';
+import { BATCH_46_TOOLS } from './batch-46';
+import { BATCH_47_TOOLS } from './batch-47';
+import { BATCH_48_TOOLS } from './batch-48';
+import { BATCH_49_TOOLS } from './batch-49';
+import { BATCH_50_TOOLS } from './batch-50';
+import { BATCH_51_TOOLS } from './batch-51';
+import { BATCH_52_TOOLS } from './batch-52';
+import { BATCH_53_TOOLS } from './batch-53';
+import { BATCH_54_TOOLS } from './batch-54';
+import { BATCH_55_TOOLS } from './batch-55';
+import { BATCH_56_TOOLS } from './batch-56';
+import { BATCH_57_TOOLS } from './batch-57';
+import { BATCH_58_TOOLS } from './batch-58';
+import { BATCH_59_TOOLS } from './batch-59';
+import { BATCH_60_TOOLS } from './batch-60';
+import { BATCH_61_TOOLS } from './batch-61';
 
 export const ALL_GENERATED_TOOLS: Tool[] = [
   ...BATCH_1_TOOLS,
@@ -81,4 +102,25 @@ export const ALL_GENERATED_TOOLS: Tool[] = [
   ...BATCH_38_TOOLS,
   ...BATCH_39_TOOLS,
   ...BATCH_40_TOOLS,
+  ...BATCH_41_TOOLS,
+  ...BATCH_42_TOOLS,
+  ...BATCH_43_TOOLS,
+  ...BATCH_44_TOOLS,
+  ...BATCH_45_TOOLS,
+  ...BATCH_46_TOOLS,
+  ...BATCH_47_TOOLS,
+  ...BATCH_48_TOOLS,
+  ...BATCH_49_TOOLS,
+  ...BATCH_50_TOOLS,
+  ...BATCH_51_TOOLS,
+  ...BATCH_52_TOOLS,
+  ...BATCH_53_TOOLS,
+  ...BATCH_54_TOOLS,
+  ...BATCH_55_TOOLS,
+  ...BATCH_56_TOOLS,
+  ...BATCH_57_TOOLS,
+  ...BATCH_58_TOOLS,
+  ...BATCH_59_TOOLS,
+  ...BATCH_60_TOOLS,
+  ...BATCH_61_TOOLS,
 ];

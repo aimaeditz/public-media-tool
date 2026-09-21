@@ -1,23 +1,35 @@
 const fs = require('fs');
 const path = require('path');
 
-// Target category distribution for Batch 2 totaling EXACTLY 5,000 tools:
+// Target category distribution for Batch 3 totaling EXACTLY 5,000 tools:
 const TARGETS = [
-  { category: 'SEO Tools', count: 330, defaultIcon: 'Search' },
-  { category: 'Social Media Tools', count: 330, defaultIcon: 'Share2' },
-  { category: 'Video Tools', count: 220, defaultIcon: 'Video' },
-  { category: 'Audio Tools', count: 220, defaultIcon: 'Music' },
-  { category: 'File Tools', count: 330, defaultIcon: 'FolderArchive' },
-  { category: 'Web Tools', count: 330, defaultIcon: 'Globe' },
-  { category: 'Generators', count: 400, defaultIcon: 'Sparkles' },
-  { category: 'Math Tools', count: 400, defaultIcon: 'Calculator' },
-  { category: 'Date & Time', count: 220, defaultIcon: 'Clock' },
-  { category: 'Productivity', count: 400, defaultIcon: 'CheckSquare' },
-  { category: 'Finance Tools', count: 500, defaultIcon: 'DollarSign' },
-  { category: 'Business Tools', count: 330, defaultIcon: 'Briefcase' },
-  { category: 'Health & Fitness', count: 220, defaultIcon: 'Activity' },
-  { category: 'Education', count: 330, defaultIcon: 'GraduationCap' },
-  { category: 'Unit Converters', count: 340, defaultIcon: 'RefreshCw' },
+  { category: 'Automotive', count: 180, defaultIcon: 'Car' },
+  { category: 'Travel Tools', count: 240, defaultIcon: 'Compass' },
+  { category: 'Real Estate', count: 180, defaultIcon: 'Home' },
+  { category: 'Legal Tools', count: 180, defaultIcon: 'FileText' },
+  { category: 'HR & Payroll', count: 240, defaultIcon: 'Users' },
+  { category: 'Accounting', count: 240, defaultIcon: 'CreditCard' },
+  { category: 'E-commerce', count: 240, defaultIcon: 'ShoppingBag' },
+  { category: 'Inventory & Logistics', count: 240, defaultIcon: 'Box' },
+  { category: 'Engineering', count: 300, defaultIcon: 'Cpu' },
+  { category: 'Construction', count: 180, defaultIcon: 'HardHat' },
+  { category: 'Electrical & Solar', count: 180, defaultIcon: 'Zap' },
+  { category: 'Agriculture', count: 180, defaultIcon: 'Sprout' },
+  { category: 'Restaurant & Cafe', count: 180, defaultIcon: 'Utensils' },
+  { category: 'Beauty & Salon', count: 100, defaultIcon: 'Scissors' },
+  { category: 'Wedding & Event', count: 100, defaultIcon: 'Heart' },
+  { category: 'Photography', count: 180, defaultIcon: 'Camera' },
+  { category: 'Music Production', count: 180, defaultIcon: 'Music' },
+  { category: 'Environment & Energy', count: 180, defaultIcon: 'Leaf' },
+  { category: 'Pets & Animals', count: 100, defaultIcon: 'Dog' },
+  { category: 'Government & Public Services', count: 100, defaultIcon: 'Building' },
+  { category: 'Office Administration', count: 180, defaultIcon: 'File' },
+  { category: 'Networking', count: 180, defaultIcon: 'Network' },
+  { category: 'Data Management', count: 180, defaultIcon: 'Database' },
+  { category: 'Project Management', count: 180, defaultIcon: 'Briefcase' },
+  { category: 'Marketing & Advertising', count: 240, defaultIcon: 'Megaphone' },
+  { category: 'YouTube Creator Tools', count: 240, defaultIcon: 'Video' },
+  { category: 'Freelancing', count: 180, defaultIcon: 'Briefcase' }
 ];
 
 // Scan existing files across data/ and data/generated/ to ensure strict auto-deduplication
@@ -55,177 +67,112 @@ function toSlug(text) {
 }
 
 const TOPICS = {
-  'SEO Tools': [
-    'Meta Tag Generator', 'Meta Tag Analyzer', 'Title Tag Checker', 'Description Length Auditor',
-    'Keyword Density Analyzer', 'Keyword Extractor', 'Keyword Suggestion Engine', 'SERP Preview Snippet',
-    'OpenGraph Meta Generator', 'Twitter Card Generator', 'Schema Markup Generator', 'Schema Validator',
-    'Robots.txt Generator', 'Robots.txt Tester', 'Sitemap XML Generator', 'Sitemap Validator',
-    'Canonical Tag Checker', 'Redirect Chain Checker', 'HTTP Status Code Checker', 'Broken Link Auditor',
-    'Backlink Inspector', 'Domain Authority Estimator', 'Page Authority Estimator', 'MozRank Calculator',
-    'Alexa Rank Inspector', 'Google Index Checker', 'Bing Index Checker', 'Wayback Machine Lookup',
-    'Whois Domain Lookup', 'DNS Records Inspector', 'IP Address Lookup', 'Reverse IP Auditor',
-    'Server Info Inspector', 'SSL Certificate Validator', 'Security Headers Auditor', 'Page Speed Score Estimator',
-    'Mobile Friendly Tester', 'Readability Score Calculator', 'Word Count SEO Analyzer', 'Heading Tag Auditor',
-    'Image Alt Tag Checker', 'Internal Link Counter', 'External Link Counter', 'Anchor Text Analyzer',
-    'Content Freshness Checker', 'Competitor Keyword Comparison', 'Rank Position Estimator', 'Traffic Potential Estimator',
-    'SEO Audit Report Builder', 'Lighthouse Score Predictor'
+  'Automotive': [
+    'Fuel Cost Calculator', 'Vehicle Mileage Estimator', 'Car Loan Payment Calculator', 'Car Insurance Estimator',
+    'Car Depreciation Estimator', 'Resale Value Calculator', 'Car Spec Comparison Tool', 'Vehicle Service Cost Estimator',
+    'Car Tire Size Calculator', 'Car Battery Life Checker', 'Oil Change Interval Helper', 'Coolant Mix Calculator',
+    'Brake Wear Inspector', 'Transmission Fluid Checker', 'Car Rental Cost Estimator', 'Car Lease Vs Purchase',
+    'Trade-In Value Estimator', 'VIN Decoder Helper', 'Toll Cost Calculator', 'EV Driving Range Estimator',
+    'EV Charging Cost Estimator', 'Hybrid Vs Electric Savings'
   ],
-  'Social Media Tools': [
-    'Bio Generator', 'Instagram Bio Formatter', 'Twitter Bio Builder', 'LinkedIn Headline Generator',
-    'TikTok Bio Creator', 'Caption Generator', 'Hashtag Recommendation Engine', 'Post Schedule Planner',
-    'Post Size Inspector', 'Image Aspect Ratio Guide', 'Video Aspect Ratio Helper', 'Instagram Story Size Crop',
-    'YouTube Thumbnail Inspector', 'Facebook Cover Cropper', 'Profile Picture Resizer', 'Banner Dimension Checker',
-    'Ad Copy Generator', 'Engagement Rate Calculator', 'Follower Growth Estimator', 'Social Media Analytics Helper',
-    'Content Calendar Grid', 'Best Time To Post Estimator', 'Emoji Picker for Posts', 'GIF Keyword Finder',
-    'Meme Generator Prep', 'Quote Card Builder', 'Poll Question Generator', 'Quiz Question Builder',
-    'Giveaway Picker Helper', 'Contest Entry Manager', 'UTM Link Builder', 'Social Link Shortener',
-    'Social QR Code Generator', 'Social Share Button Builder'
+  'Travel Tools': [
+    'Trip Itinerary Planner', 'Travel Budget Calculator', 'Packing List Builder', 'Travel Checklist Helper',
+    'Visa Requirement Checker', 'Passport Expiry Helper', 'Airline Luggage Size Checker', 'Flight Cost Estimator',
+    'Hotel Cost Comparer', 'Taxi Fare Estimator', 'Travel Distance Calculator', 'Travel Time Estimator',
+    'Currency Converter Helper', 'Travel Timezone Shift Helper', 'Travel Phrasebook Helper', 'Travel Expense Logger'
   ],
-  'Video Tools': [
-    'Video Trimmer Prep', 'Video Cropper Helper', 'Video Resizer', 'Video Rotator',
-    'Video Flipper', 'Video Compression Estimator', 'Video Format Converter', 'Video Merger Preview',
-    'Video Splitter Prep', 'Video Speed Adjuster', 'Video Reverser Helper', 'Video Mute Helper',
-    'Audio Extractor from Video', 'Video Audio Overlay', 'Subtitle Generator Helper', 'Caption Aligner',
-    'Watermark Overlay Tool', 'Video Thumbnail Generator', 'Video to GIF Converter', 'Video Frame Extractor',
-    'Screen Recorder Helper', 'Video to Image Sequence', 'Images to Video Slideshow', 'Video Metadata Inspector',
-    'Video Side by Side Comparer', 'Video Filter Previewer', 'Video Stabilizer Inspector', 'Video Quality Enhancer',
-    'Video to Text Transcript', 'Video Timeline Editor Prep'
+  'Real Estate': [
+    'Mortgage Loan Payment Calculator', 'Property Down Payment Planner', 'Closing Cost Estimator', 'Property Tax Calculator',
+    'Home Appraisal Estimator', 'Home Value Appreciation', 'Home Improvement ROI', 'Solar Savings Calculator',
+    'Rental Yield Calculator', 'Cap Rate Calculator', 'Lease Agreement Formatter', 'Tenant Rent Estimator'
   ],
-  'Audio Tools': [
-    'Audio Trimmer', 'Audio Cropper', 'Audio Merger', 'Audio Splitter',
-    'Audio Compressor', 'Audio Format Converter', 'Audio Speed Changer', 'Audio Reverser',
-    'Audio Muter', 'Voice Extractor Prep', 'Beat Overlay Helper', 'Fade In Fade Out Tool',
-    'Audio Normalizer', 'Audio Volume Amplifier', 'Graphic Equalizer', 'Pitch Shifter',
-    'Tempo Modifier', 'Voice Changer Helper', 'Noise Remover Filter', 'Audio Metadata Reader',
-    'Audio Waveform Comparer', 'Audio Visualizer Canvas', 'Web Audio Recorder', 'Audio Player Preview',
-    'Audio Bitrate Compressor', 'Text to Speech Synthesizer', 'Speech to Text Recognizer', 'Ringtone Maker',
-    'Podcast Episode Editor Prep'
+  'Legal Tools': [
+    'Contract Builder Template', 'Non Disclosure Agreement NDA Builder', 'Lease Agreement Template', 'Promissory Note Generator',
+    'Power of Attorney Template', 'Privacy Policy Builder', 'Terms of Service Generator', 'DMCA Notice Generator',
+    'LLC Registration Checklist', 'Copyright Notice Builder'
   ],
-  'File Tools': [
-    'Bulk File Renamer', 'File Copier Helper', 'File Mover Helper', 'File Shredder Prep',
-    'ZIP File Archiver', 'File Compressor', 'ZIP Extractor Inspector', 'RAR File Inspector',
-    '7Z File Inspector', 'TAR Archive Inspector', 'GZ Archive Inspector', 'BZ2 File Inspector',
-    'File Chunk Splitter', 'File Merger Tool', 'File MD5 Hash Calculator', 'File SHA256 Checksum',
-    'File Byte Comparer', 'File Diff Inspector', 'File Metadata Reader', 'File Format Converter',
-    'File Hex Viewer', 'File Text Editor Prep', 'File Structure Analyzer', 'File Extension Finder',
-    'File Duplicate Finder', 'File Organizer Sorter', 'File Encryptor Prep', 'File Decryptor Prep',
-    'File Locker Inspector', 'File Magic Bytes Inspector'
+  'HR & Payroll': [
+    'Payroll Salary Calculator', 'Payslip Builder', 'Hourly Wage Overtime Calculator', 'Sales Commission Calculator',
+    'Tax Deduction Calculator', 'PF Pension Contribution Helper', 'Leave Tracker Table', 'Timesheet Hours Calculator',
+    'Offer Letter Generator', 'Salary Slip Formatter', 'W2 1099 Tax Estimator', 'Job Description Generator'
   ],
-  'Web Tools': [
-    'URL Encoder', 'URL Decoder', 'URL Query Parser', 'URL Builder',
-    'URL Shortener', 'URL Expander', 'URL Cleaner', 'URL Validator',
-    'URL Slugifier', 'HTML Minifier', 'HTML Beautifier', 'HTML Validator',
-    'HTML to Plain Text', 'CSS Minifier', 'CSS Beautifier', 'CSS Autoprefixer',
-    'JS Minifier', 'JS Beautifier', 'JS Obfuscator', 'XML Minifier',
-    'XML Beautifier', 'XML Validator', 'JSON Formatter', 'JSON Validator',
-    'JSON to XML Converter', 'XML to JSON Converter', 'CSV to JSON Converter', 'JSON to CSV Converter',
-    'YAML to JSON Converter', 'JSON to YAML Converter', 'Markdown to HTML Converter', 'HTML to Markdown Converter',
-    'Text to HTML Converter', 'Meta Tag Generator', 'Favicon Generator', 'OpenGraph Image Preview',
-    'Robots.txt Builder', 'Sitemap XML Builder', '.htaccess Generator', 'Redirect Rule Builder',
-    'CNAME Generator', 'DNS Lookup Tool', 'IP Lookup Tool', 'Whois Lookup Tool',
-    'HTTP Headers Inspector', 'User Agent String Parser', 'Screen Resolution Checker', 'Browser Info Inspector'
+  'Accounting': [
+    'General Ledger Entry Helper', 'Trial Balance Checker', 'Balance Sheet Calculator', 'Profit and Loss Estimator',
+    'Cash Flow Projection Tool', 'Bank Reconciliation Helper', 'Depreciation Schedule Calculator', 'Bad Debt Estimator',
+    'EBITDA Margin Calculator', 'Gross Profit Margin Calculator', 'Net Margin Estimator', 'GST Return Helper'
   ],
-  'Generators': [
-    'Password Generator', 'UUID v4 Generator', 'QR Code Generator', 'Barcode Generator',
-    'Hash Generator', 'Lorem Ipsum Generator', 'Random Text Generator', 'Random Number Generator',
-    'Random Name Generator', 'Random Email Generator', 'Random Address Generator', 'Random Phone Generator',
-    'Random Date Generator', 'Random Color Generator', 'Random Image Generator', 'Random Username Generator',
-    'Random Word Generator', 'Random Sentence Generator', 'Random Paragraph Generator', 'Random Quote Generator',
-    'Random Joke Generator', 'Random Fact Generator', 'Random Emoji Generator', 'Random Avatar Generator',
-    'Random Logo Text Generator', 'Random Favicon Generator', 'Random Gradient Generator', 'Random Palette Generator',
-    'Random Font Pairing', 'Random Song Generator', 'Random Movie Selector', 'Random Book Picker',
-    'Random Recipe Generator', 'Random Workout Routine', 'Random Meal Plan', 'Random Travel Itinerary',
-    'Random Business Name', 'Random Domain Name Idea', 'Random Slogan Generator', 'Random Tagline Generator',
-    'Random Bio Generator', 'Random Caption Generator', 'Random Hashtag Generator'
+  'E-commerce': [
+    'Product SKU Generator', 'Product Barcode Generator', 'Product Margin Calculator', 'Product Bundle Pricing',
+    'Shipping Fee Estimator', 'Return Refund Cost Calculator', 'Dropshipping Profit Margin', 'Customer Lifetime Value LTV',
+    'Cart Abandonment Rate Calculator', 'Order Conversion Rate Estimator'
   ],
-  'Math Tools': [
-    'Arithmetic Calculator', 'Algebra Equation Solver', 'Geometry Area Calculator', 'Geometry Volume Calculator',
-    'Trigonometry Sine Cosine Calculator', 'Calculus Derivative Calculator', 'Calculus Integral Calculator', 'Statistics Mean Median Mode',
-    'Probability Events Calculator', 'Matrix Addition Multiplication', 'Vector Dot Cross Product', 'Complex Number Arithmetic',
-    'Polynomial Solver', 'Linear Equation System', 'Quadratic Formula Solver', 'Logarithm Calculator',
-    'Exponential Growth Calculator', 'Factorial Calculator', 'Fibonacci Sequence Generator', 'Prime Number Checker',
-    'Greatest Common Divisor GCD', 'Least Common Multiple LCM', 'Percentage Calculator', 'Ratio Proportion Solver',
-    'Standard Deviation Calculator', 'Variance Calculator', 'Correlation Coefficient', 'Linear Regression Model',
-    'Polynomial Interpolation', 'Trend Extrapolation', 'Limit Calculator', 'Infinite Series Calculator',
-    'Combinatorics nCr Calculator', 'Permutation nPr Calculator', 'Binomial Distribution Calculator', 'Normal Distribution Z-Score',
-    'Poisson Distribution Calculator', 'Chi-Square Calculator', 'Student T-Test Calculator', 'Z-Test Calculator',
-    'ANOVA Table Calculator', 'Confidence Interval Calculator', 'Sample Size Calculator', 'Margin of Error Calculator'
+  'Inventory & Logistics': [
+    'Stock Reorder Point Calculator', 'Inventory Valuation FIFO LIFO', 'Warehouse Bin Locator Helper', 'SKU Barcode Generator',
+    'Freight Shipping Cost Estimator', 'Customs Tariff Duty Calculator', 'Bill of Lading Builder', 'Commercial Invoice Generator',
+    'Container Load Calculator', 'Last Mile Delivery Cost Estimator'
   ],
-  'Date & Time': [
-    'Date Difference Calculator', 'Age Calculator', 'Add Subtract Days Calculator', 'Time Zone Converter',
-    'Time Unit Converter', 'Unix Timestamp Converter', 'Timestamp Generator', 'Week Number Calculator',
-    'Day of Year Calculator', 'Moon Phase Calculator', 'Zodiac Sign Calculator', 'Perpetual Calendar',
-    'Countdown Timer', 'Stopwatch Tool', 'Pomodoro Timer', 'Alarm Clock Helper',
-    'Reminder Scheduler', 'Work Schedule Calculator', 'Date Format Converter', 'Time Format Converter',
-    'Date String Parser', 'Date Comparator', 'Time Comparator', 'Date Sorter',
-    'Date Range Calculator', 'Business Working Days Calculator', 'Working Hours Calculator', 'Sunrise Sunset Time Calculator'
+  'Engineering': [
+    'Beam Bending Stress Calculator', 'Column Structural Load Calculator', 'Staircase Rise Run Calculator', 'Truss Member Force Solver',
+    'Fluid Pipe Pressure Drop Calculator', 'HVAC Cooling Load Estimator', 'Electric Circuit Impedance Calculator', 'Motor Torque Power Calculator',
+    'Transformer Efficiency Calculator', 'Power Factor Correction Helper'
   ],
-  'Productivity': [
-    'To-Do List Manager', 'Task Priority Matrix', 'Project Milestone Planner', 'Quick Note Pad',
-    'Mind Map Node Editor', 'Flowchart Builder Prep', 'Diagram Maker Prep', 'Kanban Column Board',
-    'Gantt Chart Previewer', 'Daily Calendar Planner', 'Weekly Schedule Builder', 'Task Reminder Helper',
-    'Pomodoro Timer', 'Habit Tracker Table', 'Goal Tracking Sheet', 'Goal Setting Framework',
-    'Daily Journal Scratchpad', 'Private Diary Pad', 'Daily Agenda Builder', 'Meeting Schedule Planner',
-    'Email Template Generator', 'Email Signature Builder', 'Letter Template Builder', 'Resume CV Builder Prep',
-    'Cover Letter Generator', 'Invoice Builder', 'Receipt Builder', 'Price Quotation Builder',
-    'Cost Estimate Generator', 'Purchase Order Generator', 'Packing Slip Builder', 'Business Card Previewer',
-    'Label Maker Prep', 'Badge Maker', 'Certificate Generator', 'Award Maker',
-    'Event Invitation Generator', 'Greeting Card Builder', 'Thank You Note Generator'
+  'Construction': [
+    'Concrete Mix Volume Calculator', 'Rebar Steel Weight Calculator', 'Wall Brick Count Estimator', 'Floor Tile Count Estimator',
+    'Wall Paint Area Calculator', 'Plaster Mortar Quantity Calculator', 'Roofing Sheet Area Estimator', 'Drywall Sheet Count Calculator'
   ],
-  'Finance Tools': [
-    'Loan Payment EMI Calculator', 'Mortgage Calculator', 'Interest Rate Calculator', 'Compound Interest Calculator',
-    'Simple Interest Calculator', 'SIP Investment Calculator', 'Fixed Deposit FD Calculator', 'Recurring Deposit RD Calculator',
-    'Public Provident Fund PPF', 'NPS Retirement Calculator', 'Retirement Savings Planner', 'Savings Growth Estimator',
-    'Investment ROI Calculator', 'CAGR Growth Rate Calculator', 'XIRR Return Calculator', 'Net Present Value NPV',
-    'Internal Rate of Return IRR', 'Payback Period Calculator', 'Break-Even Point Calculator', 'Profit Margin Calculator',
-    'Gross Margin Calculator', 'Markup Percentage Calculator', 'Discount Savings Calculator', 'Sales Tax Calculator',
-    'GST Tax Calculator', 'VAT Tax Calculator', 'Income Tax Estimator', 'Property Tax Calculator',
-    'Capital Gains Tax Calculator', 'Dividend Yield Calculator', 'Stock Profit Calculator', 'Mutual Fund Return Estimator',
-    'ETF Growth Calculator', 'Crypto Profit Calculator', 'Forex Exchange Estimator', 'Currency Conversion Engine',
-    'Monthly Budget Planner', 'Expense Tracker Helper', 'Net Worth Calculator', 'Debt Payoff Snowball',
-    'Credit Card Payment Calculator', 'Credit Score Estimator', 'Loan Comparison Engine', 'Mortgage Refinance Calculator',
-    'Amortization Schedule Builder'
+  'Electrical & Solar': [
+    'Ohms Law Voltage Current Calculator', 'Wire Gauge Voltage Drop Calculator', 'Circuit Breaker Ampere Sizing', 'Solar Panel Array ROI Calculator',
+    'Solar Battery Storage Sizing', 'Inverter Capacity Calculator', 'Wind Energy Output Estimator', 'Home Energy Wattage Auditor'
   ],
-  'Business Tools': [
-    'Invoice Builder', 'Receipt Builder', 'Quotation Builder', 'Estimate Builder',
-    'Purchase Order Builder', 'Packing Slip Generator', 'Delivery Note Builder', 'Credit Note Builder',
-    'General Ledger Helper', 'Balance Sheet Builder', 'Profit & Loss Statement Builder', 'Cash Flow Statement Builder',
-    'Trial Balance Checker', 'Payroll Calculator', 'Employee Payslip Generator', 'Timesheet Calculator',
-    'Attendance Tracker', 'Employee Leave Tracker', 'Employee Directory Table', 'Customer CRM Directory',
-    'Vendor Directory Table', 'Inventory Tracker', 'Stock Level Auditor', 'Order Tracking Helper',
-    'Shipment Tracker Helper', 'Barcode SKU Generator', 'Price List Builder', 'Product Catalog Builder',
-    'Brochure Builder', 'Business Plan Outline', 'SWOT Analysis Matrix', 'Pitch Deck Outline',
-    'Proposal Generator', 'Contract Template Prep', 'Non-Disclosure Agreement NDA', 'Service Agreement Builder',
-    'Terms of Service Generator', 'Privacy Policy Generator', 'Refund Policy Generator'
+  'Agriculture': [
+    'Crop Yield Per Acre Calculator', 'Seed Requirement Calculator', 'NPK Fertilizer Mixture Calculator', 'Drip Irrigation Flow Calculator',
+    'Soil pH Amendment Estimator', 'Compost Volume Calculator', 'Greenhouse Area Estimator', 'Livestock Feed Calorie Calculator'
   ],
-  'Health & Fitness': [
-    'BMI Calculator', 'BMR Calculator', 'Total Daily Energy Expenditure TDEE', 'Calorie Deficit Surplus Calculator',
-    'Macronutrient Ratio Calculator', 'Protein Requirement Calculator', 'Carb Intake Calculator', 'Healthy Fat Calculator',
-    'Daily Water Intake Calculator', 'Sleep Cycle Calculator', 'Target Heart Rate Zone', 'Blood Pressure Category Checker',
-    'Blood Sugar Log Helper', 'Cholesterol Ratio Checker', 'Body Fat Percentage Calculator', 'Lean Body Mass Calculator',
-    'Ideal Body Weight Calculator', 'Weight Loss Timeline', 'Weight Gain Planner', 'Meal Plan Macro Calculator',
-    'Workout Routine Planner', 'Exercise Rep Counter', 'Exercise Set Counter', 'Rest Interval Timer',
-    'Step Distance Converter', 'Pace Calculator Running', 'Cycling Speed Calculator', 'Swimming Pace Calculator',
-    'Yoga Session Timer', 'Meditation Timer', 'Pregnancy Due Date Calculator', 'Ovulation Window Calculator'
+  'Restaurant & Cafe': [
+    'Recipe Food Costing Calculator', 'Menu Item Margin Calculator', 'Food Portion Size Estimator', 'Restaurant POS Billing Tip Calculator',
+    'Combo Meal Pricing Helper', 'Happy Hour Discount Calculator', 'Catering Event Budget Estimator'
   ],
-  'Education': [
-    'GPA Calculator', 'CGPA Calculator', 'Grade Percentage Converter', 'Marks to Percentage Calculator',
-    'Test Score Analyzer', 'Quiz Score Calculator', 'Exam Countdown Timer', 'Study Timetable Planner',
-    'Assignment Tracker', 'Homework Organizer', 'Citation Generator APA MLA', 'Bibliography Builder',
-    'Reference List Maker', 'Essay Outline Builder', 'Paragraph Structure Helper', 'Sentence Structure Analyzer',
-    'Grammar Checker Helper', 'Spell Checker Helper', 'Plagiarism Checker Preview', 'Word Count Analyzer',
-    'Reading Time Estimator', 'Vocabulary Builder', 'Dictionary Lookup Helper', 'Thesaurus Synonym Finder',
-    'Flashcard Maker Prep', 'Quiz Question Builder', 'Test Question Builder', 'Certificate Builder',
-    'Student Transcript Builder', 'Student Resume Builder'
+  'Beauty & Salon': [
+    'Salon Appointment Scheduler', 'Hair Dye Mix Ratio Helper', 'Skin Care Routine Planner', 'Nail Art Service Price Estimator'
   ],
-  'Unit Converters': [
-    'Length Unit Converter', 'Weight Mass Converter', 'Volume Capacity Converter', 'Area Surface Converter',
-    'Speed Velocity Converter', 'Time Duration Converter', 'Temperature Converter', 'Pressure Unit Converter',
-    'Energy Joule Converter', 'Power Watt Converter', 'Force Newton Converter', 'Angle Degree Converter',
-    'Frequency Hertz Converter', 'Data Storage Converter', 'Digital Bandwidth Converter', 'Fuel Consumption Converter',
-    'Cooking Measurement Converter', 'Shoe Size Converter', 'Clothing Size Converter', 'Ring Size Converter',
-    'Paper Size Dimensions', 'Pixel to REM Converter', 'DPI PPI Screen Calculator', 'Screen Resolution Scaler',
-    'Aspect Ratio Calculator', 'File Size Unit Converter', 'Download Time Calculator'
+  'Wedding & Event': [
+    'Wedding Budget Calculator', 'Guest List RSVP Tracker', 'Seating Chart Planner', 'Catering Food Quantity Estimator', 'Event Timeline Schedule Builder'
+  ],
+  'Photography': [
+    'EXIF Metadata Inspector', 'Depth of Field DOF Calculator', 'Aspect Ratio Cropper Guide', 'Camera Exposure Triangle Solver', 'Field of View FOV Calculator'
+  ],
+  'Music Production': [
+    'BPM Metronome Tool', 'Music Key Transposer', 'Chord Progression Generator', 'BPM to Millisecond Delay Calculator', 'Guitar Tuner Pitch Reference'
+  ],
+  'Environment & Energy': [
+    'Carbon Footprint Emission Calculator', 'CO2 Savings Estimator', 'Solar Energy Offset Calculator', 'Recycling Impact Estimator'
+  ],
+  'Pets & Animals': [
+    'Pet Calorie Requirement Calculator', 'Dog Age in Human Years Calculator', 'Cat Age Converter', 'Pet Medication Dosage Helper'
+  ],
+  'Government & Public Services': [
+    'Property Tax Valuation Calculator', 'Vehicle Road Tax Estimator', 'Public Utility Bill Splitter', 'Civic Tax Estimator'
+  ],
+  'Office Administration': [
+    'Office Memo Formatter', 'Business Letterhead Builder', 'Visitor Log Table', 'Meeting Agenda Builder', 'Office Expense Voucher Builder'
+  ],
+  'Networking': [
+    'IP Subnet Mask Calculator', 'CIDR Notation Range Solver', 'Network Port Lookup', 'Bandwidth Download Time Calculator', 'Ping Latency Estimator'
+  ],
+  'Data Management': [
+    'SQL Table Schema Builder', 'Data Deduplication Helper', 'JSON Field Extractor', 'CSV Column Reorder Tool', 'Data Normalization Checker'
+  ],
+  'Project Management': [
+    'Gantt Chart Timeline Builder', 'Story Point Estimation Calculator', 'RACI Matrix Planner', 'WBS Work Breakdown Structure Builder', 'Sprint Velocity Calculator'
+  ],
+  'Marketing & Advertising': [
+    'Ad Campaign ROAS Calculator', 'Click Through Rate CTR Calculator', 'Cost Per Click CPC Estimator', 'Cost Per Acquisition CPA Calculator', 'Ad Banner Aspect Ratio Helper'
+  ],
+  'YouTube Creator Tools': [
+    'YouTube Title Character Counter', 'YouTube Tag Extractor Helper', 'YouTube Channel Keyword Finder', 'YouTube Thumbnail Previewer', 'YouTube Shorts Aspect Ratio Tool'
+  ],
+  'Freelancing': [
+    'Freelance Hourly Rate Calculator', 'Project Quote Estimate Builder', 'Freelance Contract Template Builder', 'Freelance Invoice Builder', 'Client Project Milestone Tracker'
   ]
 };
 
@@ -236,16 +183,14 @@ const QUALIFIERS = [
 ];
 
 const CONTEXTS = [
-  'for Web Professionals', 'for Developers', 'for Content Marketers', 'for Writers',
-  'for Social Media Managers', 'for SEO Analysts', 'for Students', 'for Engineers',
-  'for Financial Advisors', 'for Business Leaders', 'for Daily Operations', 'for Security Compliance',
-  'for Digital Publishers', 'for Data Analysts', 'for Workflow Efficiency'
+  'for Niche Professionals', 'for Specialists', 'for Industry Leaders', 'for Daily Practice',
+  'for Workflow Automation', 'for Precision Tasks', 'for Studio Operations', 'for Enterprise Efficiency'
 ];
 
-// Sub-batching setup (starting at subBatchIndex = 21 for Batch 2)
+// Sub-batching setup (starting at subBatchIndex = 41 for Batch 3)
 const subBatchSize = 250;
 let totalGenerated = 0;
-let subBatchIndex = 21;
+let subBatchIndex = 41;
 let currentBatchTools = [];
 
 function flushSubBatch() {
@@ -264,7 +209,7 @@ function flushSubBatch() {
 for (const target of TARGETS) {
   const category = target.category;
   const countNeeded = target.count;
-  const topics = TOPICS[category] || TOPICS['SEO Tools'];
+  const topics = TOPICS[category] || TOPICS['Automotive'];
   let countForCategory = 0;
 
   console.log(`\nGenerating ${countNeeded} tools for category: "${category}"...`);
@@ -334,12 +279,12 @@ for (const target of TARGETS) {
 flushSubBatch();
 
 console.log(`\n==================================================`);
-console.log(`TOTAL NEW TOOLS GENERATED IN BATCH 2: ${totalGenerated}`);
-console.log(`TOTAL SUB-BATCHES (Batch 1 & 2): ${subBatchIndex - 1}`);
+console.log(`TOTAL NEW TOOLS GENERATED IN BATCH 3: ${totalGenerated}`);
+console.log(`TOTAL SUB-BATCHES (Batch 1, 2 & 3): ${subBatchIndex - 1}`);
 console.log(`TOTAL UNIQUE SLUGS IN DATABASE: ${seenSlugs.size}`);
 console.log(`==================================================\n`);
 
-// Update generated index export for ALL sub-batches (1 to 40)
+// Update generated index export for ALL sub-batches (1 to 60)
 const indexFilePath = path.join(__dirname, '../src/lib/data/generated/index.ts');
 let indexImports = '';
 let indexExports = 'export const ALL_GENERATED_TOOLS: Tool[] = [\n';

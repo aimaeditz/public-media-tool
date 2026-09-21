@@ -1,630 +1,116 @@
 import { Tool, CategoryInfo } from '../types';
 import { CATEGORIES as DYNAMIC_CATEGORIES, STATIC_CATEGORIES } from '../categories';
 import { SEARCH_INDEX } from '../search-index';
-import { BATCH_1_TOOLS } from '../data/generated/batch-1';
-import { BATCH_2_TOOLS } from '../data/generated/batch-2';
-import { BATCH_3_TOOLS } from '../data/generated/batch-3';
-import { BATCH_4_TOOLS } from '../data/generated/batch-4';
-import { BATCH_5_TOOLS } from '../data/generated/batch-5';
-import { BATCH_6_TOOLS } from '../data/generated/batch-6';
-import { BATCH_7_TOOLS } from '../data/generated/batch-7';
-import { BATCH_8_TOOLS } from '../data/generated/batch-8';
-import { BATCH_9_TOOLS } from '../data/generated/batch-9';
-import { BATCH_10_TOOLS } from '../data/generated/batch-10';
-import { BATCH_11_TOOLS } from '../data/generated/batch-11';
-import { BATCH_12_TOOLS } from '../data/generated/batch-12';
-import { BATCH_13_TOOLS } from '../data/generated/batch-13';
-import { BATCH_14_TOOLS } from '../data/generated/batch-14';
-import { BATCH_15_TOOLS } from '../data/generated/batch-15';
-import { BATCH_16_TOOLS } from '../data/generated/batch-16';
-import { BATCH_17_TOOLS } from '../data/generated/batch-17';
-import { BATCH_18_TOOLS } from '../data/generated/batch-18';
-import { BATCH_19_TOOLS } from '../data/generated/batch-19';
-import { BATCH_20_TOOLS } from '../data/generated/batch-20';
-import { BATCH_21_TOOLS } from '../data/generated/batch-21';
-import { BATCH_22_TOOLS } from '../data/generated/batch-22';
-import { BATCH_23_TOOLS } from '../data/generated/batch-23';
-import { BATCH_24_TOOLS } from '../data/generated/batch-24';
-import { BATCH_25_TOOLS } from '../data/generated/batch-25';
-import { BATCH_26_TOOLS } from '../data/generated/batch-26';
-import { BATCH_27_TOOLS } from '../data/generated/batch-27';
-import { BATCH_28_TOOLS } from '../data/generated/batch-28';
-import { BATCH_29_TOOLS } from '../data/generated/batch-29';
-import { BATCH_30_TOOLS } from '../data/generated/batch-30';
-import { BATCH_31_TOOLS } from '../data/generated/batch-31';
-import { BATCH_32_TOOLS } from '../data/generated/batch-32';
-import { BATCH_33_TOOLS } from '../data/generated/batch-33';
-import { BATCH_34_TOOLS } from '../data/generated/batch-34';
-import { BATCH_35_TOOLS } from '../data/generated/batch-35';
-import { BATCH_36_TOOLS } from '../data/generated/batch-36';
-import { BATCH_37_TOOLS } from '../data/generated/batch-37';
-import { BATCH_38_TOOLS } from '../data/generated/batch-38';
-import { BATCH_39_TOOLS } from '../data/generated/batch-39';
-import { BATCH_40_TOOLS } from '../data/generated/batch-40';
-import { BATCH_41_TOOLS } from '../data/generated/batch-41';
-import { BATCH_42_TOOLS } from '../data/generated/batch-42';
-import { BATCH_43_TOOLS } from '../data/generated/batch-43';
-import { BATCH_44_TOOLS } from '../data/generated/batch-44';
-import { BATCH_45_TOOLS } from '../data/generated/batch-45';
-import { BATCH_46_TOOLS } from '../data/generated/batch-46';
-import { BATCH_47_TOOLS } from '../data/generated/batch-47';
-import { BATCH_48_TOOLS } from '../data/generated/batch-48';
-import { BATCH_49_TOOLS } from '../data/generated/batch-49';
-import { BATCH_50_TOOLS } from '../data/generated/batch-50';
-import { BATCH_51_TOOLS } from '../data/generated/batch-51';
-import { BATCH_52_TOOLS } from '../data/generated/batch-52';
-import { BATCH_53_TOOLS } from '../data/generated/batch-53';
-import { BATCH_54_TOOLS } from '../data/generated/batch-54';
-import { BATCH_55_TOOLS } from '../data/generated/batch-55';
-import { BATCH_56_TOOLS } from '../data/generated/batch-56';
-import { BATCH_57_TOOLS } from '../data/generated/batch-57';
-import { BATCH_58_TOOLS } from '../data/generated/batch-58';
-import { BATCH_59_TOOLS } from '../data/generated/batch-59';
-import { BATCH_60_TOOLS } from '../data/generated/batch-60';
-import { BATCH_61_TOOLS } from '../data/generated/batch-61';
-import { CALCULATOR_TOOLS } from '../data/calculator-tools';
-import { COLOR_TOOLS } from '../data/color-tools';
-import { CONVERTER_TOOLS } from '../data/converter-tools';
-import { DEVELOPER_TOOLS } from '../data/developer-tools';
-import { IMAGE_TOOLS } from '../data/image-tools';
-import { PDF_TOOLS } from '../data/pdf-tools';
-import { SEO_TOOLS } from '../data/seo-tools';
-import { TEXT_TOOLS } from '../data/text-tools';
-import { tools as securityTools } from '../data/category-chunks/security-tools';
-import { tools as webTools } from '../data/category-chunks/web-tools';
+
+import { tools as accountingTools } from '../data/category-chunks/accounting';
+import { tools as agricultureTools } from '../data/category-chunks/agriculture';
+import { tools as audioToolsTools } from '../data/category-chunks/audio-tools';
+import { tools as automotiveTools } from '../data/category-chunks/automotive';
+import { tools as beautySalonTools } from '../data/category-chunks/beauty-salon';
+import { tools as businessToolsTools } from '../data/category-chunks/business-tools';
+import { tools as calculatorToolsTools } from '../data/category-chunks/calculator-tools';
+import { tools as colorToolsTools } from '../data/category-chunks/color-tools';
+import { tools as constructionTools } from '../data/category-chunks/construction';
+import { tools as converterToolsTools } from '../data/category-chunks/converter-tools';
+import { tools as dataManagementTools } from '../data/category-chunks/data-management';
+import { tools as dateTimeTools } from '../data/category-chunks/date-time';
+import { tools as developerToolsTools } from '../data/category-chunks/developer-tools';
+import { tools as eCommerceTools } from '../data/category-chunks/e-commerce';
+import { tools as educationTools } from '../data/category-chunks/education';
+import { tools as electricalSolarTools } from '../data/category-chunks/electrical-solar';
+import { tools as engineeringTools } from '../data/category-chunks/engineering';
+import { tools as environmentEnergyTools } from '../data/category-chunks/environment-energy';
+import { tools as fileToolsTools } from '../data/category-chunks/file-tools';
+import { tools as financeToolsTools } from '../data/category-chunks/finance-tools';
+import { tools as freelancingTools } from '../data/category-chunks/freelancing';
+import { tools as generatorsTools } from '../data/category-chunks/generators';
+import { tools as governmentPublicServicesTools } from '../data/category-chunks/government-public-services';
+import { tools as healthFitnessTools } from '../data/category-chunks/health-fitness';
+import { tools as hrPayrollTools } from '../data/category-chunks/hr-payroll';
+import { tools as imageToolsTools } from '../data/category-chunks/image-tools';
+import { tools as inventoryLogisticsTools } from '../data/category-chunks/inventory-logistics';
+import { tools as legalToolsTools } from '../data/category-chunks/legal-tools';
+import { tools as marketingAdvertisingTools } from '../data/category-chunks/marketing-advertising';
+import { tools as mathToolsTools } from '../data/category-chunks/math-tools';
+import { tools as musicProductionTools } from '../data/category-chunks/music-production';
+import { tools as networkingTools } from '../data/category-chunks/networking';
+import { tools as officeAdministrationTools } from '../data/category-chunks/office-administration';
+import { tools as pdfToolsTools } from '../data/category-chunks/pdf-tools';
+import { tools as petsAnimalsTools } from '../data/category-chunks/pets-animals';
+import { tools as photographyTools } from '../data/category-chunks/photography';
+import { tools as productivityTools } from '../data/category-chunks/productivity';
+import { tools as projectManagementTools } from '../data/category-chunks/project-management';
+import { tools as realEstateTools } from '../data/category-chunks/real-estate';
+import { tools as restaurantCafeTools } from '../data/category-chunks/restaurant-cafe';
+import { tools as securityToolsTools } from '../data/category-chunks/security-tools';
+import { tools as seoToolsTools } from '../data/category-chunks/seo-tools';
+import { tools as socialMediaToolsTools } from '../data/category-chunks/social-media-tools';
+import { tools as textToolsTools } from '../data/category-chunks/text-tools';
+import { tools as travelToolsTools } from '../data/category-chunks/travel-tools';
+import { tools as unitConvertersTools } from '../data/category-chunks/unit-converters';
+import { tools as videoToolsTools } from '../data/category-chunks/video-tools';
+import { tools as webToolsTools } from '../data/category-chunks/web-tools';
+import { tools as weddingEventTools } from '../data/category-chunks/wedding-event';
+import { tools as youtubeCreatorToolsTools } from '../data/category-chunks/youtube-creator-tools';
 
 export const CATEGORIES: CategoryInfo[] = DYNAMIC_CATEGORIES;
 
-export const INITIAL_TOOLS: Tool[] = [
-  {
-    id: 'word-counter',
-    slug: 'word-counter',
-    name: 'Word & Character Counter',
-    shortDesc: 'Instant real-time word, character, sentence, paragraph, and reading time counter.',
-    description: 'Analyze your text length with live word count, character count, sentence estimation, reading duration, and speaking duration. Completely private in browser.',
-    category: 'Text Tools',
-    iconName: 'Type',
-    isPopular: true,
-    isLatest: true,
-    usageCount: 142300,
-    tags: ['text', 'counter', 'words', 'characters', 'reading time', 'analysis'],
-    howToUse: [
-      { step: 1, title: 'Paste or type text', desc: 'Enter text into the large editor area.' },
-      { step: 2, title: 'View instant metrics', desc: 'Read real-time statistics including words, characters without spaces, sentences, and estimated reading time.' },
-      { step: 3, title: 'Copy or Clear', desc: 'Use one-click buttons to copy processed statistics or reset the input.' }
-    ],
-    faqs: [
-      { question: 'Is my text stored or uploaded?', answer: 'No. The entire analysis runs client-side in your web browser JavaScript runtime.' },
-      { question: 'Does it support special characters and emojis?', answer: 'Yes! Unicode characters and emojis are counted accurately according to standard text processing.' }
-    ]
-  },
-  {
-    id: 'case-converter',
-    slug: 'case-converter',
-    name: 'Text Case Converter',
-    shortDesc: 'Convert text between UPPERCASE, lowercase, Title Case, camelCase, snake_case, and kebab-case.',
-    description: 'Easily switch string case formatting for programming, copywriting, or formatting clean document headers.',
-    category: 'Text Tools',
-    iconName: 'ArrowUpDown',
-    isPopular: true,
-    isLatest: false,
-    usageCount: 98120,
-    tags: ['text', 'case', 'uppercase', 'camelcase', 'snake_case', 'titlecase'],
-    howToUse: [
-      { step: 1, title: 'Input your text', desc: 'Paste the string or document you wish to transform.' },
-      { step: 2, title: 'Choose target case', desc: 'Click any format button such as UPPERCASE, Title Case, or camelCase.' },
-      { step: 3, title: 'Copy transformed text', desc: 'Click "Copy to Clipboard" to use your converted text anywhere.' }
-    ],
-    faqs: [
-      { question: 'What is slug/kebab-case?', answer: 'Kebab-case replaces spaces with hyphens and converts all letters to lowercase, ideal for web URLs.' }
-    ]
-  },
-  {
-    id: 'lorem-ipsum-generator',
-    slug: 'lorem-ipsum-generator',
-    name: 'Lorem Ipsum Placeholder Generator',
-    shortDesc: 'Generate custom dummy text paragraphs, sentences, or words for web designs.',
-    description: 'Create realistic placeholder text with custom paragraph counts, optional HTML tags wrapper, and start-with-Lorem options.',
-    category: 'Text Tools',
-    iconName: 'AlignLeft',
-    isPopular: false,
-    isLatest: true,
-    usageCount: 45200,
-    tags: ['text', 'lorem', 'placeholder', 'dummy text', 'generator'],
-    howToUse: [
-      { step: 1, title: 'Set paragraph count', desc: 'Adjust the slider or input field for desired paragraph count.' },
-      { step: 2, title: 'Select options', desc: 'Choose whether to wrap with <p> tags or start with standard "Lorem ipsum dolor...".' },
-      { step: 3, title: 'Generate & Copy', desc: 'Copy the generated dummy text with one click.' }
-    ],
-    faqs: [
-      { question: 'Why use Lorem Ipsum?', answer: 'Lorem Ipsum provides a natural distribution of letters without distracting from visual layout design.' }
-    ]
-  },
-  {
-    id: 'image-resizer',
-    slug: 'image-resizer',
-    name: 'Image Resizer & Crop',
-    shortDesc: 'Resize photos to exact width/height pixels or percentage while maintaining quality.',
-    description: 'Fast client-side image resizing powered by HTML5 Canvas. Supports aspect ratio lock, percentage scaling, and high resolution export.',
-    category: 'Image Tools',
-    iconName: 'Maximize2',
-    isPopular: true,
-    isLatest: true,
-    usageCount: 189400,
-    tags: ['image', 'resize', 'crop', 'dimensions', 'aspect ratio', 'photo'],
-    howToUse: [
-      { step: 1, title: 'Upload image', desc: 'Drag and drop or select an image from your device.' },
-      { step: 2, title: 'Set dimensions', desc: 'Enter exact pixel width and height or select a scaling percentage.' },
-      { step: 3, title: 'Download resized image', desc: 'Save your newly sized image directly to your device.' }
-    ],
-    faqs: [
-      { question: 'Is my photo uploaded to a server?', answer: 'Never. Your browser processes the photo locally inside memory using Web Canvas APIs.' }
-    ]
-  },
-  {
-    id: 'image-format-converter',
-    slug: 'image-format-converter',
-    name: 'Image Format Converter (PNG / JPG / WEBP)',
-    shortDesc: 'Convert PNG, JPG, WEBP, and GIF images instantly right in your browser.',
-    description: 'Convert images to WebP for faster website loading speeds, PNG for transparency, or JPEG for smaller file sizes with quality slider controls.',
-    category: 'Image Tools',
-    iconName: 'FileType',
-    isPopular: true,
-    isLatest: false,
-    usageCount: 162000,
-    tags: ['image', 'convert', 'png', 'jpg', 'webp', 'compression'],
-    howToUse: [
-      { step: 1, title: 'Drop your image', desc: 'Select any image file from your computer.' },
-      { step: 2, title: 'Choose format & quality', desc: 'Select target format (WEBP, PNG, JPG) and adjust quality ratio.' },
-      { step: 3, title: 'Export', desc: 'Click Download to receive your converted file.' }
-    ],
-    faqs: [
-      { question: 'Which format is best for websites?', answer: 'WebP offers superior compression and visual quality for modern web browsers.' }
-    ]
-  },
-  {
-    id: 'color-picker-from-image',
-    slug: 'color-picker-from-image',
-    name: 'Image Color Palette Extractor',
-    shortDesc: 'Upload an image to pick exact pixel colors or extract dominant color palettes.',
-    description: 'Extract dominant palette swatches and click anywhere on photos to inspect HEX, RGB, and HSL color values.',
-    category: 'Color Tools',
-    iconName: 'Pipette',
-    isPopular: false,
-    isLatest: true,
-    usageCount: 54100,
-    tags: ['color', 'image', 'palette', 'picker', 'hex', 'rgb'],
-    howToUse: [
-      { step: 1, title: 'Select an image', desc: 'Upload a banner, photo, or screenshot.' },
-      { step: 2, title: 'Hover & click', desc: 'Hover over pixels to inspect colors or review auto-extracted palette cards.' },
-      { step: 3, title: 'Copy HEX code', desc: 'Click any color card to copy its HEX value.' }
-    ],
-    faqs: [
-      { question: 'How many colors does it extract?', answer: 'It extracts the 6 top dominant color swatches across your uploaded photo.' }
-    ]
-  },
-  {
-    id: 'json-formatter-validator',
-    slug: 'json-formatter-validator',
-    name: 'JSON Formatter & Validator',
-    shortDesc: 'Beautify, minify, validate, and tree-view inspect raw JSON strings.',
-    description: 'Format unreadable JSON with custom indentation (2 or 4 spaces), validate syntax errors with line indicators, and minify for API payloads.',
-    category: 'Developer Tools',
-    iconName: 'FileCode2',
-    isPopular: true,
-    isLatest: false,
-    usageCount: 210500,
-    tags: ['json', 'formatter', 'validator', 'beautify', 'minify', 'developer'],
-    howToUse: [
-      { step: 1, title: 'Paste JSON', desc: 'Paste raw or compressed JSON data into the editor.' },
-      { step: 2, title: 'Format or Minify', desc: 'Click "Beautify" to format or "Minify" to strip whitespace.' },
-      { step: 3, title: 'Review validation', desc: 'Fix any syntax issues identified with clear error highlights.' }
-    ],
-    faqs: [
-      { question: 'Can large JSON files be processed?', answer: 'Yes, because processing runs in client memory, it handles multi-megabyte JSON payloads seamlessly.' }
-    ]
-  },
-  {
-    id: 'base64-encoder-decoder',
-    slug: 'base64-encoder-decoder',
-    name: 'Base64 Encoder & Decoder',
-    shortDesc: 'Encode plain text or decode Base64 strings safely in your browser.',
-    description: 'Simple and fast Base64 string encoder and decoder supporting UTF-8 special characters and URL-safe Base64 modes.',
-    category: 'Developer Tools',
-    iconName: 'Binary',
-    isPopular: true,
-    isLatest: false,
-    usageCount: 134200,
-    tags: ['base64', 'encode', 'decode', 'developer', 'string', 'utf8'],
-    howToUse: [
-      { step: 1, title: 'Choose Mode', desc: 'Select Encode or Decode tab.' },
-      { step: 2, title: 'Enter input', desc: 'Type or paste the input text.' },
-      { step: 3, title: 'Get result', desc: 'Copy the processed Base64 output immediately.' }
-    ],
-    faqs: [
-      { question: 'Is Base64 encryption?', answer: 'No, Base64 is an encoding format, not an encryption protocol.' }
-    ]
-  },
-  {
-    id: 'uuid-generator',
-    slug: 'uuid-generator',
-    name: 'UUID / GUID Generator',
-    shortDesc: 'Generate random v4 UUIDs in bulk with customizable uppercase & hyphen settings.',
-    description: 'Generate cryptographic RFC-compliant Version-4 UUIDs individually or in batch for database keys and system testing.',
-    category: 'Developer Tools',
-    iconName: 'KeyRound',
-    isPopular: false,
-    isLatest: true,
-    usageCount: 78900,
-    tags: ['uuid', 'guid', 'v4', 'random', 'generator', 'developer'],
-    howToUse: [
-      { step: 1, title: 'Select quantity', desc: 'Choose how many UUIDs to generate (1 to 100).' },
-      { step: 2, title: 'Customize format', desc: 'Toggle hyphens or uppercase letters.' },
-      { step: 3, title: 'Copy UUIDs', desc: 'Click "Generate" and copy single or all generated UUIDs.' }
-    ],
-    faqs: [
-      { question: 'Are these UUIDs secure?', answer: 'Yes, generated using your browser crypto.getRandomValues API.' }
-    ]
-  },
-  {
-    id: 'color-contrast-checker',
-    slug: 'color-contrast-checker',
-    name: 'Color Contrast Checker (WCAG)',
-    shortDesc: 'Test text and background color ratios against WCAG 2.1 AA and AAA standards.',
-    description: 'Ensure web accessibility by checking contrast ratios for small text, large text, and UI components in real-time.',
-    category: 'Color Tools',
-    iconName: 'Eye',
-    isPopular: false,
-    isLatest: true,
-    usageCount: 62400,
-    tags: ['color', 'contrast', 'wcag', 'accessibility', 'aa', 'aaa'],
-    howToUse: [
-      { step: 1, title: 'Select Text Color', desc: 'Pick foreground color or enter HEX code.' },
-      { step: 2, title: 'Select Background Color', desc: 'Pick background color.' },
-      { step: 3, title: 'Check WCAG score', desc: 'Review pass/fail badges for WCAG AA and AAA accessibility compliance.' }
-    ],
-    faqs: [
-      { question: 'What contrast ratio passes WCAG AA?', answer: 'A minimum ratio of 4.5:1 is required for normal text and 3:1 for large text.' }
-    ]
-  },
-  {
-    id: 'hex-rgb-hsl-converter',
-    slug: 'hex-rgb-hsl-converter',
-    name: 'HEX to RGB / HSL Color Converter',
-    shortDesc: 'Convert color codes seamlessly between HEX, RGB, HSL, and HSV formats.',
-    description: 'Instant multi-format color converter with visual color picker, alpha transparency support, and CSS code snippet copy.',
-    category: 'Color Tools',
-    iconName: 'Sparkles',
-    isPopular: false,
-    isLatest: false,
-    usageCount: 88100,
-    tags: ['color', 'hex', 'rgb', 'hsl', 'hsv', 'css'],
-    howToUse: [
-      { step: 1, title: 'Input color code', desc: 'Enter any HEX value like #6366F1 or RGB values.' },
-      { step: 2, title: 'Inspect outputs', desc: 'View live synchronized HEX, RGB, HSL, and HSV color strings.' },
-      { step: 3, title: 'Copy CSS snippet', desc: 'Click copy next to any format.' }
-    ],
-    faqs: [
-      { question: 'Does it support alpha channels?', answer: 'Yes, 8-digit HEX and RGBA values are fully supported.' }
-    ]
-  },
-  {
-    id: 'css-gradient-generator',
-    slug: 'css-gradient-generator',
-    name: 'CSS Gradient Generator',
-    shortDesc: 'Create gorgeous linear and radial CSS gradients with multi-stop color controls.',
-    description: 'Design smooth background gradients visually, set angles, add color stops, and copy production CSS declarations instantly.',
-    category: 'Color Tools',
-    iconName: 'Layers',
-    isPopular: true,
-    isLatest: false,
-    usageCount: 124000,
-    tags: ['css', 'gradient', 'linear', 'radial', 'design', 'generator'],
-    howToUse: [
-      { step: 1, title: 'Choose type & angle', desc: 'Select Linear or Radial and adjust the angle dial.' },
-      { step: 2, title: 'Set color stops', desc: 'Add or adjust gradient color stops on the interactive bar.' },
-      { step: 3, title: 'Copy CSS', desc: 'Copy the CSS `background: linear-gradient(...)` snippet.' }
-    ],
-    faqs: [
-      { question: 'Is the generated CSS compatible with all browsers?', answer: 'Yes, standard modern CSS gradient syntax is generated.' }
-    ]
-  },
-  {
-    id: 'meta-tag-generator',
-    slug: 'meta-tag-generator',
-    name: 'SEO Meta Tag Generator',
-    shortDesc: 'Generate Open Graph, Twitter Cards, and search title/description meta tags.',
-    description: 'Craft perfect meta tags for Google Search, Facebook, LinkedIn, and X/Twitter previews with live search snippet simulator.',
-    category: 'SEO Tools',
-    iconName: 'Search',
-    isPopular: true,
-    isLatest: false,
-    usageCount: 94300,
-    tags: ['seo', 'meta tags', 'open graph', 'twitter card', 'html', 'generator'],
-    howToUse: [
-      { step: 1, title: 'Enter page details', desc: 'Type site title, description, URL, and OG image link.' },
-      { step: 2, title: 'Preview search snippet', desc: 'Check Google title and description character count limits.' },
-      { step: 3, title: 'Copy HTML code', desc: 'Copy the block of meta tags to insert into your website header.' }
-    ],
-    faqs: [
-      { question: 'What is ideal meta description length?', answer: 'Between 120 and 160 characters for optimal rendering on desktop and mobile.' }
-    ]
-  },
-  {
-    id: 'keyword-density-analyzer',
-    slug: 'keyword-density-analyzer',
-    name: 'Keyword Density Analyzer',
-    shortDesc: 'Analyze word frequency and keyword percentages in blog posts or landing pages.',
-    description: 'Discover single-word, 2-word, and 3-word phrase frequencies in any text to optimize SEO keyword density.',
-    category: 'SEO Tools',
-    iconName: 'BarChart3',
-    isPopular: false,
-    isLatest: true,
-    usageCount: 41200,
-    tags: ['seo', 'keyword', 'density', 'frequency', 'content', 'optimization'],
-    howToUse: [
-      { step: 1, title: 'Paste article text', desc: 'Paste raw article content.' },
-      { step: 2, title: 'Run analysis', desc: 'View top 1-word, 2-word, and 3-word phrase tables with percentage distributions.' },
-      { step: 3, title: 'Refine content', desc: 'Adjust overused keywords to avoid search keyword stuffing penalties.' }
-    ],
-    faqs: [
-      { question: 'Does it filter common stop words?', answer: 'Yes, standard stop words like "the", "and", "is" can be toggled on/off.' }
-    ]
-  },
-  {
-    id: 'unit-converter',
-    slug: 'unit-converter',
-    name: 'Universal Unit Converter',
-    shortDesc: 'Convert length, mass, temperature, area, volume, and data storage metrics.',
-    description: 'Comprehensive multi-unit converter supporting meters to feet, kilograms to pounds, Celsius to Fahrenheit, megabytes to gigabytes, and more.',
-    category: 'Converter Tools',
-    iconName: 'RefreshCw',
-    isPopular: true,
-    isLatest: false,
-    usageCount: 154000,
-    tags: ['converter', 'units', 'length', 'weight', 'temperature', 'storage'],
-    howToUse: [
-      { step: 1, title: 'Select category', desc: 'Choose Length, Weight, Temperature, or Digital Storage.' },
-      { step: 2, title: 'Enter value & units', desc: 'Select "From" and "To" units.' },
-      { step: 3, title: 'Instant result', desc: 'Read precise converted calculation.' }
-    ],
-    faqs: [
-      { question: 'How precise are conversions?', answer: 'Calculations use standard high-precision floating-point arithmetic up to 8 decimal places.' }
-    ]
-  },
-  {
-    id: 'discount-tax-calculator',
-    slug: 'discount-tax-calculator',
-    name: 'Discount & Sales Tax Calculator',
-    shortDesc: 'Calculate final prices, savings, tax amounts, and percentage discounts.',
-    description: 'Quickly compute final checkout totals after discounts and regional sales taxes with clear itemized breakdown charts.',
-    category: 'Calculator Tools',
-    iconName: 'Percent',
-    isPopular: true,
-    isLatest: false,
-    usageCount: 112000,
-    tags: ['calculator', 'discount', 'tax', 'price', 'savings', 'percent'],
-    howToUse: [
-      { step: 1, title: 'Enter original price', desc: 'Type initial price tag amount.' },
-      { step: 2, title: 'Enter discount & tax rates', desc: 'Specify discount percentage and sales tax rate.' },
-      { step: 3, title: 'View total saved', desc: 'Read exact final price and total saved money.' }
-    ],
-    faqs: [
-      { question: 'Does discount apply before or after tax?', answer: 'The calculator applies the discount first to the original price, then computes sales tax on the discounted subtotal.' }
-    ]
-  },
-  {
-    id: 'password-generator',
-    slug: 'password-generator',
-    name: 'Strong Password & Key Generator',
-    shortDesc: 'Generate secure, high-entropy passwords with custom length and character sets.',
-    description: 'Create cryptographically strong random passwords with numbers, uppercase, lowercase, and special symbols.',
-    category: 'Security Tools',
-    iconName: 'Lock',
-    isPopular: true,
-    isLatest: true,
-    usageCount: 228000,
-    tags: ['security', 'password', 'generator', 'crypto', 'strong', 'privacy'],
-    howToUse: [
-      { step: 1, title: 'Choose length', desc: 'Adjust password length slider (8 to 64 characters).' },
-      { step: 2, title: 'Select character types', desc: 'Toggle uppercase, lowercase, numbers, and symbols.' },
-      { step: 3, title: 'Copy password', desc: 'Click Copy to save your secure password.' }
-    ],
-    faqs: [
-      { question: 'Are these passwords generated locally?', answer: 'Yes! Generated using browser Window.crypto API without network transmissions.' }
-    ]
-  },
-  {
-    id: 'hash-generator',
-    slug: 'hash-generator',
-    name: 'Hash Generator (SHA-256 / SHA-512 / MD5)',
-    shortDesc: 'Compute cryptographic message digests (SHA-256, SHA-1, SHA-512) for text.',
-    description: 'Calculate cryptographic hashes using Web Crypto API to verify checksums or sanitize passwords client-side.',
-    category: 'Security Tools',
-    iconName: 'ShieldAlert',
-    isPopular: false,
-    isLatest: false,
-    usageCount: 71000,
-    tags: ['hash', 'sha256', 'sha512', 'crypto', 'security', 'digest'],
-    howToUse: [
-      { step: 1, title: 'Input string', desc: 'Type or paste the input message.' },
-      { step: 2, title: 'View computed hashes', desc: 'Read instant SHA-256, SHA-384, and SHA-512 values.' },
-      { step: 3, title: 'Copy hash', desc: 'Click to copy the desired hash hex digest.' }
-    ],
-    faqs: [
-      { question: 'Why SHA-256 instead of MD5?', answer: 'SHA-256 is collision-resistant and modern standard for cryptographic verification.' }
-    ]
-  },
-  {
-    id: 'url-encoder-decoder',
-    slug: 'url-encoder-decoder',
-    name: 'URL Encoder & Decoder',
-    shortDesc: 'Encode query parameters into URL component strings or decode percent-encoded URLs.',
-    description: 'Safely format query params for web links using encodeURIComponent or decode complex tracking URLs.',
-    category: 'Web Tools',
-    iconName: 'Link',
-    isPopular: true,
-    isLatest: false,
-    usageCount: 148000,
-    tags: ['url', 'encode', 'decode', 'uri', 'web', 'developer'],
-    howToUse: [
-      { step: 1, title: 'Select Encode or Decode', desc: 'Choose your desired operation.' },
-      { step: 2, title: 'Paste URL or query', desc: 'Enter the raw or percent-encoded link.' },
-      { step: 3, title: 'Copy result', desc: 'Copy formatted output.' }
-    ],
-    faqs: [
-      { question: 'What does encodeURIComponent handle?', answer: 'It converts characters like spaces, ?, &, and = into percent-encoded equivalents like %20, %3F.' }
-    ]
-  },
-  {
-    id: 'qr-code-generator',
-    slug: 'qr-code-generator',
-    name: 'QR Code Generator',
-    shortDesc: 'Create customizable vector QR codes for websites, WiFi, emails, and contact info.',
-    description: 'Generate high-resolution QR codes instantly. Customize foreground and background colors and download as PNG image.',
-    category: 'Web Tools',
-    iconName: 'QrCode',
-    isPopular: true,
-    isLatest: true,
-    usageCount: 205000,
-    tags: ['qr code', 'generator', 'wifi', 'url', 'web', 'download'],
-    howToUse: [
-      { step: 1, title: 'Enter URL or Text', desc: 'Type website link or text.' },
-      { step: 2, title: 'Customize colors', desc: 'Select custom dark/light color options.' },
-      { step: 3, title: 'Download QR PNG', desc: 'Click Download to receive your QR image.' }
-    ],
-    faqs: [
-      { question: 'Do these QR codes expire?', answer: 'No, static QR codes directly embed the string and never expire.' }
-    ]
-  },
-  {
-    id: 'markdown-editor-previewer',
-    slug: 'markdown-editor-previewer',
-    name: 'Markdown Editor & Live Previewer',
-    shortDesc: 'Write Markdown with real-time rendered HTML preview, word count, and HTML export.',
-    description: 'Clean side-by-side Markdown editor with live preview rendering, headings, lists, tables, and HTML source export.',
-    category: 'Text Tools',
-    iconName: 'FileText',
-    isPopular: false,
-    isLatest: true,
-    usageCount: 52000,
-    tags: ['markdown', 'editor', 'preview', 'html', 'writer', 'text'],
-    howToUse: [
-      { step: 1, title: 'Write Markdown', desc: 'Enter markdown code on the left pane.' },
-      { step: 2, title: 'Inspect Live Preview', desc: 'View rendered HTML instantly on the right pane.' },
-      { step: 3, title: 'Export HTML or MD', desc: 'Copy rendered HTML or original Markdown.' }
-    ],
-    faqs: [
-      { question: 'Does it support standard Markdown syntax?', answer: 'Yes, headers (#), bold (**), lists, links, code blocks, and blockquotes.' }
-    ]
-  },
-  {
-    id: 'pdf-page-inspector',
-    slug: 'pdf-page-inspector',
-    name: 'PDF Inspector & Text Extractor',
-    shortDesc: 'Inspect PDF file details, count total pages, and preview document metadata.',
-    description: 'Inspect local PDF files directly in browser memory without sending private documents to any external server.',
-    category: 'PDF Tools',
-    iconName: 'FileCheck',
-    isPopular: true,
-    isLatest: true,
-    usageCount: 93400,
-    tags: ['pdf', 'inspector', 'pages', 'metadata', 'document', 'privacy'],
-    howToUse: [
-      { step: 1, title: 'Select PDF file', desc: 'Drop your PDF into the file area.' },
-      { step: 2, title: 'Inspect metadata', desc: 'View file size, page count, document title, and creation timestamp.' },
-      { step: 3, title: 'Copy extracted summary', desc: 'Copy file summary report.' }
-    ],
-    faqs: [
-      { question: 'Is my confidential PDF uploaded?', answer: 'No! The file is parsed purely inside your browser using FileReader and ArrayBuffer APIs.' }
-    ]
-  }
+export const WORKING_TOOLS: Tool[] = [
+  ...accountingTools,
+  ...agricultureTools,
+  ...audioToolsTools,
+  ...automotiveTools,
+  ...beautySalonTools,
+  ...businessToolsTools,
+  ...calculatorToolsTools,
+  ...colorToolsTools,
+  ...constructionTools,
+  ...converterToolsTools,
+  ...dataManagementTools,
+  ...dateTimeTools,
+  ...developerToolsTools,
+  ...eCommerceTools,
+  ...educationTools,
+  ...electricalSolarTools,
+  ...engineeringTools,
+  ...environmentEnergyTools,
+  ...fileToolsTools,
+  ...financeToolsTools,
+  ...freelancingTools,
+  ...generatorsTools,
+  ...governmentPublicServicesTools,
+  ...healthFitnessTools,
+  ...hrPayrollTools,
+  ...imageToolsTools,
+  ...inventoryLogisticsTools,
+  ...legalToolsTools,
+  ...marketingAdvertisingTools,
+  ...mathToolsTools,
+  ...musicProductionTools,
+  ...networkingTools,
+  ...officeAdministrationTools,
+  ...pdfToolsTools,
+  ...petsAnimalsTools,
+  ...photographyTools,
+  ...productivityTools,
+  ...projectManagementTools,
+  ...realEstateTools,
+  ...restaurantCafeTools,
+  ...securityToolsTools,
+  ...seoToolsTools,
+  ...socialMediaToolsTools,
+  ...textToolsTools,
+  ...travelToolsTools,
+  ...unitConvertersTools,
+  ...videoToolsTools,
+  ...webToolsTools,
+  ...weddingEventTools,
+  ...youtubeCreatorToolsTools,
 ];
 
-const ALL_RAW_TOOLS: Tool[] = [
-  ...INITIAL_TOOLS,
-  ...BATCH_1_TOOLS,
-  ...BATCH_2_TOOLS,
-  ...BATCH_3_TOOLS,
-  ...BATCH_4_TOOLS,
-  ...BATCH_5_TOOLS,
-  ...BATCH_6_TOOLS,
-  ...BATCH_7_TOOLS,
-  ...BATCH_8_TOOLS,
-  ...BATCH_9_TOOLS,
-  ...BATCH_10_TOOLS,
-  ...BATCH_11_TOOLS,
-  ...BATCH_12_TOOLS,
-  ...BATCH_13_TOOLS,
-  ...BATCH_14_TOOLS,
-  ...BATCH_15_TOOLS,
-  ...BATCH_16_TOOLS,
-  ...BATCH_17_TOOLS,
-  ...BATCH_18_TOOLS,
-  ...BATCH_19_TOOLS,
-  ...BATCH_20_TOOLS,
-  ...BATCH_21_TOOLS,
-  ...BATCH_22_TOOLS,
-  ...BATCH_23_TOOLS,
-  ...BATCH_24_TOOLS,
-  ...BATCH_25_TOOLS,
-  ...BATCH_26_TOOLS,
-  ...BATCH_27_TOOLS,
-  ...BATCH_28_TOOLS,
-  ...BATCH_29_TOOLS,
-  ...BATCH_30_TOOLS,
-  ...BATCH_31_TOOLS,
-  ...BATCH_32_TOOLS,
-  ...BATCH_33_TOOLS,
-  ...BATCH_34_TOOLS,
-  ...BATCH_35_TOOLS,
-  ...BATCH_36_TOOLS,
-  ...BATCH_37_TOOLS,
-  ...BATCH_38_TOOLS,
-  ...BATCH_39_TOOLS,
-  ...BATCH_40_TOOLS,
-  ...BATCH_41_TOOLS,
-  ...BATCH_42_TOOLS,
-  ...BATCH_43_TOOLS,
-  ...BATCH_44_TOOLS,
-  ...BATCH_45_TOOLS,
-  ...BATCH_46_TOOLS,
-  ...BATCH_47_TOOLS,
-  ...BATCH_48_TOOLS,
-  ...BATCH_49_TOOLS,
-  ...BATCH_50_TOOLS,
-  ...BATCH_51_TOOLS,
-  ...BATCH_52_TOOLS,
-  ...BATCH_53_TOOLS,
-  ...BATCH_54_TOOLS,
-  ...BATCH_55_TOOLS,
-  ...BATCH_56_TOOLS,
-  ...BATCH_57_TOOLS,
-  ...BATCH_58_TOOLS,
-  ...BATCH_59_TOOLS,
-  ...BATCH_60_TOOLS,
-  ...BATCH_61_TOOLS,
-  ...CALCULATOR_TOOLS,
-  ...COLOR_TOOLS,
-  ...CONVERTER_TOOLS,
-  ...DEVELOPER_TOOLS,
-  ...IMAGE_TOOLS,
-  ...PDF_TOOLS,
-  ...SEO_TOOLS,
-  ...TEXT_TOOLS,
-  ...securityTools,
-  ...webTools,
-];
-
-const uniqueToolsMap = new Map<string, Tool>();
-for (const t of ALL_RAW_TOOLS) {
-  if (!uniqueToolsMap.has(t.id)) {
-    uniqueToolsMap.set(t.id, t);
-  }
-}
-
-export const WORKING_TOOLS: Tool[] = Array.from(uniqueToolsMap.values());
 export const TOOLS: Tool[] = WORKING_TOOLS;
+
+export const INITIAL_TOOLS: Tool[] = WORKING_TOOLS.slice(0, 22);
 
 export const TESTIMONIALS = [
   {

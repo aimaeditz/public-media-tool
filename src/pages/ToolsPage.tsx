@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { CATEGORIES, TOTAL_TOOLS } from '../lib/tools-data';
+import React, { useState, useEffect, useRef } from 'react';
+import { TOTAL_TOOLS } from '../lib/tools-data';
+import { STATIC_CATEGORIES } from '../lib/categories';
 import { getIconComponent, formatNumber } from '../lib/utils';
-import { Search, ArrowRight, Filter, Sparkles, X, RotateCcw, Loader2 } from 'lucide-react';
+import { Search, ArrowRight, Filter, Sparkles, X, RotateCcw, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useToolsStore } from '../lib/tools-store';
 import { LazyRender } from '../components/tools/LazyRender';
 
@@ -19,6 +20,45 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
   const tools = useToolsStore((state) => state.tools);
   const loadCategory = useToolsStore((state) => state.loadCategory);
   const isLoading = useToolsStore((state) => state.isLoading);
+
+  // Scroll and drag state for category chips
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeftState, setScrollLeftState] = useState(0);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - scrollRef.current.offsetLeft);
+    setScrollLeftState(scrollRef.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5; // Scroll speed multiplier
+    scrollRef.current.scrollLeft = scrollLeftState - walk;
+  };
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = 350;
+      scrollRef.current.scrollTo({
+        left: scrollRef.current.scrollLeft + (direction === 'left' ? -scrollAmount : scrollAmount),
+        behavior: 'smooth',
+      });
+    }
+  };
 
   useEffect(() => {
     if (initialQuery !== undefined) {
@@ -38,7 +78,7 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
   // Load category chunk when category changes
   useEffect(() => {
     if (selectedCat !== 'All') {
-      const catInfo = CATEGORIES.find(c => c.id === selectedCat);
+      const catInfo = STATIC_CATEGORIES.find(c => c.id === selectedCat);
       if (catInfo) {
         loadCategory(catInfo.slug);
       }
@@ -58,7 +98,9 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
       tool.shortDesc.toLowerCase().includes(query) ||
       tool.tags.some((t) => t.toLowerCase().includes(query));
 
-    const matchesCat = selectedCat === 'All' || tool.category === selectedCat;
+    const matchesCat = selectedCat === 'All' || 
+                       tool.category === selectedCat || 
+                       tool.category.startsWith(selectedCat + ' - ');
 
     return matchesSearch && matchesCat;
   });
@@ -115,36 +157,70 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
             )}
           </div>
 
-          {/* Sticky Filter Chips Bar with generous spacing & scroll */}
+          {/* Sticky Filter Chips Bar with generous spacing & smooth scroll */}
           <div className="sticky top-[68px] z-30 bg-slate-50/95 backdrop-blur-md py-4 my-4 -mx-2 px-2 border-y border-slate-200/70 shadow-2xs transition-all">
-            <div className="flex items-center gap-3 overflow-x-auto py-1 px-1 scroll-smooth">
-              <div className="flex items-center gap-2 text-slate-500 text-xs font-bold shrink-0 pr-3 border-r border-slate-200">
-                <Filter className="w-4 h-4 text-indigo-600" />
-                <span>Categories:</span>
-              </div>
+            <div className="relative max-w-full flex items-center group">
+              {/* Left Arrow Button */}
               <button
-                onClick={() => setSelectedCat('All')}
-                className={`px-4 py-2.5 text-xs font-bold rounded-xl shrink-0 cursor-pointer transition-all shadow-2xs ${
-                  selectedCat === 'All'
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200 scale-[1.02]'
-                    : 'bg-white text-slate-700 hover:bg-indigo-50/80 hover:text-indigo-600 border border-slate-200/80'
-                }`}
+                onClick={() => scroll('left')}
+                className="absolute left-0 z-40 p-2 rounded-full bg-white border border-slate-200 shadow-xs hover:bg-slate-50 hover:scale-105 active:scale-95 transition-all text-slate-600 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 cursor-pointer hidden sm:flex items-center justify-center -ml-2"
+                aria-label="Scroll left"
               >
-                All Tools ({TOTAL_TOOLS.toLocaleString()})
+                <ChevronLeft className="w-4 h-4" />
               </button>
-              {CATEGORIES.map((cat) => (
+
+              {/* Left Fade Gradient */}
+              <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-slate-50 to-transparent pointer-events-none z-10 hidden sm:block" />
+
+              {/* Scrollable Container */}
+              <div
+                ref={scrollRef}
+                onMouseDown={handleMouseDown}
+                onMouseLeave={handleMouseLeave}
+                onMouseUp={handleMouseUp}
+                onMouseMove={handleMouseMove}
+                className="flex items-center gap-3 overflow-x-auto py-1 px-1 scroll-smooth w-full no-scrollbar select-none cursor-grab active:cursor-grabbing"
+              >
+                <div className="flex items-center gap-2 text-slate-500 text-xs font-bold shrink-0 pr-3 border-r border-slate-200 pointer-events-none">
+                  <Filter className="w-4 h-4 text-indigo-600" />
+                  <span>Categories:</span>
+                </div>
                 <button
-                  key={cat.id}
-                  onClick={() => setSelectedCat(cat.id)}
+                  onClick={() => setSelectedCat('All')}
                   className={`px-4 py-2.5 text-xs font-bold rounded-xl shrink-0 cursor-pointer transition-all shadow-2xs ${
-                    selectedCat === cat.id
+                    selectedCat === 'All'
                       ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200 scale-[1.02]'
                       : 'bg-white text-slate-700 hover:bg-indigo-50/80 hover:text-indigo-600 border border-slate-200/80'
                   }`}
                 >
-                  {cat.name}
+                  All Tools ({TOTAL_TOOLS.toLocaleString()})
                 </button>
-              ))}
+                {STATIC_CATEGORIES.map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setSelectedCat(cat.id)}
+                    className={`px-4 py-2.5 text-xs font-bold rounded-xl shrink-0 cursor-pointer transition-all shadow-2xs ${
+                      selectedCat === cat.id
+                        ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200 scale-[1.02]'
+                        : 'bg-white text-slate-700 hover:bg-indigo-50/80 hover:text-indigo-600 border border-slate-200/80'
+                    }`}
+                  >
+                    {cat.name}
+                  </button>
+                ))}
+              </div>
+
+              {/* Right Fade Gradient */}
+              <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-slate-50 to-transparent pointer-events-none z-10 hidden sm:block" />
+
+              {/* Right Arrow Button */}
+              <button
+                onClick={() => scroll('right')}
+                className="absolute right-0 z-40 p-2 rounded-full bg-white border border-slate-200 shadow-xs hover:bg-slate-50 hover:scale-105 active:scale-95 transition-all text-slate-600 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 cursor-pointer hidden sm:flex items-center justify-center -mr-2"
+                aria-label="Scroll right"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </div>

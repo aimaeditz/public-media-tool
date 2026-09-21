@@ -1,0 +1,6 @@
+{
+  "name": "Public Media Tool",
+  "description": "Free Browser-Based Tools. Simple. Private. Fast. Hundreds of free browser-based tools with zero server uploads.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

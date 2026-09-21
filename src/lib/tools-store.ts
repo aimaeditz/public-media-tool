@@ -88,6 +88,18 @@ export const useToolsStore = create<ToolsState>((set, get) => {
     isBackgroundLoading: false,
 
     initStore: async () => {
+      try {
+        const cached = localStorage.getItem('cached_tools_data');
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            set({ tools: parsed, loadedCategories: new Set<string>() });
+            return;
+          }
+        }
+      } catch (e) {
+        console.warn('Failed to parse cached tools:', e);
+      }
       set({ tools: INITIAL_TOOLS });
     },
 
@@ -95,7 +107,8 @@ export const useToolsStore = create<ToolsState>((set, get) => {
       const { loadedCategories, tools } = get();
       if (loadedCategories.has(categorySlug)) return;
 
-      const loader = CATEGORY_LOADERS[categorySlug];
+      const parentSlug = categorySlug.replace(/-\d+$/, '');
+      const loader = CATEGORY_LOADERS[parentSlug];
       if (!loader) return;
 
       set({ isLoading: true });
@@ -103,12 +116,32 @@ export const useToolsStore = create<ToolsState>((set, get) => {
         const module = await loader();
         const categoryTools = module.default || module.tools || [];
         
-        // Deduplicate and merge
-        const existingSlugs = new Set(tools.map(t => t.slug));
-        const newTools = categoryTools.filter((t: any) => !existingSlugs.has(t.slug));
+        const { CATEGORIES, getToolsForCategory } = await import('./categories');
         
-        const nextTools = [...tools, ...newTools];
-        const nextLoaded = new Set(loadedCategories).add(categorySlug);
+        // Load the specific subcategory chunk, or if parent slug is requested, load all child chunks
+        const subCatsToLoad = CATEGORIES.filter(c => c.slug === categorySlug || (c.parentSlug === categorySlug && categorySlug === parentSlug));
+        
+        let nextTools = [...tools];
+        const nextLoaded = new Set(loadedCategories);
+
+        subCatsToLoad.forEach(sub => {
+          const chunkTools = getToolsForCategory(sub.slug);
+          const fullChunkTools = chunkTools.map(ct => {
+            const fullTool = categoryTools.find((t: any) => t.slug === ct.slug);
+            return {
+              ...ct,
+              ...(fullTool || {})
+            };
+          });
+
+          const existingSlugs = new Set(nextTools.map(t => t.slug));
+          const newTools = fullChunkTools.filter((t: any) => !existingSlugs.has(t.slug));
+          nextTools = [...nextTools, ...newTools];
+          nextLoaded.add(sub.slug);
+        });
+
+        // Mark the requested category slug itself as loaded
+        nextLoaded.add(categorySlug);
 
         set({
           tools: nextTools,
@@ -139,17 +172,29 @@ export const useToolsStore = create<ToolsState>((set, get) => {
       let currentTools = [...get().tools];
       const currentLoaded = new Set(loadedCategories);
 
+      const { CATEGORIES, getToolsForCategory } = await import('./categories');
+
       // Load all remaining categories one by one sequentially to avoid blocking the main thread
       for (const cat of CATEGORIES) {
         if (!currentLoaded.has(cat.slug)) {
-          const loader = CATEGORY_LOADERS[cat.slug];
+          const parentSlug = cat.slug.replace(/-\d+$/, '');
+          const loader = CATEGORY_LOADERS[parentSlug];
           if (loader) {
             try {
               const module = await loader();
               const categoryTools = module.default || module.tools || [];
               
+              const chunkTools = getToolsForCategory(cat.slug);
+              const fullChunkTools = chunkTools.map(ct => {
+                const fullTool = categoryTools.find((t: any) => t.slug === ct.slug);
+                return {
+                  ...ct,
+                  ...(fullTool || {})
+                };
+              });
+
               const existingSlugs = new Set(currentTools.map(t => t.slug));
-              const newTools = categoryTools.filter((t: any) => !existingSlugs.has(t.slug));
+              const newTools = fullChunkTools.filter((t: any) => !existingSlugs.has(t.slug));
               
               currentTools = [...currentTools, ...newTools];
               currentLoaded.add(cat.slug);

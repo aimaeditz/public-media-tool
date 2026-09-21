@@ -1,5 +1,5 @@
 import React from 'react';
-import { CATEGORIES, TOOLS } from '../lib/tools-data';
+import { CATEGORIES } from '../lib/categories';
 import { getIconComponent } from '../lib/utils';
 import { ArrowRight } from 'lucide-react';
 
@@ -26,7 +26,7 @@ export const CategoriesPage: React.FC<CategoriesPageProps> = ({ navigate }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {CATEGORIES.map((cat) => {
             const IconComp = getIconComponent(cat.iconName);
-            const count = TOOLS.filter((t) => t.category === cat.id).length;
+            const count = cat.count;
 
             return (
               <div

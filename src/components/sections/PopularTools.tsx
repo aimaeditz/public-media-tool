@@ -33,7 +33,7 @@ export const PopularTools: React.FC<PopularToolsProps> = ({ navigate }) => {
   const visibleTools = filteredTools.slice(0, visibleCount);
 
   return (
-    <section className="py-20 bg-slate-50/80 border-b border-slate-200/60">
+    <section className="py-24 sm:py-28 bg-white border-b border-slate-200/60">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">

@@ -32,11 +32,11 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
     }
   }, [isOpen]);
 
-  // Fast 150ms debounce for typing in the overlay
+  // 300ms debounce for typing to balance reactivity and CPU load
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedQuery(query);
-    }, 150);
+    }, 300);
     return () => clearTimeout(timer);
   }, [query]);
 
@@ -107,9 +107,44 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
           </p>
 
           {filteredTools.length === 0 ? (
-            <div className="text-center py-8 text-slate-500 space-y-1">
-              <p className="font-semibold text-sm">No matching tools found</p>
-              <p className="text-xs">Try searching for keywords like "text", "pdf", "color", or "security".</p>
+            <div className="space-y-4">
+              <div className="text-center py-6 text-slate-500 space-y-1">
+                <p className="font-semibold text-sm">No matching tools found</p>
+                <p className="text-xs">Try searching for keywords like "text", "pdf", "color", or "security".</p>
+              </div>
+              <div className="border-t border-slate-100 pt-4 pb-2">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-2 mb-3 flex items-center gap-1">
+                  <Sparkles className="w-3.5 h-3.5 text-indigo-500" /> Related / Popular Tools
+                </p>
+                <div className="space-y-2">
+                  {tools.slice(0, 4).map((tool) => {
+                    const IconComp = getIconComponent(tool.iconName);
+                    return (
+                      <button
+                        key={tool.id}
+                        onClick={() => {
+                          onSelectTool(tool.slug);
+                          onClose();
+                        }}
+                        className="w-full text-left p-3 rounded-xl border border-transparent hover:border-indigo-100 hover:bg-indigo-50/60 transition-all flex items-center justify-between group cursor-pointer"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="p-2.5 rounded-lg bg-indigo-100 text-indigo-700 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                            <IconComp className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <p className="font-bold text-slate-800 text-sm group-hover:text-indigo-700">
+                              {tool.name}
+                            </p>
+                            <p className="text-xs text-slate-500 line-clamp-1">{tool.shortDesc}</p>
+                          </div>
+                        </div>
+                        <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-transform group-hover:translate-x-1" />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           ) : (
             filteredTools.map((tool) => {

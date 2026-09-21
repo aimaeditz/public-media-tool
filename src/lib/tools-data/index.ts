@@ -4,6 +4,23 @@ import { SEARCH_INDEX } from '../search-index';
 import { BATCH_1_TOOLS } from '../data/generated/batch-1';
 import { BATCH_2_TOOLS } from '../data/generated/batch-2';
 import { BATCH_3_TOOLS } from '../data/generated/batch-3';
+import { BATCH_4_TOOLS } from '../data/generated/batch-4';
+import { BATCH_5_TOOLS } from '../data/generated/batch-5';
+import { BATCH_6_TOOLS } from '../data/generated/batch-6';
+import { BATCH_7_TOOLS } from '../data/generated/batch-7';
+import { BATCH_8_TOOLS } from '../data/generated/batch-8';
+import { BATCH_9_TOOLS } from '../data/generated/batch-9';
+import { BATCH_10_TOOLS } from '../data/generated/batch-10';
+import { BATCH_11_TOOLS } from '../data/generated/batch-11';
+import { BATCH_12_TOOLS } from '../data/generated/batch-12';
+import { BATCH_13_TOOLS } from '../data/generated/batch-13';
+import { BATCH_14_TOOLS } from '../data/generated/batch-14';
+import { BATCH_15_TOOLS } from '../data/generated/batch-15';
+import { BATCH_16_TOOLS } from '../data/generated/batch-16';
+import { BATCH_17_TOOLS } from '../data/generated/batch-17';
+import { BATCH_18_TOOLS } from '../data/generated/batch-18';
+import { BATCH_19_TOOLS } from '../data/generated/batch-19';
+import { BATCH_20_TOOLS } from '../data/generated/batch-20';
 
 export const CATEGORIES: CategoryInfo[] = DYNAMIC_CATEGORIES;
 
@@ -473,7 +490,29 @@ export const INITIAL_TOOLS: Tool[] = [
   }
 ];
 
-export const WORKING_TOOLS: Tool[] = [...INITIAL_TOOLS, ...BATCH_1_TOOLS, ...BATCH_2_TOOLS, ...BATCH_3_TOOLS];
+export const WORKING_TOOLS: Tool[] = [
+  ...INITIAL_TOOLS,
+  ...BATCH_1_TOOLS,
+  ...BATCH_2_TOOLS,
+  ...BATCH_3_TOOLS,
+  ...BATCH_4_TOOLS,
+  ...BATCH_5_TOOLS,
+  ...BATCH_6_TOOLS,
+  ...BATCH_7_TOOLS,
+  ...BATCH_8_TOOLS,
+  ...BATCH_9_TOOLS,
+  ...BATCH_10_TOOLS,
+  ...BATCH_11_TOOLS,
+  ...BATCH_12_TOOLS,
+  ...BATCH_13_TOOLS,
+  ...BATCH_14_TOOLS,
+  ...BATCH_15_TOOLS,
+  ...BATCH_16_TOOLS,
+  ...BATCH_17_TOOLS,
+  ...BATCH_18_TOOLS,
+  ...BATCH_19_TOOLS,
+  ...BATCH_20_TOOLS
+];
 export const TOOLS: Tool[] = WORKING_TOOLS;
 
 export const TESTIMONIALS = [

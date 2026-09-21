@@ -11002,3 +11002,5 @@ export const BATCH_7_TOOLS: Tool[] = [
     ]
   }
 ];
+
+export const BATCH_7_SLUGS = new Set(BATCH_7_TOOLS.map((t) => t.slug));

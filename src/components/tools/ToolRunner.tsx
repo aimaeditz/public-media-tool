@@ -28,10 +28,13 @@ import {
   AlertCircle
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { BATCH_1_SLUGS } from '../../lib/data/generated/batch-1';
-import { BATCH_2_SLUGS } from '../../lib/data/generated/batch-2';
-import { BATCH_3_SLUGS } from '../../lib/data/generated/batch-3';
 import { Batch1TextToolsRunner } from './Batch1TextToolsRunner';
+import { ComprehensiveImageToolsRunner } from './ComprehensiveImageToolsRunner';
+import { ComprehensivePdfToolsRunner } from './ComprehensivePdfToolsRunner';
+import { ComprehensiveDevToolsRunner } from './ComprehensiveDevToolsRunner';
+import { ComprehensiveCalculatorToolsRunner } from './ComprehensiveCalculatorToolsRunner';
+import { ComprehensiveColorToolsRunner } from './ComprehensiveColorToolsRunner';
+import { ComprehensiveSecurityToolsRunner } from './ComprehensiveSecurityToolsRunner';
 
 interface ToolRunnerProps {
   tool: Tool;
@@ -103,8 +106,26 @@ export const ToolRunner: React.FC<ToolRunnerProps> = ({ tool }) => {
     case 'pdf-page-inspector':
       return <PdfInspectorTool />;
     default:
-      if (BATCH_1_SLUGS.has(tool.slug) || BATCH_2_SLUGS.has(tool.slug) || BATCH_3_SLUGS.has(tool.slug)) {
+      if (tool.category === 'Text Tools') {
         return <Batch1TextToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+      }
+      if (tool.category === 'Image Tools') {
+        return <ComprehensiveImageToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+      }
+      if (tool.category === 'PDF Tools') {
+        return <ComprehensivePdfToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+      }
+      if (tool.category === 'Developer Tools') {
+        return <ComprehensiveDevToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+      }
+      if (tool.category === 'Calculator Tools' || tool.category === 'Converter Tools') {
+        return <ComprehensiveCalculatorToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+      }
+      if (tool.category === 'Color Tools') {
+        return <ComprehensiveColorToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+      }
+      if (tool.category === 'Security Tools') {
+        return <ComprehensiveSecurityToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
       }
       return <UniversalInteractiveToolRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
   }

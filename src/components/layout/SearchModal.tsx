@@ -12,6 +12,7 @@ interface SearchModalProps {
 export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSelectTool }) => {
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
+  const [searchIndex, setSearchIndex] = useState<any[]>([]);
   const tools = useToolsStore((state) => state.tools);
 
   useEffect(() => {
@@ -21,6 +22,15 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
     if (isOpen) window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
+
+  // Load complete search index in background when search modal is opened
+  useEffect(() => {
+    if (isOpen) {
+      import('../../lib/search-index').then((m) => {
+        setSearchIndex(m.SEARCH_INDEX);
+      });
+    }
+  }, [isOpen]);
 
   // Fast 150ms debounce for typing in the overlay
   useEffect(() => {
@@ -32,15 +42,17 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
 
   if (!isOpen) return null;
 
+  const searchSource = searchIndex.length > 0 ? searchIndex : tools;
+
   const filteredTools = debouncedQuery.trim()
-    ? tools.filter(
+    ? searchSource.filter(
         (t) =>
           t.name.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
           t.shortDesc.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
           t.category.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
-          t.tags.some((tag) => tag.toLowerCase().includes(debouncedQuery.toLowerCase()))
+          t.tags.some((tag: string) => tag.toLowerCase().includes(debouncedQuery.toLowerCase()))
       ).slice(0, 50) // Show only top 50 results
-    : tools.slice(0, 6);
+    : searchSource.slice(0, 6);
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-slate-900/40 backdrop-blur-md transition-opacity">

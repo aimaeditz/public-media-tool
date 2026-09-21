@@ -88,33 +88,7 @@ export const useToolsStore = create<ToolsState>((set, get) => {
     isBackgroundLoading: false,
 
     initStore: async () => {
-      if (typeof window === 'undefined') return;
-
-      // 1. Try to load from localStorage cache
-      try {
-        const cached = localStorage.getItem('cached_tools_data');
-        if (cached) {
-          const parsed = JSON.parse(cached) as Tool[];
-          if (parsed && parsed.length > 500) {
-            set({
-              tools: parsed,
-              loadedCategories: new Set(CATEGORIES.map(c => c.slug)),
-            });
-            console.log(`Loaded ${parsed.length} tools from localStorage cache`);
-            return;
-          }
-        }
-      } catch (e) {
-        console.warn('Failed to parse cached tools from localStorage:', e);
-      }
-
-      // 2. Fallback: load initially with INITIAL_TOOLS and trigger lazy background load
       set({ tools: INITIAL_TOOLS });
-      
-      // Load all chunks in the background after mount
-      setTimeout(() => {
-        get().loadAllCategories();
-      }, 500);
     },
 
     loadCategory: async (categorySlug: string) => {

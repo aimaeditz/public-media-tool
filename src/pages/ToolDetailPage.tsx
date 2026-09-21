@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TOOLS } from '../lib/tools-data';
 import { getIconComponent, formatNumber } from '../lib/utils';
 import { Share2, ShieldCheck, ChevronRight, Check, HelpCircle } from 'lucide-react';
@@ -14,6 +14,26 @@ interface ToolDetailPageProps {
 export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }) => {
   const [shareCopied, setShareCopied] = useState(false);
   const storeTools = useToolsStore((state) => state.tools);
+  const loadCategory = useToolsStore((state) => state.loadCategory);
+
+  // Auto-load category chunk if the visited tool isn't already loaded
+  useEffect(() => {
+    const isLoaded = storeTools.some((t) => t.slug === slug) || TOOLS.some((t) => t.slug === slug);
+    if (!isLoaded) {
+      import('../lib/search-index').then((m) => {
+        const indexItem = m.SEARCH_INDEX.find((item) => item.slug === slug);
+        if (indexItem) {
+          const categorySlug = indexItem.category
+            .toLowerCase()
+            .replace(/ & /g, '-')
+            .replace(/\s+/g, '-');
+          loadCategory(categorySlug);
+        }
+      }).catch((err) => {
+        console.warn('Failed to load search index in ToolDetailPage:', err);
+      });
+    }
+  }, [slug, storeTools, loadCategory]);
 
   const foundTool = storeTools.find((t) => t.slug === slug) || TOOLS.find((t) => t.slug === slug);
   const tool = foundTool || {

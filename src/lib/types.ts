@@ -24,7 +24,20 @@ export type ToolCategory =
   | 'Converter Tools'
   | 'Calculator Tools'
   | 'Security Tools'
-  | 'Web Tools';
+  | 'Web Tools'
+  | 'Social Media Tools'
+  | 'Video Tools'
+  | 'Audio Tools'
+  | 'File Tools'
+  | 'Generators'
+  | 'Math Tools'
+  | 'Date & Time'
+  | 'Productivity'
+  | 'Finance Tools'
+  | 'Business Tools'
+  | 'Health & Fitness'
+  | 'Education'
+  | 'Unit Converters';
 
 export interface CategoryInfo {
   id: ToolCategory;

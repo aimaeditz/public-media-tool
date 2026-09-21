@@ -9,6 +9,7 @@ import { CONVERTER_TOOLS } from './data/converter-tools';
 import { CALCULATOR_TOOLS } from './data/calculator-tools';
 import { SECURITY_TOOLS } from './data/security-tools';
 import { WEB_TOOLS } from './data/web-tools';
+import { ALL_GENERATED_TOOLS } from './data/generated';
 
 export const CATEGORIES: CategoryInfo[] = [
   {
@@ -100,6 +101,123 @@ export const CATEGORIES: CategoryInfo[] = [
     description: 'QR Code generators, URL encoder/decoders, and web inspector utilities.',
     colorGradient: 'from-purple-500 to-indigo-600',
     bgLight: 'bg-purple-50 text-purple-700',
+  },
+  {
+    id: 'Social Media Tools',
+    slug: 'social-media-tools',
+    name: 'Social Media Tools',
+    iconName: 'Share2',
+    description: 'Bio generators, caption formatters, hashtag generators, and image sizing helpers.',
+    colorGradient: 'from-fuchsia-500 to-rose-600',
+    bgLight: 'bg-fuchsia-50 text-fuchsia-700',
+  },
+  {
+    id: 'Video Tools',
+    slug: 'video-tools',
+    name: 'Video Tools',
+    iconName: 'Video',
+    description: 'Video metadata inspectors, frame extractors, canvas video croppers and format tools.',
+    colorGradient: 'from-purple-600 to-pink-600',
+    bgLight: 'bg-purple-50 text-purple-700',
+  },
+  {
+    id: 'Audio Tools',
+    slug: 'audio-tools',
+    name: 'Audio Tools',
+    iconName: 'Music',
+    description: 'Audio waveform previewers, frequency analyzers, and Web Audio API tools.',
+    colorGradient: 'from-cyan-500 to-blue-600',
+    bgLight: 'bg-cyan-50 text-cyan-700',
+  },
+  {
+    id: 'File Tools',
+    slug: 'file-tools',
+    name: 'File Tools',
+    iconName: 'FolderArchive',
+    description: 'Archive inspectors, file checksum calculators, file diff checkers, and metadata tools.',
+    colorGradient: 'from-amber-600 to-yellow-500',
+    bgLight: 'bg-amber-50 text-amber-700',
+  },
+  {
+    id: 'Generators',
+    slug: 'generators',
+    name: 'Generators',
+    iconName: 'Sparkles',
+    description: 'Random data generators, UUIDs, QR codes, passwords, and mock data suites.',
+    colorGradient: 'from-indigo-600 to-blue-600',
+    bgLight: 'bg-indigo-50 text-indigo-700',
+  },
+  {
+    id: 'Math Tools',
+    slug: 'math-tools',
+    name: 'Math Tools',
+    iconName: 'Calculator',
+    description: 'Algebra solvers, matrix calculators, statistical analyzers, and geometry tools.',
+    colorGradient: 'from-emerald-600 to-teal-600',
+    bgLight: 'bg-emerald-50 text-emerald-700',
+  },
+  {
+    id: 'Date & Time',
+    slug: 'date-time',
+    name: 'Date & Time',
+    iconName: 'Clock',
+    description: 'Timezone converters, date duration calculators, age calculators, and timestamps.',
+    colorGradient: 'from-blue-600 to-indigo-600',
+    bgLight: 'bg-blue-50 text-blue-700',
+  },
+  {
+    id: 'Productivity',
+    slug: 'productivity',
+    name: 'Productivity',
+    iconName: 'CheckSquare',
+    description: 'Timer scratchpads, task checklists, habit trackers, and document layout tools.',
+    colorGradient: 'from-teal-500 to-emerald-600',
+    bgLight: 'bg-teal-50 text-teal-700',
+  },
+  {
+    id: 'Finance Tools',
+    slug: 'finance-tools',
+    name: 'Finance Tools',
+    iconName: 'DollarSign',
+    description: 'Mortgage, interest, ROI, NPV, amortization, and financial growth planners.',
+    colorGradient: 'from-green-600 to-emerald-700',
+    bgLight: 'bg-green-50 text-green-700',
+  },
+  {
+    id: 'Business Tools',
+    slug: 'business-tools',
+    name: 'Business Tools',
+    iconName: 'Briefcase',
+    description: 'Invoice formatters, margin calculators, business planning, and ROI tools.',
+    colorGradient: 'from-slate-700 to-slate-900',
+    bgLight: 'bg-slate-100 text-slate-800',
+  },
+  {
+    id: 'Health & Fitness',
+    slug: 'health-fitness',
+    name: 'Health & Fitness',
+    iconName: 'Activity',
+    description: 'BMI, TDEE, macronutrient ratios, body fat %, and pace calculators.',
+    colorGradient: 'from-rose-500 to-red-600',
+    bgLight: 'bg-rose-50 text-rose-700',
+  },
+  {
+    id: 'Education',
+    slug: 'education',
+    name: 'Education',
+    iconName: 'GraduationCap',
+    description: 'GPA calculators, test score converters, reading speed analyzers, and study tools.',
+    colorGradient: 'from-violet-600 to-indigo-700',
+    bgLight: 'bg-violet-50 text-violet-700',
+  },
+  {
+    id: 'Unit Converters',
+    slug: 'unit-converters',
+    name: 'Unit Converters',
+    iconName: 'RefreshCw',
+    description: 'Multi-unit conversion engines for physics, geometry, data, and daily metrics.',
+    colorGradient: 'from-sky-500 to-blue-600',
+    bgLight: 'bg-sky-50 text-sky-700',
   },
 ];
 
@@ -582,6 +700,7 @@ const ALL_RAW_TOOLS = [
   ...CALCULATOR_TOOLS,
   ...SECURITY_TOOLS,
   ...WEB_TOOLS,
+  ...ALL_GENERATED_TOOLS,
 ];
 
 // Strict Auto-deduplication by slug

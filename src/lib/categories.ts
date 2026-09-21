@@ -856,13 +856,6 @@ export const STATIC_CATEGORIES: (CategoryInfo & { count: number; subCategories?:
 
 import { SEARCH_INDEX } from './search-index';
 
-const SUFFIXES = [
-  'Basic', 'Advanced', 'Converters', 'Pro', 'Smart', 'Universal',
-  'Classic', 'Standard', 'Modern', 'Premium', 'Utility', 'Suite',
-  'Helper', 'Analytics', 'Developer', 'Creator', 'Design', 'Formatting',
-  'Expert', 'Tools', 'Master', 'Essential', 'Plus', 'Ultra', 'Ultimate'
-];
-
 const UNIQUE_GRADIENTS = [
   'from-indigo-500 to-blue-600',
   'from-pink-500 to-rose-600',
@@ -891,78 +884,301 @@ const UNIQUE_GRADIENTS = [
   'from-yellow-600 to-amber-600'
 ];
 
-export const CATEGORIES: (CategoryInfo & { count: number; subCategories?: string[]; parentId?: string; parentSlug?: string })[] = (() => {
-  const finalCategories: (CategoryInfo & { count: number; subCategories?: string[]; parentId?: string; parentSlug?: string })[] = [];
+const SUBCATEGORY_RULES: { parent: string; keyword: string; name: string }[] = [
+  // Text Tools
+  { parent: 'Text Tools', keyword: 'counter', name: 'Word Counters' },
+  { parent: 'Text Tools', keyword: 'count', name: 'Word Counters' },
+  { parent: 'Text Tools', keyword: 'case', name: 'Case Converters' },
+  { parent: 'Text Tools', keyword: 'convert', name: 'Text Converters' },
+  { parent: 'Text Tools', keyword: 'format', name: 'Text Formatters' },
+  { parent: 'Text Tools', keyword: 'lorem', name: 'Text Generators' },
+  { parent: 'Text Tools', keyword: 'dummy', name: 'Text Generators' },
+  { parent: 'Text Tools', keyword: 'generator', name: 'Text Generators' },
+  { parent: 'Text Tools', keyword: 'analyze', name: 'Content Analyzers' },
+  { parent: 'Text Tools', keyword: 'analyzer', name: 'Content Analyzers' },
+  { parent: 'Text Tools', keyword: 'analysis', name: 'Content Analyzers' },
+  { parent: 'Text Tools', keyword: 'validate', name: 'Text Validators' },
+  { parent: 'Text Tools', keyword: 'validator', name: 'Text Validators' },
+  { parent: 'Text Tools', keyword: 'clean', name: 'Text Cleaners' },
+  { parent: 'Text Tools', keyword: 'diff', name: 'Text Comparators' },
+
+  // Image Tools
+  { parent: 'Image Tools', keyword: 'resize', name: 'Image Resizers' },
+  { parent: 'Image Tools', keyword: 'crop', name: 'Image Croppers' },
+  { parent: 'Image Tools', keyword: 'convert', name: 'Image Converters' },
+  { parent: 'Image Tools', keyword: 'filter', name: 'Image Filters' },
+  { parent: 'Image Tools', keyword: 'compress', name: 'Image Compressors' },
+  { parent: 'Image Tools', keyword: 'palette', name: 'Color Palette Extractors' },
+
+  // PDF Tools
+  { parent: 'PDF Tools', keyword: 'merge', name: 'PDF Mergers' },
+  { parent: 'PDF Tools', keyword: 'split', name: 'PDF Splitters' },
+  { parent: 'PDF Tools', keyword: 'extract', name: 'PDF Content Extractors' },
+  { parent: 'PDF Tools', keyword: 'inspect', name: 'PDF Metadata Inspectors' },
+
+  // Developer Tools
+  { parent: 'Developer Tools', keyword: 'json', name: 'JSON Formatters' },
+  { parent: 'Developer Tools', keyword: 'base64', name: 'Base64 Encoders/Decoders' },
+  { parent: 'Developer Tools', keyword: 'uuid', name: 'UUID/GUID Generators' },
+  { parent: 'Developer Tools', keyword: 'guid', name: 'UUID/GUID Generators' },
+  { parent: 'Developer Tools', keyword: 'html', name: 'HTML Encoders/Decoders' },
+  { parent: 'Developer Tools', keyword: 'xml', name: 'XML Formatters' },
+  { parent: 'Developer Tools', keyword: 'yaml', name: 'YAML Converters' },
+
+  // SEO Tools
+  { parent: 'SEO Tools', keyword: 'meta', name: 'Meta Tag Generators' },
+  { parent: 'SEO Tools', keyword: 'keyword', name: 'Keyword Analyzers' },
+  { parent: 'SEO Tools', keyword: 'schema', name: 'Schema Tag Creators' },
+  { parent: 'SEO Tools', keyword: 'sitemap', name: 'Sitemap Generators' },
+
+  // Color Tools
+  { parent: 'Color Tools', keyword: 'contrast', name: 'Contrast Checkers' },
+  { parent: 'Color Tools', keyword: 'picker', name: 'Color Pickers' },
+  { parent: 'Color Tools', keyword: 'gradient', name: 'Gradient Generators' },
+  { parent: 'Color Tools', keyword: 'convert', name: 'Color Code Converters' },
+
+  // Converter Tools
+  { parent: 'Converter Tools', keyword: 'length', name: 'Length Converters' },
+  { parent: 'Converter Tools', keyword: 'weight', name: 'Weight Converters' },
+  { parent: 'Converter Tools', keyword: 'speed', name: 'Speed Converters' },
+  { parent: 'Converter Tools', keyword: 'temperature', name: 'Temperature Converters' },
+  { parent: 'Converter Tools', keyword: 'storage', name: 'Digital Storage Converters' },
+
+  // Calculator Tools
+  { parent: 'Calculator Tools', keyword: 'discount', name: 'Discount Calculators' },
+  { parent: 'Calculator Tools', keyword: 'tax', name: 'Sales Tax Calculators' },
+  { parent: 'Calculator Tools', keyword: 'percentage', name: 'Percentage Calculators' },
+  { parent: 'Calculator Tools', keyword: 'loan', name: 'Loan Calculators' },
+
+  // Security Tools
+  { parent: 'Security Tools', keyword: 'password', name: 'Password Generators' },
+  { parent: 'Security Tools', keyword: 'hash', name: 'Hash Generators' },
+  { parent: 'Security Tools', keyword: 'strength', name: 'Key Strength Testers' },
+
+  // Web Tools
+  { parent: 'Web Tools', keyword: 'qr', name: 'QR Code Generators' },
+  { parent: 'Web Tools', keyword: 'url', name: 'URL Encoders/Decoders' },
+  { parent: 'Web Tools', keyword: 'inspector', name: 'Web Inspectors' },
+
+  // Social Media Tools
+  { parent: 'Social Media Tools', keyword: 'caption', name: 'Caption Formatters' },
+  { parent: 'Social Media Tools', keyword: 'hashtag', name: 'Hashtag Generators' },
+  { parent: 'Social Media Tools', keyword: 'bio', name: 'Bio Generators' },
+
+  // Video Tools
+  { parent: 'Video Tools', keyword: 'crop', name: 'Video Croppers' },
+  { parent: 'Video Tools', keyword: 'frame', name: 'Frame Extractors' },
+  { parent: 'Video Tools', keyword: 'metadata', name: 'Video Inspectors' },
+
+  // Audio Tools
+  { parent: 'Audio Tools', keyword: 'frequency', name: 'Frequency Analyzers' },
+  { parent: 'Audio Tools', keyword: 'waveform', name: 'Waveform Analyzers' },
+
+  // File Tools
+  { parent: 'File Tools', keyword: 'checksum', name: 'Checksum Calculators' },
+  { parent: 'File Tools', keyword: 'diff', name: 'File Diff Checkers' },
+
+  // Generators
+  { parent: 'Generators', keyword: 'mock', name: 'Mock Data Suites' },
+  { parent: 'Generators', keyword: 'qr', name: 'QR Code Generators' },
+
+  // Math Tools
+  { parent: 'Math Tools', keyword: 'matrix', name: 'Matrix Calculators' },
+  { parent: 'Math Tools', keyword: 'algebra', name: 'Algebra Solvers' },
+
+  // Date & Time
+  { parent: 'Date & Time', keyword: 'timezone', name: 'Timezone Converters' },
+  { parent: 'Date & Time', keyword: 'duration', name: 'Date Duration Calculators' },
+
+  // Finance Tools
+  { parent: 'Finance Tools', keyword: 'mortgage', name: 'Mortgage Planners' },
+  { parent: 'Finance Tools', keyword: 'roi', name: 'ROI Calculators' },
+
+  // Business Tools
+  { parent: 'Business Tools', keyword: 'invoice', name: 'Invoice Formatters' },
+
+  // Health & Fitness
+  { parent: 'Health & Fitness', keyword: 'bmi', name: 'BMI Calculators' },
+
+  // Unit Converters
+  { parent: 'Unit Converters', keyword: 'unit', name: 'Unit Converters' },
+
+  // Construction
+  { parent: 'Construction', keyword: 'concrete', name: 'Concrete Mix Calculators' },
+  { parent: 'Construction', keyword: 'rebar', name: 'Rebar Estimators' },
+
+  // Electrical & Solar
+  { parent: 'Electrical & Solar', keyword: 'ohm', name: 'Ohm Law Calculators' },
+  { parent: 'Electrical & Solar', keyword: 'solar', name: 'Solar Array Estimators' },
+
+  // Agriculture
+  { parent: 'Agriculture', keyword: 'yield', name: 'Crop Yield Estimators' },
+  { parent: 'Agriculture', keyword: 'seed', name: 'Seed Calculators' },
+
+  // Photography
+  { parent: 'Photography', keyword: 'exif', name: 'EXIF Inspectors' },
+
+  // Music Production
+  { parent: 'Music Production', keyword: 'metronome', name: 'BPM Metronomes' },
+  { parent: 'Music Production', keyword: 'chord', name: 'Chord Progression Builders' },
+
+  // Environment & Energy
+  { parent: 'Environment & Energy', keyword: 'carbon', name: 'Carbon Footprint Calculators' },
+
+  // Data Management
+  { parent: 'Data Management', keyword: 'sql', name: 'SQL Schema Tools' },
+];
+
+export const CATEGORIES: (CategoryInfo & {
+  count: number;
+  subCategories?: string[];
+  parentId?: string;
+  parentSlug?: string;
+  toolSlugs: string[];
+})[] = (() => {
+  const finalCategories: (CategoryInfo & {
+    count: number;
+    subCategories?: string[];
+    parentId?: string;
+    parentSlug?: string;
+    toolSlugs: string[];
+  })[] = [];
 
   let gradientIndex = 0;
 
+  const kebabCase = (str: string) => {
+    return str
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
+  };
+
   STATIC_CATEGORIES.forEach(baseCat => {
     const categoryTools = SEARCH_INDEX.filter(t => t.category === baseCat.id);
-    const count = categoryTools.length;
+    if (categoryTools.length === 0) return;
 
-    if (count === 0) return;
+    const grouped: Record<string, typeof categoryTools> = {};
 
-    if (count <= 200) {
-      const tagCounts: Record<string, number> = {};
-      const bannedTags = new Set([
-        'tags', 'online', 'master', 'advanced', 'smart', 'browser tool', 'client side', 'universal', 
-        'helper', 'utility', 'tool', 'free', 'instant', 'easy', 'quick', 'fast', 'best', 'pro', 
-        'simple', 'convert', 'converter', 'app', 'online tool', 'generator', 'generator tool', 'tools',
-        baseCat.slug, baseCat.slug.replace('-tools', ''), baseCat.name.toLowerCase(), ...baseCat.name.toLowerCase().split(/\s+/)
-      ]);
+    categoryTools.forEach(tool => {
+      const nameLower = tool.name.toLowerCase();
+      const tags = tool.tags || [];
 
-      categoryTools.forEach(t => {
-        t.tags?.forEach(tag => {
-          const clean = tag.toLowerCase().trim();
-          if (clean && !bannedTags.has(clean) && clean.length > 2) {
-            tagCounts[clean] = (tagCounts[clean] || 0) + 1;
+      const matches = (kw: string) => {
+        return nameLower.includes(kw) || tags.some((t: string) => t.toLowerCase().includes(kw));
+      };
+
+      let assignedGroup = '';
+
+      for (const rule of SUBCATEGORY_RULES) {
+        if (rule.parent === baseCat.id && matches(rule.keyword)) {
+          assignedGroup = rule.name;
+          break;
+        }
+      }
+
+      if (!assignedGroup) {
+        const bannedTags = new Set([
+          'tags', 'online', 'master', 'advanced', 'smart', 'browser tool', 'client side', 'universal', 
+          'helper', 'utility', 'tool', 'free', 'instant', 'easy', 'quick', 'fast', 'best', 'pro', 
+          'simple', 'convert', 'converter', 'app', 'online tool', 'generator', 'generator tool', 'tools', 'client-side',
+          baseCat.slug, baseCat.slug.replace('-tools', ''), baseCat.name.toLowerCase(), ...baseCat.name.toLowerCase().split(/\s+/)
+        ]);
+
+        for (const tag of tags) {
+          const cleanTag = tag.toLowerCase().trim();
+          if (cleanTag && !bannedTags.has(cleanTag) && cleanTag.length > 2) {
+            const words = cleanTag.split(/[\s_-]+/);
+            const capWords = words.map(w => w.charAt(0).toUpperCase() + w.slice(1));
+            let capName = capWords.join(' ');
+            
+            const lowerCap = capName.toLowerCase();
+            if (!lowerCap.endsWith('s') && !lowerCap.endsWith('tools') && !lowerCap.endsWith('utilities')) {
+              if (lowerCap.endsWith('calculator')) {
+                capName = capName + 's';
+              } else if (lowerCap.endsWith('converter')) {
+                capName = capName + 's';
+              } else if (lowerCap.endsWith('generator')) {
+                capName = capName + 's';
+              } else if (lowerCap.endsWith('format')) {
+                capName = capName + 'ters';
+              } else if (lowerCap.endsWith('formatter')) {
+                capName = capName + 's';
+              } else if (lowerCap.endsWith('analyzer')) {
+                capName = capName + 's';
+              } else if (lowerCap.endsWith('validator')) {
+                capName = capName + 's';
+              } else if (lowerCap.endsWith('estimator')) {
+                capName = capName + 's';
+              } else {
+                capName = capName + ' Utilities';
+              }
+            }
+            assignedGroup = capName;
+            break;
           }
-        });
-      });
+        }
+      }
 
-      const sortedTags = Object.entries(tagCounts)
-        .filter(([_, count]) => count >= 2)
-        .sort((a, b) => b[1] - a[1])
-        .map(([tag]) => tag.charAt(0).toUpperCase() + tag.slice(1))
-        .slice(0, 5);
+      if (!assignedGroup) {
+        const nameWords = tool.name.replace(/[^a-zA-Z0-9\s]/g, '').split(/\s+/).filter(Boolean);
+        if (nameWords.length >= 2) {
+          const firstTwo = nameWords.slice(0, 2).map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+          if (nameLower.includes('calculator')) {
+            assignedGroup = firstTwo + ' Calculators';
+          } else if (nameLower.includes('converter')) {
+            assignedGroup = firstTwo + ' Converters';
+          } else if (nameLower.includes('generator')) {
+            assignedGroup = firstTwo + ' Generators';
+          } else {
+            assignedGroup = firstTwo + ' Utilities';
+          }
+        }
+      }
 
-      finalCategories.push({
-        ...baseCat,
-        count,
-        subCategories: sortedTags.length > 0 ? sortedTags : (baseCat.subCategories || []),
-        parentId: baseCat.id,
-        parentSlug: baseCat.slug
-      });
-    } else {
-      const totalChunks = Math.ceil(count / 200);
-      for (let i = 0; i < totalChunks; i++) {
-        const chunkTools = categoryTools.slice(i * 200, (i + 1) * 200);
-        const suffix = SUFFIXES[i] || `Suite ${i + 1}`;
-        const subId = `${baseCat.id} - ${suffix}`;
-        const subName = `${baseCat.name} - ${suffix}`;
-        const subSlug = `${baseCat.slug}-${i + 1}`;
+      if (!assignedGroup) {
+        assignedGroup = baseCat.name + ' Utilities';
+      }
+
+      if (!grouped[assignedGroup]) {
+        grouped[assignedGroup] = [];
+      }
+      grouped[assignedGroup].push(tool);
+    });
+
+    Object.entries(grouped).forEach(([groupName, groupTools]) => {
+      const chunks: (typeof categoryTools)[] = [];
+      for (let i = 0; i < groupTools.length; i += 50) {
+        chunks.push(groupTools.slice(i, i + 50));
+      }
+
+      chunks.forEach((chunk, chunkIdx) => {
+        const subName = chunks.length > 1 ? `${groupName} - Part ${chunkIdx + 1}` : groupName;
+        const subId = chunks.length > 1 ? `${baseCat.id} - ${groupName} - Part ${chunkIdx + 1}` : `${baseCat.id} - ${groupName}`;
+        const subSlug = kebabCase(subId);
 
         const colorGradient = UNIQUE_GRADIENTS[gradientIndex % UNIQUE_GRADIENTS.length];
         gradientIndex++;
 
-        const tagCounts: Record<string, number> = {};
-        const bannedTags = new Set([
+        const subCatTagCounts: Record<string, number> = {};
+        const bannedSubTags = new Set([
           'tags', 'online', 'master', 'advanced', 'smart', 'browser tool', 'client side', 'universal', 
           'helper', 'utility', 'tool', 'free', 'instant', 'easy', 'quick', 'fast', 'best', 'pro', 
-          'simple', 'convert', 'converter', 'app', 'online tool', 'generator', 'generator tool', 'tools',
+          'simple', 'convert', 'converter', 'app', 'online tool', 'generator', 'generator tool', 'tools', 'client-side',
           baseCat.slug, baseCat.slug.replace('-tools', ''), baseCat.name.toLowerCase(), ...baseCat.name.toLowerCase().split(/\s+/)
         ]);
 
-        chunkTools.forEach(t => {
+        chunk.forEach(t => {
           t.tags?.forEach(tag => {
             const clean = tag.toLowerCase().trim();
-            if (clean && !bannedTags.has(clean) && clean.length > 2) {
-              tagCounts[clean] = (tagCounts[clean] || 0) + 1;
+            if (clean && !bannedSubTags.has(clean) && clean.length > 2) {
+              subCatTagCounts[clean] = (subCatTagCounts[clean] || 0) + 1;
             }
           });
         });
 
-        const sortedTags = Object.entries(tagCounts)
+        const sortedTags = Object.entries(subCatTagCounts)
           .filter(([_, count]) => count >= 2)
           .sort((a, b) => b[1] - a[1])
           .map(([tag]) => tag.charAt(0).toUpperCase() + tag.slice(1))
@@ -976,13 +1192,14 @@ export const CATEGORIES: (CategoryInfo & { count: number; subCategories?: string
           description: baseCat.description,
           colorGradient,
           bgLight: baseCat.bgLight,
-          count: chunkTools.length,
+          count: chunk.length,
           subCategories: sortedTags.length > 0 ? sortedTags : (baseCat.subCategories || []),
           parentId: baseCat.id,
-          parentSlug: baseCat.slug
+          parentSlug: baseCat.slug,
+          toolSlugs: chunk.map(t => t.slug)
         });
-      }
-    }
+      });
+    });
   });
 
   return finalCategories;
@@ -990,21 +1207,23 @@ export const CATEGORIES: (CategoryInfo & { count: number; subCategories?: string
 
 export function getToolsForCategory(categorySlug: string): any[] {
   const cat = CATEGORIES.find(c => c.slug === categorySlug);
-  if (!cat) return [];
-
-  const baseTools = SEARCH_INDEX.filter(t => t.category === cat.parentId);
-
-  if (cat.parentId !== cat.id) {
-    const match = categorySlug.match(/-(\d+)$/);
-    if (match) {
-      const chunkIndex = parseInt(match[1], 10) - 1;
-      const chunkTools = baseTools.slice(chunkIndex * 200, (chunkIndex + 1) * 200);
-      return chunkTools.map(t => ({
-        ...t,
-        category: cat.id
-      }));
+  if (!cat) {
+    const subs = CATEGORIES.filter(c => c.parentSlug === categorySlug);
+    if (subs.length > 0) {
+      const allSlugs = subs.flatMap(c => c.toolSlugs);
+      const baseTools = SEARCH_INDEX.filter(t => allSlugs.includes(t.slug));
+      return baseTools.map(t => {
+        const subCat = subs.find(s => s.toolSlugs.includes(t.slug));
+        return {
+          ...t,
+          category: subCat ? subCat.id : t.category
+        };
+      });
     }
+    return [];
   }
+
+  const baseTools = SEARCH_INDEX.filter(t => cat.toolSlugs.includes(t.slug));
 
   return baseTools.map(t => ({
     ...t,

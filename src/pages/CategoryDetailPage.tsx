@@ -11,7 +11,34 @@ interface CategoryDetailPageProps {
 }
 
 export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ categorySlug, navigate }) => {
-  const category = CATEGORIES.find((c) => c.slug === categorySlug) || CATEGORIES[0];
+  // Check if it is a parent category or direct subcategory
+  let isParentCategory = false;
+  let category = CATEGORIES.find((c) => c.slug === categorySlug);
+
+  if (!category) {
+    const matchingSubs = CATEGORIES.filter((c) => c.parentSlug === categorySlug);
+    if (matchingSubs.length > 0) {
+      isParentCategory = true;
+      const first = matchingSubs[0];
+      category = {
+        id: first.parentId as any,
+        slug: categorySlug,
+        name: first.parentId || categorySlug,
+        iconName: first.iconName,
+        description: `Explore all specialized sub-categories of ${first.parentId || categorySlug}`,
+        colorGradient: first.colorGradient,
+        bgLight: first.bgLight,
+        count: matchingSubs.reduce((sum, c) => sum + c.count, 0),
+        subCategories: Array.from(new Set(matchingSubs.map(c => c.name.replace(/ - Part \d+$/, '')))),
+        toolSlugs: matchingSubs.flatMap(c => c.toolSlugs)
+      } as any;
+    }
+  }
+
+  if (!category) {
+    category = CATEGORIES[0];
+  }
+
   const IconComp = getIconComponent(category.iconName);
 
   const tools = useToolsStore((state) => state.tools);
@@ -28,15 +55,24 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
     setCurrentPage(1);
   }, [category.slug, loadCategory]);
 
-  const categoryTools = tools.filter((t) => t.category === category.id);
+  const categoryTools = isParentCategory
+    ? tools.filter((t) => CATEGORIES.some(c => c.parentSlug === categorySlug && t.category === c.id))
+    : tools.filter((t) => t.category === category.id);
   
   // Dynamic local filter matching tags or title keywords
   const filteredTools = selectedSub === 'All'
     ? categoryTools
     : categoryTools.filter(
-        (t) =>
-          t.tags?.some((tag) => tag.toLowerCase() === selectedSub.toLowerCase()) ||
-          t.name.toLowerCase().includes(selectedSub.toLowerCase())
+        (t) => {
+          if (isParentCategory) {
+            return t.category === `${category.id} - ${selectedSub}` || 
+                   t.category.startsWith(`${category.id} - ${selectedSub} - Part`) ||
+                   t.tags?.some((tag) => tag.toLowerCase() === selectedSub.toLowerCase()) ||
+                   t.name.toLowerCase().includes(selectedSub.toLowerCase());
+          }
+          return t.tags?.some((tag) => tag.toLowerCase() === selectedSub.toLowerCase()) ||
+                 t.name.toLowerCase().includes(selectedSub.toLowerCase());
+        }
       );
 
   // Pagination parameters

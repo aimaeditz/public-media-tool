@@ -9,25 +9,30 @@ interface CategoriesSectionProps {
 }
 
 export const CategoriesSection: React.FC<CategoriesSectionProps> = ({ navigate }) => {
+  // Select the top 16 categories by tool count to feature on the homepage
+  const featuredCategories = CATEGORIES.slice()
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 16);
+
   return (
     <section id="categories-section" className="py-20 bg-slate-50 border-b border-slate-200/60">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
           <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 px-3 py-1 bg-indigo-50 rounded-full border border-indigo-100">
             Organized Workspace
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">
-            Explore {TOTAL_TOOLS.toLocaleString()}+ Free Browser Tools
+            Explore Tools by Category
           </h2>
           <p className="text-sm sm:text-base text-slate-600">
-            Browse our categorized suites of browser utilities engineered for creators, developers, designers, and marketers.
+            Browse {CATEGORIES.length}+ categories with {TOTAL_TOOLS.toLocaleString()}+ free browser tools
           </p>
         </div>
 
         {/* Categories Grid - 4 columns on desktop, 3 on laptop, 2 on tablet, 1 on mobile */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-          {CATEGORIES.map((cat) => {
+          {featuredCategories.map((cat) => {
             const IconComp = getIconComponent(cat.iconName);
             const count = cat.count;
 
@@ -68,6 +73,17 @@ export const CategoriesSection: React.FC<CategoriesSectionProps> = ({ navigate }
               </div>
             );
           })}
+        </div>
+
+        {/* Explore All Button */}
+        <div className="flex justify-center pt-6">
+          <button
+            onClick={() => navigate('/categories')}
+            className="inline-flex items-center gap-2 px-8 py-4 text-sm font-bold text-white bg-indigo-600 rounded-2xl hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-600/20 active:scale-98 transition-all duration-200 cursor-pointer"
+          >
+            See All {CATEGORIES.length}+ Categories
+            <ArrowRight className="w-4 h-4" />
+          </button>
         </div>
       </div>
     </section>

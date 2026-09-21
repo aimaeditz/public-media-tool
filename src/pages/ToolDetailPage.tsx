@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { TOOLS } from '../lib/tools-data';
-import { ToolRunner } from '../components/tools/ToolRunner';
 import { getIconComponent, formatNumber } from '../lib/utils';
 import { Share2, ShieldCheck, ChevronRight, Check, HelpCircle } from 'lucide-react';
+import { useToolsStore } from '../lib/tools-store';
+
+const ToolRunner = React.lazy(() => import('../components/tools/ToolRunner').then(m => ({ default: m.ToolRunner })));
 
 interface ToolDetailPageProps {
   slug: string;
@@ -11,8 +13,9 @@ interface ToolDetailPageProps {
 
 export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }) => {
   const [shareCopied, setShareCopied] = useState(false);
+  const storeTools = useToolsStore((state) => state.tools);
 
-  const foundTool = TOOLS.find((t) => t.slug === slug);
+  const foundTool = storeTools.find((t) => t.slug === slug) || TOOLS.find((t) => t.slug === slug);
   const tool = foundTool || {
     id: slug,
     slug: slug,
@@ -108,7 +111,14 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
 
         {/* Working Tool Container */}
         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md">
-          <ToolRunner tool={tool} />
+          <React.Suspense fallback={
+            <div className="py-12 text-center flex flex-col items-center justify-center space-y-3">
+              <div className="w-8 h-8 text-indigo-600 animate-spin border-4 border-slate-200 border-t-indigo-600 rounded-full" />
+              <span className="text-sm text-slate-500 font-medium">Preparing interactive tool...</span>
+            </div>
+          }>
+            <ToolRunner tool={tool} />
+          </React.Suspense>
         </div>
 
         {/* How to Use Steps */}

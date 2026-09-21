@@ -464,7 +464,7 @@ export const CATEGORIES: CategoryInfo[] = [
   },
 ];
 
-const INITIAL_TOOLS: Tool[] = [
+export const INITIAL_TOOLS: Tool[] = [
   {
     id: 'word-counter',
     slug: 'word-counter',

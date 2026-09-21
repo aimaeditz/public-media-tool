@@ -364,7 +364,7 @@ export const SECURITY_TOOLS: Tool[] = [
     usageCount: 65200,
     tags: ['sql injection', 'prepared statement', 'parameterized query', 'security', 'database'],
     howToUse: [
-      { step: 1, title: 'Paste dynamic SQL query', desc: 'E.g. SELECT * FROM users WHERE name = \'' + name + '\'.' },
+      { step: 1, title: 'Paste dynamic SQL query', desc: "E.g. SELECT * FROM users WHERE name = 'John'." },
       { step: 2, title: 'Convert to parameterized syntax', desc: 'Generates SELECT * FROM users WHERE name = $1.' },
       { step: 3, title: 'Copy parameterized query', desc: 'Use with database query drivers.' }
     ],

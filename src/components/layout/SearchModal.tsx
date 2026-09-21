@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, X, ArrowRight, Sparkles, Wrench } from 'lucide-react';
-import { TOOLS } from '../../lib/tools-data';
+import { useToolsStore } from '../../lib/tools-store';
 import { getIconComponent } from '../../lib/utils';
 
 interface SearchModalProps {
@@ -11,6 +11,8 @@ interface SearchModalProps {
 
 export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSelectTool }) => {
   const [query, setQuery] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState('');
+  const tools = useToolsStore((state) => state.tools);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -20,17 +22,25 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
+  // Fast 150ms debounce for typing in the overlay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedQuery(query);
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [query]);
+
   if (!isOpen) return null;
 
-  const filteredTools = query.trim()
-    ? TOOLS.filter(
+  const filteredTools = debouncedQuery.trim()
+    ? tools.filter(
         (t) =>
-          t.name.toLowerCase().includes(query.toLowerCase()) ||
-          t.shortDesc.toLowerCase().includes(query.toLowerCase()) ||
-          t.category.toLowerCase().includes(query.toLowerCase()) ||
-          t.tags.some((tag) => tag.toLowerCase().includes(query.toLowerCase()))
-      )
-    : TOOLS.slice(0, 6);
+          t.name.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+          t.shortDesc.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+          t.category.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+          t.tags.some((tag) => tag.toLowerCase().includes(debouncedQuery.toLowerCase()))
+      ).slice(0, 50) // Show only top 50 results
+    : tools.slice(0, 6);
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-slate-900/40 backdrop-blur-md transition-opacity">

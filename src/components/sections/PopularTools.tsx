@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TOOLS } from '../../lib/tools-data';
+import { useToolsStore } from '../../lib/tools-store';
 import { getIconComponent, formatNumber } from '../../lib/utils';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
@@ -10,6 +10,7 @@ interface PopularToolsProps {
 export const PopularTools: React.FC<PopularToolsProps> = ({ navigate }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [visibleCount, setVisibleCount] = useState<number>(8);
+  const tools = useToolsStore((state) => state.tools);
 
   const filterChips = [
     'All',
@@ -26,8 +27,8 @@ export const PopularTools: React.FC<PopularToolsProps> = ({ navigate }) => {
   ];
 
   const filteredTools = activeCategory === 'All'
-    ? TOOLS
-    : TOOLS.filter((t) => t.category === activeCategory);
+    ? tools
+    : tools.filter((t) => t.category === activeCategory);
 
   const visibleTools = filteredTools.slice(0, visibleCount);
 

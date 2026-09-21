@@ -1,5 +1,5 @@
 import React from 'react';
-import { TOOLS } from '../../lib/tools-data';
+import { useToolsStore } from '../../lib/tools-store';
 import { getIconComponent } from '../../lib/utils';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
@@ -8,7 +8,8 @@ interface LatestAdditionsProps {
 }
 
 export const LatestAdditions: React.FC<LatestAdditionsProps> = ({ navigate }) => {
-  const latestTools = TOOLS.filter((t) => t.isLatest).slice(0, 8);
+  const tools = useToolsStore((state) => state.tools);
+  const latestTools = tools.filter((t) => t.isLatest).slice(0, 8);
 
   return (
     <section className="py-20 bg-white">

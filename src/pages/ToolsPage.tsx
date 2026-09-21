@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { TOOLS, CATEGORIES } from '../lib/tools-data';
+import { CATEGORIES } from '../lib/tools-data';
 import { getIconComponent, formatNumber } from '../lib/utils';
-import { Search, ArrowRight, Filter, Sparkles, X, RotateCcw } from 'lucide-react';
+import { Search, ArrowRight, Filter, Sparkles, X, RotateCcw, Loader2 } from 'lucide-react';
+import { useToolsStore } from '../lib/tools-store';
+import { LazyRender } from '../components/tools/LazyRender';
 
 interface ToolsPageProps {
   navigate: (path: string) => void;
@@ -10,24 +12,59 @@ interface ToolsPageProps {
 
 export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '' }) => {
   const [search, setSearch] = useState(initialQuery);
+  const [debouncedSearch, setDebouncedSearch] = useState(initialQuery);
   const [selectedCat, setSelectedCat] = useState<string>('All');
+  const [pageSize, setPageSize] = useState(50);
+
+  const tools = useToolsStore((state) => state.tools);
+  const loadCategory = useToolsStore((state) => state.loadCategory);
+  const isLoading = useToolsStore((state) => state.isLoading);
 
   useEffect(() => {
     if (initialQuery !== undefined) {
       setSearch(initialQuery);
+      setDebouncedSearch(initialQuery);
     }
   }, [initialQuery]);
 
-  const filtered = TOOLS.filter((tool) => {
+  // Debounce search input (300ms)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  // Load category chunk when category changes
+  useEffect(() => {
+    if (selectedCat !== 'All') {
+      const catInfo = CATEGORIES.find(c => c.id === selectedCat);
+      if (catInfo) {
+        loadCategory(catInfo.slug);
+      }
+    }
+  }, [selectedCat, loadCategory]);
+
+  // Reset page size on category/search change
+  useEffect(() => {
+    setPageSize(50);
+  }, [debouncedSearch, selectedCat]);
+
+  const filtered = tools.filter((tool) => {
+    const query = debouncedSearch.toLowerCase().trim();
     const matchesSearch =
-      tool.name.toLowerCase().includes(search.toLowerCase()) ||
-      tool.shortDesc.toLowerCase().includes(search.toLowerCase()) ||
-      tool.tags.some((t) => t.toLowerCase().includes(search.toLowerCase()));
+      !query ||
+      tool.name.toLowerCase().includes(query) ||
+      tool.shortDesc.toLowerCase().includes(query) ||
+      tool.tags.some((t) => t.toLowerCase().includes(query));
 
     const matchesCat = selectedCat === 'All' || tool.category === selectedCat;
 
     return matchesSearch && matchesCat;
   });
+
+  // Search optimization: show only top 50 results if searching. Otherwise paginate
+  const displayedTools = filtered.slice(0, debouncedSearch ? 50 : pageSize);
 
   return (
     <div className="py-12 bg-slate-50 min-h-screen">
@@ -93,7 +130,7 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
                     : 'bg-white text-slate-700 hover:bg-indigo-50/80 hover:text-indigo-600 border border-slate-200/80'
                 }`}
               >
-                All Tools ({TOOLS.length})
+                All Tools (15,267)
               </button>
               {CATEGORIES.map((cat) => (
                 <button
@@ -113,7 +150,12 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
         </div>
 
         {/* Tools Grid / Empty state */}
-        {filtered.length === 0 ? (
+        {isLoading ? (
+          <div className="text-center py-20 flex flex-col items-center justify-center space-y-3">
+            <Loader2 className="w-8 h-8 text-indigo-600 animate-spin" />
+            <span className="text-sm text-slate-600 font-medium">Loading category tools...</span>
+          </div>
+        ) : filtered.length === 0 ? (
           <div className="bg-white rounded-3xl p-12 text-center border border-slate-200 shadow-xs max-w-xl mx-auto space-y-4">
             <div className="w-12 h-12 mx-auto rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
               <Search className="w-6 h-6" />
@@ -135,44 +177,59 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filtered.map((tool) => {
-              const IconComp = getIconComponent(tool.iconName);
+          <div className="space-y-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {displayedTools.map((tool) => {
+                const IconComp = getIconComponent(tool.iconName);
 
-              return (
-                <div
-                  key={tool.id}
-                  onClick={() => navigate(`/tools/${tool.slug}`)}
-                  className="group bg-white rounded-2xl p-5 border border-slate-200/80 hover:border-indigo-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 relative"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="p-3 rounded-xl bg-indigo-100/80 text-indigo-700 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                        <IconComp className="w-5 h-5" />
+                return (
+                  <LazyRender key={tool.id} placeholderHeight="180px">
+                    <div
+                      onClick={() => navigate(`/tools/${tool.slug}`)}
+                      className="group bg-white rounded-2xl p-5 border border-slate-200/80 hover:border-indigo-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 relative h-[180px]"
+                    >
+                      <div>
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="p-3 rounded-xl bg-indigo-100/80 text-indigo-700 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                            <IconComp className="w-5 h-5" />
+                          </div>
+
+                          <span className="text-[10px] font-bold px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full truncate max-w-[150px]">
+                            {tool.category}
+                          </span>
+                        </div>
+
+                        <h3 className="font-heading font-bold text-base text-slate-900 group-hover:text-indigo-600 transition-colors truncate">
+                          {tool.name}
+                        </h3>
+                        <p className="text-xs text-slate-600 mt-1.5 leading-relaxed line-clamp-2">
+                          {tool.shortDesc}
+                        </p>
                       </div>
 
-                      <span className="text-[10px] font-bold px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full">
-                        {tool.category}
-                      </span>
+                      <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-medium text-slate-500">
+                        <span>{formatNumber(tool.usageCount)} uses</span>
+                        <span className="font-bold text-indigo-600 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                          Open <ArrowRight className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
                     </div>
+                  </LazyRender>
+                );
+              })}
+            </div>
 
-                    <h3 className="font-heading font-bold text-base text-slate-900 group-hover:text-indigo-600 transition-colors">
-                      {tool.name}
-                    </h3>
-                    <p className="text-xs text-slate-600 mt-1.5 leading-relaxed line-clamp-2">
-                      {tool.shortDesc}
-                    </p>
-                  </div>
-
-                  <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-medium text-slate-500">
-                    <span>{formatNumber(tool.usageCount)} uses</span>
-                    <span className="font-bold text-indigo-600 group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                      Open <ArrowRight className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
+            {/* Pagination Controls */}
+            {!debouncedSearch && filtered.length > pageSize && (
+              <div className="text-center pt-4">
+                <button
+                  onClick={() => setPageSize((prev) => prev + 50)}
+                  className="px-8 py-3 text-sm font-bold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 rounded-xl shadow-xs transition-all cursor-pointer inline-flex items-center gap-2"
+                >
+                  Load More Tools ({filtered.length - pageSize} remaining)
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>

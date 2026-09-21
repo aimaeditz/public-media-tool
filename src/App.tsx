@@ -2,16 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { SearchModal } from './components/layout/SearchModal';
-import { HomePage } from './pages/HomePage';
-import { ToolsPage } from './pages/ToolsPage';
-import { ToolDetailPage } from './pages/ToolDetailPage';
-import { CategoriesPage } from './pages/CategoriesPage';
-import { CategoryDetailPage } from './pages/CategoryDetailPage';
-import { AboutPage } from './pages/AboutPage';
-import { ContactPage } from './pages/ContactPage';
-import { LegalPage } from './pages/LegalPage';
-import { SignInPage } from './pages/SignInPage';
-import { SignUpPage } from './pages/SignUpPage';
+import { useToolsStore } from './lib/tools-store';
+import { Loader2 } from 'lucide-react';
+
+const HomePage = React.lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })));
+const ToolsPage = React.lazy(() => import('./pages/ToolsPage').then(m => ({ default: m.ToolsPage })));
+const ToolDetailPage = React.lazy(() => import('./pages/ToolDetailPage').then(m => ({ default: m.ToolDetailPage })));
+const CategoriesPage = React.lazy(() => import('./pages/CategoriesPage').then(m => ({ default: m.CategoriesPage })));
+const CategoryDetailPage = React.lazy(() => import('./pages/CategoryDetailPage').then(m => ({ default: m.CategoryDetailPage })));
+const AboutPage = React.lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
+const ContactPage = React.lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
+const LegalPage = React.lazy(() => import('./pages/LegalPage').then(m => ({ default: m.LegalPage })));
+const SignInPage = React.lazy(() => import('./pages/SignInPage').then(m => ({ default: m.SignInPage })));
+const SignUpPage = React.lazy(() => import('./pages/SignUpPage').then(m => ({ default: m.SignUpPage })));
 
 const BASE_PATH = '/public-media-tool';
 
@@ -41,6 +44,11 @@ export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(getInitialPath());
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [initialSearchQuery, setInitialSearchQuery] = useState('');
+  const initStore = useToolsStore((state) => state.initStore);
+
+  useEffect(() => {
+    initStore();
+  }, [initStore]);
 
   const navigate = (path: string) => {
     const relPath = getRelativePath(path);
@@ -133,7 +141,15 @@ export default function App() {
         onOpenSearch={() => setSearchModalOpen(true)}
       />
 
-      <main className="flex-1">{renderContent()}</main>
+      <main className="flex-1 flex flex-col">
+        <React.Suspense fallback={
+          <div className="flex-1 flex items-center justify-center py-20 min-h-[400px]">
+            <Loader2 className="w-8 h-8 text-indigo-600 animate-spin" />
+          </div>
+        }>
+          {renderContent()}
+        </React.Suspense>
+      </main>
 
       <Footer navigate={navigate} />
 

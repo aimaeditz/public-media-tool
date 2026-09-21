@@ -12,7 +12,10 @@ const CategoriesPage = React.lazy(() => import('./pages/CategoriesPage').then(m 
 const CategoryDetailPage = React.lazy(() => import('./pages/CategoryDetailPage').then(m => ({ default: m.CategoryDetailPage })));
 const AboutPage = React.lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
 const ContactPage = React.lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
-const LegalPage = React.lazy(() => import('./pages/LegalPage').then(m => ({ default: m.LegalPage })));
+const PrivacyPolicyPage = React.lazy(() => import('./pages/PrivacyPolicyPage').then(m => ({ default: m.PrivacyPolicyPage })));
+const DisclaimerPage = React.lazy(() => import('./pages/DisclaimerPage').then(m => ({ default: m.DisclaimerPage })));
+const TermsPage = React.lazy(() => import('./pages/TermsPage').then(m => ({ default: m.TermsPage })));
+const CreditsPage = React.lazy(() => import('./pages/CreditsPage').then(m => ({ default: m.CreditsPage })));
 const SignInPage = React.lazy(() => import('./pages/SignInPage').then(m => ({ default: m.SignInPage })));
 const SignUpPage = React.lazy(() => import('./pages/SignUpPage').then(m => ({ default: m.SignUpPage })));
 
@@ -102,23 +105,27 @@ export default function App() {
     }
 
     if (currentPath === '/about') {
-      return <AboutPage />;
+      return <AboutPage navigate={navigate} />;
     }
 
     if (currentPath === '/contact') {
-      return <ContactPage />;
+      return <ContactPage navigate={navigate} />;
     }
 
     if (currentPath === '/privacy-policy') {
-      return <LegalPage initialTab="privacy" />;
+      return <PrivacyPolicyPage navigate={navigate} />;
     }
 
     if (currentPath === '/terms') {
-      return <LegalPage initialTab="terms" />;
+      return <TermsPage navigate={navigate} />;
     }
 
     if (currentPath === '/disclaimer') {
-      return <LegalPage initialTab="disclaimer" />;
+      return <DisclaimerPage navigate={navigate} />;
+    }
+
+    if (currentPath === '/credits') {
+      return <CreditsPage navigate={navigate} />;
     }
 
     if (currentPath === '/signin') {

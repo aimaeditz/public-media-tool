@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, Send, Twitter, Github, Linkedin, Check, Sparkles } from 'lucide-react';
+import { Heart, Send, Check, Sparkles, Youtube, Instagram, Music2, MessageCircle, Globe } from 'lucide-react';
 import { CATEGORIES } from '../../lib/tools-data';
 
 interface FooterProps {
@@ -18,6 +18,34 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
       setEmail('');
     }
   };
+
+  const socialLinks = [
+    {
+      name: 'YouTube',
+      url: 'https://www.youtube.com/@aimabideditz',
+      icon: Youtube,
+    },
+    {
+      name: 'Instagram',
+      url: 'https://www.instagram.com/its_abid29/',
+      icon: Instagram,
+    },
+    {
+      name: 'TikTok',
+      url: 'https://www.tiktok.com/@its_abid29',
+      icon: Music2,
+    },
+    {
+      name: 'WhatsApp',
+      url: 'https://whatsapp.com/channel/0029Vb669jh11ulG8ttZ3K3s',
+      icon: MessageCircle,
+    },
+    {
+      name: 'Website',
+      url: 'http://multitubeviews.com/',
+      icon: Globe,
+    },
+  ];
 
   return (
     <footer className="relative bg-slate-100/80 border-t border-slate-200 text-slate-700 overflow-hidden pt-12 pb-8">
@@ -52,31 +80,23 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
               Free Browser-Based Tools. Simple. Private. Fast. Hundreds of high-performance tools running 100% in your local browser runtime.
             </p>
 
+            {/* Social Icons (Small, Clickable) */}
             <div className="flex items-center gap-3 pt-2">
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noreferrer"
-                className="p-2 bg-white rounded-xl text-slate-600 hover:text-indigo-600 hover:shadow-md transition-all border border-slate-200"
-              >
-                <Twitter className="w-4 h-4" />
-              </a>
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noreferrer"
-                className="p-2 bg-white rounded-xl text-slate-600 hover:text-indigo-600 hover:shadow-md transition-all border border-slate-200"
-              >
-                <Github className="w-4 h-4" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noreferrer"
-                className="p-2 bg-white rounded-xl text-slate-600 hover:text-indigo-600 hover:shadow-md transition-all border border-slate-200"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
+              {socialLinks.map((social) => {
+                const IconComponent = social.icon;
+                return (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-full bg-slate-200/80 text-slate-600 flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-tr hover:from-indigo-500 hover:to-pink-500 hover:text-white hover:shadow-[0_0_12px_rgba(99,102,241,0.5)] hover:scale-105 cursor-pointer"
+                    title={social.name}
+                  >
+                    <IconComponent className="w-6 h-6" />
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -88,7 +108,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
                 <li key={cat.id}>
                   <button
                     onClick={() => navigate(`/categories/${cat.slug}`)}
-                    className="hover:text-indigo-600 transition-colors cursor-pointer"
+                    className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
                   >
                     {cat.name}
                   </button>
@@ -97,49 +117,79 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
             </ul>
           </div>
 
-          {/* Col 3: Company Links */}
+          {/* Col 3: Account & Info */}
           <div>
             <h4 className="font-heading font-bold text-slate-900 text-sm mb-4 uppercase tracking-wider">Account & Info</h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <button onClick={() => navigate('/signin')} className="hover:text-indigo-600 transition-colors">
-                  Sign In
-                </button>
-              </li>
-              <li>
-                <button onClick={() => navigate('/signup')} className="hover:text-indigo-600 transition-colors">
-                  Sign Up
-                </button>
-              </li>
-              <li>
-                <button onClick={() => navigate('/about')} className="hover:text-indigo-600 transition-colors">
-                  About Us
-                </button>
-              </li>
-              <li>
-                <button onClick={() => navigate('/contact')} className="hover:text-indigo-600 transition-colors">
-                  Contact & Support
-                </button>
-              </li>
-              <li>
-                <button onClick={() => navigate('/privacy-policy')} className="hover:text-indigo-600 transition-colors">
+                <button
+                  onClick={() => navigate('/privacy-policy')}
+                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
+                >
                   Privacy Policy
                 </button>
               </li>
               <li>
-                <button onClick={() => navigate('/terms')} className="hover:text-indigo-600 transition-colors">
+                <button
+                  onClick={() => navigate('/disclaimer')}
+                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
+                >
+                  Disclaimer
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigate('/terms')}
+                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
+                >
                   Terms of Service
                 </button>
               </li>
               <li>
-                <button onClick={() => navigate('/disclaimer')} className="hover:text-indigo-600 transition-colors">
-                  Disclaimer
+                <button
+                  onClick={() => navigate('/credits')}
+                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
+                >
+                  Credits
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigate('/about')}
+                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
+                >
+                  About Us
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigate('/contact')}
+                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
+                >
+                  Contact & Support
+                </button>
+              </li>
+              {/* Sign In & Sign Up - Hidden for now */}
+              <li className="hidden">
+                <button
+                  onClick={() => navigate('/signin')}
+                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
+                >
+                  Sign In
+                </button>
+              </li>
+              <li className="hidden">
+                <button
+                  onClick={() => navigate('/signup')}
+                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
+                >
+                  Sign Up
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Newsletter Mini Form */}
+          {/* Col 4: Stay Updated */}
           <div className="space-y-3">
             <h4 className="font-heading font-bold text-slate-900 text-sm uppercase tracking-wider">Stay Updated</h4>
             <p className="text-xs text-slate-600">Get notified when new browser tools are added.</p>
@@ -162,7 +212,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
                   />
                   <button
                     type="submit"
-                    className="absolute right-1 top-1 bottom-1 px-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg flex items-center transition-colors"
+                    className="absolute right-1 top-1 bottom-1 px-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg flex items-center transition-colors cursor-pointer"
                   >
                     <Send className="w-3 h-3" />
                   </button>
@@ -175,9 +225,9 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
         {/* Bottom Legal & Copyright Bar */}
         <div className="pt-8 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>
-            © 2025 Public Media Tool (publicmediatool.com). All rights reserved.
+            © 2026 Public Media Tool (publicmediatool.com). All rights reserved.
           </div>
-          <div className="text-center sm:text-right text-[11px] text-slate-400">
+          <div className="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
             Disclaimer: Not affiliated with any third-party trademark. All browser tools run 100% client-side.
           </div>
           <div className="flex items-center gap-1 font-medium">

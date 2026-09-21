@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Menu, X, User, LogOut } from 'lucide-react';
-import { useAuthStore } from '../../lib/auth-store';
+import { Search, Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   currentPath: string;
@@ -12,8 +11,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, navigate, onOpenSea
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const { user, logout } = useAuthStore();
 
   useEffect(() => {
     const handleScroll = () => {

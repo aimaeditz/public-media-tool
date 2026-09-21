@@ -81,7 +81,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
             </p>
 
             {/* Social Icons (Small, Clickable) */}
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-2 pt-2">
               {socialLinks.map((social) => {
                 const IconComponent = social.icon;
                 return (
@@ -90,10 +90,10 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-full bg-slate-200/80 text-slate-600 flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-tr hover:from-indigo-500 hover:to-pink-500 hover:text-white hover:shadow-[0_0_12px_rgba(99,102,241,0.5)] hover:scale-105 cursor-pointer"
+                    className="w-7 h-7 rounded-full bg-slate-200/80 text-slate-600 flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-tr hover:from-indigo-500 hover:to-pink-500 hover:text-white hover:shadow-[0_0_8px_rgba(99,102,241,0.4)] cursor-pointer"
                     title={social.name}
                   >
-                    <IconComponent className="w-6 h-6" />
+                    <IconComponent className="w-4 h-4" />
                   </a>
                 );
               })}
@@ -104,8 +104,15 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
           <div>
             <h4 className="font-heading font-bold text-slate-900 text-sm mb-4 uppercase tracking-wider">Top Categories</h4>
             <ul className="space-y-2 text-xs">
-              {CATEGORIES.slice(0, 6).map((cat) => (
-                <li key={cat.id}>
+              {[
+                { name: 'Text Tools', slug: 'text-tools' },
+                { name: 'Image Tools', slug: 'image-tools' },
+                { name: 'PDF Tools', slug: 'pdf-tools' },
+                { name: 'Developer Tools', slug: 'developer-tools' },
+                { name: 'Calculators', slug: 'calculator-tools' },
+                { name: 'Converters', slug: 'converter-tools' },
+              ].map((cat) => (
+                <li key={cat.slug}>
                   <button
                     onClick={() => navigate(`/categories/${cat.slug}`)}
                     className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
@@ -117,9 +124,9 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
             </ul>
           </div>
 
-          {/* Col 3: Account & Info */}
+          {/* Col 3: Quick Links */}
           <div>
-            <h4 className="font-heading font-bold text-slate-900 text-sm mb-4 uppercase tracking-wider">Account & Info</h4>
+            <h4 className="font-heading font-bold text-slate-900 text-sm mb-4 uppercase tracking-wider">Quick Links</h4>
             <ul className="space-y-2 text-xs">
               <li>
                 <button
@@ -167,23 +174,6 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
                   className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
                 >
                   Contact & Support
-                </button>
-              </li>
-              {/* Sign In & Sign Up - Hidden for now */}
-              <li className="hidden">
-                <button
-                  onClick={() => navigate('/signin')}
-                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
-                >
-                  Sign In
-                </button>
-              </li>
-              <li className="hidden">
-                <button
-                  onClick={() => navigate('/signup')}
-                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
-                >
-                  Sign Up
                 </button>
               </li>
             </ul>

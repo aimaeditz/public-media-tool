@@ -16,8 +16,6 @@ const PrivacyPolicyPage = React.lazy(() => import('./pages/PrivacyPolicyPage').t
 const DisclaimerPage = React.lazy(() => import('./pages/DisclaimerPage').then(m => ({ default: m.DisclaimerPage })));
 const TermsPage = React.lazy(() => import('./pages/TermsPage').then(m => ({ default: m.TermsPage })));
 const CreditsPage = React.lazy(() => import('./pages/CreditsPage').then(m => ({ default: m.CreditsPage })));
-const SignInPage = React.lazy(() => import('./pages/SignInPage').then(m => ({ default: m.SignInPage })));
-const SignUpPage = React.lazy(() => import('./pages/SignUpPage').then(m => ({ default: m.SignUpPage })));
 
 const BASE_PATH = '/public-media-tool';
 
@@ -126,14 +124,6 @@ export default function App() {
 
     if (currentPath === '/credits') {
       return <CreditsPage navigate={navigate} />;
-    }
-
-    if (currentPath === '/signin') {
-      return <SignInPage navigate={navigate} />;
-    }
-
-    if (currentPath === '/signup') {
-      return <SignUpPage navigate={navigate} />;
     }
 
     // Default fallback

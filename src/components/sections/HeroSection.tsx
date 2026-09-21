@@ -190,20 +190,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ navigate, onOpenSearch
           )}
         </div>
 
-        {/* Category Pills Below Search */}
-        <div className="flex flex-wrap justify-center items-center gap-2 max-w-3xl mx-auto pt-2">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mr-1">Popular:</span>
-          {CATEGORIES.slice(0, 6).map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => navigate(`/categories/${cat.slug}`)}
-              className="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/80 hover:bg-white text-slate-700 hover:text-indigo-600 border border-slate-200/80 hover:border-indigo-300 hover:shadow-xs transition-all cursor-pointer"
-            >
-              {cat.name}
-            </button>
-          ))}
-        </div>
-
         {/* Two CTAs */}
         <div className="flex flex-wrap justify-center gap-4 pt-2">
           <button

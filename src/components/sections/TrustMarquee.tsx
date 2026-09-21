@@ -14,19 +14,23 @@ export const TrustMarquee: React.FC = () => {
 
   return (
     <div id="marquee" className="py-6 bg-white border-y border-slate-200/80 overflow-hidden shadow-xs">
-      <div className="animate-marquee flex items-center gap-8">
-        {[...badges, ...badges, ...badges].map((badge, idx) => {
-          const IconComp = badge.icon;
-          return (
-            <div
-              key={idx}
-              className="flex items-center gap-2 px-5 py-2 rounded-full bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold shrink-0 shadow-2xs"
-            >
-              <IconComp className={`w-4 h-4 ${badge.color}`} />
-              <span>{badge.label}</span>
-            </div>
-          );
-        })}
+      <div className="animate-marquee">
+        {[0, 1, 2].map((groupIndex) => (
+          <div key={groupIndex} className="flex items-center gap-8 pr-8 shrink-0">
+            {badges.map((badge, idx) => {
+              const IconComp = badge.icon;
+              return (
+                <div
+                  key={idx}
+                  className="flex items-center gap-2 px-5 py-2 rounded-full bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold shrink-0 shadow-2xs"
+                >
+                  <IconComp className={`w-4 h-4 ${badge.color}`} />
+                  <span>{badge.label}</span>
+                </div>
+              );
+            })}
+          </div>
+        ))}
       </div>
     </div>
   );

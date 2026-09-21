@@ -15,7 +15,7 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
 
   return (
     <div className="py-12 bg-slate-50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs font-semibold text-slate-500">
           <button onClick={() => navigate('/')} className="hover:text-indigo-600">Home</button>

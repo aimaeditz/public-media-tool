@@ -60,7 +60,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ navigate, onOpenSearch
       {/* Subtle Dot Grid Background Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto text-center space-y-8">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto text-center space-y-8">
         {/* Top Trust Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-200/80 text-indigo-700 text-xs font-semibold shadow-xs animate-bounce-slow">
           <Sparkles className="w-4 h-4 text-pink-500" />

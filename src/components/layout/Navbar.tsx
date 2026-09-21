@@ -52,7 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, navigate, onOpenSea
           scrolled ? 'glass-nav py-3 shadow-xs' : 'bg-white/80 backdrop-blur-md py-4 border-b border-slate-200/70'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Left: Brand Logo */}
           <button
             onClick={() => navigate('/')}
@@ -124,43 +124,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, navigate, onOpenSea
             {/* Search Button */}
             <button
               onClick={onOpenSearch}
-              className="p-2 text-slate-600 hover:text-indigo-600 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer border border-transparent hover:border-slate-200"
+              className="p-2.5 text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/80 rounded-xl transition-all cursor-pointer border border-slate-200/80 hover:border-indigo-200 shadow-2xs"
               title="Search tools"
             >
               <Search className="w-5 h-5" />
             </button>
-
-            {/* Auth Buttons */}
-            {user?.isLoggedIn ? (
-              <div className="flex items-center gap-2">
-                <div className="px-3.5 py-2 text-xs font-semibold text-slate-700 bg-slate-100 rounded-xl flex items-center gap-1.5 border border-slate-200">
-                  <User className="w-4 h-4 text-indigo-600" />
-                  <span>{user.name.split(' ')[0]}</span>
-                </div>
-                <button
-                  onClick={logout}
-                  className="p-2 text-slate-400 hover:text-slate-600 rounded-xl transition-colors cursor-pointer"
-                  title="Sign Out"
-                >
-                  <LogOut className="w-4 h-4" />
-                </button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => navigate('/signin')}
-                  className="px-4 py-2 text-xs font-semibold text-slate-700 hover:text-indigo-600 transition-colors cursor-pointer"
-                >
-                  Sign In
-                </button>
-                <button
-                  onClick={() => navigate('/signup')}
-                  className="px-4 py-2 text-xs font-semibold text-white gradient-button rounded-xl shadow-xs cursor-pointer"
-                >
-                  Sign Up
-                </button>
-              </div>
-            )}
           </div>
 
           {/* Mobile Hamburger Button */}
@@ -200,45 +168,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, navigate, onOpenSea
               ))}
             </div>
 
-            <hr className="border-slate-100" />
-
-            <div className="space-y-3">
-              {user?.isLoggedIn ? (
-                <div className="p-4 bg-indigo-50/60 rounded-xl space-y-3 border border-indigo-100">
-                  <p className="text-sm font-bold text-indigo-950">Signed in as {user.name}</p>
-                  <button
-                    onClick={() => {
-                      logout();
-                      setMobileMenuOpen(false);
-                    }}
-                    className="text-xs font-semibold text-indigo-700 hover:underline flex items-center gap-1"
-                  >
-                    <LogOut className="w-3.5 h-3.5" /> Sign Out
-                  </button>
-                </div>
-              ) : (
-                <div className="grid grid-cols-2 gap-3 pt-2">
-                  <button
-                    onClick={() => {
-                      navigate('/signin');
-                      setMobileMenuOpen(false);
-                    }}
-                    className="py-3 text-center font-semibold text-slate-800 bg-slate-100 rounded-xl"
-                  >
-                    Sign In
-                  </button>
-                  <button
-                    onClick={() => {
-                      navigate('/signup');
-                      setMobileMenuOpen(false);
-                    }}
-                    className="py-3 text-center font-semibold text-white gradient-button rounded-xl"
-                  >
-                    Sign Up
-                  </button>
-                </div>
-              )}
-            </div>
+            {/* Mobile menu content footer */}
           </div>
 
           <div className="text-center text-xs text-slate-400 pt-6">

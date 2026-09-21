@@ -1,4 +1,14 @@
-import { Tool, CategoryInfo, ToolCategory } from './types';
+import { Tool, CategoryInfo } from './types';
+import { TEXT_TOOLS } from './data/text-tools';
+import { IMAGE_TOOLS } from './data/image-tools';
+import { PDF_TOOLS } from './data/pdf-tools';
+import { DEVELOPER_TOOLS } from './data/developer-tools';
+import { SEO_TOOLS } from './data/seo-tools';
+import { COLOR_TOOLS } from './data/color-tools';
+import { CONVERTER_TOOLS } from './data/converter-tools';
+import { CALCULATOR_TOOLS } from './data/calculator-tools';
+import { SECURITY_TOOLS } from './data/security-tools';
+import { WEB_TOOLS } from './data/web-tools';
 
 export const CATEGORIES: CategoryInfo[] = [
   {
@@ -93,7 +103,7 @@ export const CATEGORIES: CategoryInfo[] = [
   },
 ];
 
-export const TOOLS: Tool[] = [
+const INITIAL_TOOLS: Tool[] = [
   {
     id: 'word-counter',
     slug: 'word-counter',
@@ -559,6 +569,31 @@ export const TOOLS: Tool[] = [
   }
 ];
 
+// Combine all category tools
+const ALL_RAW_TOOLS = [
+  ...INITIAL_TOOLS,
+  ...TEXT_TOOLS,
+  ...IMAGE_TOOLS,
+  ...PDF_TOOLS,
+  ...DEVELOPER_TOOLS,
+  ...SEO_TOOLS,
+  ...COLOR_TOOLS,
+  ...CONVERTER_TOOLS,
+  ...CALCULATOR_TOOLS,
+  ...SECURITY_TOOLS,
+  ...WEB_TOOLS,
+];
+
+// Strict Auto-deduplication by slug
+const seenSlugs = new Set<string>();
+export const TOOLS: Tool[] = ALL_RAW_TOOLS.filter(tool => {
+  if (seenSlugs.has(tool.slug)) {
+    return false;
+  }
+  seenSlugs.add(tool.slug);
+  return true;
+});
+
 export const TESTIMONIALS = [
   {
     id: '1',
@@ -609,7 +644,7 @@ export const FAQS = [
   },
   {
     question: 'How many tools are available on the platform?',
-    answer: 'We currently feature dozens of high-performance tools across 10 main categories, with new tools added regularly.',
+    answer: 'We feature 500+ high-performance client-side tools across 10 main categories, with instant browser calculation.',
   },
   {
     question: 'Can I use these tools on mobile devices?',

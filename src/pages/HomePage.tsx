@@ -7,7 +7,6 @@ import { PopularTools } from '../components/sections/PopularTools';
 import { WhyChooseUs } from '../components/sections/WhyChooseUs';
 import { HowItWorks } from '../components/sections/HowItWorks';
 import { StatsSection } from '../components/sections/StatsSection';
-import { Testimonials } from '../components/sections/Testimonials';
 import { FaqSection } from '../components/sections/FaqSection';
 import { NewsletterSection } from '../components/sections/NewsletterSection';
 
@@ -27,7 +26,6 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate, onOpenSearchWithQu
       <WhyChooseUs />
       <HowItWorks />
       <StatsSection />
-      <Testimonials />
       <FaqSection />
       <NewsletterSection />
     </div>

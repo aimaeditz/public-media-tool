@@ -62,6 +62,18 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
       },
     ],
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (tool) {
+      document.title = `${tool.name} - Free Online Client-Side Tool | Public Media Tool`;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', `${tool.name}: ${tool.shortDesc} 100% private, client-side execution in your browser.`);
+      }
+    }
+  }, [tool]);
+
   const IconComp = getIconComponent(tool.iconName);
 
   const handleShare = () => {

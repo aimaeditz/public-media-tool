@@ -11002,3 +11002,5 @@ export const BATCH_2_TOOLS: Tool[] = [
     ]
   }
 ];
+
+export const BATCH_2_SLUGS = new Set(BATCH_2_TOOLS.map((t) => t.slug));

@@ -1,6 +1,9 @@
 import { Tool, CategoryInfo } from '../types';
 import { CATEGORIES as DYNAMIC_CATEGORIES, STATIC_CATEGORIES } from '../categories';
 import { SEARCH_INDEX } from '../search-index';
+import { BATCH_1_TOOLS } from '../data/generated/batch-1';
+import { BATCH_2_TOOLS } from '../data/generated/batch-2';
+import { BATCH_3_TOOLS } from '../data/generated/batch-3';
 
 export const CATEGORIES: CategoryInfo[] = DYNAMIC_CATEGORIES;
 
@@ -470,7 +473,8 @@ export const INITIAL_TOOLS: Tool[] = [
   }
 ];
 
-export const TOOLS: Tool[] = INITIAL_TOOLS;
+export const WORKING_TOOLS: Tool[] = [...INITIAL_TOOLS, ...BATCH_1_TOOLS, ...BATCH_2_TOOLS, ...BATCH_3_TOOLS];
+export const TOOLS: Tool[] = WORKING_TOOLS;
 
 export const TESTIMONIALS = [
   {
@@ -511,7 +515,7 @@ export const TESTIMONIALS = [
 // Auto-generated from tools-data.ts. Do not edit manually.
 export const TOTAL_TOOLS = SEARCH_INDEX.length;
 export const TOTAL_CATEGORIES = STATIC_CATEGORIES.length;
-export const TOTAL_WORKING_TOOLS = INITIAL_TOOLS.length;
+export const TOTAL_WORKING_TOOLS = WORKING_TOOLS.length;
 export const TOTAL_PLATFORMS = 1;
 
 export const FAQS = [

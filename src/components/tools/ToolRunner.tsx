@@ -28,6 +28,10 @@ import {
   AlertCircle
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { BATCH_1_SLUGS } from '../../lib/data/generated/batch-1';
+import { BATCH_2_SLUGS } from '../../lib/data/generated/batch-2';
+import { BATCH_3_SLUGS } from '../../lib/data/generated/batch-3';
+import { Batch1TextToolsRunner } from './Batch1TextToolsRunner';
 
 interface ToolRunnerProps {
   tool: Tool;
@@ -99,6 +103,9 @@ export const ToolRunner: React.FC<ToolRunnerProps> = ({ tool }) => {
     case 'pdf-page-inspector':
       return <PdfInspectorTool />;
     default:
+      if (BATCH_1_SLUGS.has(tool.slug) || BATCH_2_SLUGS.has(tool.slug) || BATCH_3_SLUGS.has(tool.slug)) {
+        return <Batch1TextToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+      }
       return <UniversalInteractiveToolRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
   }
 };

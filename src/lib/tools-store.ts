@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { Tool } from './types';
-import { CATEGORIES, INITIAL_TOOLS } from './tools-data';
+import { CATEGORIES, WORKING_TOOLS } from './tools-data';
 
 // Define dynamic chunk loaders
 const CATEGORY_LOADERS: Record<string, () => Promise<any>> = {
@@ -82,7 +82,7 @@ function stripToolDetails(tool: Tool): any {
 
 export const useToolsStore = create<ToolsState>((set, get) => {
   return {
-    tools: INITIAL_TOOLS,
+    tools: WORKING_TOOLS,
     loadedCategories: new Set<string>(),
     isLoading: false,
     isBackgroundLoading: false,
@@ -100,7 +100,7 @@ export const useToolsStore = create<ToolsState>((set, get) => {
       } catch (e) {
         console.warn('Failed to parse cached tools:', e);
       }
-      set({ tools: INITIAL_TOOLS });
+      set({ tools: WORKING_TOOLS });
     },
 
     loadCategory: async (categorySlug: string) => {

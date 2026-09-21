@@ -37,6 +37,7 @@ import { ComprehensiveColorToolsRunner } from './ComprehensiveColorToolsRunner';
 import { ComprehensiveSecurityToolsRunner } from './ComprehensiveSecurityToolsRunner';
 import { ComprehensiveMediaWebToolsRunner } from './ComprehensiveMediaWebToolsRunner';
 import { ComprehensiveMathFinanceToolsRunner } from './ComprehensiveMathFinanceToolsRunner';
+import { ComprehensiveIndustryToolsRunner } from './ComprehensiveIndustryToolsRunner';
 
 interface ToolRunnerProps {
   tool: Tool;
@@ -148,9 +149,40 @@ export const ToolRunner: React.FC<ToolRunnerProps> = ({ tool }) => {
         tool.category === 'Productivity' ||
         tool.category === 'Education' ||
         tool.category === 'Generators' ||
-        tool.category === 'Unit Converters'
+        tool.category === 'Unit Converters' ||
+        tool.category === 'Automotive'
       ) {
         return <ComprehensiveMathFinanceToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+      }
+      if (
+        tool.category === 'Accounting' ||
+        tool.category === 'HR & Payroll' ||
+        tool.category === 'Freelancing' ||
+        tool.category === 'Real Estate' ||
+        tool.category === 'Legal Tools' ||
+        tool.category === 'E-commerce' ||
+        tool.category === 'Inventory & Logistics' ||
+        tool.category === 'Restaurant & Cafe' ||
+        tool.category === 'Engineering' ||
+        tool.category === 'Construction' ||
+        tool.category === 'Electrical & Solar' ||
+        tool.category === 'Agriculture' ||
+        tool.category === 'Environment & Energy' ||
+        tool.category === 'Marketing & Advertising' ||
+        tool.category === 'YouTube Creator Tools' ||
+        tool.category === 'Travel Tools' ||
+        tool.category === 'Beauty & Salon' ||
+        tool.category === 'Wedding & Event' ||
+        tool.category === 'Photography' ||
+        tool.category === 'Music Production' ||
+        tool.category === 'Pets & Animals' ||
+        tool.category === 'Government & Public Services' ||
+        tool.category === 'Office Administration' ||
+        tool.category === 'Networking' ||
+        tool.category === 'Data Management' ||
+        tool.category === 'Project Management'
+      ) {
+        return <ComprehensiveIndustryToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
       }
       return <UniversalInteractiveToolRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
   }

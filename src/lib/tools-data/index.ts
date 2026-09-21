@@ -42,6 +42,36 @@ import { BATCH_38_TOOLS } from '../data/generated/batch-38';
 import { BATCH_39_TOOLS } from '../data/generated/batch-39';
 import { BATCH_40_TOOLS } from '../data/generated/batch-40';
 import { BATCH_41_TOOLS } from '../data/generated/batch-41';
+import { BATCH_42_TOOLS } from '../data/generated/batch-42';
+import { BATCH_43_TOOLS } from '../data/generated/batch-43';
+import { BATCH_44_TOOLS } from '../data/generated/batch-44';
+import { BATCH_45_TOOLS } from '../data/generated/batch-45';
+import { BATCH_46_TOOLS } from '../data/generated/batch-46';
+import { BATCH_47_TOOLS } from '../data/generated/batch-47';
+import { BATCH_48_TOOLS } from '../data/generated/batch-48';
+import { BATCH_49_TOOLS } from '../data/generated/batch-49';
+import { BATCH_50_TOOLS } from '../data/generated/batch-50';
+import { BATCH_51_TOOLS } from '../data/generated/batch-51';
+import { BATCH_52_TOOLS } from '../data/generated/batch-52';
+import { BATCH_53_TOOLS } from '../data/generated/batch-53';
+import { BATCH_54_TOOLS } from '../data/generated/batch-54';
+import { BATCH_55_TOOLS } from '../data/generated/batch-55';
+import { BATCH_56_TOOLS } from '../data/generated/batch-56';
+import { BATCH_57_TOOLS } from '../data/generated/batch-57';
+import { BATCH_58_TOOLS } from '../data/generated/batch-58';
+import { BATCH_59_TOOLS } from '../data/generated/batch-59';
+import { BATCH_60_TOOLS } from '../data/generated/batch-60';
+import { BATCH_61_TOOLS } from '../data/generated/batch-61';
+import { CALCULATOR_TOOLS } from '../data/calculator-tools';
+import { COLOR_TOOLS } from '../data/color-tools';
+import { CONVERTER_TOOLS } from '../data/converter-tools';
+import { DEVELOPER_TOOLS } from '../data/developer-tools';
+import { IMAGE_TOOLS } from '../data/image-tools';
+import { PDF_TOOLS } from '../data/pdf-tools';
+import { SEO_TOOLS } from '../data/seo-tools';
+import { TEXT_TOOLS } from '../data/text-tools';
+import { tools as securityTools } from '../data/category-chunks/security-tools';
+import { tools as webTools } from '../data/category-chunks/web-tools';
 
 export const CATEGORIES: CategoryInfo[] = DYNAMIC_CATEGORIES;
 
@@ -511,7 +541,7 @@ export const INITIAL_TOOLS: Tool[] = [
   }
 ];
 
-export const WORKING_TOOLS: Tool[] = [
+const ALL_RAW_TOOLS: Tool[] = [
   ...INITIAL_TOOLS,
   ...BATCH_1_TOOLS,
   ...BATCH_2_TOOLS,
@@ -553,8 +583,47 @@ export const WORKING_TOOLS: Tool[] = [
   ...BATCH_38_TOOLS,
   ...BATCH_39_TOOLS,
   ...BATCH_40_TOOLS,
-  ...BATCH_41_TOOLS.slice(0, 100)
+  ...BATCH_41_TOOLS,
+  ...BATCH_42_TOOLS,
+  ...BATCH_43_TOOLS,
+  ...BATCH_44_TOOLS,
+  ...BATCH_45_TOOLS,
+  ...BATCH_46_TOOLS,
+  ...BATCH_47_TOOLS,
+  ...BATCH_48_TOOLS,
+  ...BATCH_49_TOOLS,
+  ...BATCH_50_TOOLS,
+  ...BATCH_51_TOOLS,
+  ...BATCH_52_TOOLS,
+  ...BATCH_53_TOOLS,
+  ...BATCH_54_TOOLS,
+  ...BATCH_55_TOOLS,
+  ...BATCH_56_TOOLS,
+  ...BATCH_57_TOOLS,
+  ...BATCH_58_TOOLS,
+  ...BATCH_59_TOOLS,
+  ...BATCH_60_TOOLS,
+  ...BATCH_61_TOOLS,
+  ...CALCULATOR_TOOLS,
+  ...COLOR_TOOLS,
+  ...CONVERTER_TOOLS,
+  ...DEVELOPER_TOOLS,
+  ...IMAGE_TOOLS,
+  ...PDF_TOOLS,
+  ...SEO_TOOLS,
+  ...TEXT_TOOLS,
+  ...securityTools,
+  ...webTools,
 ];
+
+const uniqueToolsMap = new Map<string, Tool>();
+for (const t of ALL_RAW_TOOLS) {
+  if (!uniqueToolsMap.has(t.id)) {
+    uniqueToolsMap.set(t.id, t);
+  }
+}
+
+export const WORKING_TOOLS: Tool[] = Array.from(uniqueToolsMap.values());
 export const TOOLS: Tool[] = WORKING_TOOLS;
 
 export const TESTIMONIALS = [

@@ -118,7 +118,7 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
         </div>
 
         {/* Sub-category Pills */}
-        {category.subCategories && category.subCategories.length > 0 && (
+        {category.subCategories && Array.isArray(category.subCategories) && category.subCategories.length > 0 && (
           <div className="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-2xs flex items-center gap-3 overflow-x-auto">
             <span className="text-xs font-bold text-slate-400 uppercase tracking-wider shrink-0 pl-1.5 pr-2 border-r border-slate-200">
               Subcategories:

@@ -92,6 +92,27 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
 
   const relatedTools = TOOLS.filter((t) => t.category === tool.category && t.slug !== tool.slug).slice(0, 4);
 
+  const howToUseSteps = (tool.howToUse && Array.isArray(tool.howToUse) && tool.howToUse.length > 0)
+    ? tool.howToUse
+    : [
+        { step: 1, title: 'Input Parameters', desc: `Provide or customize the values for ${tool.name}.` },
+        { step: 2, title: 'Calculate Instantly', desc: 'Results are computed immediately in your browser with zero latency.' },
+        { step: 3, title: 'Copy & Use', desc: 'Copy formatted output or download generated files securely to your device.' },
+      ];
+
+  const toolFaqs = (tool.faqs && Array.isArray(tool.faqs) && tool.faqs.length > 0)
+    ? tool.faqs
+    : [
+        {
+          question: `Is ${tool.name} free to use?`,
+          answer: 'Yes, 100% free with unlimited local browser operations and no account required.',
+        },
+        {
+          question: 'Is my input data uploaded to any remote server?',
+          answer: 'No! All processing runs directly on your machine via client-side Web APIs.',
+        },
+      ];
+
   return (
     <div className="py-10 bg-slate-50 min-h-screen">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
@@ -157,7 +178,7 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 space-y-4">
           <h3 className="font-heading font-bold text-lg text-slate-900">How to use {tool.name}</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {tool.howToUse.map((step) => (
+            {howToUseSteps.map((step) => (
               <div key={step.step} className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1">
                 <span className="text-xs font-bold text-indigo-600">Step 0{step.step}</span>
                 <p className="font-bold text-slate-800 text-sm">{step.title}</p>
@@ -168,13 +189,13 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
         </div>
 
         {/* FAQs for this tool */}
-        {tool.faqs && tool.faqs.length > 0 && (
+        {toolFaqs.length > 0 && (
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 space-y-4">
             <h3 className="font-heading font-bold text-lg text-slate-900 flex items-center gap-2">
               <HelpCircle className="w-5 h-5 text-indigo-600" /> Frequently Asked Questions
             </h3>
             <div className="space-y-3">
-              {tool.faqs.map((faq, i) => (
+              {toolFaqs.map((faq, i) => (
                 <div key={i} className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1">
                   <p className="font-bold text-slate-800 text-sm">{faq.question}</p>
                   <p className="text-xs text-slate-600 leading-relaxed">{faq.answer}</p>

@@ -94,9 +94,9 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
     const query = debouncedSearch.toLowerCase().trim();
     const matchesSearch =
       !query ||
-      tool.name.toLowerCase().includes(query) ||
-      tool.shortDesc.toLowerCase().includes(query) ||
-      tool.tags.some((t) => t.toLowerCase().includes(query));
+      (tool.name || '').toLowerCase().includes(query) ||
+      (tool.shortDesc || '').toLowerCase().includes(query) ||
+      (Array.isArray(tool.tags) && tool.tags.some((t) => String(t).toLowerCase().includes(query)));
 
     const matchesCat = selectedCat === 'All' || 
                        tool.category === selectedCat || 

@@ -47,10 +47,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
   const filteredTools = debouncedQuery.trim()
     ? searchSource.filter(
         (t) =>
-          t.name.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
-          t.shortDesc.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
-          t.category.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
-          t.tags.some((tag: string) => tag.toLowerCase().includes(debouncedQuery.toLowerCase()))
+          (t?.name || '').toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+          (t?.shortDesc || '').toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+          (t?.category || '').toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+          (Array.isArray(t?.tags) && t.tags.some((tag: string) => String(tag).toLowerCase().includes(debouncedQuery.toLowerCase())))
       ).slice(0, 50) // Show only top 50 results
     : searchSource.slice(0, 6);
 

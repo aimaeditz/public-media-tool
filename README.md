@@ -1,6 +1,6 @@
 # Public Media Tool
 
-Premium web app with 500+ free non-AI browser-based tools. Simple. Private. Fast. Zero server uploads.
+Premium web app with 15,267+ free non-AI browser-based tools. Simple. Private. Fast. Zero server uploads.
 
 🌐 **Live Demo**: [https://aimaeditz.github.io/public-media-tool/](https://aimaeditz.github.io/public-media-tool/)
 

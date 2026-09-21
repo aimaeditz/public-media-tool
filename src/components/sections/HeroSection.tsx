@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Search, ArrowRight, Sparkles, ChevronDown, Zap, Shield, Heart, X, Wrench } from 'lucide-react';
-import { CATEGORIES, TOOLS } from '../../lib/tools-data';
+import { CATEGORIES, TOOLS, TOTAL_TOOLS, TOTAL_CATEGORIES } from '../../lib/tools-data';
 import { getIconComponent } from '../../lib/utils';
 
 interface HeroSectionProps {
@@ -224,11 +224,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ navigate, onOpenSearch
         {/* Stats Row */}
         <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto border-t border-slate-200/60 mt-8">
           <div className="text-center">
-            <p className="text-3xl font-extrabold font-heading text-indigo-600">100+</p>
+            <p className="text-3xl font-extrabold font-heading text-indigo-600">{TOTAL_TOOLS.toLocaleString()}+</p>
             <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Tools Available</p>
           </div>
           <div className="text-center">
-            <p className="text-3xl font-extrabold font-heading text-pink-600">10</p>
+            <p className="text-3xl font-extrabold font-heading text-pink-600">{TOTAL_CATEGORIES}</p>
             <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Categories</p>
           </div>
           <div className="text-center">

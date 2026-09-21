@@ -28,7 +28,7 @@ interface ToolSearchItem {
 
 async function main() {
   const chunksDir = path.resolve('./src/lib/data/category-chunks');
-  const toolsDataPath = path.resolve('./src/lib/tools-data.ts');
+  const toolsDataPath = path.resolve('./src/lib/tools-data/index.ts');
   const categoriesOutputPath = path.resolve('./src/lib/categories.ts');
   const searchIndexOutputPath = path.resolve('./src/lib/search-index.ts');
 

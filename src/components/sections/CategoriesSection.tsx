@@ -1,5 +1,6 @@
 import React from 'react';
 import { CATEGORIES } from '../../lib/categories';
+import { TOTAL_TOOLS } from '../../lib/tools-data';
 import { getIconComponent } from '../../lib/utils';
 import { ArrowRight } from 'lucide-react';
 
@@ -17,7 +18,7 @@ export const CategoriesSection: React.FC<CategoriesSectionProps> = ({ navigate }
             Organized Workspace
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">
-            Explore 15,000+ Free Browser Tools
+            Explore {TOTAL_TOOLS.toLocaleString()}+ Free Browser Tools
           </h2>
           <p className="text-sm sm:text-base text-slate-600">
             Browse our categorized suites of browser utilities engineered for creators, developers, designers, and marketers.

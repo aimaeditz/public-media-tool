@@ -1,4 +1,5 @@
 import React from 'react';
+import { TOTAL_TOOLS, TOTAL_CATEGORIES } from '../../lib/tools-data';
 
 export const StatsSection: React.FC = () => {
   return (
@@ -8,11 +9,11 @@ export const StatsSection: React.FC = () => {
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y sm:divide-y-0 sm:divide-x divide-white/20">
           <div className="p-4">
-            <p className="text-4xl sm:text-5xl font-extrabold font-heading tracking-tight">100+</p>
+            <p className="text-4xl sm:text-5xl font-extrabold font-heading tracking-tight">{TOTAL_TOOLS.toLocaleString()}+</p>
             <p className="text-xs font-semibold text-indigo-100 uppercase tracking-widest mt-2">Tools Available</p>
           </div>
           <div className="p-4">
-            <p className="text-4xl sm:text-5xl font-extrabold font-heading tracking-tight">10</p>
+            <p className="text-4xl sm:text-5xl font-extrabold font-heading tracking-tight">{TOTAL_CATEGORIES}</p>
             <p className="text-xs font-semibold text-pink-100 uppercase tracking-widest mt-2">Categories</p>
           </div>
           <div className="p-4">

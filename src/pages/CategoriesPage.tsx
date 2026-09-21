@@ -1,5 +1,6 @@
 import React from 'react';
 import { CATEGORIES } from '../lib/categories';
+import { TOTAL_CATEGORIES } from '../lib/tools-data';
 import { getIconComponent } from '../lib/utils';
 import { ArrowRight } from 'lucide-react';
 
@@ -19,7 +20,7 @@ export const CategoriesPage: React.FC<CategoriesPageProps> = ({ navigate }) => {
             Browse Tools by Category
           </h1>
           <p className="text-sm text-slate-600">
-            Find the right tools organized into 10 specialized categories.
+            Find the right tools organized into {TOTAL_CATEGORIES} specialized categories.
           </p>
         </div>
 

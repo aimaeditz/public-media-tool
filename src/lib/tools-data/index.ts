@@ -1,5 +1,6 @@
-import { Tool, CategoryInfo } from './types';
-import { CATEGORIES as DYNAMIC_CATEGORIES } from './categories';
+import { Tool, CategoryInfo } from '../types';
+import { CATEGORIES as DYNAMIC_CATEGORIES, STATIC_CATEGORIES } from '../categories';
+import { SEARCH_INDEX } from '../search-index';
 
 export const CATEGORIES: CategoryInfo[] = DYNAMIC_CATEGORIES;
 
@@ -506,6 +507,13 @@ export const TESTIMONIALS = [
   },
 ];
 
+// Single Source of Truth for dynamically updated counts
+// Auto-generated from tools-data.ts. Do not edit manually.
+export const TOTAL_TOOLS = SEARCH_INDEX.length;
+export const TOTAL_CATEGORIES = STATIC_CATEGORIES.length;
+export const TOTAL_WORKING_TOOLS = INITIAL_TOOLS.length;
+export const TOTAL_PLATFORMS = 1;
+
 export const FAQS = [
   {
     question: 'Is my data uploaded to any server?',
@@ -521,7 +529,7 @@ export const FAQS = [
   },
   {
     question: 'How many tools are available on the platform?',
-    answer: 'We feature 500+ high-performance client-side tools across 10 main categories, with instant browser calculation.',
+    answer: `We feature ${TOTAL_TOOLS.toLocaleString()}+ high-performance client-side tools across ${TOTAL_CATEGORIES} main categories, with instant browser calculation.`,
   },
   {
     question: 'Can I use these tools on mobile devices?',

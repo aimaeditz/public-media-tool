@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CATEGORIES } from '../lib/tools-data';
+import { CATEGORIES, TOTAL_TOOLS } from '../lib/tools-data';
 import { getIconComponent, formatNumber } from '../lib/utils';
 import { Search, ArrowRight, Filter, Sparkles, X, RotateCcw, Loader2 } from 'lucide-react';
 import { useToolsStore } from '../lib/tools-store';
@@ -130,7 +130,7 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
                     : 'bg-white text-slate-700 hover:bg-indigo-50/80 hover:text-indigo-600 border border-slate-200/80'
                 }`}
               >
-                All Tools (15,267)
+                All Tools ({TOTAL_TOOLS.toLocaleString()})
               </button>
               {CATEGORIES.map((cat) => (
                 <button

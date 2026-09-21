@@ -35,6 +35,8 @@ import { ComprehensiveDevToolsRunner } from './ComprehensiveDevToolsRunner';
 import { ComprehensiveCalculatorToolsRunner } from './ComprehensiveCalculatorToolsRunner';
 import { ComprehensiveColorToolsRunner } from './ComprehensiveColorToolsRunner';
 import { ComprehensiveSecurityToolsRunner } from './ComprehensiveSecurityToolsRunner';
+import { ComprehensiveMediaWebToolsRunner } from './ComprehensiveMediaWebToolsRunner';
+import { ComprehensiveMathFinanceToolsRunner } from './ComprehensiveMathFinanceToolsRunner';
 
 interface ToolRunnerProps {
   tool: Tool;
@@ -126,6 +128,29 @@ export const ToolRunner: React.FC<ToolRunnerProps> = ({ tool }) => {
       }
       if (tool.category === 'Security Tools') {
         return <ComprehensiveSecurityToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+      }
+      if (
+        tool.category === 'SEO Tools' ||
+        tool.category === 'Social Media Tools' ||
+        tool.category === 'Video Tools' ||
+        tool.category === 'Audio Tools' ||
+        tool.category === 'Web Tools' ||
+        tool.category === 'File Tools'
+      ) {
+        return <ComprehensiveMediaWebToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+      }
+      if (
+        tool.category === 'Math Tools' ||
+        tool.category === 'Finance Tools' ||
+        tool.category === 'Business Tools' ||
+        tool.category === 'Date & Time' ||
+        tool.category === 'Health & Fitness' ||
+        tool.category === 'Productivity' ||
+        tool.category === 'Education' ||
+        tool.category === 'Generators' ||
+        tool.category === 'Unit Converters'
+      ) {
+        return <ComprehensiveMathFinanceToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
       }
       return <UniversalInteractiveToolRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
   }

@@ -21,6 +21,27 @@ import { BATCH_17_TOOLS } from '../data/generated/batch-17';
 import { BATCH_18_TOOLS } from '../data/generated/batch-18';
 import { BATCH_19_TOOLS } from '../data/generated/batch-19';
 import { BATCH_20_TOOLS } from '../data/generated/batch-20';
+import { BATCH_21_TOOLS } from '../data/generated/batch-21';
+import { BATCH_22_TOOLS } from '../data/generated/batch-22';
+import { BATCH_23_TOOLS } from '../data/generated/batch-23';
+import { BATCH_24_TOOLS } from '../data/generated/batch-24';
+import { BATCH_25_TOOLS } from '../data/generated/batch-25';
+import { BATCH_26_TOOLS } from '../data/generated/batch-26';
+import { BATCH_27_TOOLS } from '../data/generated/batch-27';
+import { BATCH_28_TOOLS } from '../data/generated/batch-28';
+import { BATCH_29_TOOLS } from '../data/generated/batch-29';
+import { BATCH_30_TOOLS } from '../data/generated/batch-30';
+import { BATCH_31_TOOLS } from '../data/generated/batch-31';
+import { BATCH_32_TOOLS } from '../data/generated/batch-32';
+import { BATCH_33_TOOLS } from '../data/generated/batch-33';
+import { BATCH_34_TOOLS } from '../data/generated/batch-34';
+import { BATCH_35_TOOLS } from '../data/generated/batch-35';
+import { BATCH_36_TOOLS } from '../data/generated/batch-36';
+import { BATCH_37_TOOLS } from '../data/generated/batch-37';
+import { BATCH_38_TOOLS } from '../data/generated/batch-38';
+import { BATCH_39_TOOLS } from '../data/generated/batch-39';
+import { BATCH_40_TOOLS } from '../data/generated/batch-40';
+import { BATCH_41_TOOLS } from '../data/generated/batch-41';
 
 export const CATEGORIES: CategoryInfo[] = DYNAMIC_CATEGORIES;
 
@@ -511,7 +532,28 @@ export const WORKING_TOOLS: Tool[] = [
   ...BATCH_17_TOOLS,
   ...BATCH_18_TOOLS,
   ...BATCH_19_TOOLS,
-  ...BATCH_20_TOOLS
+  ...BATCH_20_TOOLS,
+  ...BATCH_21_TOOLS,
+  ...BATCH_22_TOOLS,
+  ...BATCH_23_TOOLS,
+  ...BATCH_24_TOOLS,
+  ...BATCH_25_TOOLS,
+  ...BATCH_26_TOOLS,
+  ...BATCH_27_TOOLS,
+  ...BATCH_28_TOOLS,
+  ...BATCH_29_TOOLS,
+  ...BATCH_30_TOOLS,
+  ...BATCH_31_TOOLS,
+  ...BATCH_32_TOOLS,
+  ...BATCH_33_TOOLS,
+  ...BATCH_34_TOOLS,
+  ...BATCH_35_TOOLS,
+  ...BATCH_36_TOOLS,
+  ...BATCH_37_TOOLS,
+  ...BATCH_38_TOOLS,
+  ...BATCH_39_TOOLS,
+  ...BATCH_40_TOOLS,
+  ...BATCH_41_TOOLS.slice(0, 100)
 ];
 export const TOOLS: Tool[] = WORKING_TOOLS;
 

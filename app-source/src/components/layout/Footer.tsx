@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Heart, Send, Check, Sparkles, Youtube, Instagram, Music2, MessageCircle, Globe } from 'lucide-react';
-import { CATEGORIES } from '../../lib/tools-data';
+import { CATEGORIES } from '../../lib/categories';
 
 interface FooterProps {
   navigate: (path: string) => void;

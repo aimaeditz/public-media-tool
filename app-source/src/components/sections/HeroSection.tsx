@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Search, ArrowRight, Sparkles, ChevronDown, Zap, Shield, Heart, X, Wrench } from 'lucide-react';
-import { CATEGORIES, TOOLS, TOTAL_TOOLS, TOTAL_CATEGORIES } from '../../lib/tools-data';
+import { CATEGORIES } from '../../lib/categories';
+import { SEARCH_INDEX } from '../../lib/search-index';
 import { getIconComponent } from '../../lib/utils';
 
 interface HeroSectionProps {
@@ -12,6 +13,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ navigate, onOpenSearch
   const [searchQuery, setSearchQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+
+  const totalToolsCount = useMemo(() => {
+    return CATEGORIES.reduce((s, c) => s + (c.count || 0), 0);
+  }, []);
+  const totalCategoriesCount = CATEGORIES.length;
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -39,13 +45,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ navigate, onOpenSearch
   };
 
   const filteredTools = searchQuery.trim()
-    ? TOOLS.filter(
+    ? SEARCH_INDEX.filter(
         (t) =>
           t.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
           t.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()) ||
           t.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          t.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()))
-      )
+          (t.tags && t.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase())))
+      ).slice(0, 10)
     : [];
 
   const showDropdown = isFocused && searchQuery.trim().length > 0;
@@ -210,11 +216,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ navigate, onOpenSearch
         {/* Stats Row */}
         <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto border-t border-slate-200/60 mt-8">
           <div className="text-center">
-            <p className="text-3xl font-extrabold font-heading text-indigo-600">{TOTAL_TOOLS.toLocaleString()}+</p>
+            <p className="text-3xl font-extrabold font-heading text-indigo-600">{totalToolsCount.toLocaleString()}+</p>
             <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Tools Available</p>
           </div>
           <div className="text-center">
-            <p className="text-3xl font-extrabold font-heading text-pink-600">{TOTAL_CATEGORIES}</p>
+            <p className="text-3xl font-extrabold font-heading text-pink-600">{totalCategoriesCount}</p>
             <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">Categories</p>
           </div>
           <div className="text-center">

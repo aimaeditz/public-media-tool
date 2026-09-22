@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { ShieldCheck, Zap, Heart, Lock, HelpCircle, ChevronDown, ChevronUp, ChevronRight } from 'lucide-react';
+import { ShieldCheck, Zap, Heart, Lock, HelpCircle, ChevronDown, ChevronUp, ChevronRight, CheckCircle2, Layers, Cpu, Sparkles, BookOpen, Globe } from 'lucide-react';
+import { CATEGORIES } from '../lib/categories';
 
 interface AboutPageProps {
   navigate?: (path: string) => void;
 }
+
+const TOTAL_CATEGORIES = CATEGORIES.length;
+const TOTAL_TOOLS = CATEGORIES.reduce((acc, cat) => acc + (cat.count || 0), 0);
 
 export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
   useEffect(() => {
     document.title = 'About Us — Public Media Tool';
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-      metaDesc.setAttribute('content', 'Learn more about Public Media Tool. Explore our core mission to provide free, private, and ultra-fast web utilities running completely client-side.');
+      metaDesc.setAttribute(
+        'content',
+        `Learn more about Public Media Tool (PMT). Explore our catalog of ${TOTAL_TOOLS.toLocaleString()}+ free, private, and ultra-fast browser utilities running 100% client-side.`
+      );
     }
   }, []);
 
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -22,20 +29,32 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
 
   const faqs = [
     {
-      q: "What makes Public Media Tool different from other utility websites?",
-      a: "Our defining difference is our client-side execution model. Standard utility sites require uploading files or content to their cloud servers, posing significant privacy risks and network delays. Public Media Tool processes 100% of your data inside your local browser memory. No server uploads, no privacy compromises."
+      q: "What makes Public Media Tool (PMT) different from other utility websites?",
+      a: `Our primary distinction is our strict client-side execution architecture. Traditional web converter and calculator websites require uploading your confidential text, photos, financial numbers, or documents to remote server infrastructure, introducing network latency and significant data exposure risks. PMT processes 100% of your data inside your local browser runtime memory. Zero files or inputs are ever uploaded to an external server.`
     },
     {
-      q: "Is there any charge to use these tools?",
-      a: "No, absolutely none. Every single browser-based utility, calculator, converter, and formatter on publicmediatool.com is completely free for everyone. There are no paywalls, premium-tier restrictions, or credit tokens."
+      q: "Is there any charge, subscription, or token limit to use these tools?",
+      a: `No, absolutely none. Every single browser utility across our catalog of ${TOTAL_TOOLS.toLocaleString()}+ tools is 100% free for personal, academic, and commercial workflows. We do not use paywalls, trial expirations, credit limits, or premium tiers.`
     },
     {
-      q: "Do I need to sign up for an account to process my files?",
-      a: "No, you do not. You have immediate, full access to the complete tool suite the moment you open the website. Account creations are not required."
+      q: "Do I need to sign up or log in to use PMT?",
+      a: `No account registration or login is required. You gain immediate, unhindered access to every tool and converter the moment you visit PMT.`
     },
     {
-      q: "How can I report a bug or request a new browser utility?",
-      a: "We love receiving community ideas! You can submit details, report functional bugs, or propose a brand new utility directly through our official Contact Page."
+      q: `How many tools and categories are currently available on PMT?`,
+      a: `PMT currently hosts ${TOTAL_TOOLS.toLocaleString()}+ specialized browser utilities categorized into ${TOTAL_CATEGORIES} distinct departments spanning text formatting, image processing, financial calculators, developer tools, unit converters, PDF inspection, and specialized industry utilities.`
+    },
+    {
+      q: "Do PMT utilities work offline without an active internet connection?",
+      a: "Yes. Because all computational logic is compiled into modern client-side scripts, once you load a tool page in your browser, the utility operates entirely offline in your browser memory without needing ongoing internet connectivity for calculations and transformations."
+    },
+    {
+      q: "Are there any file size restrictions or usage quotas?",
+      a: "No artificial software limits or daily quotas are imposed by PMT. Processing capacity and throughput are bounded only by your local device hardware memory and CPU capabilities."
+    },
+    {
+      q: "How can I submit a bug report or suggest a new browser tool?",
+      a: "We welcome community recommendations! You can send bug reports, feature suggestions, or tool requests directly through our official Contact Page."
     }
   ];
 
@@ -74,8 +93,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
           <h1 className="text-4xl sm:text-5xl font-extrabold font-heading text-slate-900 tracking-tight">
             Free Browser-Based Tools. Simple. Private. Fast.
           </h1>
-          <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Public Media Tool was created with a clear mission: provide creators, developers, designers, and web users with high-performance tools that execute 100% inside your browser runtime.
+          <p className="text-sm sm:text-base text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            Public Media Tool (PMT) was established with a singular mission: to equip creators, software developers, designers, students, finance professionals, and web users worldwide with a comprehensive suite of {TOTAL_TOOLS.toLocaleString()}+ high-performance digital utilities running 100% client-side inside your browser.
           </p>
         </div>
 
@@ -86,8 +105,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
               <ShieldCheck className="w-6 h-6" />
             </div>
             <h3 className="font-heading font-bold text-lg text-slate-900">Absolute Privacy</h3>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              Your files, calculations, photos, and documents never leave your device. All computations happen client-side in local browser memory.
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Your sensitive documents, code files, photos, and calculated data never leave your personal hardware. Every execution occurs locally in browser memory with zero remote server data uploads.
             </p>
           </div>
 
@@ -95,9 +114,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
             <div className="p-3 bg-pink-50 text-pink-700 rounded-xl w-fit">
               <Zap className="w-6 h-6" />
             </div>
-            <h3 className="font-heading font-bold text-lg text-slate-900">Zero Server Latency</h3>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              Without server roundtrips or network uploads, tool outputs execute in milliseconds. Instant feedback for your daily workflows.
+            <h3 className="font-heading font-bold text-lg text-slate-900">Zero Network Latency</h3>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              By removing server round-trips and network transmission queues, tool calculations and media manipulations process instantaneously for seamless productivity.
             </p>
           </div>
 
@@ -105,20 +124,170 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
             <div className="p-3 bg-amber-50 text-amber-700 rounded-xl w-fit">
               <Heart className="w-6 h-6" />
             </div>
-            <h3 className="font-heading font-bold text-lg text-slate-900">100% Free Forever</h3>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              No subscription paywalls, trial expirations, or mandatory account creations. Useful utilities freely accessible to everyone worldwide.
+            <h3 className="font-heading font-bold text-lg text-slate-900">100% Free Access</h3>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              No subscription fees, paywalls, token limits, or mandatory registration. All tools are fully accessible to users everywhere without artificial restrictions.
             </p>
           </div>
         </div>
 
-        {/* Security Architecture */}
+        {/* How It Works Section */}
+        <div className="bg-white rounded-3xl p-8 md:p-10 border border-slate-200/80 shadow-xs space-y-8">
+          <div className="space-y-2 border-b border-slate-100 pb-6">
+            <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 px-3 py-1 bg-indigo-50 rounded-full border border-indigo-100">
+              Workflow Guide
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-900 flex items-center gap-2 pt-1">
+              <Layers className="w-6 h-6 text-indigo-600" /> How It Works
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Understand the seamless, step-by-step process that powers every utility across PMT.
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            <div className="flex gap-4 items-start">
+              <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md shadow-indigo-200">
+                1
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-lg font-bold font-heading text-slate-900">
+                  Selecting a Tool Category or Utility
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Browse our catalog of {TOTAL_CATEGORIES} departments or utilize the instant search bar to find the exact utility required for your task. Whether you need a JSON code formatter, a mortgage amortization calculator, an image converter, or a cryptographic hash generator, PMT provides focused, single-purpose interfaces designed for maximum efficiency.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4 items-start">
+              <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md shadow-indigo-200">
+                2
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-lg font-bold font-heading text-slate-900">
+                  Inputting Data or Dropping Files Locally
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Paste raw text strings, select target configuration values, or drag-and-drop local media files directly into the interactive workspace. All input parsing and parameter checks occur immediately within your local browser memory space without creating any cloud temporary files.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4 items-start">
+              <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md shadow-indigo-200">
+                3
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-lg font-bold font-heading text-slate-900">
+                  Client-Side Execution & Computation
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  When you initiate a transformation or enter numbers, PMT executes native Web APIs and client-side algorithms directly on your CPU. Because processing avoids external network latency, complex calculations and transformations update instantly as you adjust input values.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4 items-start">
+              <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md shadow-indigo-200">
+                4
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-lg font-bold font-heading text-slate-900">
+                  Exporting, Copying, or Downloading Results
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Once your task completes, copy formatted strings directly to your clipboard or download converted files straight to your local device drive. The generated files are assembled in browser RAM and saved directly without intermediate server storage.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4 items-start">
+              <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md shadow-indigo-200">
+                5
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-lg font-bold font-heading text-slate-900">
+                  Browser Compatibility & Offline Continuance
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  PMT utilities rely on standardized web technology compatible with modern desktop and mobile browsers including Chrome, Safari, Firefox, Edge, and Brave. Furthermore, once a tool page is cached, it remains functional even if your device loses internet connectivity.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Site Commitments & Principles */}
+        <div className="bg-white rounded-3xl p-8 md:p-10 border border-slate-200/80 shadow-xs space-y-6">
+          <div className="space-y-2 border-b border-slate-100 pb-4">
+            <h2 className="text-2xl font-extrabold font-heading text-slate-900 flex items-center gap-2">
+              <Sparkles className="w-6 h-6 text-indigo-600" /> Core Commitments & Principles
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600">
+              The foundational guarantees that govern every tool built under PMT.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <div className="space-y-2 p-4 bg-slate-50/70 rounded-2xl border border-slate-100">
+              <div className="font-bold font-heading text-slate-900 text-base flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Genuine Client-Side Engines
+              </div>
+              <p>
+                We strictly avoid fake loaders, artificial progress delays, or simulated conversions. Every calculation, parsing step, and file format transformation is performed by functional algorithms.
+              </p>
+            </div>
+
+            <div className="space-y-2 p-4 bg-slate-50/70 rounded-2xl border border-slate-100">
+              <div className="font-bold font-heading text-slate-900 text-base flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Zero Artificial Limits
+              </div>
+              <p>
+                No daily usage quotas, file conversion caps, or throttled execution speeds. Use tools as frequently and deeply as your workflows require.
+              </p>
+            </div>
+
+            <div className="space-y-2 p-4 bg-slate-50/70 rounded-2xl border border-slate-100">
+              <div className="font-bold font-heading text-slate-900 text-base flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Uncompromised Privacy
+              </div>
+              <p>
+                We operate with complete privacy respect. Your inputs, formulas, uploaded files, and document contents are never transmitted across the network or stored in external databases.
+              </p>
+            </div>
+
+            <div className="space-y-2 p-4 bg-slate-50/70 rounded-2xl border border-slate-100">
+              <div className="font-bold font-heading text-slate-900 text-base flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Full Functional Clarity
+              </div>
+              <p>
+                Each utility provides clear inputs, real-time outputs, and predictable behavior, ensuring professionals and learners can rely on results for daily operations.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Security & Client-Side Architecture */}
         <div className="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-xs space-y-4">
           <h2 className="text-2xl font-extrabold font-heading text-slate-900 flex items-center gap-2">
-            <Lock className="w-6 h-6 text-indigo-600" /> Client-Side Architecture
+            <Lock className="w-6 h-6 text-indigo-600" /> Security Architecture
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Unlike traditional web applications that upload your photos, documents, and text to remote cloud servers for processing, Public Media Tool executes all functional tasks right inside your personal web browser. Whether you are generating secure hashes, resizing images, formatting data, or calculating financial figures, the processing never triggers external network transfers.
+            Unlike traditional web applications that transmit sensitive documents, code blocks, and images to third-party cloud infrastructure for processing, Public Media Tool executes all functional logic locally inside your browser session. Whether you are generating secure SHA hashes, resizing graphics, formatting JSON data, or calculating financial rates, all operations remain confined within your system hardware.
+          </p>
+        </div>
+
+        {/* About the Creator Section */}
+        <div className="bg-gradient-to-br from-indigo-900 to-slate-900 rounded-3xl p-8 md:p-10 text-white shadow-xl space-y-4">
+          <span className="text-xs font-bold uppercase tracking-widest text-indigo-300 px-3 py-1 bg-indigo-900/60 rounded-full border border-indigo-700/60">
+            Brand Direction
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold font-heading tracking-tight">
+            About Public Media Tool (PMT)
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Public Media Tool (PMT) is managed as an independent web software initiative dedicated to building accessible, high-utility digital tooling. By prioritizing browser-native processing, PMT delivers free, dependable software utilities that remove friction for users across the globe.
           </p>
         </div>
 
@@ -129,7 +298,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
               <HelpCircle className="w-6 h-6 text-indigo-600" /> General FAQ
             </h2>
             <p className="text-xs sm:text-sm text-slate-500">
-              Frequently asked questions about our client-side utility suite.
+              Detailed answers regarding client-side performance, privacy guarantees, and usage guidelines across PMT.
             </p>
           </div>
 
@@ -137,13 +306,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
             {faqs.map((faq, i) => (
               <div
                 key={i}
-                className="bg-white rounded-2xl border border-slate-200/80 transition-all shadow-xs"
+                className="bg-white rounded-2xl border border-slate-200/80 transition-all shadow-xs overflow-hidden"
               >
                 <button
                   onClick={() => toggleFaq(i)}
                   className="w-full flex items-center justify-between p-5 text-left font-bold text-slate-950 font-heading text-sm sm:text-base cursor-pointer hover:bg-slate-50/50 rounded-2xl transition-all"
                 >
-                  <span>{faq.q}</span>
+                  <span className="pr-4">{faq.q}</span>
                   {openFaq === i ? (
                     <ChevronUp className="w-5 h-5 text-indigo-600 shrink-0" />
                   ) : (
@@ -164,3 +333,4 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
     </div>
   );
 };
+

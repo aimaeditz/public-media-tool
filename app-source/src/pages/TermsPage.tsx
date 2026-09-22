@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { ChevronRight, FileText, HelpCircle, ChevronDown, ChevronUp, CheckCircle, AlertOctagon } from 'lucide-react';
+import { ChevronRight, FileText, HelpCircle, ChevronDown, ChevronUp, CheckCircle, AlertOctagon, ShieldCheck, Scale, Award } from 'lucide-react';
+import { CATEGORIES } from '../lib/categories';
 
 interface TermsPageProps {
   navigate: (path: string) => void;
 }
+
+const TOTAL_CATEGORIES = CATEGORIES.length;
+const TOTAL_TOOLS = CATEGORIES.reduce((acc, cat) => acc + (cat.count || 0), 0);
 
 export const TermsPage: React.FC<TermsPageProps> = ({ navigate }) => {
   useEffect(() => {
     document.title = 'Terms of Service — Public Media Tool';
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-      metaDesc.setAttribute('content', 'Review the Terms of Service for Public Media Tool. Learn about our service guidelines, user responsibilities, and limitation of liability.');
+      metaDesc.setAttribute(
+        'content',
+        `Review the Terms of Service for Public Media Tool (PMT). Learn about our service guidelines, commercial usage permissions, and liability conditions across our ${TOTAL_TOOLS.toLocaleString()}+ browser utilities.`
+      );
     }
   }, []);
 
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -22,20 +29,24 @@ export const TermsPage: React.FC<TermsPageProps> = ({ navigate }) => {
 
   const faqs = [
     {
-      q: "Who is allowed to use Public Media Tool?",
-      a: "Anyone. Public Media Tool is an open-access web platform available globally. There are no fees, mandatory account sign-ups, or subscriptions required to use any of our standard browser tools."
+      q: "Who is eligible to use Public Media Tool (PMT)?",
+      a: "Anyone worldwide. Public Media Tool (PMT) is an open-access web utility suite available globally to individuals, students, creators, professionals, and enterprise workers. There are no registration fees, mandatory logins, or subscription paywalls."
     },
     {
-      q: "Can I use the generated/processed outputs in commercial products?",
-      a: "Yes. All images, formatted code blocks, calculated formulas, and converted files generated using publicmediatool.com are your sole property. You are permitted to use them for commercial projects, corporate environments, client work, and professional development without royalty obligations."
+      q: "Can I use PMT tools, formatted outputs, and converted files in commercial client projects?",
+      a: "Yes, absolutely. All formatted text code, converted media files, calculated reports, and generated output assets created using PMT are your exclusive property. You are granted royalty-free commercial usage rights for client work, commercial applications, corporate documentation, and professional products."
     },
     {
-      q: "Are there any usage limits or fair-use policies?",
-      a: "Because all code runs client-side (local to your machine), you do not consume our server computing resources. Therefore, there are no strict usage quotas or rate limits. You can process as many files and use our converters as often as needed."
+      q: "Are there daily execution rate limits or usage quotas?",
+      a: "No. Because all tool calculations execute client-side within your browser runtime memory, PMT does not impose bandwidth throttling or artificial rate limits. You may process as many files and execute as many calculations as your local hardware device supports."
     },
     {
-      q: "What activities are considered prohibited on Public Media Tool?",
-      a: "You may not copy, scrape, repackage, or distribute our web code or tools in a way that attempts to pass them off as your own proprietary commercial software, or use our interface inside nested ad-heavy frames without permission."
+      q: "What conduct is considered strictly prohibited on PMT?",
+      a: "Prohibited conduct includes deploying automated web scrapers or bots to replicate our software catalog, white-labeling or wrapping PMT interfaces inside ad-heavy frame wrappers without authorization, or attempting to distribute malware using our text or file fields."
+    },
+    {
+      q: "How does PMT handle modifications to these Terms of Service?",
+      a: "PMT periodically reviews and updates these Terms to align with new features and global web standards. Updated versions will be published directly to this page with an updated timestamp."
     }
   ];
 
@@ -64,13 +75,13 @@ export const TermsPage: React.FC<TermsPageProps> = ({ navigate }) => {
         {/* Heading Section */}
         <div className="space-y-4 text-center md:text-left">
           <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-indigo-600 px-3.5 py-1.5 bg-indigo-50 rounded-full border border-indigo-100">
-            <FileText className="w-3.5 h-3.5" /> Terms & Agreements
+            <FileText className="w-3.5 h-3.5" /> Terms & Service Agreements
           </span>
           <h1 className="text-4xl sm:text-5xl font-extrabold font-heading text-slate-900 tracking-tight">
             Terms of Service
           </h1>
           <p className="text-xs sm:text-sm text-slate-500">
-            Last Updated: September 21, 2026 • Public Media Tool (publicmediatool.com)
+            Official Terms of Service • Public Media Tool (PMT)
           </p>
         </div>
 
@@ -79,56 +90,65 @@ export const TermsPage: React.FC<TermsPageProps> = ({ navigate }) => {
           
           <section className="space-y-4">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <CheckCircle className="w-5.5 h-5.5 text-indigo-600" /> 1. Acceptance of Terms
+              <CheckCircle className="w-5.5 h-5.5 text-indigo-600" /> 1. Binding Acceptance of Terms
             </h2>
             <p>
-              By visiting, browsing, or utilizing the services of <strong>publicmediatool.com</strong>, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree with any portion of these regulations, please discontinue your use of our platform.
-            </p>
-          </section>
-
-          <section className="space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900">2. Permitted Use & Service Provision</h2>
-            <p>
-              Public Media Tool provides open-access browser-based utilities including, but not limited to, calculators, converters, image formatters, and web developer tools. You are granted a limited, revocable, non-exclusive, and non-transferable license to access and use our website strictly for personal, academic, professional, and commercial tasks.
+              By accessing, browsing, or utilizing any of the digital utilities, calculators, formatters, or converters hosted on <strong>Public Media Tool (PMT)</strong> (publicmediatool.com), covering our complete suite of {TOTAL_TOOLS.toLocaleString()}+ tools across {TOTAL_CATEGORIES} specialized departments, you acknowledge that you have read, understood, and agreed to be legally bound by these Terms of Service.
             </p>
             <p>
-              All tool processing runs 100% locally within your browser using modern client-side standards. We do not charge fees or require account credits to use our web utilities.
+              If you do not agree with any part of these operational guidelines, please refrain from accessing or utilizing our browser tools.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <AlertOctagon className="w-5.5 h-5.5 text-indigo-600" /> 3. Prohibited Activities
+              <Award className="w-5.5 h-5.5 text-indigo-600" /> 2. Permitted Use & Commercial Rights
             </h2>
             <p>
-              In using our website, you agree not to:
+              PMT grants users a worldwide, non-exclusive, revocable, royalty-free license to utilize our browser software utilities for personal, academic, professional, and commercial tasks.
+            </p>
+            <p>
+              <strong>Ownership of Output Data:</strong> All outputs, formatted code blocks, converted media files, generated graphics, calculated financial tables, and transformed datasets produced through PMT utilities belong entirely to you. You maintain full ownership and commercial distribution rights without royalty obligations to PMT.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <AlertOctagon className="w-5.5 h-5.5 text-indigo-600" /> 3. Prohibited Conduct & Platform Integrity
+            </h2>
+            <p>
+              To safeguard site performance and protect intellectual property, users agree not to engage in the following prohibited activities:
             </p>
             <ul className="list-disc list-inside space-y-2 pl-2">
-              <li>Deploy automated scraping scripts, bots, or web spiders to crawl or copy our code structure for competitors.</li>
-              <li>Rebrand, frame, or white-label Public Media Tool utilities on other ad-laden domains without our written consent.</li>
-              <li>Attempt to disrupt or overload our hosting server infrastructure, even though the tool execution itself runs client-side.</li>
-              <li>Use our utilities to format, compile, or process code blocks that contain malicious computer viruses or tracking malware.</li>
+              <li>Deploying automated web scraping scripts, bots, or spiders to harvest our source code, tool schemas, or catalog structures.</li>
+              <li>White-labeling, framing, or wrapping PMT interfaces inside unauthorized secondary ad-laden websites or paid applications.</li>
+              <li>Attempting to introduce malicious software scripts, virus payloads, or exploits through input fields or file drag-and-drop zones.</li>
+              <li>Distributing or misrepresenting PMT software code as your own proprietary commercial product.</li>
             </ul>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900">4. Intellectual Property</h2>
+            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <ShieldCheck className="w-5.5 h-5.5 text-indigo-600" /> 4. Intellectual Property & Brand Ownership
+            </h2>
             <p>
-              The design layouts, user interface styles, branding icons, source code scripts, and organizational graphics of Public Media Tool are the exclusive intellectual property of <strong>AiMAEditz</strong> and contributors. These are protected under international copyright and intellectual property treaties.
+              The visual interface design, layout structure, brand identity assets, site icons, graphics, and underlying source code modules of Public Media Tool (PMT) are protected under international copyright, trademark, and intellectual property frameworks. Unapproved duplication, redistribution, or commercial resale of PMT website architecture is strictly prohibited.
             </p>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900">5. Limitation of Liability</h2>
+            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <Scale className="w-5.5 h-5.5 text-indigo-600" /> 5. Limitation of Liability
+            </h2>
             <p>
-              Under no circumstances shall Public Media Tool, its creators, partners, or developers be held liable for any indirect, incidental, consequential, special, or exemplary damages—including but not limited to lost profit margins, data loss, software disruption, or business interruptions—arising from your use or inability to use our website.
+              Under no circumstances shall Public Media Tool (PMT), its developers, maintainers, or affiliates be held liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, loss of profits, data corruption, system downtime, or commercial interruptions) arising out of the use or inability to use our browser utilities.
             </p>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900">6. Amendments to Terms</h2>
+            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900">6. Revisions & Governing Expectations</h2>
             <p>
-              We reserve the right to revise or update these Terms of Service at our sole discretion. Any changes will be posted directly to this page with an updated revision date. Your continued use of publicmediatool.com after modifications are published constitutes complete agreement to the updated terms.
+              PMT reserves the right to amend, update, or revise these Terms of Service at any time to accommodate new tools, security enhancements, or legal standards. Updated versions will be published on this page with an updated timestamp. Continued usage of publicmediatool.com after modifications are posted constitutes complete acceptance of the revised Terms.
             </p>
           </section>
 
@@ -138,10 +158,10 @@ export const TermsPage: React.FC<TermsPageProps> = ({ navigate }) => {
         <div className="space-y-6 pt-6" id="terms-faq-section">
           <div className="text-center md:text-left space-y-2">
             <h2 className="text-2xl md:text-3xl font-extrabold font-heading text-slate-900 flex items-center justify-center md:justify-start gap-2">
-              <HelpCircle className="w-6 h-6 text-indigo-600" /> Terms FAQ
+              <HelpCircle className="w-6 h-6 text-indigo-600" /> Terms & Service Usage FAQ
             </h2>
             <p className="text-xs sm:text-sm text-slate-500">
-              Clear breakdowns of our usage rules and service expectations.
+              Clear breakdowns of our usage rules, commercial permissions, and service agreements.
             </p>
           </div>
 
@@ -149,13 +169,13 @@ export const TermsPage: React.FC<TermsPageProps> = ({ navigate }) => {
             {faqs.map((faq, i) => (
               <div
                 key={i}
-                className="bg-white rounded-2xl border border-slate-200/80 transition-all shadow-xs"
+                className="bg-white rounded-2xl border border-slate-200/80 transition-all shadow-xs overflow-hidden"
               >
                 <button
                   onClick={() => toggleFaq(i)}
                   className="w-full flex items-center justify-between p-5 text-left font-bold text-slate-950 font-heading text-sm sm:text-base cursor-pointer hover:bg-slate-50/50 rounded-2xl transition-all"
                 >
-                  <span>{faq.q}</span>
+                  <span className="pr-4">{faq.q}</span>
                   {openFaq === i ? (
                     <ChevronUp className="w-5 h-5 text-indigo-600 shrink-0" />
                   ) : (
@@ -176,3 +196,4 @@ export const TermsPage: React.FC<TermsPageProps> = ({ navigate }) => {
     </div>
   );
 };
+

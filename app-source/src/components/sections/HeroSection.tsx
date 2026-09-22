@@ -51,7 +51,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ navigate, onOpenSearch
           t.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()) ||
           t.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
           (t.tags && t.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase())))
-      ).slice(0, 10)
+      )
+        .sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0))
+        .slice(0, 10)
     : [];
 
   const showDropdown = isFocused && searchQuery.trim().length > 0;

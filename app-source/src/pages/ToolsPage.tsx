@@ -82,20 +82,25 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
     setPageSize(50);
   }, [debouncedSearch, selectedCat]);
 
-  const filtered = tools.filter((tool) => {
+  const filtered = useMemo(() => {
     const query = debouncedSearch.toLowerCase().trim();
-    const matchesSearch =
-      !query ||
-      (tool.name || '').toLowerCase().includes(query) ||
-      (tool.shortDesc || '').toLowerCase().includes(query) ||
-      (Array.isArray(tool.tags) && tool.tags.some((t) => String(t).toLowerCase().includes(query)));
+    return tools
+      .filter((tool) => {
+        const matchesSearch =
+          !query ||
+          (tool.name || '').toLowerCase().includes(query) ||
+          (tool.shortDesc || '').toLowerCase().includes(query) ||
+          (Array.isArray(tool.tags) && tool.tags.some((t) => String(t).toLowerCase().includes(query)));
 
-    const matchesCat = selectedCat === 'All' || 
-                       tool.category === selectedCat || 
-                       tool.category.startsWith(selectedCat + ' - ');
+        const matchesCat =
+          selectedCat === 'All' ||
+          tool.category === selectedCat ||
+          tool.category.startsWith(selectedCat + ' - ');
 
-    return matchesSearch && matchesCat;
-  });
+        return matchesSearch && matchesCat;
+      })
+      .sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0));
+  }, [tools, debouncedSearch, selectedCat]);
 
   // Search optimization: show only top 50 results if searching. Otherwise paginate
   const displayedTools = filtered.slice(0, debouncedSearch ? 50 : pageSize);

@@ -110,7 +110,7 @@ export const WORKING_TOOLS: Tool[] = [
   ...networkingDataTools,
   ...workplaceProductivityTools,
   ...marketingCreatorToolsTools,
-];
+].sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0));
 
 export const TOTAL_TOOLS = WORKING_TOOLS.length;
 export const TOTAL_CATEGORIES = CATEGORIES.length;
@@ -124,7 +124,9 @@ export function getCategoryBySlug(slug: string): any {
 }
 
 export function getToolsByCategory(categoryId: string): Tool[] {
-  return WORKING_TOOLS.filter((t) => t.category === categoryId);
+  return WORKING_TOOLS.filter((t) => t.category === categoryId).sort(
+    (a, b) => (b.usageCount || 0) - (a.usageCount || 0)
+  );
 }
 
 export function searchTools(query: string): Tool[] {
@@ -136,7 +138,7 @@ export function searchTools(query: string): Tool[] {
       t.shortDesc.toLowerCase().includes(q) ||
       t.category.toLowerCase().includes(q) ||
       (t.tags && t.tags.some((tag) => tag.toLowerCase().includes(q)))
-  );
+  ).sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0));
 }
 
 export const TOOLS = WORKING_TOOLS;

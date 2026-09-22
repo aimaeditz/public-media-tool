@@ -45,14 +45,17 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
   const searchSource = searchIndex.length > 0 ? searchIndex : tools;
 
   const filteredTools = debouncedQuery.trim()
-    ? searchSource.filter(
-        (t) =>
-          (t?.name || '').toLowerCase().includes(debouncedQuery.toLowerCase()) ||
-          (t?.shortDesc || '').toLowerCase().includes(debouncedQuery.toLowerCase()) ||
-          (t?.category || '').toLowerCase().includes(debouncedQuery.toLowerCase()) ||
-          (Array.isArray(t?.tags) && t.tags.some((tag: string) => String(tag).toLowerCase().includes(debouncedQuery.toLowerCase())))
-      ).slice(0, 50) // Show only top 50 results
-    : searchSource.slice(0, 6);
+    ? searchSource
+        .filter(
+          (t) =>
+            (t?.name || '').toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+            (t?.shortDesc || '').toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+            (t?.category || '').toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+            (Array.isArray(t?.tags) && t.tags.some((tag: string) => String(tag).toLowerCase().includes(debouncedQuery.toLowerCase())))
+        )
+        .sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0))
+        .slice(0, 50) // Show top 50 results
+    : searchSource.slice().sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0)).slice(0, 6);
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-slate-900/40 backdrop-blur-md transition-opacity">

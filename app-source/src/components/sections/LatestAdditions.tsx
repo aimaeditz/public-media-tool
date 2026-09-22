@@ -9,7 +9,10 @@ interface LatestAdditionsProps {
 
 export const LatestAdditions: React.FC<LatestAdditionsProps> = ({ navigate }) => {
   const tools = useToolsStore((state) => state.tools);
-  const latestTools = tools.filter((t) => t.isLatest).slice(0, 8);
+  const latestTools = tools
+    .filter((t) => t.isLatest)
+    .sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0))
+    .slice(0, 8);
 
   return (
     <section className="py-20 bg-white">

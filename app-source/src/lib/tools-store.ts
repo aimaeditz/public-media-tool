@@ -14,13 +14,13 @@ interface ToolsState {
 
 export const useToolsStore = create<ToolsState>((set, get) => {
   return {
-    tools: WORKING_TOOLS,
+    tools: WORKING_TOOLS.slice().sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0)),
     loadedCategories: new Set<string>(),
     isLoading: false,
     isBackgroundLoading: false,
 
     initStore: async () => {
-      set({ tools: WORKING_TOOLS });
+      set({ tools: WORKING_TOOLS.slice().sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0)) });
     },
 
     loadCategory: async (categorySlug: string) => {

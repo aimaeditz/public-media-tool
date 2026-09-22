@@ -55,25 +55,31 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
     setCurrentPage(1);
   }, [category.slug, loadCategory]);
 
-  const categoryTools = isParentCategory
-    ? tools.filter((t) => CATEGORIES.some(c => c.parentSlug === categorySlug && t.category === c.id))
-    : tools.filter((t) => t.category === category.id);
-  
+  const categoryTools = (
+    isParentCategory
+      ? tools.filter((t) => CATEGORIES.some((c) => c.parentSlug === categorySlug && t.category === c.id))
+      : tools.filter((t) => t.category === category.id)
+  ).sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0));
+
   // Dynamic local filter matching tags or title keywords
-  const filteredTools = selectedSub === 'All'
-    ? categoryTools
-    : categoryTools.filter(
-        (t) => {
+  const filteredTools = (
+    selectedSub === 'All'
+      ? categoryTools
+      : categoryTools.filter((t) => {
           if (isParentCategory) {
-            return t.category === `${category.id} - ${selectedSub}` || 
-                   t.category.startsWith(`${category.id} - ${selectedSub} - Part`) ||
-                   t.tags?.some((tag) => tag.toLowerCase() === selectedSub.toLowerCase()) ||
-                   t.name.toLowerCase().includes(selectedSub.toLowerCase());
+            return (
+              t.category === `${category.id} - ${selectedSub}` ||
+              t.category.startsWith(`${category.id} - ${selectedSub} - Part`) ||
+              t.tags?.some((tag) => tag.toLowerCase() === selectedSub.toLowerCase()) ||
+              t.name.toLowerCase().includes(selectedSub.toLowerCase())
+            );
           }
-          return t.tags?.some((tag) => tag.toLowerCase() === selectedSub.toLowerCase()) ||
-                 t.name.toLowerCase().includes(selectedSub.toLowerCase());
-        }
-      );
+          return (
+            t.tags?.some((tag) => tag.toLowerCase() === selectedSub.toLowerCase()) ||
+            t.name.toLowerCase().includes(selectedSub.toLowerCase())
+          );
+        })
+  ).sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0));
 
   // Pagination parameters
   const ITEMS_PER_PAGE = 50;

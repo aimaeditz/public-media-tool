@@ -114,7 +114,9 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
     }
   };
 
-  const relatedTools = TOOLS.filter((t) => t.category === tool.category && t.slug !== tool.slug).slice(0, 4);
+  const relatedTools = TOOLS.filter((t) => t.category === tool.category && t.slug !== tool.slug)
+    .sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0))
+    .slice(0, 4);
 
   const howToUseSteps = (tool.howToUse && Array.isArray(tool.howToUse) && tool.howToUse.length > 0)
     ? tool.howToUse

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useToolsStore } from '../../lib/tools-store';
 import { getIconComponent, formatNumber } from '../../lib/utils';
 import { ArrowRight, Sparkles } from 'lucide-react';
@@ -26,9 +26,17 @@ export const PopularTools: React.FC<PopularToolsProps> = ({ navigate }) => {
     'Web Tools',
   ];
 
-  const filteredTools = activeCategory === 'All'
-    ? tools
-    : tools.filter((t) => t.category === activeCategory);
+  const filteredTools = useMemo(() => {
+    let list = tools;
+    if (activeCategory !== 'All') {
+      const keyword = activeCategory.replace(/ Tools$/, '').toLowerCase();
+      list = tools.filter((t) => {
+        const catLower = (t.category || '').toLowerCase();
+        return t.category === activeCategory || catLower.includes(keyword);
+      });
+    }
+    return list.slice().sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0));
+  }, [tools, activeCategory]);
 
   const visibleTools = filteredTools.slice(0, visibleCount);
 

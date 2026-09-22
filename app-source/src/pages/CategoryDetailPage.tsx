@@ -30,7 +30,7 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
         bgLight: first.bgLight,
         count: matchingSubs.reduce((sum, c) => sum + c.count, 0),
         subCategories: Array.from(new Set(matchingSubs.map(c => c.name.replace(/ - Part \d+$/, '')))),
-        toolSlugs: matchingSubs.flatMap(c => c.toolSlugs)
+        toolSlugs: matchingSubs.flatMap(c => (c as any).toolSlugs || [])
       } as any;
     }
   }

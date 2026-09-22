@@ -65,8 +65,10 @@ const DEPARTMENT_MAP: Record<string, string> = {
   'Government & Public Services': 'Industry & Lifestyle',
 };
 
-function getCategoryDepartment(catName: string): string {
-  return DEPARTMENT_MAP[catName] || 'General Utilities';
+function getCategoryDepartment(cat: any): string {
+  if (typeof cat === 'object' && cat && cat.department) return cat.department;
+  const name = typeof cat === 'string' ? cat : cat?.name || '';
+  return DEPARTMENT_MAP[name] || 'Industry & Lifestyle';
 }
 
 export const CategoriesPage: React.FC<CategoriesPageProps> = ({ navigate }) => {
@@ -87,7 +89,7 @@ export const CategoriesPage: React.FC<CategoriesPageProps> = ({ navigate }) => {
   const departments = useMemo(() => {
     const map: Record<string, number> = {};
     CATEGORIES.forEach((cat) => {
-      const dept = getCategoryDepartment(cat.name);
+      const dept = getCategoryDepartment(cat);
       map[dept] = (map[dept] || 0) + 1;
     });
 
@@ -99,7 +101,7 @@ export const CategoriesPage: React.FC<CategoriesPageProps> = ({ navigate }) => {
   // Filter categories based on search query and selected department
   const filteredCategories = useMemo(() => {
     return CATEGORIES.filter((cat) => {
-      const dept = getCategoryDepartment(cat.name);
+      const dept = getCategoryDepartment(cat);
       const matchesSearch =
         !searchQuery.trim() ||
         cat.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -230,8 +232,8 @@ export const CategoriesPage: React.FC<CategoriesPageProps> = ({ navigate }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredCategories.map((cat) => {
               const IconComp = getIconComponent(cat.iconName);
-              const toolCount = categoryCounts[cat.name] || categoryCounts[cat.id] || cat.count || 0;
-              const deptName = getCategoryDepartment(cat.name);
+              const toolCount = cat.count || categoryCounts[cat.name] || categoryCounts[cat.id] || 0;
+              const deptName = getCategoryDepartment(cat);
 
               return (
                 <div

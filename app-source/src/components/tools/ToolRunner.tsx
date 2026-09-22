@@ -110,83 +110,116 @@ export const ToolRunner: React.FC<ToolRunnerProps> = ({ tool }) => {
       return <MarkdownEditorTool onCopy={triggerCopyNotice} copied={copied} />;
     case 'pdf-page-inspector':
       return <PdfInspectorTool />;
-    default:
-      if (tool.category === 'Text Tools') {
+    default: {
+      const cat = tool.category || '';
+      const parentCat = (tool as any).parentCategory || '';
+
+      if (
+        cat === 'Text Tools' ||
+        parentCat === 'Text Tools' ||
+        cat.includes('Text') ||
+        cat.includes('Case') ||
+        cat.includes('Readability') ||
+        cat.includes('String') ||
+        cat.includes('Ciphers')
+      ) {
         return <Batch1TextToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
       }
-      if (tool.category === 'Image Tools') {
+      if (
+        cat === 'Image Tools' ||
+        parentCat === 'Image Tools' ||
+        cat.includes('Image') ||
+        cat.includes('Photo') ||
+        cat.includes('Favicon') ||
+        cat.includes('Croppers')
+      ) {
         return <ComprehensiveImageToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
       }
-      if (tool.category === 'PDF Tools') {
+      if (cat === 'PDF Tools' || parentCat === 'PDF Tools' || cat.includes('PDF')) {
         return <ComprehensivePdfToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
       }
-      if (tool.category === 'Developer Tools') {
+      if (
+        cat === 'Developer Tools' ||
+        parentCat === 'Developer Tools' ||
+        cat.includes('JSON') ||
+        cat.includes('Encoding & Identifier') ||
+        cat.includes('CSS') ||
+        cat.includes('Code') ||
+        cat.includes('Regex') ||
+        cat.includes('Developer')
+      ) {
         return <ComprehensiveDevToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
       }
-      if (tool.category === 'Calculator Tools' || tool.category === 'Converter Tools') {
+      if (
+        cat === 'Calculator Tools' ||
+        cat === 'Converter Tools' ||
+        parentCat === 'Calculator Tools' ||
+        parentCat === 'Converter Tools' ||
+        cat.includes('Calculator') ||
+        cat.includes('Converter') ||
+        cat.includes('Apparel') ||
+        cat.includes('Dimension') ||
+        cat.includes('Weight') ||
+        cat.includes('Area') ||
+        cat.includes('Volume') ||
+        cat.includes('Temperature')
+      ) {
         return <ComprehensiveCalculatorToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
       }
-      if (tool.category === 'Color Tools') {
+      if (
+        cat === 'Color Tools' ||
+        parentCat === 'Color Tools' ||
+        cat.includes('Color') ||
+        cat.includes('Gradient') ||
+        cat.includes('Theme') ||
+        cat.includes('Palette')
+      ) {
         return <ComprehensiveColorToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
       }
-      if (tool.category === 'Security Tools') {
+      if (
+        cat === 'Security Tools' ||
+        parentCat === 'Security Tools' ||
+        cat.includes('Security') ||
+        cat.includes('Password') ||
+        cat.includes('Hash') ||
+        cat.includes('Encryption')
+      ) {
         return <ComprehensiveSecurityToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
       }
       if (
-        tool.category === 'SEO Tools' ||
-        tool.category === 'Social Media Tools' ||
-        tool.category === 'Video Tools' ||
-        tool.category === 'Audio Tools' ||
-        tool.category === 'Web Tools' ||
-        tool.category === 'File Tools'
+        cat === 'SEO Tools' ||
+        parentCat === 'SEO Tools' ||
+        cat.includes('SEO') ||
+        cat.includes('Domain') ||
+        cat.includes('Media') ||
+        cat.includes('Video') ||
+        cat.includes('Audio') ||
+        cat.includes('Web') ||
+        cat.includes('File') ||
+        cat.includes('YouTube')
       ) {
         return <ComprehensiveMediaWebToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
       }
       if (
-        tool.category === 'Math Tools' ||
-        tool.category === 'Finance Tools' ||
-        tool.category === 'Business Tools' ||
-        tool.category === 'Date & Time' ||
-        tool.category === 'Health & Fitness' ||
-        tool.category === 'Productivity' ||
-        tool.category === 'Education' ||
-        tool.category === 'Generators' ||
-        tool.category === 'Unit Converters' ||
-        tool.category === 'Automotive'
+        cat === 'Math Tools' ||
+        parentCat === 'Math Tools' ||
+        cat.includes('Math') ||
+        cat.includes('Algebra') ||
+        cat.includes('Geometry') ||
+        cat.includes('Finance') ||
+        cat.includes('Business') ||
+        cat.includes('Date') ||
+        cat.includes('Time') ||
+        cat.includes('Health') ||
+        cat.includes('Productivity') ||
+        cat.includes('Education') ||
+        cat.includes('Generators') ||
+        cat.includes('Unit')
       ) {
         return <ComprehensiveMathFinanceToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
       }
-      if (
-        tool.category === 'Accounting' ||
-        tool.category === 'HR & Payroll' ||
-        tool.category === 'Freelancing' ||
-        tool.category === 'Real Estate' ||
-        tool.category === 'Legal Tools' ||
-        tool.category === 'E-commerce' ||
-        tool.category === 'Inventory & Logistics' ||
-        tool.category === 'Restaurant & Cafe' ||
-        tool.category === 'Engineering' ||
-        tool.category === 'Construction' ||
-        tool.category === 'Electrical & Solar' ||
-        tool.category === 'Agriculture' ||
-        tool.category === 'Environment & Energy' ||
-        tool.category === 'Marketing & Advertising' ||
-        tool.category === 'YouTube Creator Tools' ||
-        tool.category === 'Travel Tools' ||
-        tool.category === 'Beauty & Salon' ||
-        tool.category === 'Wedding & Event' ||
-        tool.category === 'Photography' ||
-        tool.category === 'Music Production' ||
-        tool.category === 'Pets & Animals' ||
-        tool.category === 'Government & Public Services' ||
-        tool.category === 'Office Administration' ||
-        tool.category === 'Networking' ||
-        tool.category === 'Data Management' ||
-        tool.category === 'Project Management'
-      ) {
-        return <ComprehensiveIndustryToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      return <UniversalInteractiveToolRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+      return <ComprehensiveIndustryToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+    }
   }
 };
 

@@ -44,8 +44,8 @@ export const tools: Tool[] = [
     ]
   },
   {
-    id: 'user-agent-parser',
-    slug: 'user-agent-parser',
+    id: 'browser-device-spec-inspector',
+    slug: 'browser-device-spec-inspector',
     name: 'Browser User-Agent & Device Spec Inspector',
     shortDesc: 'Inspect browser engine, operating system, device screen resolution, and hardware.',
     description: 'Parse browser User-Agent strings to extract OS version, browser engine, client hardware, screen viewport, and touch capabilities.',
@@ -184,8 +184,8 @@ export const tools: Tool[] = [
     faqs: [{ question: 'How are cookies separated in document.cookie?', answer: 'Separated by semicolon and space (; ).' }]
   },
   {
-    id: 'url-query-parameter-extractor',
-    slug: 'url-query-parameter-extractor',
+    id: 'url-query-parameter-builder',
+    slug: 'url-query-parameter-builder',
     name: 'URL Query Parameter Extractor & Builder',
     shortDesc: 'Parse complex URL query string parameters (?utm_source=...&id=...) into clean JSON.',
     description: 'Parse and build complex query strings from URLs.',
@@ -303,8 +303,8 @@ export const tools: Tool[] = [
     faqs: [{ question: 'What does space-between do in Flexbox?', answer: 'Distributes items evenly; first item is at start edge, last item at end edge.' }]
   },
   {
-    id: 'css-grid-layout-generator',
-    slug: 'css-grid-layout-generator',
+    id: 'css-grid-columns-builder',
+    slug: 'css-grid-columns-builder',
     name: 'CSS Grid Template Columns Visual Builder',
     shortDesc: 'Build CSS grid layouts with grid-template-columns, gap, and fr unit controls.',
     description: 'Visual CSS Grid container playground to configure grid-template-columns, fr units, and gap dimensions.',
@@ -320,8 +320,8 @@ export const tools: Tool[] = [
     faqs: [{ question: 'What does 1fr unit mean in CSS Grid?', answer: '1 fraction of the available free space inside the grid container.' }]
   },
   {
-    id: 'css-glassmorphism-generator',
-    slug: 'css-glassmorphism-generator',
+    id: 'css-glassmorphism-studio',
+    slug: 'css-glassmorphism-studio',
     name: 'CSS Glassmorphism & Backdrop-Filter Studio',
     shortDesc: 'Design glass UI components with blur, opacity, border, and backdrop-filter CSS.',
     description: 'Design glassmorphism UI card components with controls for backdrop blur, background transparency, and border light.',
@@ -337,8 +337,8 @@ export const tools: Tool[] = [
     faqs: [{ question: 'Is backdrop-filter supported in all modern browsers?', answer: 'Yes, supported in all modern Chrome, Safari, Firefox, and Edge browsers.' }]
   },
   {
-    id: 'css-box-shadow-generator',
-    slug: 'css-box-shadow-generator',
+    id: 'css-box-shadow-builder',
+    slug: 'css-box-shadow-builder',
     name: 'CSS Box Shadow & Drop Shadow Builder',
     shortDesc: 'Interactively adjust X/Y offset, blur radius, spread, opacity, and inset shadow.',
     description: 'Design custom CSS box shadows with interactive controls for offset, blur, spread, color, and inset.',
@@ -422,8 +422,8 @@ export const tools: Tool[] = [
     faqs: [{ question: 'How to make HTML table responsive on mobile screen?', answer: 'Wrap <table> inside a container element with CSS overflow-x: auto.' }]
   },
   {
-    id: 'markdown-table-generator',
-    slug: 'markdown-table-generator',
+    id: 'markdown-grid-table-builder',
+    slug: 'markdown-grid-table-builder',
     name: 'Markdown Grid Table Generator',
     shortDesc: 'Build clean formatted Markdown grid tables (| Header | Value |) with column alignments.',
     description: 'Build clean Markdown grid tables with left, center, or right column alignment options.',

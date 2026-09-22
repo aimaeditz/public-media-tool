@@ -1031,8 +1031,8 @@ export const tools: Tool[] = [
     ]
   },
   {
-    "id": "text-to-binary-converter",
-    "slug": "text-to-binary-converter",
+    "id": "text-to-binary-stream-converter",
+    "slug": "text-to-binary-stream-converter",
     "name": "Text to Binary & Binary to Text Converter",
     "shortDesc": "Convert UTF-8 text strings into 8-bit binary code (01000001) or decode binary.",
     "description": "Convert plain text letters into 8-bit ASCII/UTF-8 binary code streams.",
@@ -1071,9 +1071,9 @@ export const tools: Tool[] = [
     ]
   },
   {
-    "id": "text-to-hex-converter",
-    "slug": "text-to-hex-converter",
-    "name": "Text to Hexadecimal Converter",
+    "id": "text-to-hex-stream-converter",
+    "slug": "text-to-hex-stream-converter",
+    "name": "Text to Hex Stream Converter",
     "shortDesc": "Convert plain text characters into hex byte representations (e.g. 48 65 6c 6c 6f).",
     "description": "Convert text strings into space-separated hexadecimal byte codes.",
     "category": "Converter Tools",
@@ -1151,8 +1151,8 @@ export const tools: Tool[] = [
     ]
   },
   {
-    "id": "rot13-cipher-encoder",
-    "slug": "rot13-cipher-encoder",
+    "id": "rot13-caesar-cipher-converter",
+    "slug": "rot13-caesar-cipher-converter",
     "name": "ROT13 & Caesar Cipher Encoder / Decoder",
     "shortDesc": "Rotate alphabetical letters by 13 positions (ROT13) or custom N-shift Caesar cipher.",
     "description": "Encrypt or decrypt plain text using the classic ROT13 and Caesar shift ciphers.",

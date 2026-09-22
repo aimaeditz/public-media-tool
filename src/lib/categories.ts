@@ -11,13 +11,13 @@ export const STATIC_CATEGORIES: (CategoryInfo & { count: number; subCategories?:
     "description": "Transform, clean, format, and analyze text instantly without data leaving your browser.",
     "colorGradient": "from-indigo-500 to-blue-600",
     "bgLight": "bg-indigo-50 text-indigo-700",
-    "count": 122,
+    "count": 125,
     "subCategories": [
-      "Client-side",
-      "Custom",
-      "Private",
-      "Browser",
-      "List"
+      "List",
+      "Html",
+      "Cleaner",
+      "Encoder",
+      "Decoder"
     ]
   },
   {
@@ -83,9 +83,9 @@ export const STATIC_CATEGORIES: (CategoryInfo & { count: number; subCategories?:
     "subCategories": [
       "Json-ld",
       "Urls",
-      "Client-side",
       "Serp",
-      "Custom"
+      "Meta tags",
+      "Title tag"
     ]
   },
   {
@@ -164,13 +164,13 @@ export const STATIC_CATEGORIES: (CategoryInfo & { count: number; subCategories?:
     "description": "Encode URLs, generate HTML QR codes, test user agents, and format web data.",
     "colorGradient": "from-blue-500 to-indigo-600",
     "bgLight": "bg-blue-50 text-blue-700",
-    "count": 80,
+    "count": 37,
     "subCategories": [
       "Seo",
-      "Client-side",
-      "Custom",
-      "Dynamic",
-      "Private"
+      "Decoder",
+      "Json",
+      "Cheat sheet",
+      "Javascript"
     ]
   },
   {
@@ -181,13 +181,12 @@ export const STATIC_CATEGORIES: (CategoryInfo & { count: number; subCategories?:
     "description": "Character counters, hashtag generators, and bio formatters for social platforms.",
     "colorGradient": "from-sky-500 to-blue-600",
     "bgLight": "bg-sky-50 text-sky-700",
-    "count": 34,
+    "count": 0,
     "subCategories": [
-      "Client-side",
-      "Custom",
-      "Dynamic",
-      "Private",
-      "Browser"
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
     ]
   },
   {
@@ -198,13 +197,12 @@ export const STATIC_CATEGORIES: (CategoryInfo & { count: number; subCategories?:
     "description": "Aspect ratio calculators, video bitrate estimators, and frame time converters.",
     "colorGradient": "from-rose-500 to-red-600",
     "bgLight": "bg-rose-50 text-rose-700",
-    "count": 30,
+    "count": 0,
     "subCategories": [
-      "Client-side",
-      "Custom",
-      "Dynamic",
-      "Private",
-      "Browser"
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
     ]
   },
   {
@@ -385,11 +383,10 @@ export const STATIC_CATEGORIES: (CategoryInfo & { count: number; subCategories?:
     "bgLight": "bg-indigo-50 text-indigo-700",
     "count": 27,
     "subCategories": [
-      "Client-side",
-      "Custom",
-      "Dynamic",
-      "Private",
-      "Browser"
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
     ]
   },
   {

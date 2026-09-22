@@ -105,12 +105,12 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
             <h4 className="font-heading font-bold text-slate-900 text-sm mb-4 uppercase tracking-wider">Top Categories</h4>
             <ul className="space-y-2 text-xs">
               {[
-                { name: 'Text Tools', slug: 'text-tools' },
-                { name: 'Image Tools', slug: 'image-tools' },
-                { name: 'PDF Tools', slug: 'pdf-tools' },
-                { name: 'Developer Tools', slug: 'developer-tools' },
-                { name: 'Calculators', slug: 'calculator-tools' },
-                { name: 'Converters', slug: 'converter-tools' },
+                { name: 'Text Formatting', slug: 'text-formatting' },
+                { name: 'Code Formatters', slug: 'code-formatters' },
+                { name: 'Calculators', slug: 'financial-calculators' },
+                { name: 'Unit Converters', slug: 'measurement-converters' },
+                { name: 'Color Palettes', slug: 'color-palettes' },
+                { name: 'PDF Utilities', slug: 'pdf-inspection' },
               ].map((cat) => (
                 <li key={cat.slug}>
                   <button

@@ -17,7 +17,7 @@ export const WhyChooseUs: React.FC = () => {
     },
     {
       title: 'Blazing Fast Performance',
-      desc: 'Zero network transfer delay. Calculations and file conversions complete instantly with high-speed JavaScript compilation.',
+      desc: 'Zero network transfer delay. Calculations and file conversions complete instantly directly inside your device browser.',
       icon: Zap,
       gradient: 'from-amber-500 to-orange-600',
     },
@@ -40,7 +40,7 @@ export const WhyChooseUs: React.FC = () => {
             Why Choose Public Media Tool
           </h2>
           <p className="text-sm text-slate-600">
-            Engineered with modern Web APIs so you can process data safely with complete peace of mind.
+            Designed for uncompromising privacy and speed so you can work safely with complete peace of mind.
           </p>
         </div>
 

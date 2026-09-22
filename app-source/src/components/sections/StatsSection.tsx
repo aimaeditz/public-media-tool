@@ -1,5 +1,8 @@
 import React from 'react';
-import { TOTAL_TOOLS, TOTAL_CATEGORIES } from '../../lib/tools-data';
+import { CATEGORIES } from '../../lib/categories';
+
+const TOTAL_TOOLS = CATEGORIES.reduce((s, c) => s + (c.count || 0), 0);
+const TOTAL_CATEGORIES = CATEGORIES.length;
 
 export const StatsSection: React.FC = () => {
   return (

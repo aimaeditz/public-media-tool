@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { CATEGORIES } from '../../lib/categories';
-import { TOTAL_TOOLS } from '../../lib/tools-data';
 import { getIconComponent } from '../../lib/utils';
 import { ArrowRight } from 'lucide-react';
 
@@ -10,9 +9,15 @@ interface CategoriesSectionProps {
 
 export const CategoriesSection: React.FC<CategoriesSectionProps> = ({ navigate }) => {
   // Select the top 16 categories by tool count to feature on the homepage
-  const featuredCategories = CATEGORIES.slice()
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 16);
+  const featuredCategories = useMemo(() => {
+    return CATEGORIES.slice()
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 16);
+  }, []);
+
+  const totalToolsCount = useMemo(() => {
+    return CATEGORIES.reduce((s, c) => s + (c.count || 0), 0);
+  }, []);
 
   return (
     <section id="categories-section" className="py-20 bg-slate-50 border-b border-slate-200/60">
@@ -26,7 +31,7 @@ export const CategoriesSection: React.FC<CategoriesSectionProps> = ({ navigate }
             Explore Tools by Category
           </h2>
           <p className="text-sm sm:text-base text-slate-600">
-            Browse {CATEGORIES.length}+ categories with {TOTAL_TOOLS.toLocaleString()}+ free browser tools
+            Browse {CATEGORIES.length}+ categories with {totalToolsCount.toLocaleString()}+ free browser tools
           </p>
         </div>
 

@@ -26,4 +26,11 @@ for (const entry of entries) {
   console.log(`[build:root] Copied: ${entry.name} -> repository root`);
 }
 
+// 3. Ensure root dist/ is also populated for platform deployment runners
+const rootDist = path.join(rootDir, 'dist');
+if (rootDist !== distDir) {
+  fs.cpSync(distDir, rootDist, { recursive: true, force: true });
+  console.log('[build:root] Copied: dist -> repository root dist');
+}
+
 console.log('[build:root] Root updated with fresh static build successfully.');

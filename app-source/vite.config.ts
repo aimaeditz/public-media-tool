@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig(() => {
   return {
+    base: '/public-media-tool/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

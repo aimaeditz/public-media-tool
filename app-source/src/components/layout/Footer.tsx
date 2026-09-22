@@ -58,8 +58,8 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
 
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12">
-          {/* Col 1: Brand & Socials */}
-          <div className="space-y-4">
+          {/* Col 1: Brand */}
+          <div className="space-y-3">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 flex items-center justify-center">
                 <svg viewBox="0 0 100 100" className="w-8 h-8">
@@ -79,25 +79,6 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
             <p className="text-xs text-slate-600 leading-relaxed">
               Free Browser-Based Tools. Simple. Private. Fast. Hundreds of high-performance tools running 100% in your local browser runtime.
             </p>
-
-            {/* Social Icons (Small, Clickable) */}
-            <div className="flex items-center gap-2 pt-2">
-              {socialLinks.map((social) => {
-                const IconComponent = social.icon;
-                return (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-7 h-7 rounded-full bg-slate-200/80 text-slate-600 flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-tr hover:from-indigo-500 hover:to-pink-500 hover:text-white hover:shadow-[0_0_8px_rgba(99,102,241,0.4)] cursor-pointer"
-                    title={social.name}
-                  >
-                    <IconComponent className="w-4 h-4" />
-                  </a>
-                );
-              })}
-            </div>
           </div>
 
           {/* Col 2: Top Categories */}
@@ -213,14 +194,35 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
         </div>
 
         {/* Bottom Legal & Copyright Bar */}
-        <div className="pt-8 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <div>
-            © 2026 Public Media Tool (publicmediatool.com). All rights reserved.
+        <div className="pt-8 border-t border-slate-200/80 flex flex-col lg:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+            <span>© 2026 Public Media Tool (publicmediatool.com). All rights reserved.</span>
+            <div className="hidden sm:block text-slate-300">•</div>
+            {/* Social Icons */}
+            <div className="flex items-center gap-2">
+              {socialLinks.map((social) => {
+                const IconComponent = social.icon;
+                return (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-7 h-7 rounded-full bg-slate-200/80 text-slate-600 flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-tr hover:from-indigo-500 hover:to-pink-500 hover:text-white hover:shadow-[0_0_8px_rgba(99,102,241,0.4)] cursor-pointer"
+                    title={social.name}
+                  >
+                    <IconComponent className="w-3.5 h-3.5" />
+                  </a>
+                );
+              })}
+            </div>
           </div>
-          <div className="text-center sm:text-right text-[11px] text-slate-400 max-w-md">
+
+          <div className="text-center text-[11px] text-slate-400 max-w-sm">
             Disclaimer: Not affiliated with any third-party trademark. All browser tools run 100% client-side.
           </div>
-          <div className="flex items-center gap-1 font-medium">
+
+          <div className="flex items-center gap-1 font-medium text-slate-600">
             Made with <Heart className="w-3.5 h-3.5 text-pink-500 fill-pink-500 inline" /> for developers & creators
           </div>
         </div>

@@ -7,5 +7,9 @@
     "dev": "npm --prefix app-source run dev",
     "build": "npm --prefix app-source run build:root",
     "lint": "npm --prefix app-source run lint"
+  },
+  "dependencies": {
+    "@types/qrcode": "^1.5.6",
+    "qrcode": "^1.5.4"
   }
 }

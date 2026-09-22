@@ -51,15 +51,15 @@ export const FaqSection: React.FC = () => {
 
   return (
     <section className="py-24 sm:py-28 bg-white border-b border-slate-200/60">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 px-3 py-1 bg-indigo-50 rounded-full border border-indigo-100">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
+          <span className="inline-block text-xs font-bold uppercase tracking-widest text-indigo-600 px-3.5 py-1 bg-indigo-50 rounded-full border border-indigo-100">
             Frequently Asked Questions
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">
+          <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 tracking-tight">
             Everything You Need To Know
           </h2>
-          <p className="text-sm text-slate-600">
+          <p className="text-sm sm:text-base text-slate-600">
             Clear answers regarding privacy, client-side execution, and tool usage across PMT.
           </p>
         </div>
@@ -71,25 +71,33 @@ export const FaqSection: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-slate-50/80 rounded-2xl border border-slate-200/80 overflow-hidden transition-colors"
+                className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+                  isOpen
+                    ? 'bg-indigo-50/40 border-indigo-200 shadow-sm'
+                    : 'bg-slate-50/80 border-slate-200/80 hover:border-indigo-200'
+                }`}
               >
                 <button
                   onClick={() => toggle(idx)}
-                  className="w-full text-left p-5 flex items-center justify-between gap-4 font-heading font-bold text-base text-slate-900 hover:text-indigo-600 transition-colors cursor-pointer"
+                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 font-heading font-bold text-base sm:text-lg text-slate-900 hover:text-indigo-600 transition-colors cursor-pointer"
                 >
-                  <span className="flex items-center gap-2">
-                    <HelpCircle className="w-5 h-5 text-indigo-500 shrink-0" />
-                    {faq.question}
+                  <span className="flex items-center gap-3">
+                    <div className={`p-2 rounded-xl transition-colors shrink-0 ${isOpen ? 'bg-indigo-600 text-white' : 'bg-indigo-50 text-indigo-600'}`}>
+                      <HelpCircle className="w-5 h-5" />
+                    </div>
+                    <span className="leading-snug">{faq.question}</span>
                   </span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${
-                      isOpen ? 'rotate-180 text-indigo-600' : ''
-                    }`}
-                  />
+                  <div className={`p-1.5 rounded-lg transition-colors shrink-0 ${isOpen ? 'bg-indigo-100 text-indigo-700' : 'text-slate-400'}`}>
+                    <ChevronDown
+                      className={`w-5 h-5 transition-transform duration-200 ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </div>
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100">
+                  <div className="px-5 sm:px-6 pb-6 pt-1 text-sm text-slate-600 leading-relaxed border-t border-indigo-100/60 pl-[3.75rem]">
                     {faq.answer}
                   </div>
                 )}

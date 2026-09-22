@@ -93,30 +93,30 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
   };
 
   return (
-    <div className="pt-12 pb-24 sm:pb-32 lg:pb-36 bg-slate-50 min-h-screen">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <div className="pt-6 sm:pt-12 pb-16 sm:pb-32 lg:pb-36 bg-slate-50 min-h-screen">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-10">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs font-semibold text-slate-500">
+        <nav className="flex items-center gap-1.5 sm:gap-2 text-xs font-semibold text-slate-500">
           <button onClick={() => navigate('/')} className="hover:text-indigo-600 cursor-pointer">Home</button>
           <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-indigo-600 font-bold">{category.name}</span>
+          <span className="text-indigo-600 font-bold truncate">{category.name}</span>
         </nav>
 
         {/* Category Header Banner */}
-        <div className={`bg-gradient-to-br ${category.colorGradient} rounded-3xl p-8 border border-white/10 shadow-lg text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden`}>
+        <div className={`bg-gradient-to-br ${category.colorGradient} rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-white/10 shadow-lg text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 relative overflow-hidden`}>
           <div className="absolute inset-0 bg-white/0 hover:bg-white/5 transition-colors duration-300" />
-          <div className="flex items-start sm:items-center gap-5 relative z-10">
-            <div className="p-4 rounded-2xl bg-white/15 text-white backdrop-blur-sm shadow-md shrink-0">
-              <IconComp className="w-8 h-8" />
+          <div className="flex items-start sm:items-center gap-3.5 sm:gap-5 relative z-10">
+            <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/15 text-white backdrop-blur-sm shadow-md shrink-0">
+              <IconComp className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
             <div>
-              <span className="text-[10px] font-extrabold px-2.5 py-1 bg-white/20 text-white rounded-full uppercase tracking-wider">
+              <span className="text-[10px] font-extrabold px-2.5 py-0.5 sm:py-1 bg-white/20 text-white rounded-full uppercase tracking-wider">
                 {category.count.toLocaleString()} tools total
               </span>
-              <h1 className="text-3xl font-extrabold font-heading mt-2">
+              <h1 className="text-2xl sm:text-3xl font-extrabold font-heading mt-1.5 sm:mt-2">
                 {category.name}
               </h1>
-              <p className="text-sm text-white/95 mt-1 max-w-2xl leading-relaxed">
+              <p className="text-xs sm:text-sm text-white/95 mt-1 max-w-2xl leading-relaxed">
                 {category.description}
               </p>
             </div>
@@ -125,13 +125,13 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
 
         {/* Sub-category Pills */}
         {category.subCategories && Array.isArray(category.subCategories) && category.subCategories.length > 0 && (
-          <div className="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-2xs flex items-center gap-3 overflow-x-auto">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider shrink-0 pl-1.5 pr-2 border-r border-slate-200">
+          <div className="bg-white p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border border-slate-200/80 shadow-2xs flex items-center gap-2 sm:gap-3 overflow-x-auto scrollbar-none pb-2 sm:pb-3.5">
+            <span className="text-[11px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider shrink-0 pl-1 sm:pl-1.5 pr-2 border-r border-slate-200">
               Subcategories:
             </span>
             <button
               onClick={() => handleSubSelect('All')}
-              className={`px-4 py-2 text-xs font-bold rounded-xl transition-all shrink-0 cursor-pointer ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-bold rounded-lg sm:rounded-xl transition-all shrink-0 cursor-pointer ${
                 selectedSub === 'All'
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-100'
                   : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-transparent'
@@ -143,7 +143,7 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
               <button
                 key={sub}
                 onClick={() => handleSubSelect(sub)}
-                className={`px-4 py-2 text-xs font-bold rounded-xl transition-all shrink-0 cursor-pointer ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-bold rounded-lg sm:rounded-xl transition-all shrink-0 cursor-pointer ${
                   selectedSub === sub
                     ? 'bg-indigo-600 text-white shadow-md shadow-indigo-100'
                     : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-transparent'
@@ -172,9 +172,9 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
             </p>
           </div>
         ) : (
-          <div className="space-y-10">
+          <div className="space-y-6 sm:space-y-10">
             {/* Grid of cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5 sm:gap-6">
               {displayedTools.map((tool) => {
                 const ToolIcon = getIconComponent(tool.iconName);
 
@@ -182,26 +182,26 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
                   <LazyRender key={tool.id} placeholderHeight="180px">
                     <div
                       onClick={() => navigate(`/tools/${tool.slug}`)}
-                      className="group bg-white rounded-2xl p-5 border border-slate-200/80 hover:border-indigo-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 relative h-[180px]"
+                      className="group bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 hover:border-indigo-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 relative min-h-[160px] sm:h-[180px]"
                     >
                       <div>
-                        <div className="flex items-center justify-between mb-3">
-                          <div className={`p-2.5 rounded-xl bg-gradient-to-br ${category.colorGradient} text-white group-hover:scale-110 transition-transform shadow-2xs`}>
-                            <ToolIcon className="w-5 h-5" />
+                        <div className="flex items-center justify-between mb-2.5 sm:mb-3">
+                          <div className={`p-2 sm:p-2.5 rounded-xl bg-gradient-to-br ${category.colorGradient} text-white group-hover:scale-110 transition-transform shadow-2xs`}>
+                            <ToolIcon className="w-4 h-4 sm:w-5 sm:h-5" />
                           </div>
                         </div>
 
-                        <h3 className="font-heading font-bold text-base text-slate-900 group-hover:text-indigo-600 transition-colors truncate">
+                        <h3 className="font-heading font-bold text-sm sm:text-base text-slate-900 group-hover:text-indigo-600 transition-colors truncate">
                           {tool.name}
                         </h3>
-                        <p className="text-xs text-slate-500 mt-1.5 leading-relaxed line-clamp-2">
+                        <p className="text-xs text-slate-500 mt-1 sm:mt-1.5 leading-relaxed line-clamp-2">
                           {tool.shortDesc}
                         </p>
                       </div>
 
-                      <div className="pt-3.5 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-medium text-slate-500">
-                        <span>{formatNumber(tool.usageCount)} uses</span>
-                        <span className="font-bold text-indigo-600 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                      <div className="pt-3 sm:pt-3.5 mt-3 sm:mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-medium text-slate-500">
+                        <span className="text-[11px] sm:text-xs">{formatNumber(tool.usageCount)} uses</span>
+                        <span className="font-bold text-indigo-600 group-hover:translate-x-1 transition-transform flex items-center gap-1 text-[11px] sm:text-xs">
                           Open <ArrowRight className="w-3.5 h-3.5" />
                         </span>
                       </div>
@@ -213,11 +213,11 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
 
             {/* Pagination Controls */}
             {totalPages > 1 && (
-              <div id="pagination-controls" className="flex items-center justify-center gap-2 pt-6">
+              <div id="pagination-controls" className="flex items-center justify-center gap-1.5 sm:gap-2 pt-4 sm:pt-6">
                 <button
                   disabled={currentPage === 1}
                   onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
-                  className="px-4 py-2 text-xs font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-300 rounded-xl disabled:opacity-50 disabled:hover:bg-white transition-all cursor-pointer"
+                  className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-300 rounded-lg sm:rounded-xl disabled:opacity-50 disabled:hover:bg-white transition-all cursor-pointer"
                 >
                   Previous
                 </button>
@@ -235,7 +235,7 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
                     <button
                       key={pageNum}
                       onClick={() => setCurrentPage(pageNum)}
-                      className={`w-9 h-9 text-xs font-bold rounded-xl border transition-all cursor-pointer ${
+                      className={`w-8 h-8 sm:w-9 sm:h-9 text-xs font-bold rounded-lg sm:rounded-xl border transition-all cursor-pointer ${
                         currentPage === pageNum
                           ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-200'
                           : 'bg-white text-slate-700 hover:bg-slate-100 border-slate-300'
@@ -249,7 +249,7 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
                 <button
                   disabled={currentPage === totalPages}
                   onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
-                  className="px-4 py-2 text-xs font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-300 rounded-xl disabled:opacity-50 disabled:hover:bg-white transition-all cursor-pointer"
+                  className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-300 rounded-lg sm:rounded-xl disabled:opacity-50 disabled:hover:bg-white transition-all cursor-pointer"
                 >
                   Next
                 </button>

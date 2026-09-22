@@ -106,38 +106,38 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
   const displayedTools = filtered.slice(0, debouncedSearch ? 50 : pageSize);
 
   return (
-    <div className="pt-12 pb-24 sm:pb-32 lg:pb-36 bg-slate-50 min-h-screen">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div className="pt-6 sm:pt-12 pb-16 sm:pb-32 lg:pb-36 bg-slate-50 min-h-screen">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-12">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 px-3.5 py-1 bg-indigo-50 rounded-full border border-indigo-100">
+        <div className="text-center max-w-3xl mx-auto space-y-2 sm:space-y-3">
+          <span className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 px-3 py-1 bg-indigo-50 rounded-full border border-indigo-100">
             Complete Suite
           </span>
-          <h1 className="text-4xl font-extrabold font-heading text-slate-900">
+          <h1 className="text-2xl sm:text-4xl font-extrabold font-heading text-slate-900">
             All Browser-Based Tools
           </h1>
-          <p className="text-sm text-slate-600">
+          <p className="text-xs sm:text-sm text-slate-600">
             Browse our complete directory of 100% client-side tools. Fast, private, and always free.
           </p>
         </div>
 
         {/* Filter & Search Controls */}
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {/* Search Box */}
-          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-xs flex items-center justify-between gap-4">
+          <div className="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-xs flex items-center justify-between gap-3 sm:gap-4">
             <div className="relative w-full">
-              <Search className="w-5 h-5 text-indigo-500 absolute left-4 top-3.5" />
+              <Search className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-500 absolute left-3.5 sm:left-4 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search by tool name or keyword (e.g., JSON, image resizer, word counter)..."
-                className="w-full pl-12 pr-10 py-3 text-sm rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400 font-medium transition-all"
+                className="w-full pl-10 sm:pl-12 pr-10 py-2.5 sm:py-3 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400 font-medium transition-all"
               />
               {search && (
                 <button
                   onClick={() => setSearch('')}
-                  className="absolute right-3 top-3 text-slate-400 hover:text-slate-600 p-1 rounded-lg hover:bg-slate-200/60 transition-colors cursor-pointer"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 rounded-lg hover:bg-slate-200/60 transition-colors cursor-pointer"
                   title="Clear search"
                 >
                   <X className="w-4 h-4" />
@@ -156,9 +156,9 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
 
           {/* Category Dropdown Filter Box */}
           <div className="relative z-30" ref={dropdownRef}>
-            <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="flex items-center gap-2 text-slate-700 text-sm font-bold">
-                <Filter className="w-4.5 h-4.5 text-indigo-600 shrink-0" />
+            <div className="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+              <div className="flex items-center gap-2 text-slate-700 text-xs sm:text-sm font-bold">
+                <Filter className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-indigo-600 shrink-0" />
                 <span>Category Filter:</span>
               </div>
 
@@ -166,7 +166,7 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
                 <button
                   type="button"
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="w-full flex items-center justify-between gap-3 px-4 py-3 bg-slate-50/80 hover:bg-slate-100 border border-slate-200 focus:border-indigo-400 rounded-xl text-xs sm:text-sm font-bold text-slate-800 transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500/20 cursor-pointer"
+                  className="w-full flex items-center justify-between gap-3 px-3.5 sm:px-4 py-2.5 sm:py-3 bg-slate-50/80 hover:bg-slate-100 border border-slate-200 focus:border-indigo-400 rounded-xl text-xs sm:text-sm font-bold text-slate-800 transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500/20 cursor-pointer"
                   aria-expanded={isDropdownOpen}
                   aria-label="Select Category"
                 >
@@ -247,8 +247,8 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
             </div>
           </div>
         ) : (
-          <div className="space-y-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="space-y-6 sm:space-y-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5 sm:gap-6">
               {displayedTools.map((tool) => {
                 const IconComp = getIconComponent(tool.iconName);
 
@@ -256,12 +256,12 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
                   <LazyRender key={tool.id} placeholderHeight="180px">
                     <div
                       onClick={() => navigate(`/tools/${tool.slug}`)}
-                      className="group bg-white rounded-2xl p-5 border border-slate-200/80 hover:border-indigo-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 relative h-[180px]"
+                      className="group bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 hover:border-indigo-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 relative min-h-[160px] sm:h-[180px]"
                     >
                       <div>
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="p-3 rounded-xl bg-indigo-100/80 text-indigo-700 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                            <IconComp className="w-5 h-5" />
+                        <div className="flex items-center justify-between mb-2.5 sm:mb-4">
+                          <div className="p-2.5 sm:p-3 rounded-xl bg-indigo-100/80 text-indigo-700 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                            <IconComp className="w-4 h-4 sm:w-5 sm:h-5" />
                           </div>
 
                           <span className="text-[10px] font-bold px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full truncate max-w-[150px]">
@@ -269,17 +269,17 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
                           </span>
                         </div>
 
-                        <h3 className="font-heading font-bold text-base text-slate-900 group-hover:text-indigo-600 transition-colors truncate">
+                        <h3 className="font-heading font-bold text-sm sm:text-base text-slate-900 group-hover:text-indigo-600 transition-colors truncate">
                           {tool.name}
                         </h3>
-                        <p className="text-xs text-slate-600 mt-1.5 leading-relaxed line-clamp-2">
+                        <p className="text-xs text-slate-600 mt-1 sm:mt-1.5 leading-relaxed line-clamp-2">
                           {tool.shortDesc}
                         </p>
                       </div>
 
-                      <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-medium text-slate-500">
-                        <span>{formatNumber(tool.usageCount)} uses</span>
-                        <span className="font-bold text-indigo-600 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                      <div className="pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-medium text-slate-500">
+                        <span className="text-[11px] sm:text-xs">{formatNumber(tool.usageCount)} uses</span>
+                        <span className="font-bold text-indigo-600 group-hover:translate-x-1 transition-transform flex items-center gap-1 text-[11px] sm:text-xs">
                           Open <ArrowRight className="w-3.5 h-3.5" />
                         </span>
                       </div>
@@ -291,10 +291,10 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
 
             {/* Pagination Controls */}
             {!debouncedSearch && filtered.length > pageSize && (
-              <div className="text-center pt-4">
+              <div className="text-center pt-3 sm:pt-4">
                 <button
                   onClick={() => setPageSize((prev) => prev + 50)}
-                  className="px-8 py-3 text-sm font-bold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 rounded-xl shadow-xs transition-all cursor-pointer inline-flex items-center gap-2"
+                  className="px-6 sm:px-8 py-2.5 sm:py-3 text-xs sm:text-sm font-bold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 rounded-xl shadow-xs transition-all cursor-pointer inline-flex items-center gap-2"
                 >
                   Load More Tools ({filtered.length - pageSize} remaining)
                 </button>

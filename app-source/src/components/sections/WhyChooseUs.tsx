@@ -30,33 +30,33 @@ export const WhyChooseUs: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 sm:py-28 bg-white border-b border-slate-200/60">
+    <section className="py-10 sm:py-20 md:py-28 bg-white border-b border-slate-200/60">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 px-3 py-1 bg-indigo-50 rounded-full border border-indigo-100">
+        <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-14 space-y-2 sm:space-y-3">
+          <span className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 px-3 py-1 bg-indigo-50 rounded-full border border-indigo-100">
             Uncompromising Privacy & Speed
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">
+          <h2 className="text-2xl sm:text-4xl font-extrabold font-heading text-slate-900">
             Why Choose Public Media Tool
           </h2>
-          <p className="text-sm text-slate-600">
+          <p className="text-xs sm:text-sm text-slate-600">
             Designed for uncompromising privacy and speed so you can work safely with complete peace of mind.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {features.map((feat, idx) => {
             const IconComp = feat.icon;
             return (
               <div
                 key={idx}
-                className="group bg-slate-50/80 p-6 rounded-2xl border border-slate-200/80 hover:border-indigo-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 space-y-4"
+                className="group bg-slate-50/80 p-4 sm:p-6 rounded-2xl border border-slate-200/80 hover:border-indigo-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 space-y-3 sm:space-y-4"
               >
-                <div className={`p-4 rounded-xl bg-gradient-to-br ${feat.gradient} text-white w-fit shadow-md group-hover:scale-110 transition-transform`}>
-                  <IconComp className="w-6 h-6" />
+                <div className={`p-3 sm:p-4 rounded-xl bg-gradient-to-br ${feat.gradient} text-white w-fit shadow-md group-hover:scale-110 transition-transform`}>
+                  <IconComp className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
 
-                <h3 className="font-heading font-bold text-lg text-slate-900">
+                <h3 className="font-heading font-bold text-base sm:text-lg text-slate-900">
                   {feat.title}
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed">

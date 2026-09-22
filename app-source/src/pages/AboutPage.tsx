@@ -69,8 +69,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
   };
 
   return (
-    <div className="pt-12 pb-24 md:pb-32 bg-slate-50 min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div className="pt-6 sm:pt-12 pb-16 sm:pb-32 md:pb-32 bg-slate-50 min-h-screen">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         
         {/* Breadcrumb */}
         <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2" id="about-breadcrumb">
@@ -86,45 +86,45 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
         </nav>
 
         {/* Header */}
-        <div className="text-center space-y-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 px-3.5 py-1.5 bg-indigo-50 rounded-full border border-indigo-100">
+        <div className="text-center space-y-2.5 sm:space-y-4">
+          <span className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 px-3 py-1 bg-indigo-50 rounded-full border border-indigo-100">
             About Public Media Tool
           </span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold font-heading text-slate-900 tracking-tight">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold font-heading text-slate-900 tracking-tight">
             Free Browser-Based Tools. Simple. Private. Fast.
           </h1>
-          <p className="text-sm sm:text-base text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-base text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Public Media Tool (PMT) was established with a singular mission: to equip creators, software developers, designers, students, finance professionals, and web users worldwide with a comprehensive suite of {TOTAL_TOOLS.toLocaleString()}+ high-performance digital utilities running 100% client-side inside your browser.
           </p>
         </div>
 
         {/* Core Principles */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs space-y-3">
-            <div className="p-3 bg-indigo-50 text-indigo-700 rounded-xl w-fit">
-              <ShieldCheck className="w-6 h-6" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-6">
+          <div className="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200/80 shadow-xs space-y-2 sm:space-y-3">
+            <div className="p-2.5 sm:p-3 bg-indigo-50 text-indigo-700 rounded-xl w-fit">
+              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <h3 className="font-heading font-bold text-lg text-slate-900">Absolute Privacy</h3>
+            <h3 className="font-heading font-bold text-base sm:text-lg text-slate-900">Absolute Privacy</h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Your sensitive documents, code files, photos, and calculated data never leave your personal hardware. Every execution occurs locally in browser memory with zero remote server data uploads.
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs space-y-3">
-            <div className="p-3 bg-pink-50 text-pink-700 rounded-xl w-fit">
-              <Zap className="w-6 h-6" />
+          <div className="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200/80 shadow-xs space-y-2 sm:space-y-3">
+            <div className="p-2.5 sm:p-3 bg-pink-50 text-pink-700 rounded-xl w-fit">
+              <Zap className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <h3 className="font-heading font-bold text-lg text-slate-900">Zero Network Latency</h3>
+            <h3 className="font-heading font-bold text-base sm:text-lg text-slate-900">Zero Network Latency</h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               By removing server round-trips and network transmission queues, tool calculations and media manipulations process instantaneously for seamless productivity.
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs space-y-3">
-            <div className="p-3 bg-amber-50 text-amber-700 rounded-xl w-fit">
-              <Heart className="w-6 h-6" />
+          <div className="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200/80 shadow-xs space-y-2 sm:space-y-3">
+            <div className="p-2.5 sm:p-3 bg-amber-50 text-amber-700 rounded-xl w-fit">
+              <Heart className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <h3 className="font-heading font-bold text-lg text-slate-900">100% Free Access</h3>
+            <h3 className="font-heading font-bold text-base sm:text-lg text-slate-900">100% Free Access</h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               No subscription fees, paywalls, token limits, or mandatory registration. All tools are fully accessible to users everywhere without artificial restrictions.
             </p>
@@ -132,26 +132,26 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
         </div>
 
         {/* How It Works Section */}
-        <div className="bg-white rounded-3xl p-8 md:p-10 border border-slate-200/80 shadow-xs space-y-8">
-          <div className="space-y-2 border-b border-slate-100 pb-6">
-            <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 px-3 py-1 bg-indigo-50 rounded-full border border-indigo-100">
+        <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 border border-slate-200/80 shadow-xs space-y-6 sm:space-y-8">
+          <div className="space-y-1.5 sm:space-y-2 border-b border-slate-100 pb-4 sm:pb-6">
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 px-2.5 py-0.5 sm:px-3 sm:py-1 bg-indigo-50 rounded-full border border-indigo-100">
               Workflow Guide
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-slate-900 flex items-center gap-2 pt-1">
-              <Layers className="w-6 h-6 text-indigo-600" /> How It Works
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold font-heading text-slate-900 flex items-center gap-2 pt-1">
+              <Layers className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600" /> How It Works
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Understand the seamless, step-by-step process that powers every utility across PMT.
             </p>
           </div>
 
-          <div className="space-y-8">
-            <div className="flex gap-4 items-start">
-              <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md shadow-indigo-200">
+          <div className="space-y-5 sm:space-y-8">
+            <div className="flex gap-3 sm:gap-4 items-start">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md shadow-indigo-200 text-xs sm:text-base">
                 1
               </div>
-              <div className="space-y-2">
-                <h3 className="text-lg font-bold font-heading text-slate-900">
+              <div className="space-y-1 sm:space-y-2">
+                <h3 className="text-sm sm:text-lg font-bold font-heading text-slate-900">
                   Selecting a Tool Category or Utility
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -160,12 +160,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
               </div>
             </div>
 
-            <div className="flex gap-4 items-start">
-              <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md shadow-indigo-200">
+            <div className="flex gap-3 sm:gap-4 items-start">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md shadow-indigo-200 text-xs sm:text-base">
                 2
               </div>
-              <div className="space-y-2">
-                <h3 className="text-lg font-bold font-heading text-slate-900">
+              <div className="space-y-1 sm:space-y-2">
+                <h3 className="text-sm sm:text-lg font-bold font-heading text-slate-900">
                   Inputting Data or Dropping Files Locally
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -174,12 +174,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
               </div>
             </div>
 
-            <div className="flex gap-4 items-start">
-              <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md shadow-indigo-200">
+            <div className="flex gap-3 sm:gap-4 items-start">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md shadow-indigo-200 text-xs sm:text-base">
                 3
               </div>
-              <div className="space-y-2">
-                <h3 className="text-lg font-bold font-heading text-slate-900">
+              <div className="space-y-1 sm:space-y-2">
+                <h3 className="text-sm sm:text-lg font-bold font-heading text-slate-900">
                   Client-Side Execution & Computation
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -188,12 +188,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
               </div>
             </div>
 
-            <div className="flex gap-4 items-start">
-              <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md shadow-indigo-200">
+            <div className="flex gap-3 sm:gap-4 items-start">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md shadow-indigo-200 text-xs sm:text-base">
                 4
               </div>
-              <div className="space-y-2">
-                <h3 className="text-lg font-bold font-heading text-slate-900">
+              <div className="space-y-1 sm:space-y-2">
+                <h3 className="text-sm sm:text-lg font-bold font-heading text-slate-900">
                   Exporting, Copying, or Downloading Results
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -202,12 +202,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
               </div>
             </div>
 
-            <div className="flex gap-4 items-start">
-              <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md shadow-indigo-200">
+            <div className="flex gap-3 sm:gap-4 items-start">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-indigo-600 text-white font-bold flex items-center justify-center shrink-0 shadow-md shadow-indigo-200 text-xs sm:text-base">
                 5
               </div>
-              <div className="space-y-2">
-                <h3 className="text-lg font-bold font-heading text-slate-900">
+              <div className="space-y-1 sm:space-y-2">
+                <h3 className="text-sm sm:text-lg font-bold font-heading text-slate-900">
                   Browser Compatibility & Offline Continuance
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -219,19 +219,19 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
         </div>
 
         {/* Site Commitments & Principles */}
-        <div className="bg-white rounded-3xl p-8 md:p-10 border border-slate-200/80 shadow-xs space-y-6">
-          <div className="space-y-2 border-b border-slate-100 pb-4">
-            <h2 className="text-2xl font-extrabold font-heading text-slate-900 flex items-center gap-2">
-              <Sparkles className="w-6 h-6 text-indigo-600" /> Core Commitments & Principles
+        <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 border border-slate-200/80 shadow-xs space-y-4 sm:space-y-6">
+          <div className="space-y-1 sm:space-y-2 border-b border-slate-100 pb-3 sm:pb-4">
+            <h2 className="text-xl sm:text-2xl font-extrabold font-heading text-slate-900 flex items-center gap-2">
+              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600" /> Core Commitments & Principles
             </h2>
             <p className="text-xs sm:text-sm text-slate-600">
               The foundational guarantees that govern every tool built under PMT.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm text-slate-600 leading-relaxed">
-            <div className="space-y-2 p-4 bg-slate-50/70 rounded-2xl border border-slate-100">
-              <div className="font-bold font-heading text-slate-900 text-base flex items-center gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6 text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <div className="space-y-1.5 sm:space-y-2 p-3.5 sm:p-4 bg-slate-50/70 rounded-xl sm:rounded-2xl border border-slate-100">
+              <div className="font-bold font-heading text-slate-900 text-sm sm:text-base flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Genuine Client-Side Engines
               </div>
               <p>
@@ -239,8 +239,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
               </p>
             </div>
 
-            <div className="space-y-2 p-4 bg-slate-50/70 rounded-2xl border border-slate-100">
-              <div className="font-bold font-heading text-slate-900 text-base flex items-center gap-2">
+            <div className="space-y-1.5 sm:space-y-2 p-3.5 sm:p-4 bg-slate-50/70 rounded-xl sm:rounded-2xl border border-slate-100">
+              <div className="font-bold font-heading text-slate-900 text-sm sm:text-base flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Zero Artificial Limits
               </div>
               <p>
@@ -248,8 +248,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
               </p>
             </div>
 
-            <div className="space-y-2 p-4 bg-slate-50/70 rounded-2xl border border-slate-100">
-              <div className="font-bold font-heading text-slate-900 text-base flex items-center gap-2">
+            <div className="space-y-1.5 sm:space-y-2 p-3.5 sm:p-4 bg-slate-50/70 rounded-xl sm:rounded-2xl border border-slate-100">
+              <div className="font-bold font-heading text-slate-900 text-sm sm:text-base flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Uncompromised Privacy
               </div>
               <p>
@@ -257,8 +257,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
               </p>
             </div>
 
-            <div className="space-y-2 p-4 bg-slate-50/70 rounded-2xl border border-slate-100">
-              <div className="font-bold font-heading text-slate-900 text-base flex items-center gap-2">
+            <div className="space-y-1.5 sm:space-y-2 p-3.5 sm:p-4 bg-slate-50/70 rounded-xl sm:rounded-2xl border border-slate-100">
+              <div className="font-bold font-heading text-slate-900 text-sm sm:text-base flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" /> Full Functional Clarity
               </div>
               <p>
@@ -269,9 +269,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
         </div>
 
         {/* Security & Client-Side Architecture */}
-        <div className="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-xs space-y-4">
-          <h2 className="text-2xl font-extrabold font-heading text-slate-900 flex items-center gap-2">
-            <Lock className="w-6 h-6 text-indigo-600" /> Security Architecture
+        <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-200/80 shadow-xs space-y-2.5 sm:space-y-4">
+          <h2 className="text-xl sm:text-2xl font-extrabold font-heading text-slate-900 flex items-center gap-2">
+            <Lock className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600" /> Security Architecture
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
             Unlike traditional web applications that transmit sensitive documents, code blocks, and images to third-party cloud infrastructure for processing, Public Media Tool executes all functional logic locally inside your browser session. Whether you are generating secure SHA hashes, resizing graphics, formatting JSON data, or calculating financial rates, all operations remain confined within your system hardware.
@@ -279,11 +279,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
         </div>
 
         {/* About the Creator Section */}
-        <div className="bg-gradient-to-br from-indigo-900 to-slate-900 rounded-3xl p-8 md:p-10 text-white shadow-xl space-y-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-300 px-3 py-1 bg-indigo-900/60 rounded-full border border-indigo-700/60">
+        <div className="bg-gradient-to-br from-indigo-900 to-slate-900 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 text-white shadow-xl space-y-2.5 sm:space-y-4">
+          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-indigo-300 px-2.5 py-0.5 sm:px-3 sm:py-1 bg-indigo-900/60 rounded-full border border-indigo-700/60">
             Brand Direction
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold font-heading tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold font-heading tracking-tight">
             About Public Media Tool (PMT)
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -292,35 +292,35 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
         </div>
 
         {/* FAQ Section */}
-        <div className="space-y-6 pt-6 animate-fade-in" id="about-faq-section">
-          <div className="text-center md:text-left space-y-2">
-            <h2 className="text-2xl md:text-3xl font-extrabold font-heading text-slate-900 flex items-center justify-center md:justify-start gap-2">
-              <HelpCircle className="w-6 h-6 text-indigo-600" /> General FAQ
+        <div className="space-y-4 sm:space-y-6 pt-3 sm:pt-6 animate-fade-in" id="about-faq-section">
+          <div className="text-center md:text-left space-y-1 sm:space-y-2">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold font-heading text-slate-900 flex items-center justify-center md:justify-start gap-2">
+              <HelpCircle className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600" /> General FAQ
             </h2>
             <p className="text-xs sm:text-sm text-slate-500">
               Detailed answers regarding client-side performance, privacy guarantees, and usage guidelines across PMT.
             </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5 sm:space-y-3">
             {faqs.map((faq, i) => (
               <div
                 key={i}
-                className="bg-white rounded-2xl border border-slate-200/80 transition-all shadow-xs overflow-hidden"
+                className="bg-white rounded-xl sm:rounded-2xl border border-slate-200/80 transition-all shadow-xs overflow-hidden"
               >
                 <button
                   onClick={() => toggleFaq(i)}
-                  className="w-full flex items-center justify-between p-5 text-left font-bold text-slate-950 font-heading text-sm sm:text-base cursor-pointer hover:bg-slate-50/50 rounded-2xl transition-all"
+                  className="w-full flex items-center justify-between p-3.5 sm:p-5 text-left font-bold text-slate-950 font-heading text-xs sm:text-base cursor-pointer hover:bg-slate-50/50 rounded-xl sm:rounded-2xl transition-all"
                 >
-                  <span className="pr-4">{faq.q}</span>
+                  <span className="pr-3 sm:pr-4">{faq.q}</span>
                   {openFaq === i ? (
-                    <ChevronUp className="w-5 h-5 text-indigo-600 shrink-0" />
+                    <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600 shrink-0" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
+                    <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 shrink-0" />
                   )}
                 </button>
                 {openFaq === i && (
-                  <div className="p-5 pt-0 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <div className="p-3.5 sm:p-5 pt-0 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {faq.a}
                   </div>
                 )}

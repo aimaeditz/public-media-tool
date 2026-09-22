@@ -48,21 +48,21 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
   ];
 
   return (
-    <footer className="relative bg-slate-100/80 border-t border-slate-200 text-slate-700 overflow-hidden pt-12 pb-8 mt-12 sm:mt-16">
+    <footer className="relative bg-slate-100/80 border-t border-slate-200 text-slate-700 overflow-hidden pt-8 sm:pt-12 pb-6 sm:pb-8 mt-8 sm:mt-12 md:mt-16">
       {/* Wave SVG Top Divider */}
       <div className="absolute top-0 left-0 right-0 overflow-hidden leading-none pointer-events-none opacity-30">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-8 text-indigo-500 fill-current">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-6 sm:h-8 text-indigo-500 fill-current">
           <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" />
         </svg>
       </div>
 
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 pb-8 sm:pb-12">
           {/* Col 1: Brand */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 flex items-center justify-center">
-                <svg viewBox="0 0 100 100" className="w-8 h-8">
+          <div className="space-y-2 sm:space-y-3">
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center shrink-0">
+                <svg viewBox="0 0 100 100" className="w-7 h-7 sm:w-8 sm:h-8">
                   <defs>
                     <linearGradient id="footerPmtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="#6366F1" />
@@ -73,7 +73,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
                   <text x="50" y="59" fill="#FFFFFF" fontSize="32" fontWeight="800" fontFamily="Space Grotesk" textAnchor="middle">PMT</text>
                 </svg>
               </div>
-              <span className="font-heading font-extrabold text-lg text-slate-900">Public Media Tool</span>
+              <span className="font-heading font-extrabold text-base sm:text-lg text-slate-900">Public Media Tool</span>
             </div>
 
             <p className="text-xs text-slate-600 leading-relaxed">
@@ -83,8 +83,8 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
 
           {/* Col 2: Top Categories */}
           <div>
-            <h4 className="font-heading font-bold text-slate-900 text-sm mb-4 uppercase tracking-wider">Top Categories</h4>
-            <ul className="space-y-2 text-xs">
+            <h4 className="font-heading font-bold text-slate-900 text-xs sm:text-sm mb-2.5 sm:mb-4 uppercase tracking-wider">Top Categories</h4>
+            <ul className="grid grid-cols-2 sm:grid-cols-1 gap-1.5 sm:space-y-2 sm:gap-0 text-xs">
               {[
                 { name: 'Text Formatting', slug: 'text-formatting' },
                 { name: 'Code Formatters', slug: 'code-formatters' },
@@ -96,7 +96,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
                 <li key={cat.slug}>
                   <button
                     onClick={() => navigate(`/categories/${cat.slug}`)}
-                    className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
+                    className="hover:text-indigo-600 transition-colors cursor-pointer text-left truncate max-w-full"
                   >
                     {cat.name}
                   </button>
@@ -107,8 +107,8 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
 
           {/* Col 3: Quick Links */}
           <div>
-            <h4 className="font-heading font-bold text-slate-900 text-sm mb-4 uppercase tracking-wider">Quick Links</h4>
-            <ul className="space-y-2 text-xs">
+            <h4 className="font-heading font-bold text-slate-900 text-xs sm:text-sm mb-2.5 sm:mb-4 uppercase tracking-wider">Quick Links</h4>
+            <ul className="grid grid-cols-2 sm:grid-cols-1 gap-1.5 sm:space-y-2 sm:gap-0 text-xs">
               <li>
                 <button
                   onClick={() => navigate('/privacy-policy')}
@@ -161,12 +161,12 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
           </div>
 
           {/* Col 4: Stay Updated */}
-          <div className="space-y-3">
-            <h4 className="font-heading font-bold text-slate-900 text-sm uppercase tracking-wider">Stay Updated</h4>
+          <div className="space-y-2.5 sm:space-y-3">
+            <h4 className="font-heading font-bold text-slate-900 text-xs sm:text-sm uppercase tracking-wider">Stay Updated</h4>
             <p className="text-xs text-slate-600">Get notified when new browser tools are added.</p>
 
             {subscribed ? (
-              <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700 text-xs font-semibold flex items-center gap-2">
+              <div className="p-2.5 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700 text-xs font-semibold flex items-center gap-2">
                 <Check className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>Subscribed successfully!</span>
               </div>
@@ -194,12 +194,12 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
         </div>
 
         {/* Bottom Legal & Copyright Bar */}
-        <div className="pt-8 border-t border-slate-200/80 flex flex-col lg:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+        <div className="pt-6 sm:pt-8 border-t border-slate-200/80 flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-4 text-[11px] sm:text-xs text-slate-500">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left">
             <span>© 2026 Public Media Tool (publicmediatool.com). All rights reserved.</span>
             <div className="hidden sm:block text-slate-300">•</div>
             {/* Social Icons */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 pt-1 sm:pt-0">
               {socialLinks.map((social) => {
                 const IconComponent = social.icon;
                 return (
@@ -218,7 +218,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
             </div>
           </div>
 
-          <div className="text-center text-[11px] text-slate-400 max-w-sm">
+          <div className="text-center text-[10px] sm:text-[11px] text-slate-400 max-w-sm">
             Disclaimer: Not affiliated with any third-party trademark. All browser tools run 100% client-side.
           </div>
 

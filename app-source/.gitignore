@@ -1,6 +1,4 @@
 node_modules/
-app-source/node_modules/
-dist_root/
 build/
 dist/
 coverage/

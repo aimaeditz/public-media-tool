@@ -20,7 +20,14 @@ const keepList = new Set([
   'metadata.json',
   'package.json',
   'dist_root',
-  'dist'
+  'dist',
+  'src',
+  'scripts',
+  'public',
+  'tsconfig.json',
+  'vite.config.ts',
+  '.env.example',
+  'node_modules'
 ]);
 
 console.log('Cleaning repository root...');

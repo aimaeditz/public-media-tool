@@ -1,5 +1,5 @@
 {
-  "name": "react-example",
+  "name": "public-media-tool",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +9,6 @@
     "build": "vite build",
     "build:root": "vite build --outDir ../dist_root --emptyOutDir && node ../scripts-deploy/copy-to-root.cjs",
     "preview": "vite preview",
-    "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
@@ -20,7 +19,6 @@
     "@vitejs/plugin-react": "^6.1.1",
     "canvas-confetti": "^1.9.4",
     "dotenv": "^17.2.3",
-    "express": "^4.21.2",
     "framer-motion": "^13.4.0",
     "jszip": "^3.10.2",
     "lucide-react": "^0.546.0",
@@ -33,7 +31,6 @@
     "zustand": "^5.0.15"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
     "@types/node": "^22.14.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",

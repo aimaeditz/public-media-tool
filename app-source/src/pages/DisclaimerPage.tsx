@@ -117,7 +117,7 @@ export const DisclaimerPage: React.FC<DisclaimerPageProps> = ({ navigate }) => {
           <section className="space-y-4">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900">4. Precision Disclaimer</h2>
             <p>
-              While we consistently test our mathematical formulas, formatting utilities, and conversion tools to align with standard technical specifications, occasional variations or user inputs may affect results. Users are advised to double-check outputs whenever completing high-stakes calculations or mission-critical tasks.
+              While we consistently update and test our math equations, code compilers, and formatting tools to follow official standard technical specifications, small errors can sometimes occur. Users are advised to double-check outputs whenever completing high-stakes calculations or writing mission-critical computer programs.
             </p>
           </section>
 

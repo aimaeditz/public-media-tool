@@ -100,7 +100,6 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
 
     const matchesCat = selectedCat === 'All' || 
                        tool.category === selectedCat || 
-                       (tool as any).parentCategory === selectedCat ||
                        tool.category.startsWith(selectedCat + ' - ');
 
     return matchesSearch && matchesCat;

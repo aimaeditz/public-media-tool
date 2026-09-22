@@ -23,15 +23,15 @@ export const CreditsPage: React.FC<CreditsPageProps> = ({ navigate }) => {
   const faqs = [
     {
       q: "Who is the primary creator of Public Media Tool?",
-      a: "Public Media Tool was conceptualized, designed, and developed by the PMT project team to provide fast, private, and accessible online utilities."
+      a: "The suite was designed, conceptualized, and built by AiMAEditz (with social presence on YouTube @aimabideditz and Instagram @its_abid29)."
     },
     {
-      q: "Why is PMT built for client-side execution?",
-      a: "By executing logic directly inside your local browser, tools process instantly without uploading your files or text inputs to remote servers."
+      q: "Why is the tech stack chosen for Client-Side execution?",
+      a: "By combining React 19 and Vite's superfast compilation, tools load instantly and execute calculations in milliseconds. Tailwind CSS ensures that every card, form field, and transition behaves smoothly and looks extremely clean."
     },
     {
       q: "Are the icons customized?",
-      a: "All visual icons are powered by modern open-source icon repositories for a clean, consistent, and intuitive user interface."
+      a: "All vector icons are powered by the gorgeous Lucide React open-source icon repository, which provides sleek, consistent, and customizable stroke indicators."
     },
     {
       q: "How can I support the creators or submit suggestions?",
@@ -82,50 +82,65 @@ export const CreditsPage: React.FC<CreditsPageProps> = ({ navigate }) => {
               <Heart className="w-5.5 h-5.5 text-pink-500 fill-pink-100" /> Creator Profile
             </h2>
             <p>
-              <strong>Public Media Tool (PMT)</strong> was conceptualized and developed by an independent team of creators and developers. Recognizing the need for ultra-fast, ad-free, and private online tools, PMT was created to provide everyone with high-utility browser applications that run with complete data integrity.
+              <strong>Public Media Tool</strong> was developed by <strong>AiMAEditz</strong>, an independent developer and designer. Inspired by the lack of fast, ad-free, and truly private online tools, AiMAEditz designed this single unified platform where users can process files with absolute data integrity.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <Sparkles className="w-5.5 h-5.5 text-indigo-600" /> Core Design Principles
+              <Code className="w-5.5 h-5.5 text-indigo-600" /> Tech Stack Breakdown
             </h2>
             <p>
-              The platform is built around four fundamental design pillars to deliver an outstanding user experience across desktop and mobile devices:
+              The application is engineered on top of cutting-edge client-side web technologies to guarantee maximum security, high rendering performance, and a delightful interface:
+            </p>
+            <ul className="list-disc list-inside space-y-2 pl-2">
+              <li><strong>React 19:</strong> Leading-edge component-based UI rendering.</li>
+              <li><strong>Vite:</strong> The ultra-fast, modern frontend build tool.</li>
+              <li><strong>Tailwind CSS v4:</strong> Providing crisp, responsive utilities, and mathematically precise layouts.</li>
+              <li><strong>TypeScript:</strong> Providing bulletproof type safety and reliable functional states.</li>
+            </ul>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <Library className="w-5.5 h-5.5 text-indigo-600" /> Libraries & Dependencies
+            </h2>
+            <p>
+              Special gratitude is extended to the open-source community. The following high-quality packages and libraries are integrated into our tool modules:
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1">
-                <h4 className="font-bold text-slate-900 text-sm">Instant Execution</h4>
-                <p className="text-xs text-slate-500">Calculations and formatters process outputs in milliseconds directly within your browser runtime.</p>
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60">
+                <h4 className="font-bold text-slate-900 text-sm">Lucide React</h4>
+                <p className="text-xs text-slate-500 mt-1">Clean, simple vector icons used universally across our sidebar, navbar, buttons, and layouts.</p>
               </div>
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1">
-                <h4 className="font-bold text-slate-900 text-sm">Data Privacy First</h4>
-                <p className="text-xs text-slate-500">Inputs and files remain strictly inside local browser session memory without remote server transmission.</p>
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60">
+                <h4 className="font-bold text-slate-900 text-sm">Framer Motion</h4>
+                <p className="text-xs text-slate-500 mt-1">Sleek entering transitions, layout animations, and modal overlays.</p>
               </div>
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1">
-                <h4 className="font-bold text-slate-900 text-sm">Distraction-Free Interface</h4>
-                <p className="text-xs text-slate-500">Clean visual hierarchy, high contrast text, and zero paywalls or intrusive popups.</p>
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60">
+                <h4 className="font-bold text-slate-900 text-sm">Zustand</h4>
+                <p className="text-xs text-slate-500 mt-1">A lightweight, lightning-fast state store managing user favorites and recent tool items.</p>
               </div>
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1">
-                <h4 className="font-bold text-slate-900 text-sm">Universal Access</h4>
-                <p className="text-xs text-slate-500">All tools are 100% free for personal, academic, and professional use without account registration.</p>
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60">
+                <h4 className="font-bold text-slate-900 text-sm">Canvas Confetti</h4>
+                <p className="text-xs text-slate-500 mt-1">Delightful, light micro-interactions upon successful submissions.</p>
               </div>
             </div>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <Library className="w-5.5 h-5.5 text-indigo-600" /> Iconography & Design Credits
+              <Sparkles className="w-5.5 h-5.5 text-indigo-600" /> Inspiration Sources
             </h2>
             <p>
-              Special gratitude is extended to the open-source design community for crafting crisp, accessible vector icon sets that power our interface navigation, tool cards, and action indicators.
+              The architectural approach of Public Media Tool was inspired by developers advocating for a "No-Cloud" and offline-first web. We believe that simple media adjustments, cryptographic hashing, calculations, and conversions do not need cloud processing. Keeping data client-side is faster, cheaper, and infinitely more secure.
             </p>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900">Community Appreciation</h2>
+            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900">Special Thanks</h2>
             <p>
-              We extend our heartfelt thanks to our global community of creators, students, developers, and web users. Your daily feedback, tool requests, and feature ideas continue to guide the expansion of Public Media Tool.
+              We want to thank our loyal community of creators, designers, and developers. Your daily feedback and comments inspire us to research, optimize, and expand the Public Media Tool repository every week.
             </p>
           </section>
 

@@ -2,973 +2,832 @@
 import { CategoryInfo } from './types';
 import { SEARCH_INDEX } from './search-index';
 
-export const STATIC_CATEGORIES: (CategoryInfo & { count: number; subCategories?: string[]; department?: string; parentId?: string; parentSlug?: string })[] = [
+export const STATIC_CATEGORIES: (CategoryInfo & { count: number; subCategories?: string[] })[] = [
   {
-    "id": "Accounting & Payroll",
-    "slug": "accounting-payroll",
-    "name": "Accounting & Payroll",
-    "iconName": "Tool",
-    "description": "Collection of 24 dedicated client-side browser tools for accounting & payroll.",
+    "id": "Text Tools",
+    "slug": "text-tools",
+    "name": "Text Tools",
+    "iconName": "FileText",
+    "description": "Transform, clean, format, and analyze text instantly without data leaving your browser.",
     "colorGradient": "from-indigo-500 to-blue-600",
     "bgLight": "bg-indigo-50 text-indigo-700",
-    "count": 24,
+    "count": 125,
     "subCategories": [
-      "Browser tool",
-      "Client side",
-      "Accounting",
-      "Hr & payroll",
-      "Universal"
-    ],
-    "department": "Business & Finance",
-    "parentId": "Accounting",
-    "parentSlug": "accounting"
+      "List",
+      "Html",
+      "Cleaner",
+      "Encoder",
+      "Decoder"
+    ]
   },
   {
-    "id": "Agriculture, Energy & Environment",
-    "slug": "agriculture-energy-environment",
-    "name": "Agriculture, Energy & Environment",
-    "iconName": "Tool",
-    "description": "Collection of 20 dedicated client-side browser tools for agriculture, energy & environment.",
-    "colorGradient": "from-emerald-500 to-teal-600",
-    "bgLight": "bg-emerald-50 text-emerald-700",
-    "count": 20,
-    "subCategories": [
-      "Browser tool",
-      "Client side",
-      "Agriculture",
-      "Electrical & solar",
-      "Environment & energy"
-    ],
-    "department": "Industry & Lifestyle",
-    "parentId": "Agriculture",
-    "parentSlug": "agriculture"
-  },
-  {
-    "id": "Algebra, Geometry & Statistics",
-    "slug": "algebra-geometry-statistics",
-    "name": "Algebra, Geometry & Statistics",
-    "iconName": "Hash",
-    "description": "Collection of 44 dedicated client-side browser tools for algebra, geometry & statistics.",
-    "colorGradient": "from-cyan-500 to-sky-600",
-    "bgLight": "bg-cyan-50 text-cyan-700",
-    "count": 44,
-    "subCategories": [
-      "Math tools",
-      "Browser tool",
-      "Client side",
-      "Universal",
-      "Online"
-    ],
-    "department": "Math & Science",
-    "parentId": "Math Tools",
-    "parentSlug": "math-tools"
-  },
-  {
-    "id": "Architecture, Construction & Real Estate",
-    "slug": "architecture-construction-real-estate",
-    "name": "Architecture, Construction & Real Estate",
-    "iconName": "Tool",
-    "description": "Collection of 30 dedicated client-side browser tools for architecture, construction & real estate.",
+    "id": "Image Tools",
+    "slug": "image-tools",
+    "name": "Image Tools",
+    "iconName": "Image",
+    "description": "Crop, resize, compress, and convert images directly in your browser with canvas API.",
     "colorGradient": "from-pink-500 to-rose-600",
     "bgLight": "bg-pink-50 text-pink-700",
-    "count": 30,
+    "count": 105,
     "subCategories": [
-      "Browser tool",
-      "Client side",
-      "Real estate",
-      "Engineering",
-      "Construction"
-    ],
-    "department": "Industry & Lifestyle",
-    "parentId": "Construction",
-    "parentSlug": "construction"
+      "Photo",
+      "Png",
+      "Filter",
+      "Client-side",
+      "Custom"
+    ]
   },
   {
-    "id": "Audio, Media & Content Production",
-    "slug": "audio-media-content-production",
-    "name": "Audio, Media & Content Production",
-    "iconName": "Headphones",
-    "description": "Collection of 44 dedicated client-side browser tools for audio, media & content production.",
-    "colorGradient": "from-pink-500 to-rose-600",
-    "bgLight": "bg-pink-50 text-pink-700",
-    "count": 44,
-    "subCategories": [
-      "Browser tool",
-      "Client side",
-      "Audio tools",
-      "Universal",
-      "Online"
-    ],
-    "department": "Media & Content",
-    "parentId": "Audio Tools",
-    "parentSlug": "audio-tools"
-  },
-  {
-    "id": "Automotive",
-    "slug": "automotive",
-    "name": "Automotive",
-    "iconName": "Tool",
-    "description": "Collection of 22 dedicated client-side browser tools for automotive.",
-    "colorGradient": "from-amber-500 to-orange-600",
+    "id": "PDF Tools",
+    "slug": "pdf-tools",
+    "name": "PDF Tools",
+    "iconName": "FileCheck",
+    "description": "Inspect PDF metadata, count pages, generate clean PDF previews, and extract text client-side.",
+    "colorGradient": "from-orange-500 to-amber-600",
     "bgLight": "bg-amber-50 text-amber-700",
-    "count": 22,
+    "count": 82,
     "subCategories": [
-      "Automotive",
-      "Browser tool",
-      "Client side",
-      "Universal",
-      "Online"
-    ],
-    "department": "Industry & Lifestyle",
-    "parentId": "Automotive",
-    "parentSlug": "automotive"
-  },
-  {
-    "id": "Business Operations & Management",
-    "slug": "business-operations-management",
-    "name": "Business Operations & Management",
-    "iconName": "Building",
-    "description": "Collection of 35 dedicated client-side browser tools for business operations & management.",
-    "colorGradient": "from-amber-500 to-orange-600",
-    "bgLight": "bg-amber-50 text-amber-700",
-    "count": 35,
-    "subCategories": [
-      "Browser tool",
-      "Client side",
-      "E-commerce",
-      "Inventory & logistics",
-      "Universal"
-    ],
-    "department": "Business & Finance",
-    "parentId": "E-commerce",
-    "parentSlug": "e-commerce"
-  },
-  {
-    "id": "Business Tools",
-    "slug": "business-tools",
-    "name": "Business Tools",
-    "iconName": "Building",
-    "description": "Collection of 39 dedicated client-side browser tools for business tools.",
-    "colorGradient": "from-cyan-500 to-sky-600",
-    "bgLight": "bg-cyan-50 text-cyan-700",
-    "count": 39,
-    "subCategories": [
-      "Business tools",
-      "Browser tool",
-      "Client side",
-      "Online",
-      "Master"
-    ],
-    "department": "Business & Finance",
-    "parentId": "Business Tools",
-    "parentSlug": "business-tools"
-  },
-  {
-    "id": "Code Syntax, Formatters & Minifiers",
-    "slug": "code-syntax-formatters-minifiers",
-    "name": "Code Syntax, Formatters & Minifiers",
-    "iconName": "AlignLeft",
-    "description": "Collection of 63 dedicated client-side browser tools for code syntax, formatters & minifiers.",
-    "colorGradient": "from-emerald-500 to-teal-600",
-    "bgLight": "bg-emerald-50 text-emerald-700",
-    "count": 63,
-    "subCategories": [
-      "Developer tools",
-      "Browser tool",
-      "Client side",
-      "Browser",
-      "Api"
-    ],
-    "department": "Developer & Web",
-    "parentId": "Developer Tools",
-    "parentSlug": "developer-tools"
-  },
-  {
-    "id": "Color Palettes, Gradients & Themes",
-    "slug": "color-palettes-gradients-themes",
-    "name": "Color Palettes, Gradients & Themes",
-    "iconName": "Palette",
-    "description": "Collection of 47 dedicated client-side browser tools for color palettes, gradients & themes.",
-    "colorGradient": "from-emerald-500 to-teal-600",
-    "bgLight": "bg-emerald-50 text-emerald-700",
-    "count": 47,
-    "subCategories": [
-      "Color tools",
-      "Browser tool",
-      "Client side",
-      "Design",
-      "Generator"
-    ],
-    "department": "Media & Content",
-    "parentId": "Color Tools",
-    "parentSlug": "color-tools"
-  },
-  {
-    "id": "Color Pickers & Format Converters",
-    "slug": "color-pickers-format-converters",
-    "name": "Color Pickers & Format Converters",
-    "iconName": "Palette",
-    "description": "Collection of 39 dedicated client-side browser tools for color pickers & format converters.",
-    "colorGradient": "from-indigo-500 to-blue-600",
-    "bgLight": "bg-indigo-50 text-indigo-700",
-    "count": 39,
-    "subCategories": [
-      "Color tools",
-      "Browser tool",
-      "Client side",
-      "Color",
-      "Design"
-    ],
-    "department": "Media & Content",
-    "parentId": "Color Tools",
-    "parentSlug": "color-tools"
-  },
-  {
-    "id": "CSS & Frontend Web Tools",
-    "slug": "css-frontend-web-tools",
-    "name": "CSS & Frontend Web Tools",
-    "iconName": "Palette",
-    "description": "Collection of 14 dedicated client-side browser tools for css & frontend web tools.",
-    "colorGradient": "from-pink-500 to-rose-600",
-    "bgLight": "bg-pink-50 text-pink-700",
-    "count": 14,
-    "subCategories": [
-      "Generator",
-      "Css",
+      "Inspector",
+      "Print",
       "Layout",
-      "Box shadow",
-      "Calculator"
-    ],
-    "department": "Developer & Web",
-    "parentId": "Developer Tools",
-    "parentSlug": "developer-tools"
+      "Client-side",
+      "Custom"
+    ]
   },
   {
-    "id": "Data & Digital Converters",
-    "slug": "data-digital-converters",
-    "name": "Data & Digital Converters",
-    "iconName": "RefreshCw",
-    "description": "Collection of 15 dedicated client-side browser tools for data & digital converters.",
-    "colorGradient": "from-cyan-500 to-sky-600",
-    "bgLight": "bg-cyan-50 text-cyan-700",
-    "count": 15,
+    "id": "Developer Tools",
+    "slug": "developer-tools",
+    "name": "Developer Tools",
+    "iconName": "Code",
+    "description": "JSON formatting, Base64, UUID generation, regex testing, and developer utilities.",
+    "colorGradient": "from-emerald-500 to-teal-600",
+    "bgLight": "bg-emerald-50 text-emerald-700",
+    "count": 113,
     "subCategories": [
-      "Converter tools",
-      "Browser tool",
-      "Client side",
-      "Converter",
-      "Bytes"
-    ],
-    "department": "Math & Science",
-    "parentId": "Converter Tools",
-    "parentSlug": "converter-tools"
+      "Json",
+      "Css",
+      "Browser",
+      "Client-side",
+      "Formatter"
+    ]
   },
   {
-    "id": "Date & Time",
-    "slug": "date-time",
-    "name": "Date & Time",
-    "iconName": "Clock",
-    "description": "Collection of 28 dedicated client-side browser tools for date & time.",
-    "colorGradient": "from-rose-500 to-red-600",
-    "bgLight": "bg-rose-50 text-rose-700",
-    "count": 28,
-    "subCategories": [
-      "Date & time",
-      "Browser tool",
-      "Client side",
-      "Online",
-      "Master"
-    ],
-    "department": "Text & Productivity",
-    "parentId": "Date & Time",
-    "parentSlug": "date-time"
-  },
-  {
-    "id": "Domain, Link & Analytics SEO",
-    "slug": "domain-link-analytics-seo",
-    "name": "Domain, Link & Analytics SEO",
-    "iconName": "Globe",
-    "description": "Collection of 47 dedicated client-side browser tools for domain, link & analytics seo.",
-    "colorGradient": "from-cyan-500 to-sky-600",
-    "bgLight": "bg-cyan-50 text-cyan-700",
-    "count": 47,
-    "subCategories": [
-      "Seo tools",
-      "Browser tool",
-      "Client side",
-      "Seo",
-      "Urls"
-    ],
-    "department": "Developer & Web",
-    "parentId": "SEO Tools",
-    "parentSlug": "seo-tools"
-  },
-  {
-    "id": "Education",
-    "slug": "education",
-    "name": "Education",
-    "iconName": "Tool",
-    "description": "Collection of 30 dedicated client-side browser tools for education.",
+    "id": "SEO Tools",
+    "slug": "seo-tools",
+    "name": "SEO Tools",
+    "iconName": "Search",
+    "description": "Optimize metadata, calculate keyword density, preview SERP snippets, and build OpenGraph tags.",
     "colorGradient": "from-purple-500 to-violet-600",
     "bgLight": "bg-purple-50 text-purple-700",
-    "count": 30,
+    "count": 102,
     "subCategories": [
-      "Education",
-      "Browser tool",
-      "Client side",
-      "Universal",
-      "Online"
-    ],
-    "department": "Industry & Lifestyle",
-    "parentId": "Education",
-    "parentSlug": "education"
+      "Json-ld",
+      "Urls",
+      "Serp",
+      "Meta tags",
+      "Title tag"
+    ]
   },
   {
-    "id": "Encryption, Keys & Certificates",
-    "slug": "encryption-keys-certificates",
-    "name": "Encryption, Keys & Certificates",
-    "iconName": "Lock",
-    "description": "Collection of 39 dedicated client-side browser tools for encryption, keys & certificates.",
-    "colorGradient": "from-pink-500 to-rose-600",
-    "bgLight": "bg-pink-50 text-pink-700",
-    "count": 39,
+    "id": "Color Tools",
+    "slug": "color-tools",
+    "name": "Color Tools",
+    "iconName": "Palette",
+    "description": "Extract palettes from images, check WCAG color contrast, and generate CSS gradients.",
+    "colorGradient": "from-cyan-500 to-sky-600",
+    "bgLight": "bg-cyan-50 text-cyan-700",
+    "count": 86,
     "subCategories": [
-      "Security tools",
-      "Browser tool",
-      "Client side",
-      "Security",
-      "Crypto"
-    ],
-    "department": "Developer & Web",
-    "parentId": "Security Tools",
-    "parentSlug": "security-tools"
+      "Design",
+      "Accessibility",
+      "Palette",
+      "Hex",
+      "Rgb"
+    ]
   },
   {
-    "id": "Everyday & Cooking Converters",
-    "slug": "everyday-cooking-converters",
-    "name": "Everyday & Cooking Converters",
+    "id": "Converter Tools",
+    "slug": "converter-tools",
+    "name": "Converter Tools",
     "iconName": "RefreshCw",
-    "description": "Collection of 43 dedicated client-side browser tools for everyday & cooking converters.",
-    "colorGradient": "from-purple-500 to-violet-600",
-    "bgLight": "bg-purple-50 text-purple-700",
-    "count": 43,
+    "description": "Convert between length, weight, temperature, data storage, speed, and time units.",
+    "colorGradient": "from-yellow-500 to-orange-600",
+    "bgLight": "bg-yellow-50 text-yellow-700",
+    "count": 93,
     "subCategories": [
-      "Converter tools",
-      "Browser tool",
-      "Client side",
-      "Converter",
-      "Calculator"
-    ],
-    "department": "Math & Science",
-    "parentId": "Converter Tools",
-    "parentSlug": "converter-tools"
+      "Calculator",
+      "Client-side",
+      "Custom",
+      "Dynamic",
+      "Private"
+    ]
   },
   {
-    "id": "Everyday & Scientific Calculators",
-    "slug": "everyday-scientific-calculators",
-    "name": "Everyday & Scientific Calculators",
-    "iconName": "Compass",
-    "description": "Collection of 52 dedicated client-side browser tools for everyday & scientific calculators.",
-    "colorGradient": "from-rose-500 to-red-600",
-    "bgLight": "bg-rose-50 text-rose-700",
-    "count": 52,
+    "id": "Calculator Tools",
+    "slug": "calculator-tools",
+    "name": "Calculator Tools",
+    "iconName": "Calculator",
+    "description": "Discount, sales tax, loan EMI, tip, compound interest, and financial calculators.",
+    "colorGradient": "from-green-500 to-lime-600",
+    "bgLight": "bg-lime-50 text-lime-700",
+    "count": 104,
     "subCategories": [
-      "Calculator tools",
-      "Browser tool",
-      "Client side",
       "Math",
+      "Finance",
+      "Client-side",
+      "Custom",
+      "Dynamic"
+    ]
+  },
+  {
+    "id": "Security Tools",
+    "slug": "security-tools",
+    "name": "Security Tools",
+    "iconName": "Shield",
+    "description": "Generate strong cryptographically secure passwords and calculate MD5, SHA-256 hashes.",
+    "colorGradient": "from-red-500 to-pink-600",
+    "bgLight": "bg-red-50 text-red-700",
+    "count": 72,
+    "subCategories": [
+      "Crypto",
+      "Pem",
+      "Client-side",
+      "Custom",
+      "Dynamic"
+    ]
+  },
+  {
+    "id": "Web Tools",
+    "slug": "web-tools",
+    "name": "Web Tools",
+    "iconName": "Globe",
+    "description": "Encode URLs, generate HTML QR codes, test user agents, and format web data.",
+    "colorGradient": "from-blue-500 to-indigo-600",
+    "bgLight": "bg-blue-50 text-blue-700",
+    "count": 37,
+    "subCategories": [
+      "Seo",
+      "Decoder",
+      "Json",
+      "Cheat sheet",
+      "Javascript"
+    ]
+  },
+  {
+    "id": "Social Media Tools",
+    "slug": "social-media-tools",
+    "name": "Social Media Tools",
+    "iconName": "Share2",
+    "description": "Character counters, hashtag generators, and bio formatters for social platforms.",
+    "colorGradient": "from-sky-500 to-blue-600",
+    "bgLight": "bg-sky-50 text-sky-700",
+    "count": 0,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Video Tools",
+    "slug": "video-tools",
+    "name": "Video Tools",
+    "iconName": "Video",
+    "description": "Aspect ratio calculators, video bitrate estimators, and frame time converters.",
+    "colorGradient": "from-rose-500 to-red-600",
+    "bgLight": "bg-rose-50 text-rose-700",
+    "count": 0,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Audio Tools",
+    "slug": "audio-tools",
+    "name": "Audio Tools",
+    "iconName": "Music",
+    "description": "BPM metronomes, audio sample rate converters, and decibel sound level calculators.",
+    "colorGradient": "from-violet-500 to-purple-600",
+    "bgLight": "bg-violet-50 text-violet-700",
+    "count": 29,
+    "subCategories": [
+      "Client-side",
+      "Custom",
+      "Dynamic",
+      "Private",
       "Browser"
-    ],
-    "department": "Math & Science",
-    "parentId": "Calculator Tools",
-    "parentSlug": "calculator-tools"
+    ]
   },
   {
     "id": "File Tools",
     "slug": "file-tools",
     "name": "File Tools",
     "iconName": "Folder",
-    "description": "Collection of 30 dedicated client-side browser tools for file tools.",
-    "colorGradient": "from-cyan-500 to-sky-600",
-    "bgLight": "bg-cyan-50 text-cyan-700",
+    "description": "File size converters, MIME type lookups, and filename batch sanitizers.",
+    "colorGradient": "from-slate-500 to-zinc-600",
+    "bgLight": "bg-zinc-50 text-zinc-700",
     "count": 30,
     "subCategories": [
-      "File tools",
-      "Browser tool",
-      "Client side",
-      "Universal",
-      "Online"
-    ],
-    "department": "Text & Productivity",
-    "parentId": "File Tools",
-    "parentSlug": "file-tools"
+      "Client-side",
+      "Custom",
+      "Dynamic",
+      "Private",
+      "Browser"
+    ]
   },
   {
-    "id": "Graphic Assets & Image Studio",
-    "slug": "graphic-assets-image-studio",
-    "name": "Graphic Assets & Image Studio",
-    "iconName": "Sparkles",
-    "description": "Collection of 44 dedicated client-side browser tools for graphic assets & image studio.",
-    "colorGradient": "from-amber-500 to-orange-600",
+    "id": "Generators",
+    "slug": "generators",
+    "name": "Generators",
+    "iconName": "Zap",
+    "description": "Generate mock user profiles, random numbers, dummy data, and placeholder assets.",
+    "colorGradient": "from-amber-500 to-yellow-600",
     "bgLight": "bg-amber-50 text-amber-700",
+    "count": 43,
+    "subCategories": [
+      "Client-side",
+      "Custom",
+      "Dynamic",
+      "Private",
+      "Browser"
+    ]
+  },
+  {
+    "id": "Math Tools",
+    "slug": "math-tools",
+    "name": "Math Tools",
+    "iconName": "Percent",
+    "description": "Fraction converters, prime number checkers, quadratic solvers, and statistics tools.",
+    "colorGradient": "from-teal-500 to-emerald-600",
+    "bgLight": "bg-teal-50 text-teal-700",
     "count": 44,
     "subCategories": [
-      "Image tools",
-      "Browser tool",
-      "Client side",
-      "Image",
+      "Client-side",
+      "Custom",
+      "Dynamic",
+      "Private",
+      "Browser"
+    ]
+  },
+  {
+    "id": "Date & Time",
+    "slug": "date-time",
+    "name": "Date & Time",
+    "iconName": "Clock",
+    "description": "Timezone converters, UNIX timestamp formatters, and date difference calculators.",
+    "colorGradient": "from-indigo-500 to-sky-600",
+    "bgLight": "bg-indigo-50 text-indigo-700",
+    "count": 28,
+    "subCategories": [
+      "Client-side",
+      "Browser",
       "Dynamic"
-    ],
-    "department": "Media & Content",
-    "parentId": "Image Tools",
-    "parentSlug": "image-tools"
+    ]
+  },
+  {
+    "id": "Productivity",
+    "slug": "productivity",
+    "name": "Productivity",
+    "iconName": "CheckSquare",
+    "description": "Pomodoro timers, reading speed calculators, and daily habit helpers.",
+    "colorGradient": "from-emerald-500 to-green-600",
+    "bgLight": "bg-emerald-50 text-emerald-700",
+    "count": 39,
+    "subCategories": [
+      "Client-side",
+      "Custom",
+      "Dynamic",
+      "Private",
+      "Browser"
+    ]
+  },
+  {
+    "id": "Finance Tools",
+    "slug": "finance-tools",
+    "name": "Finance Tools",
+    "iconName": "DollarSign",
+    "description": "SIP calculators, salary take-home estimators, and ROI financial tools.",
+    "colorGradient": "from-green-500 to-teal-600",
+    "bgLight": "bg-green-50 text-green-700",
+    "count": 45,
+    "subCategories": [
+      "Client-side",
+      "Custom",
+      "Dynamic",
+      "Private",
+      "Browser"
+    ]
+  },
+  {
+    "id": "Business Tools",
+    "slug": "business-tools",
+    "name": "Business Tools",
+    "iconName": "Briefcase",
+    "description": "Break-even point calculators, profit margin tools, and invoice formatters.",
+    "colorGradient": "from-blue-500 to-cyan-600",
+    "bgLight": "bg-blue-50 text-blue-700",
+    "count": 39,
+    "subCategories": [
+      "Client-side",
+      "Dynamic",
+      "Custom",
+      "Private",
+      "Browser"
+    ]
   },
   {
     "id": "Health & Fitness",
     "slug": "health-fitness",
     "name": "Health & Fitness",
     "iconName": "Heart",
-    "description": "Collection of 32 dedicated client-side browser tools for health & fitness.",
-    "colorGradient": "from-indigo-500 to-blue-600",
-    "bgLight": "bg-indigo-50 text-indigo-700",
+    "description": "BMI calculators, calorie trackers, water intake estimators, and pace planners.",
+    "colorGradient": "from-rose-500 to-pink-600",
+    "bgLight": "bg-rose-50 text-rose-700",
     "count": 32,
     "subCategories": [
-      "Health & fitness",
-      "Browser tool",
-      "Client side",
       "Browser",
-      "Master"
-    ],
-    "department": "Industry & Lifestyle",
-    "parentId": "Health & Fitness",
-    "parentSlug": "health-fitness"
-  },
-  {
-    "id": "Hospitality, Events & Lifestyle",
-    "slug": "hospitality-events-lifestyle",
-    "name": "Hospitality, Events & Lifestyle",
-    "iconName": "Tool",
-    "description": "Collection of 20 dedicated client-side browser tools for hospitality, events & lifestyle.",
-    "colorGradient": "from-purple-500 to-violet-600",
-    "bgLight": "bg-purple-50 text-purple-700",
-    "count": 20,
-    "subCategories": [
-      "Browser tool",
-      "Client side",
-      "Restaurant & cafe",
-      "Wedding & event",
-      "Beauty & salon"
-    ],
-    "department": "Industry & Lifestyle",
-    "parentId": "Beauty & Salon",
-    "parentSlug": "beauty-salon"
-  },
-  {
-    "id": "Image Format Converters",
-    "slug": "image-format-converters",
-    "name": "Image Format Converters",
-    "iconName": "RefreshCw",
-    "description": "Collection of 19 dedicated client-side browser tools for image format converters.",
-    "colorGradient": "from-pink-500 to-rose-600",
-    "bgLight": "bg-pink-50 text-pink-700",
-    "count": 19,
-    "subCategories": [
-      "Image tools",
-      "Browser tool",
-      "Client side",
-      "Image",
-      "Png"
-    ],
-    "department": "Media & Content",
-    "parentId": "Image Tools",
-    "parentSlug": "image-tools"
-  },
-  {
-    "id": "Image Resizers & Compressors",
-    "slug": "image-resizers-compressors",
-    "name": "Image Resizers & Compressors",
-    "iconName": "Crop",
-    "description": "Collection of 17 dedicated client-side browser tools for image resizers & compressors.",
-    "colorGradient": "from-emerald-500 to-teal-600",
-    "bgLight": "bg-emerald-50 text-emerald-700",
-    "count": 17,
-    "subCategories": [
-      "Image",
-      "Image tools",
-      "Browser tool",
-      "Client side",
-      "Resizer"
-    ],
-    "department": "Media & Content",
-    "parentId": "Image Tools",
-    "parentSlug": "image-tools"
-  },
-  {
-    "id": "JSON & Developer Data Utilities",
-    "slug": "json-developer-data-utilities",
-    "name": "JSON & Developer Data Utilities",
-    "iconName": "FileJson",
-    "description": "Collection of 36 dedicated client-side browser tools for json & developer data utilities.",
-    "colorGradient": "from-indigo-500 to-blue-600",
-    "bgLight": "bg-indigo-50 text-indigo-700",
-    "count": 36,
-    "subCategories": [
-      "Developer tools",
-      "Browser tool",
-      "Client side",
-      "Json",
-      "Generator"
-    ],
-    "department": "Developer & Web",
-    "parentId": "Developer Tools",
-    "parentSlug": "developer-tools"
-  },
-  {
-    "id": "Legal, Regulatory & Marketing",
-    "slug": "legal-regulatory-marketing",
-    "name": "Legal, Regulatory & Marketing",
-    "iconName": "Tool",
-    "description": "Collection of 19 dedicated client-side browser tools for legal, regulatory & marketing.",
-    "colorGradient": "from-rose-500 to-red-600",
-    "bgLight": "bg-rose-50 text-rose-700",
-    "count": 19,
-    "subCategories": [
-      "Browser tool",
-      "Client side",
-      "Legal tools",
-      "Marketing & advertising",
-      "Government & public services"
-    ],
-    "department": "Business & Finance",
-    "parentId": "Government & Public Services",
-    "parentSlug": "government-public-services"
-  },
-  {
-    "id": "Loans, Mortgages & Investments",
-    "slug": "loans-mortgages-investments",
-    "name": "Loans, Mortgages & Investments",
-    "iconName": "Home",
-    "description": "Collection of 18 dedicated client-side browser tools for loans, mortgages & investments.",
-    "colorGradient": "from-blue-500 to-indigo-600",
-    "bgLight": "bg-blue-50 text-blue-700",
-    "count": 18,
-    "subCategories": [
-      "Browser tool",
-      "Client side",
-      "Finance tools",
-      "Calculator tools",
-      "Calculator"
-    ],
-    "department": "Math & Science",
-    "parentId": "Calculator Tools",
-    "parentSlug": "calculator-tools"
-  },
-  {
-    "id": "Measurement & Unit Converters",
-    "slug": "measurement-unit-converters",
-    "name": "Measurement & Unit Converters",
-    "iconName": "RefreshCw",
-    "description": "Collection of 16 dedicated client-side browser tools for measurement & unit converters.",
-    "colorGradient": "from-amber-500 to-orange-600",
-    "bgLight": "bg-amber-50 text-amber-700",
-    "count": 16,
-    "subCategories": [
-      "Converter",
-      "Converter tools",
-      "Browser tool",
-      "Client side",
-      "Length"
-    ],
-    "department": "Math & Science",
-    "parentId": "Converter Tools",
-    "parentSlug": "converter-tools"
-  },
-  {
-    "id": "Meta Tag & On-Page SEO",
-    "slug": "meta-tag-on-page-seo",
-    "name": "Meta Tag & On-Page SEO",
-    "iconName": "Share2",
-    "description": "Collection of 38 dedicated client-side browser tools for meta tag & on-page seo.",
-    "colorGradient": "from-amber-500 to-orange-600",
-    "bgLight": "bg-amber-50 text-amber-700",
-    "count": 38,
-    "subCategories": [
-      "Seo",
-      "Seo tools",
-      "Browser tool",
-      "Client side",
-      "Meta tags"
-    ],
-    "department": "Developer & Web",
-    "parentId": "SEO Tools",
-    "parentSlug": "seo-tools"
-  },
-  {
-    "id": "Passwords, Hashes & Checksums",
-    "slug": "passwords-hashes-checksums",
-    "name": "Passwords, Hashes & Checksums",
-    "iconName": "Shield",
-    "description": "Collection of 33 dedicated client-side browser tools for passwords, hashes & checksums.",
-    "colorGradient": "from-emerald-500 to-teal-600",
-    "bgLight": "bg-emerald-50 text-emerald-700",
-    "count": 33,
-    "subCategories": [
-      "Security",
-      "Security tools",
-      "Browser tool",
-      "Client side",
-      "Crypto"
-    ],
-    "department": "Developer & Web",
-    "parentId": "Security Tools",
-    "parentSlug": "security-tools"
-  },
-  {
-    "id": "PDF Inspection & Extraction",
-    "slug": "pdf-inspection-extraction",
-    "name": "PDF Inspection & Extraction",
-    "iconName": "FileCheck",
-    "description": "Collection of 26 dedicated client-side browser tools for pdf inspection & extraction.",
-    "colorGradient": "from-blue-500 to-indigo-600",
-    "bgLight": "bg-blue-50 text-blue-700",
-    "count": 26,
-    "subCategories": [
-      "Pdf",
-      "Pdf tools",
-      "Browser tool",
-      "Client side",
-      "Inspector"
-    ],
-    "department": "Media & Content",
-    "parentId": "PDF Tools",
-    "parentSlug": "pdf-tools"
-  },
-  {
-    "id": "PDF Page & Layout Management",
-    "slug": "pdf-page-layout-management",
-    "name": "PDF Page & Layout Management",
-    "iconName": "FileCheck",
-    "description": "Collection of 34 dedicated client-side browser tools for pdf page & layout management.",
-    "colorGradient": "from-green-500 to-lime-600",
-    "bgLight": "bg-lime-50 text-lime-700",
-    "count": 34,
-    "subCategories": [
-      "Pdf",
-      "Pdf tools",
-      "Browser tool",
-      "Client side",
-      "Layout"
-    ],
-    "department": "Media & Content",
-    "parentId": "PDF Tools",
-    "parentSlug": "pdf-tools"
-  },
-  {
-    "id": "PDF Security & Document Utilities",
-    "slug": "pdf-security-document-utilities",
-    "name": "PDF Security & Document Utilities",
-    "iconName": "FileCheck",
-    "description": "Collection of 22 dedicated client-side browser tools for pdf security & document utilities.",
-    "colorGradient": "from-rose-500 to-red-600",
-    "bgLight": "bg-rose-50 text-rose-700",
-    "count": 22,
-    "subCategories": [
-      "Pdf tools",
-      "Browser tool",
-      "Client side",
-      "Pdf",
-      "Security"
-    ],
-    "department": "Media & Content",
-    "parentId": "PDF Tools",
-    "parentSlug": "pdf-tools"
-  },
-  {
-    "id": "Personal Budgeting & Expense Management",
-    "slug": "personal-budgeting-expense-management",
-    "name": "Personal Budgeting & Expense Management",
-    "iconName": "PiggyBank",
-    "description": "Collection of 38 dedicated client-side browser tools for personal budgeting & expense management.",
-    "colorGradient": "from-green-500 to-lime-600",
-    "bgLight": "bg-lime-50 text-lime-700",
-    "count": 38,
-    "subCategories": [
-      "Finance tools",
-      "Browser tool",
-      "Client side",
-      "Smart",
-      "Master"
-    ],
-    "department": "Business & Finance",
-    "parentId": "Finance Tools",
-    "parentSlug": "finance-tools"
-  },
-  {
-    "id": "Photo Effects & Visual Filters",
-    "slug": "photo-effects-visual-filters",
-    "name": "Photo Effects & Visual Filters",
-    "iconName": "Wand2",
-    "description": "Collection of 25 dedicated client-side browser tools for photo effects & visual filters.",
-    "colorGradient": "from-purple-500 to-violet-600",
-    "bgLight": "bg-purple-50 text-purple-700",
-    "count": 25,
-    "subCategories": [
-      "Image tools",
-      "Browser tool",
-      "Client side",
-      "Image",
-      "Filter"
-    ],
-    "department": "Media & Content",
-    "parentId": "Image Tools",
-    "parentSlug": "image-tools"
-  },
-  {
-    "id": "Physics & Engineering Converters",
-    "slug": "physics-engineering-converters",
-    "name": "Physics & Engineering Converters",
-    "iconName": "RefreshCw",
-    "description": "Collection of 19 dedicated client-side browser tools for physics & engineering converters.",
-    "colorGradient": "from-green-500 to-lime-600",
-    "bgLight": "bg-lime-50 text-lime-700",
-    "count": 19,
-    "subCategories": [
-      "Converter",
-      "Converter tools",
-      "Browser tool",
-      "Client side",
-      "Energy"
-    ],
-    "department": "Math & Science",
-    "parentId": "Converter Tools",
-    "parentSlug": "converter-tools"
-  },
-  {
-    "id": "Productivity",
-    "slug": "productivity",
-    "name": "Productivity",
-    "iconName": "Tool",
-    "description": "Collection of 39 dedicated client-side browser tools for productivity.",
-    "colorGradient": "from-indigo-500 to-blue-600",
-    "bgLight": "bg-indigo-50 text-indigo-700",
-    "count": 39,
-    "subCategories": [
-      "Productivity",
-      "Browser tool",
-      "Client side",
-      "Universal",
-      "Master"
-    ],
-    "department": "Text & Productivity",
-    "parentId": "Productivity",
-    "parentSlug": "productivity"
-  },
-  {
-    "id": "Random Value, Game & Data Generators",
-    "slug": "random-value-game-data-generators",
-    "name": "Random Value, Game & Data Generators",
-    "iconName": "Zap",
-    "description": "Collection of 43 dedicated client-side browser tools for random value, game & data generators.",
-    "colorGradient": "from-blue-500 to-indigo-600",
-    "bgLight": "bg-blue-50 text-blue-700",
-    "count": 43,
-    "subCategories": [
-      "Generators",
-      "Browser tool",
-      "Client side",
-      "Master",
-      "Advanced"
-    ],
-    "department": "Text & Productivity",
-    "parentId": "Generators",
-    "parentSlug": "generators"
-  },
-  {
-    "id": "Sales, Tax & Financial Calculators",
-    "slug": "sales-tax-financial-calculators",
-    "name": "Sales, Tax & Financial Calculators",
-    "iconName": "Receipt",
-    "description": "Collection of 41 dedicated client-side browser tools for sales, tax & financial calculators.",
-    "colorGradient": "from-green-500 to-lime-600",
-    "bgLight": "bg-lime-50 text-lime-700",
-    "count": 41,
-    "subCategories": [
-      "Calculator tools",
-      "Browser tool",
-      "Client side",
-      "Calculator",
+      "Client-side",
+      "Custom",
+      "Dynamic",
       "Private"
-    ],
-    "department": "Math & Science",
-    "parentId": "Calculator Tools",
-    "parentSlug": "calculator-tools"
+    ]
   },
   {
-    "id": "Technical SEO Utilities",
-    "slug": "technical-seo-utilities",
-    "name": "Technical SEO Utilities",
-    "iconName": "Search",
-    "description": "Collection of 17 dedicated client-side browser tools for technical seo utilities.",
-    "colorGradient": "from-purple-500 to-violet-600",
-    "bgLight": "bg-purple-50 text-purple-700",
-    "count": 17,
+    "id": "Education",
+    "slug": "education",
+    "name": "Education",
+    "iconName": "GraduationCap",
+    "description": "GPA calculators, flashcard generators, and citation formatters.",
+    "colorGradient": "from-amber-500 to-orange-600",
+    "bgLight": "bg-amber-50 text-amber-700",
+    "count": 30,
     "subCategories": [
-      "Seo",
-      "Json-ld",
-      "Seo tools",
-      "Browser tool",
-      "Client side"
-    ],
-    "department": "Developer & Web",
-    "parentId": "SEO Tools",
-    "parentSlug": "seo-tools"
-  },
-  {
-    "id": "Text & Font Generators",
-    "slug": "text-font-generators",
-    "name": "Text & Font Generators",
-    "iconName": "Zap",
-    "description": "Collection of 42 dedicated client-side browser tools for text & font generators.",
-    "colorGradient": "from-indigo-500 to-blue-600",
-    "bgLight": "bg-indigo-50 text-indigo-700",
-    "count": 42,
-    "subCategories": [
-      "Text tools",
-      "Browser tool",
-      "Client side",
-      "Unicode",
-      "Generator"
-    ],
-    "department": "Text & Productivity",
-    "parentId": "Text Tools",
-    "parentSlug": "text-tools"
-  },
-  {
-    "id": "Text Counters & Analysis",
-    "slug": "text-counters-analysis",
-    "name": "Text Counters & Analysis",
-    "iconName": "Hash",
-    "description": "Collection of 29 dedicated client-side browser tools for text counters & analysis.",
-    "colorGradient": "from-green-500 to-lime-600",
-    "bgLight": "bg-lime-50 text-lime-700",
-    "count": 29,
-    "subCategories": [
-      "Text tools",
-      "Browser tool",
-      "Client side",
-      "Text",
-      "Analysis"
-    ],
-    "department": "Text & Productivity",
-    "parentId": "Text Tools",
-    "parentSlug": "text-tools"
-  },
-  {
-    "id": "Text Encoders & Converters",
-    "slug": "text-encoders-converters",
-    "name": "Text Encoders & Converters",
-    "iconName": "Lock",
-    "description": "Collection of 16 dedicated client-side browser tools for text encoders & converters.",
-    "colorGradient": "from-rose-500 to-red-600",
-    "bgLight": "bg-rose-50 text-rose-700",
-    "count": 16,
-    "subCategories": [
-      "Text tools",
-      "Browser tool",
-      "Client side",
-      "Text",
-      "Converter"
-    ],
-    "department": "Text & Productivity",
-    "parentId": "Text Tools",
-    "parentSlug": "text-tools"
-  },
-  {
-    "id": "Text Formatters & Cleaners",
-    "slug": "text-formatters-cleaners",
-    "name": "Text Formatters & Cleaners",
-    "iconName": "AlignLeft",
-    "description": "Collection of 38 dedicated client-side browser tools for text formatters & cleaners.",
-    "colorGradient": "from-blue-500 to-indigo-600",
-    "bgLight": "bg-blue-50 text-blue-700",
-    "count": 38,
-    "subCategories": [
-      "Text",
-      "Text tools",
-      "Browser tool",
-      "Client side",
-      "List"
-    ],
-    "department": "Text & Productivity",
-    "parentId": "Text Tools",
-    "parentSlug": "text-tools"
-  },
-  {
-    "id": "Travel Tools",
-    "slug": "travel-tools",
-    "name": "Travel Tools",
-    "iconName": "Tool",
-    "description": "Collection of 16 dedicated client-side browser tools for travel tools.",
-    "colorGradient": "from-emerald-500 to-teal-600",
-    "bgLight": "bg-emerald-50 text-emerald-700",
-    "count": 16,
-    "subCategories": [
-      "Travel tools",
-      "Browser tool",
-      "Client side",
-      "Universal trip itinerary planner",
-      "Online travel budget calculator"
-    ],
-    "department": "Industry & Lifestyle",
-    "parentId": "Travel Tools",
-    "parentSlug": "travel-tools"
+      "Client-side",
+      "Custom",
+      "Dynamic",
+      "Private",
+      "Browser"
+    ]
   },
   {
     "id": "Unit Converters",
     "slug": "unit-converters",
     "name": "Unit Converters",
-    "iconName": "RefreshCw",
-    "description": "Collection of 27 dedicated client-side browser tools for unit converters.",
-    "colorGradient": "from-pink-500 to-rose-600",
-    "bgLight": "bg-pink-50 text-pink-700",
+    "iconName": "Cpu",
+    "description": "Convert metric and imperial units across scientific and everyday dimensions.",
+    "colorGradient": "from-indigo-500 to-purple-600",
+    "bgLight": "bg-indigo-50 text-indigo-700",
     "count": 27,
     "subCategories": [
-      "Unit converters",
-      "Browser tool",
-      "Client side",
-      "Universal length unit converter",
-      "Volume capacity converter master"
-    ],
-    "department": "Math & Science",
-    "parentId": "Unit Converters",
-    "parentSlug": "unit-converters"
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
   },
   {
-    "id": "Web Diagnostics & Networking",
-    "slug": "web-diagnostics-networking",
-    "name": "Web Diagnostics & Networking",
-    "iconName": "Globe",
-    "description": "Collection of 47 dedicated client-side browser tools for web diagnostics & networking.",
-    "colorGradient": "from-blue-500 to-indigo-600",
-    "bgLight": "bg-blue-50 text-blue-700",
-    "count": 47,
+    "id": "Automotive",
+    "slug": "automotive",
+    "name": "Automotive",
+    "iconName": "Gauge",
+    "description": "Fuel economy calculators, horsepower to kilowatt converters, and tire sizing.",
+    "colorGradient": "from-red-500 to-orange-600",
+    "bgLight": "bg-red-50 text-red-700",
+    "count": 22,
     "subCategories": [
-      "Web",
-      "Browser tool",
-      "Client side",
-      "Networking",
-      "Seo"
-    ],
-    "department": "Developer & Web",
-    "parentId": "Data Management",
-    "parentSlug": "data-management"
+      "Client-side",
+      "Custom",
+      "Dynamic",
+      "Private",
+      "Browser"
+    ]
+  },
+  {
+    "id": "Travel Tools",
+    "slug": "travel-tools",
+    "name": "Travel Tools",
+    "iconName": "Compass",
+    "description": "Flight duration estimators, packing checklist generators, and currency helpers.",
+    "colorGradient": "from-sky-500 to-teal-600",
+    "bgLight": "bg-sky-50 text-sky-700",
+    "count": 16,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Real Estate",
+    "slug": "real-estate",
+    "name": "Real Estate",
+    "iconName": "Home",
+    "description": "Rental yield calculators, mortgage amortization, and square footage converters.",
+    "colorGradient": "from-emerald-500 to-cyan-600",
+    "bgLight": "bg-emerald-50 text-emerald-700",
+    "count": 12,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Legal Tools",
+    "slug": "legal-tools",
+    "name": "Legal Tools",
+    "iconName": "Scale",
+    "description": "NDA generators, copyright notice formatters, and statutory interest calculators.",
+    "colorGradient": "from-slate-500 to-indigo-600",
+    "bgLight": "bg-slate-50 text-slate-700",
+    "count": 10,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "HR & Payroll",
+    "slug": "hr-payroll",
+    "name": "HR & Payroll",
+    "iconName": "Users",
+    "description": "Overtime pay calculators, employee turnover rate, and PTO accrual estimators.",
+    "colorGradient": "from-violet-500 to-indigo-600",
+    "bgLight": "bg-violet-50 text-violet-700",
+    "count": 12,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Accounting",
+    "slug": "accounting",
+    "name": "Accounting",
+    "iconName": "BookOpen",
+    "description": "Depreciation calculators, bad debt provisions, and ledger reconciliation helpers.",
+    "colorGradient": "from-blue-500 to-emerald-600",
+    "bgLight": "bg-blue-50 text-blue-700",
+    "count": 12,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "E-commerce",
+    "slug": "e-commerce",
+    "name": "E-commerce",
+    "iconName": "ShoppingCart",
+    "description": "Order profit calculators, free shipping threshold estimators, and return rate tools.",
+    "colorGradient": "from-pink-500 to-orange-600",
+    "bgLight": "bg-pink-50 text-pink-700",
+    "count": 10,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Inventory & Logistics",
+    "slug": "inventory-logistics",
+    "name": "Inventory & Logistics",
+    "iconName": "Package",
+    "description": "Reorder point calculators, safety stock estimators, and freight density tools.",
+    "colorGradient": "from-amber-500 to-emerald-600",
+    "bgLight": "bg-amber-50 text-amber-700",
+    "count": 10,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Engineering",
+    "slug": "engineering",
+    "name": "Engineering",
+    "iconName": "Wrench",
+    "description": "Stress-strain calculators, beam deflection helpers, and fluid pressure solvers.",
+    "colorGradient": "from-cyan-500 to-blue-600",
+    "bgLight": "bg-cyan-50 text-cyan-700",
+    "count": 10,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Construction",
+    "slug": "construction",
+    "name": "Construction",
+    "iconName": "HardHat",
+    "description": "Concrete volume calculators, brick quantity estimators, and paint area helpers.",
+    "colorGradient": "from-orange-500 to-yellow-600",
+    "bgLight": "bg-orange-50 text-orange-700",
+    "count": 8,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Electrical & Solar",
+    "slug": "electrical-solar",
+    "name": "Electrical & Solar",
+    "iconName": "Zap",
+    "description": "Ohm’s law calculators, solar panel output estimators, and wire gauge selectors.",
+    "colorGradient": "from-yellow-500 to-amber-600",
+    "bgLight": "bg-yellow-50 text-yellow-700",
+    "count": 8,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Agriculture",
+    "slug": "agriculture",
+    "name": "Agriculture",
+    "iconName": "Trees",
+    "description": "Fertilizer mix calculators, seed rate estimators, and crop yield predictors.",
+    "colorGradient": "from-green-500 to-emerald-600",
+    "bgLight": "bg-green-50 text-green-700",
+    "count": 8,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Restaurant & Cafe",
+    "slug": "restaurant-cafe",
+    "name": "Restaurant & Cafe",
+    "iconName": "Utensils",
+    "description": "Recipe food costing, menu engineering margins, and portion converters.",
+    "colorGradient": "from-red-500 to-amber-600",
+    "bgLight": "bg-red-50 text-red-700",
+    "count": 7,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Beauty & Salon",
+    "slug": "beauty-salon",
+    "name": "Beauty & Salon",
+    "iconName": "Sparkles",
+    "description": "Hair dye mixing ratios, salon appointment schedulers, and product dilution tools.",
+    "colorGradient": "from-pink-500 to-purple-600",
+    "bgLight": "bg-pink-50 text-pink-700",
+    "count": 4,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Wedding & Event",
+    "slug": "wedding-event",
+    "name": "Wedding & Event",
+    "iconName": "Calendar",
+    "description": "Event timeline planners, seating arrangement calculators, and catering budgets.",
+    "colorGradient": "from-rose-500 to-indigo-600",
+    "bgLight": "bg-rose-50 text-rose-700",
+    "count": 5,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Photography",
+    "slug": "photography",
+    "name": "Photography",
+    "iconName": "Camera",
+    "description": "Depth of field calculators, exposure triangle solvers, and EXIF metadata viewers.",
+    "colorGradient": "from-blue-500 to-purple-600",
+    "bgLight": "bg-blue-50 text-blue-700",
+    "count": 5,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Music Production",
+    "slug": "music-production",
+    "name": "Music Production",
+    "iconName": "Headphones",
+    "description": "Delay time calculators, harmonic pitch shifters, and frequency tone generators.",
+    "colorGradient": "from-purple-500 to-pink-600",
+    "bgLight": "bg-purple-50 text-purple-700",
+    "count": 5,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Environment & Energy",
+    "slug": "environment-energy",
+    "name": "Environment & Energy",
+    "iconName": "Sun",
+    "description": "Carbon footprint calculators, CO2 offset metrics, and renewable power estimators.",
+    "colorGradient": "from-emerald-500 to-teal-600",
+    "bgLight": "bg-emerald-50 text-emerald-700",
+    "count": 4,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Pets & Animals",
+    "slug": "pets-animals",
+    "name": "Pets & Animals",
+    "iconName": "Cat",
+    "description": "Pet calorie calculators, dog-to-human age converters, and medication dosages.",
+    "colorGradient": "from-amber-500 to-rose-600",
+    "bgLight": "bg-amber-50 text-amber-700",
+    "count": 4,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Government & Public Services",
+    "slug": "government-public-services",
+    "name": "Government & Public Services",
+    "iconName": "Building",
+    "description": "Property tax calculators, municipal fee estimators, and utility bill splitters.",
+    "colorGradient": "from-indigo-500 to-slate-600",
+    "bgLight": "bg-indigo-50 text-indigo-700",
+    "count": 4,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Office Administration",
+    "slug": "office-administration",
+    "name": "Office Administration",
+    "iconName": "Clipboard",
+    "description": "Meeting agenda generators, memo formatters, and mileage reimbursement helpers.",
+    "colorGradient": "from-slate-500 to-blue-600",
+    "bgLight": "bg-slate-50 text-slate-700",
+    "count": 5,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Networking",
+    "slug": "networking",
+    "name": "Networking",
+    "iconName": "Network",
+    "description": "Subnet mask calculators, CIDR range solvers, and ping bandwidth estimators.",
+    "colorGradient": "from-cyan-500 to-indigo-600",
+    "bgLight": "bg-cyan-50 text-cyan-700",
+    "count": 5,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Data Management",
+    "slug": "data-management",
+    "name": "Data Management",
+    "iconName": "Database",
+    "description": "CSV/JSON converters, data deduplication helpers, and schema normalizers.",
+    "colorGradient": "from-violet-500 to-blue-600",
+    "bgLight": "bg-violet-50 text-violet-700",
+    "count": 5,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Project Management",
+    "slug": "project-management",
+    "name": "Project Management",
+    "iconName": "CheckCircle",
+    "description": "Sprint velocity calculators, RACI matrix planners, and Gantt chart timelines.",
+    "colorGradient": "from-teal-500 to-emerald-600",
+    "bgLight": "bg-teal-50 text-teal-700",
+    "count": 5,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Marketing & Advertising",
+    "slug": "marketing-advertising",
+    "name": "Marketing & Advertising",
+    "iconName": "TrendingUp",
+    "description": "ROAS calculators, CTR / CPC estimators, and ad banner dimension guides.",
+    "colorGradient": "from-rose-500 to-amber-600",
+    "bgLight": "bg-rose-50 text-rose-700",
+    "count": 5,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "YouTube Creator Tools",
+    "slug": "youtube-creator-tools",
+    "name": "YouTube Creator Tools",
+    "iconName": "Play",
+    "description": "Title character counters, tag extractors, and thumbnail aspect ratio guides.",
+    "colorGradient": "from-red-500 to-pink-600",
+    "bgLight": "bg-red-50 text-red-700",
+    "count": 5,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
+  },
+  {
+    "id": "Freelancing",
+    "slug": "freelancing",
+    "name": "Freelancing",
+    "iconName": "Laptop",
+    "description": "Hourly rate calculators, project quote estimators, and client contract templates.",
+    "colorGradient": "from-indigo-500 to-teal-600",
+    "bgLight": "bg-indigo-50 text-indigo-700",
+    "count": 5,
+    "subCategories": [
+      "Online",
+      "Client-Side",
+      "Free",
+      "Instant"
+    ]
   }
 ];
 
-export const CATEGORIES: (CategoryInfo & { count: number; subCategories?: string[]; department?: string; parentId?: string; parentSlug?: string })[] = STATIC_CATEGORIES;
+export const CATEGORIES: (CategoryInfo & { count: number; subCategories?: string[]; parentId?: string; parentSlug?: string; toolSlugs?: string[] })[] = STATIC_CATEGORIES;
 
 export function getToolsForCategory(categorySlug: string): any[] {
   const cat = CATEGORIES.find(c => c.slug === categorySlug);
   if (!cat) return [];
-  return SEARCH_INDEX.filter(t => t.category === cat.id || t.category === cat.name);
+  return SEARCH_INDEX.filter(t => t.category === cat.id);
 }

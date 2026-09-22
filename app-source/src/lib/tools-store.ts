@@ -107,10 +107,8 @@ export const useToolsStore = create<ToolsState>((set, get) => {
       const { loadedCategories, tools } = get();
       if (loadedCategories.has(categorySlug)) return;
 
-      const { CATEGORIES, getToolsForCategory } = await import('./categories');
-      const catObj = CATEGORIES.find(c => c.slug === categorySlug);
-      const parentSlug = catObj?.parentSlug || categorySlug.replace(/-\d+$/, '');
-      const loader = CATEGORY_LOADERS[parentSlug] || CATEGORY_LOADERS[categorySlug];
+      const parentSlug = categorySlug.replace(/-\d+$/, '');
+      const loader = CATEGORY_LOADERS[parentSlug];
       if (!loader) return;
 
       set({ isLoading: true });
@@ -118,11 +116,10 @@ export const useToolsStore = create<ToolsState>((set, get) => {
         const module = await loader();
         const categoryTools = module.default || module.tools || Object.values(module).find(Array.isArray) || [];
         
+        const { CATEGORIES, getToolsForCategory } = await import('./categories');
+        
         // Load the specific subcategory chunk, or if parent slug is requested, load all child chunks
         const subCatsToLoad = CATEGORIES.filter(c => c.slug === categorySlug || (c.parentSlug === categorySlug && categorySlug === parentSlug));
-        if (subCatsToLoad.length === 0 && catObj) {
-          subCatsToLoad.push(catObj);
-        }
         
         let nextTools = [...tools];
         const nextLoaded = new Set(loadedCategories);

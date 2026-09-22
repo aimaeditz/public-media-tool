@@ -134,7 +134,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ navigate }
           <section className="space-y-4">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900">6. Privacy Contacts</h2>
             <p>
-              If you have any questions, clarifications, or feedback regarding our privacy standards or browser session execution model, feel free to contact us directly via our <a href="/contact" className="text-indigo-600 font-semibold hover:underline">Contact Page</a>.
+              If you have any questions, clarifications, or feedback regarding our privacy standards or client-side execution architecture, feel free to contact us directly via our <a href="/contact" className="text-indigo-600 font-semibold hover:underline">Contact Page</a>.
             </p>
           </section>
 

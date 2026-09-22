@@ -93,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, navigate, onOpenSea
           </button>
 
           {/* Center: Navigation Links */}
-          <div className="hidden md:flex items-center gap-8 lg:gap-10">
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => {
               const isActive = currentPath === link.path || (link.path !== '/' && currentPath.startsWith(link.path));
               return (
@@ -105,31 +105,40 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, navigate, onOpenSea
                   }`}
                 >
                   {link.label}
-                  {/* Active Underline */}
-                  {isActive && (
-                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-indigo-600 rounded-full" />
-                  )}
+                  {/* Animated underline on hover / active */}
+                  <span
+                    className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-indigo-500 to-pink-500 transition-transform duration-300 origin-left ${
+                      isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                    }`}
+                  />
                 </button>
               );
             })}
           </div>
 
-          {/* Right: Search Button & Mobile Toggle */}
-          <div className="flex items-center gap-3">
+          {/* Right Controls */}
+          <div className="hidden md:flex items-center gap-3">
+            {/* Search Button */}
             <button
               onClick={onOpenSearch}
-              className="w-11 h-11 flex items-center justify-center rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50 hover:border-slate-300 text-slate-700 transition-all cursor-pointer shadow-2xs focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
+              className="p-2.5 text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/80 rounded-xl transition-all cursor-pointer border border-slate-200/80 hover:border-indigo-200 shadow-2xs"
               title="Search tools"
-              aria-label="Search tools"
             >
-              <Search className="w-5 h-5 text-slate-700" />
+              <Search className="w-5 h-5" />
             </button>
+          </div>
 
-            {/* Mobile Hamburger Button */}
+          {/* Mobile Hamburger Button */}
+          <div className="flex md:hidden items-center gap-2">
+            <button
+              onClick={onOpenSearch}
+              className="p-2 text-slate-700 hover:bg-slate-100 rounded-lg"
+            >
+              <Search className="w-5 h-5" />
+            </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-lg cursor-pointer"
-              aria-label="Toggle menu"
+              className="p-2 text-slate-700 hover:bg-slate-100 rounded-lg"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -141,22 +150,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, navigate, onOpenSea
       {mobileMenuOpen && (
         <div className="md:hidden fixed inset-0 top-[60px] bg-white z-50 p-6 flex flex-col justify-between overflow-y-auto">
           <div className="space-y-6">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenSearch();
-              }}
-              className="w-full flex items-center justify-between p-3 bg-slate-100 hover:bg-slate-200/80 rounded-xl text-slate-700 font-medium text-sm transition-colors cursor-pointer"
-            >
-              <span className="flex items-center gap-2">
-                <Search className="w-4 h-4 text-slate-500" />
-                Search all tools...
-              </span>
-              <kbd className="px-2 py-0.5 text-[10px] font-semibold text-slate-500 bg-white rounded border border-slate-200">
-                ⌘K
-              </kbd>
-            </button>
-
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <button

@@ -92,7 +92,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ navigate }) => {
               Public Media Tool provides open-access browser-based utilities including, but not limited to, calculators, converters, image formatters, and web developer tools. You are granted a limited, revocable, non-exclusive, and non-transferable license to access and use our website strictly for personal, academic, professional, and commercial tasks.
             </p>
             <p>
-              All tool processing runs locally within your browser session. We do not charge fees or require account credits to use our web utilities.
+              All tool processing runs 100% locally within your browser using HTML5 Canvas, JavaScript, CSS, and related local web standards. We do not charge fees or require account credits to use our web utilities.
             </p>
           </section>
 
@@ -114,7 +114,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ navigate }) => {
           <section className="space-y-4">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900">4. Intellectual Property</h2>
             <p>
-              The design layouts, user interface styles, branding icons, source code scripts, and organizational graphics of Public Media Tool are the exclusive intellectual property of <strong>PMT</strong> and contributors. These are protected under international copyright and intellectual property treaties.
+              The design layouts, user interface styles, branding icons, source code scripts, and organizational graphics of Public Media Tool are the exclusive intellectual property of <strong>AiMAEditz</strong> and contributors. These are protected under international copyright and intellectual property treaties.
             </p>
           </section>
 

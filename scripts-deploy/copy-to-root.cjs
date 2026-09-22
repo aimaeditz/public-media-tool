@@ -19,15 +19,11 @@ const keepList = new Set([
   'README.md',
   'metadata.json',
   'package.json',
-  'dist_root',
-  'dist',
-  'src',
-  'scripts',
-  'public',
-  'tsconfig.json',
-  'vite.config.ts',
   '.env.example',
-  'node_modules'
+  'node_modules',
+  'package-lock.json',
+  'bun.lock',
+  'dist_root'
 ]);
 
 console.log('Cleaning repository root...');

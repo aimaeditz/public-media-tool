@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "tsc --noEmit"
+    "dev": "npm --prefix app-source run dev",
+    "build": "npm --prefix app-source run build:root",
+    "preview": "npm --prefix app-source run preview",
+    "lint": "npm --prefix app-source run lint"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",

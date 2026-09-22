@@ -30,7 +30,7 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
         bgLight: first.bgLight,
         count: matchingSubs.reduce((sum, c) => sum + c.count, 0),
         subCategories: Array.from(new Set(matchingSubs.map(c => c.name.replace(/ - Part \d+$/, '')))),
-        toolSlugs: matchingSubs.flatMap(c => (c as any).toolSlugs || [])
+        toolSlugs: matchingSubs.flatMap(c => c.toolSlugs)
       } as any;
     }
   }
@@ -56,8 +56,8 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
   }, [category.slug, loadCategory]);
 
   const categoryTools = isParentCategory
-    ? tools.filter((t) => CATEGORIES.some(c => c.parentSlug === categorySlug && (t.category === c.id || t.category === c.parentId)))
-    : tools.filter((t) => t.category === category.id || t.category === (category.parentId || category.id));
+    ? tools.filter((t) => CATEGORIES.some(c => c.parentSlug === categorySlug && t.category === c.id))
+    : tools.filter((t) => t.category === category.id);
   
   // Dynamic local filter matching tags or title keywords
   const filteredTools = selectedSub === 'All'

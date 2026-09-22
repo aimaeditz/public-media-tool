@@ -11,9 +11,6 @@ interface CategoryInfo {
   bgLight: string;
   count?: number;
   subCategories?: string[];
-  department?: string;
-  parentId?: string;
-  parentSlug?: string;
 }
 
 interface ToolSearchItem {
@@ -27,302 +24,124 @@ interface ToolSearchItem {
   usageCount: number;
 }
 
-function slugify(text: string): string {
-  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-}
-
-function classifyTool(tool: any): string {
-  const cat = tool.category;
-  const name = (tool.name || '').toLowerCase();
-  const desc = (tool.shortDesc || '').toLowerCase();
-  const tags = (tool.tags || []).map((t: any) => String(t).toLowerCase()).join(' ');
-  const text = name + ' ' + desc + ' ' + tags;
-
-  // 1. Text Tools (125 tools -> 4 categories)
-  if (cat === 'Text Tools') {
-    if (text.includes('case') || text.includes('uppercase') || text.includes('lowercase') || text.includes('camel') || text.includes('snake') || text.includes('kebab') || text.includes('pascal') || text.includes('alternating') || text.includes('capital') || text.includes('letter') || text.includes('whitespace') || text.includes('trim') || text.includes('indent') || text.includes('format') || text.includes('clean') || text.includes('sort') || text.includes('duplicate')) return 'Text Formatters & Cleaners';
-    if (text.includes('count') || text.includes('word') || text.includes('character') || text.includes('syllable') || text.includes('sentence') || text.includes('paragraph') || text.includes('reading time') || text.includes('readability') || text.includes('flesch') || text.includes('analyzer') || text.includes('length') || text.includes('diff') || text.includes('compare') || text.includes('similarity')) return 'Text Counters & Analysis';
-    if (text.includes('binary') || text.includes('hexadecimal') || text.includes('octal') || text.includes('morse') || text.includes('rot13') || text.includes('caesar') || text.includes('cipher') || text.includes('zalgo') || text.includes('encode') || text.includes('decode') || text.includes('markup') || text.includes('markdown') || text.includes('html') || text.includes('bbcode')) return 'Text Encoders & Converters';
-    return 'Text & Font Generators';
-  }
-
-  // 2. Developer Tools (113 tools -> 3 categories)
-  if (cat === 'Developer Tools') {
-    if (text.includes('json') || text.includes('yaml') || text.includes('xml') || text.includes('csv') || text.includes('base64') || text.includes('uuid') || text.includes('guid') || text.includes('base32') || text.includes('base58') || text.includes('nanoid') || text.includes('identifier') || text.includes('jwt')) return 'JSON & Developer Data Utilities';
-    if (text.includes('css') || text.includes('flexbox') || text.includes('grid') || text.includes('shadow') || text.includes('border') || text.includes('gradient') || text.includes('rem') || text.includes('px') || text.includes('styling')) return 'CSS & Frontend Web Tools';
-    return 'Code Syntax, Formatters & Minifiers';
-  }
-
-  // 3. Image Tools (105 tools -> 4 categories)
-  if (cat === 'Image Tools') {
-    if (text.includes('resize') || text.includes('crop') || text.includes('scale') || text.includes('dimension') || text.includes('aspect') || text.includes('compress') || text.includes('optimize') || text.includes('shrink')) return 'Image Resizers & Compressors';
-    if (text.includes('convert') || text.includes('webp') || text.includes('png') || text.includes('jpg') || text.includes('jpeg') || text.includes('svg') || text.includes('gif') || text.includes('bmp') || text.includes('format')) return 'Image Format Converters';
-    if (text.includes('filter') || text.includes('effect') || text.includes('blur') || text.includes('brightness') || text.includes('contrast') || text.includes('vignette') || text.includes('glitch') || text.includes('sepia') || text.includes('vintage') || text.includes('dither') || text.includes('sharpen') || text.includes('emboss') || text.includes('sobel')) return 'Photo Effects & Visual Filters';
-    return 'Graphic Assets & Image Studio';
-  }
-
-  // 4. Calculator Tools (104 tools -> 3 categories)
-  if (cat === 'Calculator Tools') {
-    if (text.includes('loan') || text.includes('mortgage') || text.includes('emi') || text.includes('interest') || text.includes('amortization') || text.includes('down payment')) return 'Loans, Mortgages & Investments';
-    if (text.includes('discount') || text.includes('tax') || text.includes('vat') || text.includes('tip') || text.includes('margin') || text.includes('markup') || text.includes('sales') || text.includes('profit') || text.includes('salary') || text.includes('wage') || text.includes('depreciation') || text.includes('percentage') || text.includes('ratio')) return 'Sales, Tax & Financial Calculators';
-    return 'Everyday & Scientific Calculators';
-  }
-
-  // 5. SEO Tools (102 tools -> 3 categories)
-  if (cat === 'SEO Tools') {
-    if (text.includes('meta') || text.includes('opengraph') || text.includes('social') || text.includes('snippet') || text.includes('title') || text.includes('keyword') || text.includes('density') || text.includes('heading') || text.includes('readability') || text.includes('content') || text.includes('nap') || text.includes('local')) return 'Meta Tag & On-Page SEO';
-    if (text.includes('sitemap') || text.includes('robots') || text.includes('canonical') || text.includes('schema') || text.includes('structured') || text.includes('json-ld')) return 'Technical SEO Utilities';
-    return 'Domain, Link & Analytics SEO';
-  }
-
-  // 6. Converter Tools (93 tools -> 4 categories)
-  if (cat === 'Converter Tools') {
-    if (text.includes('length') || text.includes('distance') || text.includes('weight') || text.includes('mass') || text.includes('area') || text.includes('volume') || text.includes('capacity') || text.includes('temperature') || text.includes('surface')) return 'Measurement & Unit Converters';
-    if (text.includes('data') || text.includes('byte') || text.includes('binary') || text.includes('hex') || text.includes('octal') || text.includes('number system') || text.includes('storage') || text.includes('roman')) return 'Data & Digital Converters';
-    if (text.includes('speed') || text.includes('pressure') || text.includes('power') || text.includes('force') || text.includes('energy') || text.includes('angle') || text.includes('frequency') || text.includes('torque') || text.includes('viscosity')) return 'Physics & Engineering Converters';
-    return 'Everyday & Cooking Converters';
-  }
-
-  // 7. Color Tools (86 tools -> 2 categories)
-  if (cat === 'Color Tools') {
-    if (text.includes('picker') || text.includes('extract') || text.includes('eyedropper') || text.includes('sample') || text.includes('contrast') || text.includes('wcag') || text.includes('accessibility') || text.includes('convert') || text.includes('hex') || text.includes('rgb') || text.includes('hsl') || text.includes('cmyk')) return 'Color Pickers & Format Converters';
-    return 'Color Palettes, Gradients & Themes';
-  }
-
-  // 8. PDF Tools (82 tools -> 3 categories)
-  if (cat === 'PDF Tools') {
-    if (text.includes('rotate') || text.includes('split') || text.includes('merge') || text.includes('order') || text.includes('organize') || text.includes('page')) return 'PDF Page & Layout Management';
-    if (text.includes('inspect') || text.includes('metadata') || text.includes('extract') || text.includes('preview') || text.includes('viewer') || text.includes('info')) return 'PDF Inspection & Extraction';
-    return 'PDF Security & Document Utilities';
-  }
-
-  // 9. Security Tools (72 tools -> 2 categories)
-  if (cat === 'Security Tools') {
-    if (text.includes('password') || text.includes('passphrase') || text.includes('pin') || text.includes('token') || text.includes('diceware') || text.includes('hash') || text.includes('md5') || text.includes('sha') || text.includes('checksum') || text.includes('bcrypt')) return 'Passwords, Hashes & Checksums';
-    return 'Encryption, Keys & Certificates';
-  }
-
-  // 10. Finance Tools (45 tools -> 2 categories)
-  if (cat === 'Finance Tools') {
-    if (text.includes('investment') || text.includes('compound') || text.includes('sip') || text.includes('roi') || text.includes('savings') || text.includes('stock')) return 'Loans, Mortgages & Investments';
-    return 'Personal Budgeting & Expense Management';
-  }
-
-  // 11. Math Tools (44 tools) -> 1 category
-  if (cat === 'Math Tools') {
-    return 'Algebra, Geometry & Statistics';
-  }
-
-  // 12. Generators (43 tools) -> 1 category
-  if (cat === 'Generators') {
-    return 'Random Value, Game & Data Generators';
-  }
-
-  // Merging small categories under 12 tools:
-  if (['Accounting', 'HR & Payroll'].includes(cat)) return 'Accounting & Payroll';
-  if (['E-commerce', 'Inventory & Logistics', 'Project Management', 'Office Administration', 'Freelancing'].includes(cat)) return 'Business Operations & Management';
-  if (['Legal Tools', 'Government & Public Services', 'Marketing & Advertising'].includes(cat)) return 'Legal, Regulatory & Marketing';
-  if (['Real Estate', 'Construction', 'Engineering'].includes(cat)) return 'Architecture, Construction & Real Estate';
-  if (['Agriculture', 'Environment & Energy', 'Electrical & Solar'].includes(cat)) return 'Agriculture, Energy & Environment';
-  if (['Restaurant & Cafe', 'Beauty & Salon', 'Wedding & Event', 'Pets & Animals'].includes(cat)) return 'Hospitality, Events & Lifestyle';
-  if (['Data Management', 'Networking', 'Web Tools'].includes(cat)) return 'Web Diagnostics & Networking';
-  if (['Music Production', 'Audio Tools', 'Photography', 'YouTube Creator Tools'].includes(cat)) return 'Audio, Media & Content Production';
-
-  return cat;
-}
-
-function getCategoryDepartment(catName: string, parentCat: string): string {
-  if (['Developer Tools', 'Web Tools', 'SEO Tools', 'Security Tools', 'Data Management', 'Networking'].includes(parentCat) || catName.includes('Code') || catName.includes('JSON') || catName.includes('Developer') || catName.includes('Regex') || catName.includes('SEO') || catName.includes('Web') || catName.includes('CSS') || catName.includes('Encoding') || catName.includes('Encryption') || catName.includes('Password') || catName.includes('Domain')) return 'Developer & Web';
-  if (['Image Tools', 'Video Tools', 'Audio Tools', 'PDF Tools', 'Photography', 'Music Production', 'YouTube Creator Tools', 'Color Tools'].includes(parentCat) || catName.includes('Image') || catName.includes('Photo') || catName.includes('PDF') || catName.includes('Audio') || catName.includes('Video') || catName.includes('Color') || catName.includes('Gradient') || catName.includes('Graphic') || catName.includes('Media')) return 'Media & Content';
-  if (['Text Tools', 'Generators', 'Date & Time', 'Productivity', 'Office Administration', 'Social Media Tools'].includes(parentCat) || catName.includes('Text') || catName.includes('Case') || catName.includes('Word') || catName.includes('Habit') || catName.includes('Focus') || catName.includes('Generator') || catName.includes('Date') || catName.includes('Time') || catName.includes('File')) return 'Text & Productivity';
-  if (['Math Tools', 'Calculator Tools', 'Converter Tools', 'Unit Converters', 'Electrical & Solar', 'Engineering'].includes(parentCat) || catName.includes('Calculator') || catName.includes('Converter') || catName.includes('Algebra') || catName.includes('Statistics') || catName.includes('Geometry') || catName.includes('Measurement') || catName.includes('Physics') || catName.includes('Unit')) return 'Math & Science';
-  if (['Finance Tools', 'Business Tools', 'Accounting', 'Legal Tools', 'Real Estate', 'HR & Payroll', 'E-commerce', 'Inventory & Logistics', 'Freelancing', 'Marketing & Advertising', 'Project Management'].includes(parentCat) || catName.includes('Loan') || catName.includes('Tax') || catName.includes('Salary') || catName.includes('Invoice') || catName.includes('Profit') || catName.includes('Budget') || catName.includes('Accounting') || catName.includes('Business') || catName.includes('Legal')) return 'Business & Finance';
-  return 'Industry & Lifestyle';
-}
-
-function getCategoryIcon(catName: string, parentCat: string): string {
-  if (catName.includes('Case')) return 'Type';
-  if (catName.includes('Counter') || catName.includes('Statistics')) return 'Hash';
-  if (catName.includes('Readability') || catName.includes('Book') || catName.includes('Study')) return 'BookOpen';
-  if (catName.includes('Generator') || catName.includes('Random')) return 'Zap';
-  if (catName.includes('Compare') || catName.includes('Diff')) return 'GitCompare';
-  if (catName.includes('Encoder') || catName.includes('Cipher') || catName.includes('Encrypt') || catName.includes('Lock')) return 'Lock';
-  if (catName.includes('Formatter') || catName.includes('Clean')) return 'AlignLeft';
-  if (catName.includes('List') || catName.includes('Array')) return 'List';
-  if (catName.includes('Fancy') || catName.includes('Styled') || catName.includes('Asset')) return 'Sparkles';
-  if (catName.includes('JSON')) return 'FileJson';
-  if (catName.includes('Encoding') || catName.includes('Identifier') || catName.includes('Binary')) return 'Binary';
-  if (catName.includes('CSS') || catName.includes('Styling') || catName.includes('Palette') || catName.includes('Color')) return 'Palette';
-  if (catName.includes('Code') || catName.includes('Minifier') || catName.includes('Markup')) return 'Terminal';
-  if (catName.includes('Regex') || catName.includes('String')) return 'Sliders';
-  if (catName.includes('API') || catName.includes('Web') || catName.includes('Domain')) return 'Globe';
-  if (catName.includes('Crop') || catName.includes('Resize')) return 'Crop';
-  if (catName.includes('Convert')) return 'RefreshCw';
-  if (catName.includes('Compress') || catName.includes('Optimize')) return 'Minimize2';
-  if (catName.includes('Picker') || catName.includes('Sampler')) return 'Eyedropper';
-  if (catName.includes('Filter') || catName.includes('Effect')) return 'Wand2';
-  if (catName.includes('Watermark') || catName.includes('Layer')) return 'Layers';
-  if (catName.includes('Mortgage') || catName.includes('Loan') || catName.includes('Home')) return 'Home';
-  if (catName.includes('Tax') || catName.includes('Receipt') || catName.includes('Invoice')) return 'Receipt';
-  if (catName.includes('Percentage') || catName.includes('Ratio')) return 'Percent';
-  if (catName.includes('Health') || catName.includes('Body') || catName.includes('Metric')) return 'Heart';
-  if (catName.includes('Salary') || catName.includes('Income') || catName.includes('Finance') || catName.includes('Profit')) return 'DollarSign';
-  if (catName.includes('Scientific') || catName.includes('Geometry') || catName.includes('Trigonometry')) return 'Compass';
-  if (catName.includes('Calculator')) return 'Calculator';
-  if (catName.includes('Meta') || catName.includes('Social')) return 'Share2';
-  if (catName.includes('Keyword') || catName.includes('SEO') || catName.includes('Search')) return 'Search';
-  if (catName.includes('Technical') || catName.includes('Unit') || catName.includes('Physics')) return 'Cpu';
-  if (catName.includes('URL') || catName.includes('Link')) return 'Link';
-  if (catName.includes('Local') || catName.includes('Map')) return 'MapPin';
-  if (catName.includes('Ruler') || catName.includes('Length') || catName.includes('Distance')) return 'Ruler';
-  if (catName.includes('Weight') || catName.includes('Scale') || catName.includes('Mass')) return 'Scale';
-  if (catName.includes('Area') || catName.includes('Grid') || catName.includes('Matrix')) return 'Grid';
-  if (catName.includes('Volume') || catName.includes('Capacity') || catName.includes('Box')) return 'Box';
-  if (catName.includes('Temperature')) return 'Thermometer';
-  if (catName.includes('Data') || catName.includes('Storage')) return 'HardDrive';
-  if (catName.includes('Cooking') || catName.includes('Kitchen')) return 'Utensils';
-  if (catName.includes('Apparel') || catName.includes('Size') || catName.includes('Clothing')) return 'Tag';
-  if (catName.includes('Contrast') || catName.includes('Accessibility')) return 'Eye';
-  if (catName.includes('PDF')) return 'FileCheck';
-  if (catName.includes('Security') || catName.includes('Password') || catName.includes('Hash')) return 'Shield';
-  if (catName.includes('Budget') || catName.includes('Savings')) return 'PiggyBank';
-  if (catName.includes('Expense') || catName.includes('Debt')) return 'CreditCard';
-  if (catName.includes('Game') || catName.includes('Probability')) return 'Dices';
-  if (catName.includes('QR')) return 'QrCode';
-  if (catName.includes('Time') || catName.includes('Habit') || catName.includes('Calendar') || catName.includes('Timestamp')) return 'Clock';
-  if (catName.includes('Audio') || catName.includes('Speech') || catName.includes('Headphones')) return 'Headphones';
-  if (catName.includes('Focus') || catName.includes('Note')) return 'CheckSquare';
-  if (catName.includes('Business') || catName.includes('Commercial')) return 'Building';
-  if (catName.includes('Archive') || catName.includes('Compression')) return 'Archive';
-  if (catName.includes('File') || catName.includes('Renamer')) return 'Folder';
-  if (catName.includes('Music') || catName.includes('Frequency')) return 'Music';
-  if (catName.includes('User') || catName.includes('Profile')) return 'UserCheck';
-
-  return 'Tool';
-}
-
-function getCategoryGradients(dept: string, index: number): { colorGradient: string; bgLight: string } {
-  const gradients = [
-    { colorGradient: 'from-indigo-500 to-blue-600', bgLight: 'bg-indigo-50 text-indigo-700' },
-    { colorGradient: 'from-emerald-500 to-teal-600', bgLight: 'bg-emerald-50 text-emerald-700' },
-    { colorGradient: 'from-pink-500 to-rose-600', bgLight: 'bg-pink-50 text-pink-700' },
-    { colorGradient: 'from-amber-500 to-orange-600', bgLight: 'bg-amber-50 text-amber-700' },
-    { colorGradient: 'from-purple-500 to-violet-600', bgLight: 'bg-purple-50 text-purple-700' },
-    { colorGradient: 'from-cyan-500 to-sky-600', bgLight: 'bg-cyan-50 text-cyan-700' },
-    { colorGradient: 'from-green-500 to-lime-600', bgLight: 'bg-lime-50 text-lime-700' },
-    { colorGradient: 'from-blue-500 to-indigo-600', bgLight: 'bg-blue-50 text-blue-700' },
-    { colorGradient: 'from-rose-500 to-red-600', bgLight: 'bg-rose-50 text-rose-700' },
-  ];
-  return gradients[index % gradients.length];
-}
+const BASE_CATEGORIES: CategoryInfo[] = [
+  { id: 'Text Tools', slug: 'text-tools', name: 'Text Tools', iconName: 'FileText', description: 'Transform, clean, format, and analyze text instantly without data leaving your browser.', colorGradient: 'from-indigo-500 to-blue-600', bgLight: 'bg-indigo-50 text-indigo-700' },
+  { id: 'Image Tools', slug: 'image-tools', name: 'Image Tools', iconName: 'Image', description: 'Crop, resize, compress, and convert images directly in your browser with canvas API.', colorGradient: 'from-pink-500 to-rose-600', bgLight: 'bg-pink-50 text-pink-700' },
+  { id: 'PDF Tools', slug: 'pdf-tools', name: 'PDF Tools', iconName: 'FileCheck', description: 'Inspect PDF metadata, count pages, generate clean PDF previews, and extract text client-side.', colorGradient: 'from-orange-500 to-amber-600', bgLight: 'bg-amber-50 text-amber-700' },
+  { id: 'Developer Tools', slug: 'developer-tools', name: 'Developer Tools', iconName: 'Code', description: 'JSON formatting, Base64, UUID generation, regex testing, and developer utilities.', colorGradient: 'from-emerald-500 to-teal-600', bgLight: 'bg-emerald-50 text-emerald-700' },
+  { id: 'SEO Tools', slug: 'seo-tools', name: 'SEO Tools', iconName: 'Search', description: 'Optimize metadata, calculate keyword density, preview SERP snippets, and build OpenGraph tags.', colorGradient: 'from-purple-500 to-violet-600', bgLight: 'bg-purple-50 text-purple-700' },
+  { id: 'Color Tools', slug: 'color-tools', name: 'Color Tools', iconName: 'Palette', description: 'Extract palettes from images, check WCAG color contrast, and generate CSS gradients.', colorGradient: 'from-cyan-500 to-sky-600', bgLight: 'bg-cyan-50 text-cyan-700' },
+  { id: 'Converter Tools', slug: 'converter-tools', name: 'Converter Tools', iconName: 'RefreshCw', description: 'Convert between length, weight, temperature, data storage, speed, and time units.', colorGradient: 'from-yellow-500 to-orange-600', bgLight: 'bg-yellow-50 text-yellow-700' },
+  { id: 'Calculator Tools', slug: 'calculator-tools', name: 'Calculator Tools', iconName: 'Calculator', description: 'Discount, sales tax, loan EMI, tip, compound interest, and financial calculators.', colorGradient: 'from-green-500 to-lime-600', bgLight: 'bg-lime-50 text-lime-700' },
+  { id: 'Security Tools', slug: 'security-tools', name: 'Security Tools', iconName: 'Shield', description: 'Generate strong cryptographically secure passwords and calculate MD5, SHA-256 hashes.', colorGradient: 'from-red-500 to-pink-600', bgLight: 'bg-red-50 text-red-700' },
+  { id: 'Web Tools', slug: 'web-tools', name: 'Web Tools', iconName: 'Globe', description: 'Encode URLs, generate HTML QR codes, test user agents, and format web data.', colorGradient: 'from-blue-500 to-indigo-600', bgLight: 'bg-blue-50 text-blue-700' },
+  { id: 'Social Media Tools', slug: 'social-media-tools', name: 'Social Media Tools', iconName: 'Share2', description: 'Character counters, hashtag generators, and bio formatters for social platforms.', colorGradient: 'from-sky-500 to-blue-600', bgLight: 'bg-sky-50 text-sky-700' },
+  { id: 'Video Tools', slug: 'video-tools', name: 'Video Tools', iconName: 'Video', description: 'Aspect ratio calculators, video bitrate estimators, and frame time converters.', colorGradient: 'from-rose-500 to-red-600', bgLight: 'bg-rose-50 text-rose-700' },
+  { id: 'Audio Tools', slug: 'audio-tools', name: 'Audio Tools', iconName: 'Music', description: 'BPM metronomes, audio sample rate converters, and decibel sound level calculators.', colorGradient: 'from-violet-500 to-purple-600', bgLight: 'bg-violet-50 text-violet-700' },
+  { id: 'File Tools', slug: 'file-tools', name: 'File Tools', iconName: 'Folder', description: 'File size converters, MIME type lookups, and filename batch sanitizers.', colorGradient: 'from-slate-500 to-zinc-600', bgLight: 'bg-zinc-50 text-zinc-700' },
+  { id: 'Generators', slug: 'generators', name: 'Generators', iconName: 'Zap', description: 'Generate mock user profiles, random numbers, dummy data, and placeholder assets.', colorGradient: 'from-amber-500 to-yellow-600', bgLight: 'bg-amber-50 text-amber-700' },
+  { id: 'Math Tools', slug: 'math-tools', name: 'Math Tools', iconName: 'Percent', description: 'Fraction converters, prime number checkers, quadratic solvers, and statistics tools.', colorGradient: 'from-teal-500 to-emerald-600', bgLight: 'bg-teal-50 text-teal-700' },
+  { id: 'Date & Time', slug: 'date-time', name: 'Date & Time', iconName: 'Clock', description: 'Timezone converters, UNIX timestamp formatters, and date difference calculators.', colorGradient: 'from-indigo-500 to-sky-600', bgLight: 'bg-indigo-50 text-indigo-700' },
+  { id: 'Productivity', slug: 'productivity', name: 'Productivity', iconName: 'CheckSquare', description: 'Pomodoro timers, reading speed calculators, and daily habit helpers.', colorGradient: 'from-emerald-500 to-green-600', bgLight: 'bg-emerald-50 text-emerald-700' },
+  { id: 'Finance Tools', slug: 'finance-tools', name: 'Finance Tools', iconName: 'DollarSign', description: 'SIP calculators, salary take-home estimators, and ROI financial tools.', colorGradient: 'from-green-500 to-teal-600', bgLight: 'bg-green-50 text-green-700' },
+  { id: 'Business Tools', slug: 'business-tools', name: 'Business Tools', iconName: 'Briefcase', description: 'Break-even point calculators, profit margin tools, and invoice formatters.', colorGradient: 'from-blue-500 to-cyan-600', bgLight: 'bg-blue-50 text-blue-700' },
+  { id: 'Health & Fitness', slug: 'health-fitness', name: 'Health & Fitness', iconName: 'Heart', description: 'BMI calculators, calorie trackers, water intake estimators, and pace planners.', colorGradient: 'from-rose-500 to-pink-600', bgLight: 'bg-rose-50 text-rose-700' },
+  { id: 'Education', slug: 'education', name: 'Education', iconName: 'GraduationCap', description: 'GPA calculators, flashcard generators, and citation formatters.', colorGradient: 'from-amber-500 to-orange-600', bgLight: 'bg-amber-50 text-amber-700' },
+  { id: 'Unit Converters', slug: 'unit-converters', name: 'Unit Converters', iconName: 'Cpu', description: 'Convert metric and imperial units across scientific and everyday dimensions.', colorGradient: 'from-indigo-500 to-purple-600', bgLight: 'bg-indigo-50 text-indigo-700' },
+  { id: 'Automotive', slug: 'automotive', name: 'Automotive', iconName: 'Gauge', description: 'Fuel economy calculators, horsepower to kilowatt converters, and tire sizing.', colorGradient: 'from-red-500 to-orange-600', bgLight: 'bg-red-50 text-red-700' },
+  { id: 'Travel Tools', slug: 'travel-tools', name: 'Travel Tools', iconName: 'Compass', description: 'Flight duration estimators, packing checklist generators, and currency helpers.', colorGradient: 'from-sky-500 to-teal-600', bgLight: 'bg-sky-50 text-sky-700' },
+  { id: 'Real Estate', slug: 'real-estate', name: 'Real Estate', iconName: 'Home', description: 'Rental yield calculators, mortgage amortization, and square footage converters.', colorGradient: 'from-emerald-500 to-cyan-600', bgLight: 'bg-emerald-50 text-emerald-700' },
+  { id: 'Legal Tools', slug: 'legal-tools', name: 'Legal Tools', iconName: 'Scale', description: 'NDA generators, copyright notice formatters, and statutory interest calculators.', colorGradient: 'from-slate-500 to-indigo-600', bgLight: 'bg-slate-50 text-slate-700' },
+  { id: 'HR & Payroll', slug: 'hr-payroll', name: 'HR & Payroll', iconName: 'Users', description: 'Overtime pay calculators, employee turnover rate, and PTO accrual estimators.', colorGradient: 'from-violet-500 to-indigo-600', bgLight: 'bg-violet-50 text-violet-700' },
+  { id: 'Accounting', slug: 'accounting', name: 'Accounting', iconName: 'BookOpen', description: 'Depreciation calculators, bad debt provisions, and ledger reconciliation helpers.', colorGradient: 'from-blue-500 to-emerald-600', bgLight: 'bg-blue-50 text-blue-700' },
+  { id: 'E-commerce', slug: 'e-commerce', name: 'E-commerce', iconName: 'ShoppingCart', description: 'Order profit calculators, free shipping threshold estimators, and return rate tools.', colorGradient: 'from-pink-500 to-orange-600', bgLight: 'bg-pink-50 text-pink-700' },
+  { id: 'Inventory & Logistics', slug: 'inventory-logistics', name: 'Inventory & Logistics', iconName: 'Package', description: 'Reorder point calculators, safety stock estimators, and freight density tools.', colorGradient: 'from-amber-500 to-emerald-600', bgLight: 'bg-amber-50 text-amber-700' },
+  { id: 'Engineering', slug: 'engineering', name: 'Engineering', iconName: 'Wrench', description: 'Stress-strain calculators, beam deflection helpers, and fluid pressure solvers.', colorGradient: 'from-cyan-500 to-blue-600', bgLight: 'bg-cyan-50 text-cyan-700' },
+  { id: 'Construction', slug: 'construction', name: 'Construction', iconName: 'HardHat', description: 'Concrete volume calculators, brick quantity estimators, and paint area helpers.', colorGradient: 'from-orange-500 to-yellow-600', bgLight: 'bg-orange-50 text-orange-700' },
+  { id: 'Electrical & Solar', slug: 'electrical-solar', name: 'Electrical & Solar', iconName: 'Zap', description: 'Ohm’s law calculators, solar panel output estimators, and wire gauge selectors.', colorGradient: 'from-yellow-500 to-amber-600', bgLight: 'bg-yellow-50 text-yellow-700' },
+  { id: 'Agriculture', slug: 'agriculture', name: 'Agriculture', iconName: 'Trees', description: 'Fertilizer mix calculators, seed rate estimators, and crop yield predictors.', colorGradient: 'from-green-500 to-emerald-600', bgLight: 'bg-green-50 text-green-700' },
+  { id: 'Restaurant & Cafe', slug: 'restaurant-cafe', name: 'Restaurant & Cafe', iconName: 'Utensils', description: 'Recipe food costing, menu engineering margins, and portion converters.', colorGradient: 'from-red-500 to-amber-600', bgLight: 'bg-red-50 text-red-700' },
+  { id: 'Beauty & Salon', slug: 'beauty-salon', name: 'Beauty & Salon', iconName: 'Sparkles', description: 'Hair dye mixing ratios, salon appointment schedulers, and product dilution tools.', colorGradient: 'from-pink-500 to-purple-600', bgLight: 'bg-pink-50 text-pink-700' },
+  { id: 'Wedding & Event', slug: 'wedding-event', name: 'Wedding & Event', iconName: 'Calendar', description: 'Event timeline planners, seating arrangement calculators, and catering budgets.', colorGradient: 'from-rose-500 to-indigo-600', bgLight: 'bg-rose-50 text-rose-700' },
+  { id: 'Photography', slug: 'photography', name: 'Photography', iconName: 'Camera', description: 'Depth of field calculators, exposure triangle solvers, and EXIF metadata viewers.', colorGradient: 'from-blue-500 to-purple-600', bgLight: 'bg-blue-50 text-blue-700' },
+  { id: 'Music Production', slug: 'music-production', name: 'Music Production', iconName: 'Headphones', description: 'Delay time calculators, harmonic pitch shifters, and frequency tone generators.', colorGradient: 'from-purple-500 to-pink-600', bgLight: 'bg-purple-50 text-purple-700' },
+  { id: 'Environment & Energy', slug: 'environment-energy', name: 'Environment & Energy', iconName: 'Sun', description: 'Carbon footprint calculators, CO2 offset metrics, and renewable power estimators.', colorGradient: 'from-emerald-500 to-teal-600', bgLight: 'bg-emerald-50 text-emerald-700' },
+  { id: 'Pets & Animals', slug: 'pets-animals', name: 'Pets & Animals', iconName: 'Cat', description: 'Pet calorie calculators, dog-to-human age converters, and medication dosages.', colorGradient: 'from-amber-500 to-rose-600', bgLight: 'bg-amber-50 text-amber-700' },
+  { id: 'Government & Public Services', slug: 'government-public-services', name: 'Government & Public Services', iconName: 'Building', description: 'Property tax calculators, municipal fee estimators, and utility bill splitters.', colorGradient: 'from-indigo-500 to-slate-600', bgLight: 'bg-indigo-50 text-indigo-700' },
+  { id: 'Office Administration', slug: 'office-administration', name: 'Office Administration', iconName: 'Clipboard', description: 'Meeting agenda generators, memo formatters, and mileage reimbursement helpers.', colorGradient: 'from-slate-500 to-blue-600', bgLight: 'bg-slate-50 text-slate-700' },
+  { id: 'Networking', slug: 'networking', name: 'Networking', iconName: 'Network', description: 'Subnet mask calculators, CIDR range solvers, and ping bandwidth estimators.', colorGradient: 'from-cyan-500 to-indigo-600', bgLight: 'bg-cyan-50 text-cyan-700' },
+  { id: 'Data Management', slug: 'data-management', name: 'Data Management', iconName: 'Database', description: 'CSV/JSON converters, data deduplication helpers, and schema normalizers.', colorGradient: 'from-violet-500 to-blue-600', bgLight: 'bg-violet-50 text-violet-700' },
+  { id: 'Project Management', slug: 'project-management', name: 'Project Management', iconName: 'CheckCircle', description: 'Sprint velocity calculators, RACI matrix planners, and Gantt chart timelines.', colorGradient: 'from-teal-500 to-emerald-600', bgLight: 'bg-teal-50 text-teal-700' },
+  { id: 'Marketing & Advertising', slug: 'marketing-advertising', name: 'Marketing & Advertising', iconName: 'TrendingUp', description: 'ROAS calculators, CTR / CPC estimators, and ad banner dimension guides.', colorGradient: 'from-rose-500 to-amber-600', bgLight: 'bg-rose-50 text-rose-700' },
+  { id: 'YouTube Creator Tools', slug: 'youtube-creator-tools', name: 'YouTube Creator Tools', iconName: 'Play', description: 'Title character counters, tag extractors, and thumbnail aspect ratio guides.', colorGradient: 'from-red-500 to-pink-600', bgLight: 'bg-red-50 text-red-700' },
+  { id: 'Freelancing', slug: 'freelancing', name: 'Freelancing', iconName: 'Laptop', description: 'Hourly rate calculators, project quote estimators, and client contract templates.', colorGradient: 'from-indigo-500 to-teal-600', bgLight: 'bg-indigo-50 text-indigo-700' },
+];
 
 async function main() {
-  const rootDir = fs.existsSync(path.resolve('./app-source')) ? path.resolve('./app-source') : path.resolve('.');
-  const chunksDir = path.join(rootDir, 'src/lib/data/category-chunks');
-  const categoriesOutputPath = path.join(rootDir, 'src/lib/categories.ts');
-  const searchIndexOutputPath = path.join(rootDir, 'src/lib/search-index.ts');
+  const chunksDir = path.resolve('./src/lib/data/category-chunks');
+  const categoriesOutputPath = path.resolve('./src/lib/categories.ts');
+  const searchIndexOutputPath = path.resolve('./src/lib/search-index.ts');
 
-  // Load all chunks dynamically
-  const chunkFiles = fs.readdirSync(chunksDir).filter(f => f.endsWith('.ts'));
-  const allTools: any[] = [];
-
-  for (const file of chunkFiles) {
-    const parentSlug = file.replace(/\.ts$/, '');
-    try {
-      const mod = await import(`../src/lib/data/category-chunks/${parentSlug}`);
-      const tools = mod.tools || mod.default || [];
-      tools.forEach((t: any) => {
-        allTools.push({
-          ...t,
-          parentCategory: t.category || parentSlug,
-          parentSlug: parentSlug
-        });
-      });
-    } catch (err) {
-      console.warn(`Could not load chunk ${file}:`, err);
-    }
-  }
-
-  console.log(`Loaded ${allTools.length} total tools from ${chunkFiles.length} chunk files.`);
-
-  // Group tools by fine category
-  const categoryGroupMap = new Map<string, { tools: any[]; parentCat: string; parentSlug: string }>();
-
-  for (const tool of allTools) {
-    const fineName = classifyTool(tool);
-    if (!categoryGroupMap.has(fineName)) {
-      categoryGroupMap.set(fineName, {
-        tools: [],
-        parentCat: tool.parentCategory,
-        parentSlug: tool.parentSlug,
-      });
-    }
-    categoryGroupMap.get(fineName)!.tools.push(tool);
-  }
-
-  console.log(`Classified tools into ${categoryGroupMap.size} distinct fine categories.`);
-
-  const updatedCategories: CategoryInfo[] = [];
+  const updatedCategories: any[] = [];
   const searchIndex: ToolSearchItem[] = [];
 
-  let catIdx = 0;
-  for (const [catName, data] of categoryGroupMap.entries()) {
-    const catSlug = slugify(catName);
-    const dept = getCategoryDepartment(catName, data.parentCat);
-    const iconName = getCategoryIcon(catName, data.parentCat);
-    const { colorGradient, bgLight } = getCategoryGradients(dept, catIdx++);
+  for (const baseCat of BASE_CATEGORIES) {
+    const chunkFile = path.join(chunksDir, `${baseCat.slug}.ts`);
+    let catTools: any[] = [];
 
-    // Collect tags across tools in this category
+    if (fs.existsSync(chunkFile)) {
+      try {
+        const mod = await import(`../src/lib/data/category-chunks/${baseCat.slug}`);
+        catTools = mod.tools || mod.default || [];
+      } catch (err) {
+        console.warn(`Could not load chunk for ${baseCat.slug}:`, err);
+      }
+    }
+
     const tagCounts: Record<string, number> = {};
-    for (const t of data.tools) {
+    const bannedTags = new Set([
+      'tags', 'online', 'master', 'advanced', 'smart', 'browser tool', 'client side', 'universal', 
+      'helper', 'utility', 'tool', 'free', 'instant', 'easy', 'quick', 'fast', 'best', 'pro', 
+      'simple', 'convert', 'converter', 'app', 'online tool', 'generator', 'generator tool', 'tools',
+      baseCat.slug, baseCat.slug.replace('-tools', ''), baseCat.name.toLowerCase(), ...baseCat.name.toLowerCase().split(/\s+/)
+    ]);
+
+    for (const t of catTools) {
       if (t.tags && Array.isArray(t.tags)) {
         t.tags.forEach((tag: string) => {
           const clean = String(tag).toLowerCase().trim();
-          if (clean && clean.length > 2) {
+          if (clean && !bannedTags.has(clean) && clean.length > 2) {
             tagCounts[clean] = (tagCounts[clean] || 0) + 1;
           }
         });
       }
 
-      // Populate search index with updated category name
       searchIndex.push({
         id: t.id,
         slug: t.slug,
         name: t.name,
         shortDesc: t.shortDesc || '',
-        category: catName, // Fine category name
-        iconName: t.iconName || iconName,
+        category: baseCat.id,
+        iconName: t.iconName || baseCat.iconName,
         tags: t.tags || [],
         usageCount: t.usageCount || 0,
       });
     }
 
-    const sortedSubCats = Object.entries(tagCounts)
-      .filter(([_, count]) => count >= 1)
+    const sortedTags = Object.entries(tagCounts)
+      .filter(([_, count]) => count >= 2)
       .sort((a, b) => b[1] - a[1])
       .map(([tag]) => tag.charAt(0).toUpperCase() + tag.slice(1))
       .slice(0, 5);
 
     updatedCategories.push({
-      id: catName,
-      slug: catSlug,
-      name: catName,
-      iconName: iconName,
-      description: `Collection of ${data.tools.length} dedicated client-side browser tools for ${catName.toLowerCase()}.`,
-      colorGradient: colorGradient,
-      bgLight: bgLight,
-      count: data.tools.length,
-      subCategories: sortedSubCats.length > 0 ? sortedSubCats : ['Online', 'Client-Side', 'Free', 'Instant'],
-      department: dept,
-      parentId: data.parentCat,
-      parentSlug: data.parentSlug,
+      ...baseCat,
+      count: catTools.length,
+      subCategories: sortedTags.length > 0 ? sortedTags : ['Online', 'Client-Side', 'Free', 'Instant'],
     });
   }
 
-  // Sort categories alphabetically by name
-  updatedCategories.sort((a, b) => a.name.localeCompare(b.name));
-
-  // Generate Search Index file
+  // Generate Search Index
   const searchIndexOutputContent = `// Automatically generated by build-categories.ts - DO NOT EDIT MANUALLY
 export interface SearchItem {
   id: string;
@@ -341,24 +160,24 @@ export const SEARCH_INDEX: SearchItem[] = ${JSON.stringify(searchIndex, null, 2)
   fs.writeFileSync(searchIndexOutputPath, searchIndexOutputContent, 'utf-8');
   console.log(`Successfully generated ${searchIndexOutputPath} with ${searchIndex.length} indexed tools!`);
 
-  // Generate Categories metadata file
+  // Generate Categories metadata
   const categoriesOutputContent = `// Automatically generated by build-categories.ts - DO NOT EDIT MANUALLY
 import { CategoryInfo } from './types';
 import { SEARCH_INDEX } from './search-index';
 
-export const STATIC_CATEGORIES: (CategoryInfo & { count: number; subCategories?: string[]; department?: string; parentId?: string; parentSlug?: string })[] = ${JSON.stringify(updatedCategories, null, 2)};
+export const STATIC_CATEGORIES: (CategoryInfo & { count: number; subCategories?: string[] })[] = ${JSON.stringify(updatedCategories, null, 2)};
 
-export const CATEGORIES: (CategoryInfo & { count: number; subCategories?: string[]; department?: string; parentId?: string; parentSlug?: string })[] = STATIC_CATEGORIES;
+export const CATEGORIES: (CategoryInfo & { count: number; subCategories?: string[]; parentId?: string; parentSlug?: string; toolSlugs?: string[] })[] = STATIC_CATEGORIES;
 
 export function getToolsForCategory(categorySlug: string): any[] {
   const cat = CATEGORIES.find(c => c.slug === categorySlug);
   if (!cat) return [];
-  return SEARCH_INDEX.filter(t => t.category === cat.id || t.category === cat.name);
+  return SEARCH_INDEX.filter(t => t.category === cat.id);
 }
 `;
 
   fs.writeFileSync(categoriesOutputPath, categoriesOutputContent, 'utf-8');
-  console.log(`Successfully generated ${categoriesOutputPath} with ${updatedCategories.length} fine categories!`);
+  console.log(`Successfully generated ${categoriesOutputPath} with ${updatedCategories.length} categories!`);
 }
 
 main().catch(err => {

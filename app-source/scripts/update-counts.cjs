@@ -1,63 +1,72 @@
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
 
 function updateCounts() {
   console.log('--- RUNNING BUILD-TIME METADATA SYNC ---');
 
-  let totalTools = 1516;
+  // 1. Read Search Index to count total tools
+  const searchIndexPath = path.resolve(__dirname, '../src/lib/search-index.ts');
+  if (!fs.existsSync(searchIndexPath)) {
+    console.error('Error: search-index.ts not found at ' + searchIndexPath);
+    process.exit(1);
+  }
+
+  const searchIndexContent = fs.readFileSync(searchIndexPath, 'utf8');
+  const declIndex = searchIndexContent.indexOf('export const SEARCH_INDEX');
+  if (declIndex === -1) {
+    console.error('Error: Could not find SEARCH_INDEX declaration in search-index.ts');
+    process.exit(1);
+  }
+  const startIndex = searchIndexContent.indexOf('[', declIndex);
+  const endIndex = searchIndexContent.lastIndexOf(']') + 1;
+  if (startIndex === -1 || endIndex === 0) {
+    console.error('Error: Could not parse SEARCH_INDEX array.');
+    process.exit(1);
+  }
+
+  const arrayText = searchIndexContent.substring(startIndex, endIndex);
+  let totalTools = 15267; // Fallback
   try {
-    const output = execSync(`bun -e "import { WORKING_TOOLS } from './src/lib/tools-data/index'; console.log(WORKING_TOOLS.length);"`, {
-      cwd: path.resolve(__dirname, '..'),
-      encoding: 'utf8'
-    }).trim();
-    const parsed = parseInt(output, 10);
-    if (!isNaN(parsed) && parsed > 0) {
-      totalTools = parsed;
+    // Safely evaluate the array literal inside Node context
+    const searchIndex = eval(arrayText);
+    if (Array.isArray(searchIndex)) {
+      totalTools = searchIndex.length;
     }
   } catch (err) {
-    console.error('Warning: Failed to evaluate WORKING_TOOLS.length via bun, using fallback count 1516.', err);
+    console.error('Warning: Failed to eval search-index.ts, using fallback count.', err);
   }
 
   console.log(`Dynamic count detected: ${totalTools.toLocaleString()} tools`);
 
-  // 2. Update index.html (both root and app-source if exists)
-  const appSourceIndexHtmlPath = path.resolve(__dirname, '../index.html');
-  const rootIndexHtmlPath = path.resolve(__dirname, '../../index.html');
+  // 2. Update index.html
+  const indexHtmlPath = path.resolve(__dirname, '../index.html');
+  if (fs.existsSync(indexHtmlPath)) {
+    let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
+    
+    // Replace description meta tag
+    indexHtml = indexHtml.replace(
+      /<meta name="description" content=".*?" \/>/g,
+      `<meta name="description" content="${totalTools.toLocaleString()}+ free browser-based tools. Simple. Private. Fast. No AI, no signup required, 100% client-side execution." />`
+    );
 
-  [appSourceIndexHtmlPath, rootIndexHtmlPath].forEach((htmlPath) => {
-    if (fs.existsSync(htmlPath)) {
-      let indexHtml = fs.readFileSync(htmlPath, 'utf8');
-      
-      // Replace description meta tag
-      indexHtml = indexHtml.replace(
-        /<meta name="description" content=".*?" \/>/g,
-        `<meta name="description" content="${totalTools.toLocaleString()}+ free browser-based tools. Simple. Private. Fast. No AI, no signup required, 100% client-side execution." />`
-      );
+    // Replace og:description meta tag
+    indexHtml = indexHtml.replace(
+      /<meta property="og:description" content=".*?" \/>/g,
+      `<meta property="og:description" content="${totalTools.toLocaleString()}+ free browser-based tools. Simple. Private. Fast. No AI, no signup required, 100% client-side execution." />`
+    );
 
-      // Replace og:description meta tag
-      indexHtml = indexHtml.replace(
-        /<meta property="og:description" content=".*?" \/>/g,
-        `<meta property="og:description" content="${totalTools.toLocaleString()}+ free browser-based tools. Simple. Private. Fast. No AI, no signup required, 100% client-side execution." />`
-      );
+    fs.writeFileSync(indexHtmlPath, indexHtml, 'utf8');
+    console.log('Successfully updated index.html metadata tags!');
+  }
 
-      fs.writeFileSync(htmlPath, indexHtml, 'utf8');
-      console.log(`Successfully updated ${htmlPath} metadata tags!`);
-    }
-  });
-
-  // 3. Update metadata.json (both root and app-source if exists)
-  const rootMetadataPath = path.resolve(__dirname, '../../metadata.json');
-  const appSourceMetadataPath = path.resolve(__dirname, '../metadata.json');
-  
-  [rootMetadataPath, appSourceMetadataPath].forEach((metaPath) => {
-    if (fs.existsSync(metaPath)) {
-      const metadata = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
-      metadata.description = `Free Browser-Based Tools. Simple. Private. Fast. Over ${totalTools.toLocaleString()} free browser-based tools with zero server uploads.`;
-      fs.writeFileSync(metaPath, JSON.stringify(metadata, null, 2), 'utf8');
-      console.log(`Successfully updated ${metaPath} description!`);
-    }
-  });
+  // 3. Update metadata.json
+  const metadataPath = path.resolve(__dirname, '../metadata.json');
+  if (fs.existsSync(metadataPath)) {
+    const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8'));
+    metadata.description = `Free Browser-Based Tools. Simple. Private. Fast. Over ${totalTools.toLocaleString()} free browser-based tools with zero server uploads.`;
+    fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2), 'utf8');
+    console.log('Successfully updated metadata.json description!');
+  }
 
   // 4. Update README.md
   const readmePath = path.resolve(__dirname, '../README.md');

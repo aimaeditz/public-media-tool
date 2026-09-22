@@ -149,7 +149,7 @@ export const TESTIMONIALS = [
 
 // Single Source of Truth for dynamically updated counts
 // Auto-generated from tools-data.ts. Do not edit manually.
-export const TOTAL_TOOLS = WORKING_TOOLS.length;
+export const TOTAL_TOOLS = SEARCH_INDEX.length;
 export const TOTAL_CATEGORIES = STATIC_CATEGORIES.length;
 export const TOTAL_WORKING_TOOLS = WORKING_TOOLS.length;
 export const TOTAL_PLATFORMS = 1;

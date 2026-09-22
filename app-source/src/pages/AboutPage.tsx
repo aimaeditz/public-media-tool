@@ -115,10 +115,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
         {/* Security Architecture */}
         <div className="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-xs space-y-4">
           <h2 className="text-2xl font-extrabold font-heading text-slate-900 flex items-center gap-2">
-            <Lock className="w-6 h-6 text-indigo-600" /> Client-Side Privacy Standard
+            <Lock className="w-6 h-6 text-indigo-600" /> Client-Side Architecture
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Unlike traditional web applications that upload your photos, documents, and text to remote servers for processing, Public Media Tool executes functional operations directly within your local browser session. Whether you are generating secure hashes, resizing images, formatting data payloads, or converting text, the processing takes place on your own device without unnecessary network transfers.
+            Unlike traditional web applications that upload your photos, documents, and text to cloud servers for processing, Public Media Tool compiles all functional logic into modern client-side WebAssembly, Canvas, and JavaScript modules. Whether you are generating cryptographically strong SHA-256 hashes, resizing images, formatting JSON payloads, or converting text cases, the processing never triggers external network transfers.
           </p>
         </div>
 

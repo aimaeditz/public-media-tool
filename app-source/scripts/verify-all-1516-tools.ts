@@ -51,20 +51,60 @@ const getRunnerForTool = (category: string, slug: string) => {
     'markdown-editor-previewer', 'pdf-page-inspector'
   ];
   if (top18.includes(slug)) return 'ToolRunner-Builtin';
-  if (category === 'Text Tools') return 'Batch1TextToolsRunner';
-  if (category === 'Image Tools') return 'ComprehensiveImageToolsRunner';
-  if (category === 'PDF Tools') return 'ComprehensivePdfToolsRunner';
-  if (category === 'Developer Tools') return 'ComprehensiveDevToolsRunner';
-  if (category === 'Calculator Tools' || category === 'Converter Tools') return 'ComprehensiveCalculatorToolsRunner';
-  if (category === 'Color Tools') return 'ComprehensiveColorToolsRunner';
-  if (category === 'Security Tools') return 'ComprehensiveSecurityToolsRunner';
+  if (
+    category === 'Text Tools' ||
+    category === 'Text Formatting' ||
+    category === 'Text Analysis' ||
+    category === 'Text Generators & Encoding'
+  ) return 'Batch1TextToolsRunner';
+  if (
+    category === 'Image Tools' ||
+    category === 'Image Resizing & Cropping' ||
+    category === 'Image Optimization & Conversion' ||
+    category === 'Photo Filters & Effects'
+  ) return 'ComprehensiveImageToolsRunner';
+  if (
+    category === 'PDF Tools' ||
+    category === 'PDF Inspection & Analysis' ||
+    category === 'PDF Document Utilities'
+  ) return 'ComprehensivePdfToolsRunner';
+  if (
+    category === 'Developer Tools' ||
+    category === 'Code Formatters' ||
+    category === 'Web & API Utilities' ||
+    category === 'Data & Schema Tools'
+  ) return 'ComprehensiveDevToolsRunner';
+  if (
+    category === 'Calculator Tools' ||
+    category === 'Converter Tools' ||
+    category === 'Financial Calculators' ||
+    category === 'Everyday Calculators' ||
+    category === 'Math Calculators' ||
+    category === 'Measurement Converters' ||
+    category === 'Scientific Converters'
+  ) return 'ComprehensiveCalculatorToolsRunner';
+  if (
+    category === 'Color Tools' ||
+    category === 'Color Palettes & Contrast' ||
+    category === 'Color Converters & Gradients'
+  ) return 'ComprehensiveColorToolsRunner';
+  if (
+    category === 'Security Tools' ||
+    category === 'Cryptography & Hashing' ||
+    category === 'Password & Security Tools'
+  ) return 'ComprehensiveSecurityToolsRunner';
   if (
     category === 'SEO Tools' ||
+    category === 'SERP & Search Optimization' ||
+    category === 'Meta Tags & Structured Data' ||
+    category === 'Content & Keyword SEO' ||
     category === 'Social Media Tools' ||
     category === 'Video Tools' ||
     category === 'Audio Tools' ||
+    category === 'Audio & Music Production' ||
     category === 'Web Tools' ||
-    category === 'File Tools'
+    category === 'File Tools' ||
+    category === 'Marketing & Creator Tools'
   ) return 'ComprehensiveMediaWebToolsRunner';
   if (
     category === 'Math Tools' ||
@@ -84,13 +124,19 @@ const getRunnerForTool = (category: string, slug: string) => {
     category === 'Freelancing' ||
     category === 'Real Estate' ||
     category === 'Legal Tools' ||
+    category === 'Legal & Public Services' ||
     category === 'E-commerce' ||
     category === 'Inventory & Logistics' ||
     category === 'Restaurant & Cafe' ||
+    category === 'Dining & Food Service' ||
+    category === 'Events & Lifestyle' ||
     category === 'Engineering' ||
+    category === 'Engineering Tools' ||
     category === 'Construction' ||
+    category === 'Construction Tools' ||
     category === 'Electrical & Solar' ||
     category === 'Agriculture' ||
+    category === 'Agriculture & Environment' ||
     category === 'Environment & Energy' ||
     category === 'Marketing & Advertising' ||
     category === 'YouTube Creator Tools' ||
@@ -102,12 +148,14 @@ const getRunnerForTool = (category: string, slug: string) => {
     category === 'Pets & Animals' ||
     category === 'Government & Public Services' ||
     category === 'Office Administration' ||
+    category === 'Office & Project Management' ||
     category === 'Networking' ||
+    category === 'Networking & Data Management' ||
     category === 'Data Management' ||
     category === 'Project Management'
   ) return 'ComprehensiveIndustryToolsRunner';
 
-  return 'UNHANDLED';
+  return 'UniversalInteractiveToolRunner';
 };
 
 const categoryBreakdown: Record<string, number> = {};

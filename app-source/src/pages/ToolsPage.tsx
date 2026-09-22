@@ -101,8 +101,8 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
   const displayedTools = filtered.slice(0, debouncedSearch ? 50 : pageSize);
 
   return (
-    <div className="py-12 bg-slate-50 min-h-screen">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <div className="pt-12 pb-24 sm:pb-32 lg:pb-36 bg-slate-50 min-h-screen">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 px-3.5 py-1 bg-indigo-50 rounded-full border border-indigo-100">
@@ -297,6 +297,34 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
             )}
           </div>
         )}
+
+        {/* Closing Helper Section for Natural Spacing & Guidance */}
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left mt-12">
+          <div className="space-y-1.5 max-w-2xl">
+            <h3 className="text-base font-bold font-heading text-slate-900">
+              Need help finding a specific utility?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Explore our organized categories or use the search bar above. All 1,516+ tools execute 100% locally in your browser with complete privacy.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
+            <button
+              onClick={() => navigate('/categories')}
+              className="px-5 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-xs rounded-xl border border-indigo-100 transition-colors cursor-pointer"
+            >
+              Browse Categories
+            </button>
+            <button
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition-colors cursor-pointer"
+            >
+              Back to Top
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

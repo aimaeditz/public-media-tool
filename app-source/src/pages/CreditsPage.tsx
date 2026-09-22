@@ -48,7 +48,7 @@ export const CreditsPage: React.FC<CreditsPageProps> = ({ navigate }) => {
   };
 
   return (
-    <div className="py-12 md:py-20 bg-slate-50 min-h-screen">
+    <div className="pt-12 pb-24 md:pb-32 bg-slate-50 min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Breadcrumb */}
         <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2" id="credits-breadcrumb">

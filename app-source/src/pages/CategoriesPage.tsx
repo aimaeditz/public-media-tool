@@ -58,8 +58,8 @@ export const CategoriesPage: React.FC<CategoriesPageProps> = ({ navigate }) => {
   };
 
   return (
-    <div className="py-12 bg-slate-50 min-h-screen">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <div className="pt-12 pb-24 sm:pb-32 lg:pb-36 bg-slate-50 min-h-screen">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Page Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 px-3 py-1 bg-indigo-50 rounded-full border border-indigo-100">
@@ -233,6 +233,34 @@ export const CategoriesPage: React.FC<CategoriesPageProps> = ({ navigate }) => {
             </button>
           </div>
         )}
+
+        {/* Closing Helper Section for Natural Spacing & Guidance */}
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left mt-12">
+          <div className="space-y-1.5 max-w-2xl">
+            <h3 className="text-base font-bold font-heading text-slate-900">
+              Looking for all tools at once?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Explore our complete searchable directory of 1,516+ browser-based utilities across all categories.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
+            <button
+              onClick={() => navigate('/tools')}
+              className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors cursor-pointer"
+            >
+              View All 1,516+ Tools
+            </button>
+            <button
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition-colors cursor-pointer"
+            >
+              Back to Top
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

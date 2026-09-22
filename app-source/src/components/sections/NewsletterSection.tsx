@@ -17,7 +17,7 @@ export const NewsletterSection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 sm:py-28 bg-slate-50 border-b border-slate-200/60">
+    <section className="pt-20 pb-28 sm:pb-36 bg-slate-50 border-b border-slate-200/60">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-3xl p-8 sm:p-12 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white shadow-xl overflow-hidden text-center space-y-6">
           <div className="absolute inset-0 bg-[radial-gradient(white_1px,transparent_1px)] [background-size:20px_20px] opacity-15 pointer-events-none" />

@@ -116,7 +116,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ navigate }) => {
   };
 
   return (
-    <div className="py-10 md:py-16 bg-slate-50 min-h-screen">
+    <div className="pt-10 pb-24 md:pb-32 bg-slate-50 min-h-screen">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Top Breadcrumb */}

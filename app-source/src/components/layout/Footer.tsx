@@ -48,7 +48,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
   ];
 
   return (
-    <footer className="relative bg-slate-100/80 border-t border-slate-200 text-slate-700 overflow-hidden pt-12 pb-8">
+    <footer className="relative bg-slate-100/80 border-t border-slate-200 text-slate-700 overflow-hidden pt-12 pb-8 mt-12 sm:mt-16">
       {/* Wave SVG Top Divider */}
       <div className="absolute top-0 left-0 right-0 overflow-hidden leading-none pointer-events-none opacity-30">
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-8 text-indigo-500 fill-current">

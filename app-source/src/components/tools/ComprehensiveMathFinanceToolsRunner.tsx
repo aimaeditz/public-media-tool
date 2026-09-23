@@ -458,6 +458,79 @@ export const ComprehensiveMathFinanceToolsRunner: React.FC<Props> = ({ tool, onC
     );
   }
 
+  // B2. HABIT TRACKING & CHECKLISTS
+  if (slug.includes('habit') || slug.includes('routine') || slug.includes('checklist')) {
+    const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const totalChecks = habits.reduce((acc, h) => acc + h.days.filter(Boolean).length, 0);
+    const maxPossible = habits.length * 7;
+    const completionPct = Math.round((totalChecks / (maxPossible || 1)) * 100);
+
+    return (
+      <div className="space-y-6">
+        <div className="bg-slate-900 text-white p-5 rounded-2xl flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <ListTodo className="w-6 h-6 text-emerald-400" />
+            <div>
+              <h3 className="font-bold text-base">{tool.name}</h3>
+              <p className="text-xs text-slate-400">Interactive 7-day habit and accountability grid</p>
+            </div>
+          </div>
+          <span className="text-xs font-semibold px-2.5 py-1 bg-emerald-500/20 text-emerald-300 rounded-full">Weekly Routine</span>
+        </div>
+
+        <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold text-slate-600 uppercase">Habit Tracker Grid</span>
+            <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+              Weekly Completion: {completionPct}%
+            </span>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs">
+              <thead>
+                <tr className="border-b border-slate-100 text-slate-500 font-semibold">
+                  <th className="py-2.5 px-3">Habit / Goal</th>
+                  {daysOfWeek.map((d, i) => (
+                    <th key={i} className="py-2.5 px-2 text-center">{d}</th>
+                  ))}
+                  <th className="py-2.5 px-3 text-right">Streak</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {habits.map((habit, idx) => {
+                  const doneCount = habit.days.filter(Boolean).length;
+                  return (
+                    <tr key={habit.id} className="hover:bg-slate-50/60 transition-colors">
+                      <td className="py-3 px-3 font-semibold text-slate-800">{habit.name}</td>
+                      {habit.days.map((isDone, dayIdx) => (
+                        <td key={dayIdx} className="py-3 px-2 text-center">
+                          <button
+                            onClick={() => {
+                              const updated = [...habits];
+                              updated[idx].days[dayIdx] = !updated[idx].days[dayIdx];
+                              setHabits(updated);
+                            }}
+                            className={`w-7 h-7 rounded-lg border flex items-center justify-center transition-all ${
+                              isDone ? 'bg-emerald-500 border-emerald-600 text-white shadow-xs' : 'bg-slate-100 border-slate-200 text-transparent hover:border-slate-300'
+                            }`}
+                          >
+                            <Check className="w-4 h-4" />
+                          </button>
+                        </td>
+                      ))}
+                      <td className="py-3 px-3 text-right font-mono font-bold text-slate-700">{doneCount}/7</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // C. EDUCATION: CERTIFICATE & TEST SCORE
   if (category === 'Education' || slug.includes('certificate') || slug.includes('quiz') || slug.includes('score')) {
     const percentage = testScoreMax > 0 ? (testScoreEarned / testScoreMax) * 100 : 0;
@@ -584,7 +657,336 @@ export const ComprehensiveMathFinanceToolsRunner: React.FC<Props> = ({ tool, onC
     );
   }
 
-  // E. FINANCE: CAGR, GST, EMI, NET WORTH
+  // E. DATE & TIME TOOLS
+  if (category === 'Date & Time' || slug.includes('epoch') || slug.includes('timestamp') || slug.includes('date-difference') || slug.includes('time-zone')) {
+    const epochDate = new Date(epochInput * 1000);
+    const d1 = new Date(date1Str);
+    const d2 = new Date(date2Str);
+    const diffMs = Math.abs(d2.getTime() - d1.getTime());
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const diffWeeks = (diffDays / 7).toFixed(1);
+    const diffMonths = (diffDays / 30.4375).toFixed(1);
+
+    // World Clock
+    const now = new Date();
+    const tzNY = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const tzLondon = now.toLocaleTimeString('en-GB', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const tzTokyo = now.toLocaleTimeString('ja-JP', { timeZone: 'Asia/Tokyo', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const tzSydney = now.toLocaleTimeString('en-AU', { timeZone: 'Australia/Sydney', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+    return (
+      <div className="space-y-6">
+        <div className="bg-slate-900 text-white p-5 rounded-2xl flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Calendar className="w-6 h-6 text-sky-400" />
+            <div>
+              <h3 className="font-bold text-base">{tool.name}</h3>
+              <p className="text-xs text-slate-400">Unix timestamp conversion, date interval delta, and global time zone clock</p>
+            </div>
+          </div>
+          <span className="text-xs font-semibold px-2.5 py-1 bg-sky-500/20 text-sky-300 rounded-full">Date & Time</span>
+        </div>
+
+        {/* Epoch converter */}
+        <div className="bg-white p-5 rounded-2xl border border-slate-200 space-y-4">
+          <div className="flex items-center justify-between">
+            <label className="text-xs font-bold text-slate-700 uppercase">Unix Epoch Timestamp (Seconds)</label>
+            <button
+              onClick={() => setEpochInput(Math.floor(Date.now() / 1000))}
+              className="text-xs text-sky-600 hover:text-sky-700 font-semibold flex items-center gap-1"
+            >
+              <RefreshCw className="w-3.5 h-3.5" /> Now
+            </button>
+          </div>
+          <input
+            type="number"
+            value={epochInput}
+            onChange={(e) => setEpochInput(parseInt(e.target.value) || 0)}
+            className="w-full px-4 py-2 border rounded-xl font-mono text-sm font-bold text-slate-800"
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <span className="text-[11px] font-semibold text-slate-500 block">UTC ISO 8601</span>
+              <span className="text-xs font-mono font-bold text-slate-800">{epochDate.toISOString()}</span>
+            </div>
+            <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <span className="text-[11px] font-semibold text-slate-500 block">RFC 2822 UTC</span>
+              <span className="text-xs font-mono font-bold text-slate-800">{epochDate.toUTCString()}</span>
+            </div>
+            <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
+              <span className="text-[11px] font-semibold text-slate-500 block">Local Device Time</span>
+              <span className="text-xs font-mono font-bold text-slate-800">{epochDate.toLocaleString()}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Date Difference */}
+        <div className="bg-white p-5 rounded-2xl border border-slate-200 space-y-4">
+          <label className="text-xs font-bold text-slate-700 uppercase block">Date Difference Calculator</label>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="text-xs text-slate-500 block mb-1">Start Date</label>
+              <input type="date" value={date1Str} onChange={(e) => setDate1Str(e.target.value)} className="w-full px-3 py-2 border rounded-xl text-sm" />
+            </div>
+            <div>
+              <label className="text-xs text-slate-500 block mb-1">End Date</label>
+              <input type="date" value={date2Str} onChange={(e) => setDate2Str(e.target.value)} className="w-full px-3 py-2 border rounded-xl text-sm" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-3">
+            <div className="bg-sky-50 p-3 rounded-xl border border-sky-200 text-center">
+              <p className="text-xs text-sky-800 font-medium">Days Between</p>
+              <p className="text-2xl font-bold font-mono text-sky-700 mt-1">{diffDays}</p>
+            </div>
+            <div className="bg-indigo-50 p-3 rounded-xl border border-indigo-200 text-center">
+              <p className="text-xs text-indigo-800 font-medium">Weeks</p>
+              <p className="text-2xl font-bold font-mono text-indigo-700 mt-1">{diffWeeks}</p>
+            </div>
+            <div className="bg-emerald-50 p-3 rounded-xl border border-emerald-200 text-center">
+              <p className="text-xs text-emerald-800 font-medium">Months</p>
+              <p className="text-2xl font-bold font-mono text-emerald-700 mt-1">{diffMonths}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* World Time Zones */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-center">
+            <span className="text-[11px] font-semibold text-slate-500">New York (EST)</span>
+            <p className="text-base font-bold font-mono text-slate-800 mt-0.5">{tzNY}</p>
+          </div>
+          <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-center">
+            <span className="text-[11px] font-semibold text-slate-500">London (GMT)</span>
+            <p className="text-base font-bold font-mono text-slate-800 mt-0.5">{tzLondon}</p>
+          </div>
+          <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-center">
+            <span className="text-[11px] font-semibold text-slate-500">Tokyo (JST)</span>
+            <p className="text-base font-bold font-mono text-slate-800 mt-0.5">{tzTokyo}</p>
+          </div>
+          <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-center">
+            <span className="text-[11px] font-semibold text-slate-500">Sydney (AEST)</span>
+            <p className="text-base font-bold font-mono text-slate-800 mt-0.5">{tzSydney}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // F. MATH TOOLS: LCM, GCD, FIBONACCI, CHI-SQUARE
+  if (category === 'Math Tools' || slug.includes('lcm') || slug.includes('gcd') || slug.includes('fibonacci') || slug.includes('chi-square')) {
+    // Greatest Common Divisor (Euclidean)
+    const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b));
+    const calculatedGcd = gcd(Math.abs(mathNum1) || 1, Math.abs(mathNum2) || 1);
+    const calculatedLcm = ((Math.abs(mathNum1) * Math.abs(mathNum2)) / calculatedGcd) || 0;
+
+    // Fibonacci Generator
+    const fibList: number[] = [0, 1];
+    for (let i = 2; i <= Math.min(fibNth, 30); i++) {
+      fibList.push(fibList[i - 1] + fibList[i - 2]);
+    }
+    const nthFib = fibList[Math.min(fibNth, 30)] || 0;
+
+    // Chi-Square Goodness of fit
+    const obs = chiObserved.split(',').map(s => parseFloat(s.trim()) || 0);
+    const exp = chiExpected.split(',').map(s => parseFloat(s.trim()) || 0);
+    let chiSqStat = 0;
+    const count = Math.min(obs.length, exp.length);
+    for (let i = 0; i < count; i++) {
+      if (exp[i] > 0) {
+        chiSqStat += Math.pow(obs[i] - exp[i], 2) / exp[i];
+      }
+    }
+    const df = Math.max(1, count - 1);
+
+    return (
+      <div className="space-y-6">
+        <div className="bg-slate-900 text-white p-5 rounded-2xl flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Calculator className="w-6 h-6 text-indigo-400" />
+            <div>
+              <h3 className="font-bold text-base">{tool.name}</h3>
+              <p className="text-xs text-slate-400">Exact Euclidean LCM/GCD, recursive Fibonacci sequences, and Chi-Square statistics</p>
+            </div>
+          </div>
+          <span className="text-xs font-semibold px-2.5 py-1 bg-indigo-500/20 text-indigo-300 rounded-full">Pure Math</span>
+        </div>
+
+        {/* LCM / GCD Engine */}
+        <div className="bg-white p-5 rounded-2xl border border-slate-200 space-y-4">
+          <label className="text-xs font-bold text-slate-700 uppercase block">LCM & GCD Euclidean Solver</label>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="text-xs text-slate-500 block mb-1">First Number (A)</label>
+              <input type="number" value={mathNum1} onChange={(e) => setMathNum1(parseInt(e.target.value) || 0)} className="w-full px-3 py-2 border rounded-xl font-mono text-sm" />
+            </div>
+            <div>
+              <label className="text-xs text-slate-500 block mb-1">Second Number (B)</label>
+              <input type="number" value={mathNum2} onChange={(e) => setMathNum2(parseInt(e.target.value) || 0)} className="w-full px-3 py-2 border rounded-xl font-mono text-sm" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-center">
+              <span className="text-xs text-indigo-800 font-medium">Greatest Common Divisor (GCD)</span>
+              <p className="text-3xl font-bold font-mono text-indigo-700 mt-1">{calculatedGcd}</p>
+            </div>
+            <div className="bg-sky-50 p-4 rounded-xl border border-sky-200 text-center">
+              <span className="text-xs text-sky-800 font-medium">Least Common Multiple (LCM)</span>
+              <p className="text-3xl font-bold font-mono text-sky-700 mt-1">{calculatedLcm}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Fibonacci & Chi-Square */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-white p-5 rounded-2xl border border-slate-200 space-y-3">
+            <div className="flex justify-between items-center">
+              <label className="text-xs font-bold text-slate-700 uppercase">Fibonacci Number Generator</label>
+              <span className="text-xs font-mono font-bold text-slate-500">n = {fibNth}</span>
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="30"
+              value={fibNth}
+              onChange={(e) => setFibNth(parseInt(e.target.value) || 0)}
+              className="w-full accent-indigo-600 cursor-pointer"
+            />
+            <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-center">
+              <span className="text-[11px] text-slate-500 font-medium">F({fibNth}) Value</span>
+              <p className="text-2xl font-bold font-mono text-slate-900 mt-0.5">{nthFib.toLocaleString()}</p>
+            </div>
+          </div>
+
+          <div className="bg-white p-5 rounded-2xl border border-slate-200 space-y-3">
+            <label className="text-xs font-bold text-slate-700 uppercase block">Chi-Square Test Statistic</label>
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              <div>
+                <span className="text-slate-500 block mb-0.5">Observed</span>
+                <input type="text" value={chiObserved} onChange={(e) => setChiObserved(e.target.value)} className="w-full px-2 py-1.5 border rounded-lg font-mono" />
+              </div>
+              <div>
+                <span className="text-slate-500 block mb-0.5">Expected</span>
+                <input type="text" value={chiExpected} onChange={(e) => setChiExpected(e.target.value)} className="w-full px-2 py-1.5 border rounded-lg font-mono" />
+              </div>
+            </div>
+            <div className="bg-emerald-50 p-3 rounded-xl border border-emerald-200 text-center">
+              <span className="text-[11px] text-emerald-800 font-medium">Chi-Square (χ²) Stat (df={df})</span>
+              <p className="text-2xl font-bold font-mono text-emerald-700 mt-0.5">{chiSqStat.toFixed(3)}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // G. BUSINESS TOOLS: INVOICE, ESTIMATE, LEGAL POLICY
+  if (category === 'Business Tools' || slug.includes('invoice') || slug.includes('estimate') || slug.includes('receipt') || slug.includes('policy') || slug.includes('terms') || slug.includes('nda')) {
+    const isPolicy = slug.includes('policy') || slug.includes('terms') || slug.includes('nda') || slug.includes('legal');
+    const invoiceSample = `INVOICE #INV-${1000 + genSeed}
+Date: ${new Date().toLocaleDateString()}
+Client: Acme International Corp
+--------------------------------------------------
+1. Strategic Technical Consulting       $1,200.00
+2. UI/UX Interface Design System          $850.00
+3. Security & Cryptographic Audit         $650.00
+--------------------------------------------------
+Subtotal:                               $2,700.00
+Estimated Tax (8.25%):                    $222.75
+--------------------------------------------------
+TOTAL DUE:                              $2,922.75
+Terms: Net 30 days. Payable via Wire or ACH.`;
+
+    const policySample = `PRIVACY POLICY & TERMS OF SERVICE AGREEMENT
+Last updated: ${new Date().toLocaleDateString()}
+
+1. DATA COLLECTION & IN-BROWSER PROCESSING
+All data processed using ${tool.name} is handled strictly inside the client device's browser memory. No text, financial records, passwords, or personal documents are transmitted to remote servers.
+
+2. WARRANTIES & DISCLAIMER
+This software is provided "AS IS" without warranty of any kind, express or implied. The user assumes all risk and responsibility for the utilization of generated financial estimates, calculations, or legal templates.
+
+3. GOVERNING LAW
+This agreement shall be governed by and construed in accordance with applicable consumer protection and digital privacy statutes.`;
+
+    const displayText = isPolicy ? policySample : invoiceSample;
+
+    return (
+      <div className="space-y-6">
+        <div className="bg-slate-900 text-white p-5 rounded-2xl flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <FileText className="w-6 h-6 text-amber-400" />
+            <div>
+              <h3 className="font-bold text-base">{tool.name}</h3>
+              <p className="text-xs text-slate-400">Itemized commercial documentation, quote estimates, and legal contract generator</p>
+            </div>
+          </div>
+          <span className="text-xs font-semibold px-2.5 py-1 bg-amber-500/20 text-amber-300 rounded-full">Business & Legal</span>
+        </div>
+
+        <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold text-slate-700 uppercase">Document Output & Template</span>
+            <button
+              onClick={() => handleCopy(displayText)}
+              className="px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors"
+            >
+              {copiedText === displayText ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+              <span>{copiedText === displayText ? 'Copied!' : 'Copy Document'}</span>
+            </button>
+          </div>
+
+          <pre className="p-4 bg-slate-950 text-amber-200 font-mono text-xs rounded-xl overflow-x-auto leading-relaxed border border-slate-800">
+            {displayText}
+          </pre>
+        </div>
+      </div>
+    );
+  }
+
+  // H. GENERATORS: RECIPES, NAMES, SEEDABLE OUTPUTS
+  if (category === 'Generators' || slug.includes('recipe') || slug.includes('random-name') || slug.includes('generator')) {
+    const activeRecipe = sampleRecipes[genSeed % sampleRecipes.length];
+    const activeName = sampleBusinessNames[genSeed % sampleBusinessNames.length];
+
+    return (
+      <div className="space-y-6">
+        <div className="bg-slate-900 text-white p-5 rounded-2xl flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Sparkles className="w-6 h-6 text-purple-400" />
+            <div>
+              <h3 className="font-bold text-base">{tool.name}</h3>
+              <p className="text-xs text-slate-400">Procedural deterministic content, ideas, and recipe synthesizer</p>
+            </div>
+          </div>
+          <button
+            onClick={() => setGenSeed(prev => prev + 1)}
+            className="px-3.5 py-1.5 bg-purple-600 hover:bg-purple-500 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-xs"
+          >
+            <RefreshCw className="w-3.5 h-3.5" /> Generate Next
+          </button>
+        </div>
+
+        <div className="bg-white p-6 rounded-2xl border border-slate-200 space-y-4">
+          <div className="space-y-2">
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Generated Result</span>
+            <div className="p-5 bg-purple-50/70 border border-purple-200 rounded-xl space-y-2">
+              <p className="text-base font-bold text-purple-950 font-serif">
+                {slug.includes('recipe') ? activeRecipe : activeName}
+              </p>
+              <p className="text-xs text-purple-700">
+                {slug.includes('recipe') ? 'Serves 4 | Preparation time: 35 mins | Nutrient-dense & balanced' : 'Brand identity available for trademark & domain registration.'}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // I. FINANCE: CAGR, GST, EMI, NET WORTH
   const cagr = cagrYears > 0 && cagrBeginningVal > 0 ? (Math.pow(cagrEndingVal / cagrBeginningVal, 1 / cagrYears) - 1) * 100 : 0;
   const gstTax = gstAmount * (gstRatePct / 100);
   const gstTotal = gstAmount + gstTax;

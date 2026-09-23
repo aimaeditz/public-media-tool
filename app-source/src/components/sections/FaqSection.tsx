@@ -53,13 +53,13 @@ export const FaqSection: React.FC = () => {
     <section className="py-10 sm:py-20 md:py-28 bg-white border-b border-slate-200/60">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-14 space-y-2 sm:space-y-3">
-          <span className="inline-block text-[11px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 px-3.5 py-1 bg-indigo-50 rounded-full border border-indigo-100">
+          <span className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 px-3.5 py-1 bg-indigo-50 rounded-full border border-indigo-100 inline-block">
             Frequently Asked Questions
           </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold font-heading text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-4xl font-extrabold font-heading text-slate-900">
             Everything You Need To Know
           </h2>
-          <p className="text-xs sm:text-base text-slate-600">
+          <p className="text-xs sm:text-sm text-slate-600">
             Clear answers regarding privacy, client-side execution, and tool usage across PMT.
           </p>
         </div>

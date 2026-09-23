@@ -56,8 +56,8 @@ export const DisclaimerPage: React.FC<DisclaimerPageProps> = ({ navigate }) => {
   };
 
   return (
-    <div className="pt-12 pb-24 md:pb-32 bg-slate-50 min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div className="pt-6 sm:pt-12 pb-16 sm:pb-24 md:pb-32 bg-slate-50 min-h-screen">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         
         {/* Breadcrumb */}
         <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2" id="disclaimer-breadcrumb">
@@ -73,11 +73,11 @@ export const DisclaimerPage: React.FC<DisclaimerPageProps> = ({ navigate }) => {
         </nav>
 
         {/* Heading Section */}
-        <div className="space-y-4 text-center md:text-left">
-          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-amber-600 px-3.5 py-1.5 bg-amber-50 rounded-full border border-amber-100">
+        <div className="space-y-2.5 sm:space-y-4 text-center md:text-left">
+          <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-widest text-amber-600 px-3 sm:px-3.5 py-1 sm:py-1.5 bg-amber-50 rounded-full border border-amber-100">
             <AlertTriangle className="w-3.5 h-3.5" /> Legal Disclaimer & Terms of Notice
           </span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold font-heading text-slate-900 tracking-tight">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold font-heading text-slate-900 tracking-tight">
             Disclaimer
           </h1>
           <p className="text-xs sm:text-sm text-slate-500">
@@ -86,11 +86,11 @@ export const DisclaimerPage: React.FC<DisclaimerPageProps> = ({ navigate }) => {
         </div>
 
         {/* Content Body */}
-        <div className="bg-white rounded-3xl p-8 md:p-10 border border-slate-200/80 shadow-xs space-y-8 text-sm sm:text-base text-slate-600 leading-relaxed">
+        <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 border border-slate-200/80 shadow-xs space-y-6 sm:space-y-8 text-xs sm:text-base text-slate-600 leading-relaxed">
           
-          <section className="space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <Scale className="w-5.5 h-5.5 text-amber-600" /> 1. Operational "As-Is" Provision & Express Warranty Disclaimer
+          <section className="space-y-2 sm:space-y-4">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <Scale className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-amber-600" /> 1. Operational "As-Is" Provision & Express Warranty Disclaimer
             </h2>
             <p>
               The web applications, algorithms, conversion engines, financial calculators, unit formatters, image converters, and developer utilities provided across <strong>Public Media Tool (PMT)</strong> (covering {TOTAL_TOOLS.toLocaleString()}+ tools across {TOTAL_CATEGORIES} departments) are delivered to visitors strictly on an <strong>"as-is"</strong>, <strong>"as-available"</strong>, and <strong>"with all faults"</strong> basis.
@@ -100,9 +100,9 @@ export const DisclaimerPage: React.FC<DisclaimerPageProps> = ({ navigate }) => {
             </p>
           </section>
 
-          <section className="space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <ShieldAlert className="w-5.5 h-5.5 text-amber-600" /> 2. Complete Platform Independence & Trademark Notices
+          <section className="space-y-2 sm:space-y-4">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <ShieldAlert className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-amber-600" /> 2. Complete Platform Independence & Trademark Notices
             </h2>
             <p>
               <strong>Public Media Tool (PMT)</strong> is a self-funded, independent software project engineered using client-side browser technologies. PMT is completely independent and maintains no corporate affiliation, legal connection, sponsorship, formal authorization, or endorsement from any third-party technology company or brand mentioned on our site.
@@ -112,9 +112,9 @@ export const DisclaimerPage: React.FC<DisclaimerPageProps> = ({ navigate }) => {
             </p>
           </section>
 
-          <section className="space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <AlertTriangle className="w-5.5 h-5.5 text-amber-600" /> 3. Absolute User Responsibility & Operational Risk
+          <section className="space-y-2 sm:space-y-4">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-amber-600" /> 3. Absolute User Responsibility & Operational Risk
             </h2>
             <p>
               Any operational task, decision, calculations, or media transformations executed through publicmediatool.com are conducted entirely at your own discretion and risk. PMT, its developers, maintainers, and contributors assume zero liability for direct, indirect, incidental, or consequential losses—including financial discrepancies, loss of data, hardware malfunction, or business disruptions—that may arise from reliance on our software utilities.
@@ -124,17 +124,17 @@ export const DisclaimerPage: React.FC<DisclaimerPageProps> = ({ navigate }) => {
             </p>
           </section>
 
-          <section className="space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <FileCode2 className="w-5.5 h-5.5 text-amber-600" /> 4. Mathematical & Algorithmic Precision Limitations
+          <section className="space-y-2 sm:space-y-4">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <FileCode2 className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-amber-600" /> 4. Mathematical & Algorithmic Precision Limitations
             </h2>
             <p>
               While PMT algorithms are rigorously written and updated according to standardized technical specifications, computational variance can occur due to web browser floating-point rounding arithmetic, local hardware CPU architectures, device locale regional configurations, or browser-specific JavaScript engines. Users should treat outputs as high-grade estimations and double-check outputs where absolute precision is required.
             </p>
           </section>
 
-          <section className="space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900">5. Continuous Modification & Service Updates</h2>
+          <section className="space-y-2 sm:space-y-4">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900">5. Continuous Modification & Service Updates</h2>
             <p>
               PMT reserves the unconditional right to update, modify, refine, optimize, or deprecate any software tool, layout component, mathematical equation, or site page at any time without prior announcement. Updates are performed continuously to maintain browser compatibility, enhance execution speed, and adhere to current web standards.
             </p>
@@ -143,35 +143,35 @@ export const DisclaimerPage: React.FC<DisclaimerPageProps> = ({ navigate }) => {
         </div>
 
         {/* FAQ Section */}
-        <div className="space-y-6 pt-6" id="disclaimer-faq-section">
-          <div className="text-center md:text-left space-y-2">
-            <h2 className="text-2xl md:text-3xl font-extrabold font-heading text-slate-900 flex items-center justify-center md:justify-start gap-2">
-              <HelpCircle className="w-6 h-6 text-indigo-600" /> Legal & Disclaimer FAQ
+        <div className="space-y-4 sm:space-y-6 pt-3 sm:pt-6" id="disclaimer-faq-section">
+          <div className="text-center md:text-left space-y-1 sm:space-y-2">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold font-heading text-slate-900 flex items-center justify-center md:justify-start gap-2">
+              <HelpCircle className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600" /> Legal & Disclaimer FAQ
             </h2>
             <p className="text-xs sm:text-sm text-slate-500">
               Clear answers regarding tool liability, trademarks, precision guarantees, and commercial usage.
             </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5 sm:space-y-3">
             {faqs.map((faq, i) => (
               <div
                 key={i}
-                className="bg-white rounded-2xl border border-slate-200/80 transition-all shadow-xs overflow-hidden"
+                className="bg-white rounded-xl sm:rounded-2xl border border-slate-200/80 transition-all shadow-xs overflow-hidden"
               >
                 <button
                   onClick={() => toggleFaq(i)}
-                  className="w-full flex items-center justify-between p-5 text-left font-bold text-slate-950 font-heading text-sm sm:text-base cursor-pointer hover:bg-slate-50/50 rounded-2xl transition-all"
+                  className="w-full flex items-center justify-between p-3.5 sm:p-5 text-left font-bold text-slate-950 font-heading text-xs sm:text-base cursor-pointer hover:bg-slate-50/50 rounded-xl sm:rounded-2xl transition-all"
                 >
-                  <span className="pr-4">{faq.q}</span>
+                  <span className="pr-3 sm:pr-4">{faq.q}</span>
                   {openFaq === i ? (
-                    <ChevronUp className="w-5 h-5 text-indigo-600 shrink-0" />
+                    <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600 shrink-0" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
+                    <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 shrink-0" />
                   )}
                 </button>
                 {openFaq === i && (
-                  <div className="p-5 pt-0 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <div className="p-3.5 sm:p-5 pt-0 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {faq.a}
                   </div>
                 )}

@@ -48,8 +48,8 @@ export const CreditsPage: React.FC<CreditsPageProps> = ({ navigate }) => {
   };
 
   return (
-    <div className="pt-12 pb-24 md:pb-32 bg-slate-50 min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div className="pt-6 sm:pt-12 pb-16 sm:pb-24 md:pb-32 bg-slate-50 min-h-screen">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         {/* Breadcrumb */}
         <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2" id="credits-breadcrumb">
           <a
@@ -64,11 +64,11 @@ export const CreditsPage: React.FC<CreditsPageProps> = ({ navigate }) => {
         </nav>
 
         {/* Heading Section */}
-        <div className="space-y-4 text-center md:text-left">
-          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-indigo-600 px-3.5 py-1.5 bg-indigo-50 rounded-full border border-indigo-100">
+        <div className="space-y-2.5 sm:space-y-4 text-center md:text-left">
+          <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 px-3 sm:px-3.5 py-1 sm:py-1.5 bg-indigo-50 rounded-full border border-indigo-100">
             <Award className="w-3.5 h-3.5" /> Acknowledgments & Attributions
           </span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold font-heading text-slate-900 tracking-tight">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold font-heading text-slate-900 tracking-tight">
             Credits & Attributions
           </h1>
           <p className="text-xs sm:text-sm text-slate-500">
@@ -77,11 +77,11 @@ export const CreditsPage: React.FC<CreditsPageProps> = ({ navigate }) => {
         </div>
 
         {/* Content Body */}
-        <div className="bg-white rounded-3xl p-8 md:p-10 border border-slate-200/80 shadow-xs space-y-10 text-sm sm:text-base text-slate-600 leading-relaxed">
+        <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 border border-slate-200/80 shadow-xs space-y-6 sm:space-y-10 text-xs sm:text-base text-slate-600 leading-relaxed">
           {/* Creator Profile */}
-          <section className="space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <Heart className="w-5.5 h-5.5 text-pink-500 fill-pink-100" /> Project Creator
+          <section className="space-y-2 sm:space-y-4">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <Heart className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-pink-500 fill-pink-100" /> Project Creator
             </h2>
             <p>
               <strong>Public Media Tool (PMT)</strong> was designed and spearheaded by <strong>AiMAEditz</strong>, an independent creator and designer. Frustrated by utility websites burdened with paywalls, invasive tracking, and forced uploads, AiMAEditz founded PMT to provide an accessible, high-speed, and private tool environment for everyone.
@@ -89,22 +89,22 @@ export const CreditsPage: React.FC<CreditsPageProps> = ({ navigate }) => {
           </section>
 
           {/* Design & Iconography */}
-          <section className="space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <Feather className="w-5.5 h-5.5 text-indigo-600" /> Design & Iconography
+          <section className="space-y-2 sm:space-y-4">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <Feather className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-indigo-600" /> Design & Iconography
             </h2>
             <p>
               Our intuitive, modern visual experience is made possible by exceptional open-source design resources:
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60">
-                <h4 className="font-bold text-slate-900 text-sm">Lucide Icons</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-1 sm:pt-2">
+              <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200/60">
+                <h4 className="font-bold text-slate-900 text-xs sm:text-sm">Lucide Icons</h4>
                 <p className="text-xs text-slate-500 mt-1">
                   Beautiful, consistent, and balanced vector icons that bring clarity and precision to every tool card, category badge, and control element.
                 </p>
               </div>
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/60">
-                <h4 className="font-bold text-slate-900 text-sm">Open Typography</h4>
+              <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200/60">
+                <h4 className="font-bold text-slate-900 text-xs sm:text-sm">Open Typography</h4>
                 <p className="text-xs text-slate-500 mt-1">
                   High-legibility typography designed for readability across mobile, tablet, and desktop screens, crafted with open font licenses.
                 </p>
@@ -113,14 +113,14 @@ export const CreditsPage: React.FC<CreditsPageProps> = ({ navigate }) => {
           </section>
 
           {/* Standards Bodies */}
-          <section className="space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <Globe className="w-5.5 h-5.5 text-indigo-600" /> Standards Bodies & Scientific Specifications
+          <section className="space-y-2 sm:space-y-4">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <Globe className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-indigo-600" /> Standards Bodies & Scientific Specifications
             </h2>
             <p>
               Every conversion formula, text transformation, and data encoder on PMT is strictly aligned with the rigorous specifications established by international open standards organizations:
             </p>
-            <ul className="list-disc list-inside space-y-2 pl-2 text-xs sm:text-sm">
+            <ul className="list-disc list-inside space-y-1.5 sm:space-y-2 pl-1 sm:pl-2 text-xs sm:text-sm">
               <li>
                 <strong>World Wide Web Consortium (W3C):</strong> Open web standards ensuring universal interoperability, accessibility, and client-side processing accuracy.
               </li>
@@ -140,9 +140,9 @@ export const CreditsPage: React.FC<CreditsPageProps> = ({ navigate }) => {
           </section>
 
           {/* Open-Source Community */}
-          <section className="space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <Layers className="w-5.5 h-5.5 text-indigo-600" /> Open-Source Collaboration
+          <section className="space-y-2 sm:space-y-4">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <Layers className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-indigo-600" /> Open-Source Collaboration
             </h2>
             <p>
               Public Media Tool stands on the shoulders of the global open-source community. We express our deepest gratitude to the thousands of independent contributors, documentation writers, and maintainers worldwide who make open, accessible computing possible for all.
@@ -150,9 +150,9 @@ export const CreditsPage: React.FC<CreditsPageProps> = ({ navigate }) => {
           </section>
 
           {/* Community Thanks */}
-          <section className="space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <Sparkles className="w-5.5 h-5.5 text-amber-500" /> Community & User Feedback
+          <section className="space-y-2 sm:space-y-4">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <Sparkles className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-amber-500" /> Community & User Feedback
             </h2>
             <p>
               Our sincere thanks go out to every student, professional, creator, and everyday user who uses PMT, shares our utilities, and provides helpful suggestions to continually refine our platform.
@@ -161,35 +161,35 @@ export const CreditsPage: React.FC<CreditsPageProps> = ({ navigate }) => {
         </div>
 
         {/* FAQ Section */}
-        <div className="space-y-6 pt-6" id="credits-faq-section">
-          <div className="text-center md:text-left space-y-2">
-            <h2 className="text-2xl md:text-3xl font-extrabold font-heading text-slate-900 flex items-center justify-center md:justify-start gap-2">
-              <HelpCircle className="w-6 h-6 text-indigo-600" /> Credits FAQ
+        <div className="space-y-4 sm:space-y-6 pt-3 sm:pt-6" id="credits-faq-section">
+          <div className="text-center md:text-left space-y-1 sm:space-y-2">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold font-heading text-slate-900 flex items-center justify-center md:justify-start gap-2">
+              <HelpCircle className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600" /> Credits FAQ
             </h2>
             <p className="text-xs sm:text-sm text-slate-500">
               Information about attributions, open standards, and licensing across PMT.
             </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5 sm:space-y-3">
             {faqs.map((faq, i) => (
               <div
                 key={i}
-                className="bg-white rounded-2xl border border-slate-200/80 transition-all shadow-xs"
+                className="bg-white rounded-xl sm:rounded-2xl border border-slate-200/80 transition-all shadow-xs overflow-hidden"
               >
                 <button
                   onClick={() => toggleFaq(i)}
-                  className="w-full flex items-center justify-between p-5 text-left font-bold text-slate-950 font-heading text-sm sm:text-base cursor-pointer hover:bg-slate-50/50 rounded-2xl transition-all"
+                  className="w-full flex items-center justify-between p-3.5 sm:p-5 text-left font-bold text-slate-950 font-heading text-xs sm:text-base cursor-pointer hover:bg-slate-50/50 rounded-xl sm:rounded-2xl transition-all"
                 >
-                  <span>{faq.q}</span>
+                  <span className="pr-3 sm:pr-4">{faq.q}</span>
                   {openFaq === i ? (
-                    <ChevronUp className="w-5 h-5 text-indigo-600 shrink-0" />
+                    <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600 shrink-0" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
+                    <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 shrink-0" />
                   )}
                 </button>
                 {openFaq === i && (
-                  <div className="p-5 pt-0 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <div className="p-3.5 sm:p-5 pt-0 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {faq.a}
                   </div>
                 )}

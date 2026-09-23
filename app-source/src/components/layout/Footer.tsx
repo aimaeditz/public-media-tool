@@ -24,26 +24,31 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
       name: 'YouTube',
       url: 'https://www.youtube.com/@aimabideditz',
       icon: Youtube,
+      hidden: true,
     },
     {
       name: 'Instagram',
       url: 'https://www.instagram.com/its_abid29/',
       icon: Instagram,
+      hidden: true,
     },
     {
       name: 'TikTok',
       url: 'https://www.tiktok.com/@its_abid29',
       icon: Music2,
+      hidden: true,
     },
     {
       name: 'WhatsApp',
       url: 'https://whatsapp.com/channel/0029Vb669jh11ulG8ttZ3K3s',
       icon: MessageCircle,
+      hidden: true,
     },
     {
       name: 'Website',
-      url: 'http://multitubeviews.com/',
+      url: 'http://multitubeviews.com',
       icon: Globe,
+      hidden: false,
     },
   ];
 
@@ -208,7 +213,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-7 h-7 rounded-full bg-slate-200/80 text-slate-600 flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-tr hover:from-indigo-500 hover:to-pink-500 hover:text-white hover:shadow-[0_0_8px_rgba(99,102,241,0.4)] cursor-pointer"
+                    className={`w-7 h-7 rounded-full bg-slate-200/80 text-slate-600 flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-tr hover:from-indigo-500 hover:to-pink-500 hover:text-white hover:shadow-[0_0_8px_rgba(99,102,241,0.4)] cursor-pointer ${social.hidden ? 'footer-social-hidden' : ''}`}
                     title={social.name}
                   >
                     <IconComponent className="w-3.5 h-3.5" />

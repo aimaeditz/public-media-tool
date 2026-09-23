@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aimaeditz.github.io/public-media-tool/sitemap.xml

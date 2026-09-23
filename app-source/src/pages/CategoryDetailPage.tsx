@@ -4,6 +4,7 @@ import { getIconComponent, formatNumber } from '../lib/utils';
 import { ArrowRight, ChevronRight, Loader2, Sparkles } from 'lucide-react';
 import { useToolsStore } from '../lib/tools-store';
 import { LazyRender } from '../components/tools/LazyRender';
+import { useSeo } from '../lib/useSeo';
 
 interface CategoryDetailPageProps {
   categorySlug: string;
@@ -38,6 +39,20 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
   if (!category) {
     category = CATEGORIES[0];
   }
+
+  useSeo({
+    title: `${category.name} Tools — Public Media Tool`,
+    description: category.description || `Explore ${category.name} free browser tools on Public Media Tool.`,
+    path: `/categories/${categorySlug}`,
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: `${category.name} Tools`,
+      description: category.description,
+      url: `https://aimaeditz.github.io/public-media-tool/categories/${categorySlug}`,
+      numberOfItems: category.count,
+    },
+  });
 
   const IconComp = getIconComponent(category.iconName);
 

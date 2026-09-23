@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ChevronRight, Shield, Lock, EyeOff, Database, HelpCircle, ChevronDown, ChevronUp, UserCheck, FileCheck, LifeBuoy } from 'lucide-react';
 import { CATEGORIES } from '../lib/categories';
+import { useSeo } from '../lib/useSeo';
 
 interface PrivacyPolicyPageProps {
   navigate: (path: string) => void;
@@ -10,16 +11,11 @@ const TOTAL_CATEGORIES = CATEGORIES.length;
 const TOTAL_TOOLS = CATEGORIES.reduce((acc, cat) => acc + (cat.count || 0), 0);
 
 export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ navigate }) => {
-  useEffect(() => {
-    document.title = 'Privacy Policy — Public Media Tool';
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        `Read the Privacy Policy for Public Media Tool (PMT). Discover how our 100% client-side browser runtime guarantees total data privacy across our ${TOTAL_TOOLS.toLocaleString()}+ utilities.`
-      );
-    }
-  }, []);
+  useSeo({
+    title: 'Privacy Policy — Public Media Tool',
+    description: `Read the Privacy Policy for Public Media Tool (PMT). Discover how our 100% client-side browser runtime guarantees total data privacy across our ${TOTAL_TOOLS.toLocaleString()}+ utilities.`,
+    path: '/privacy-policy',
+  });
 
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 

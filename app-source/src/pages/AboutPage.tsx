@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ShieldCheck, Zap, Heart, Lock, HelpCircle, ChevronDown, ChevronUp, ChevronRight, CheckCircle2, Layers, Cpu, Sparkles, BookOpen, Globe } from 'lucide-react';
 import { CATEGORIES } from '../lib/categories';
+import { useSeo } from '../lib/useSeo';
 
 interface AboutPageProps {
   navigate?: (path: string) => void;
@@ -10,16 +11,11 @@ const TOTAL_CATEGORIES = CATEGORIES.length;
 const TOTAL_TOOLS = CATEGORIES.reduce((acc, cat) => acc + (cat.count || 0), 0);
 
 export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
-  useEffect(() => {
-    document.title = 'About Us — Public Media Tool';
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        `Learn more about Public Media Tool (PMT). Explore our catalog of ${TOTAL_TOOLS.toLocaleString()}+ free, private, and ultra-fast browser utilities running 100% client-side.`
-      );
-    }
-  }, []);
+  useSeo({
+    title: 'About Us — Public Media Tool',
+    description: `Learn more about Public Media Tool (PMT). Explore our catalog of ${TOTAL_TOOLS.toLocaleString()}+ free, private, and ultra-fast browser utilities running 100% client-side.`,
+    path: '/about',
+  });
 
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 

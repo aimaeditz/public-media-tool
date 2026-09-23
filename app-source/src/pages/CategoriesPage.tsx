@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { CATEGORIES } from '../lib/categories';
 import { getIconComponent } from '../lib/utils';
 import { ArrowRight, Search, X, Sparkles } from 'lucide-react';
+import { useSeo } from '../lib/useSeo';
 
 interface CategoriesPageProps {
   navigate: (path: string) => void;
@@ -10,6 +11,19 @@ interface CategoriesPageProps {
 export const CategoriesPage: React.FC<CategoriesPageProps> = ({ navigate }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState<string>('All');
+
+  useSeo({
+    title: 'Tool Categories — Public Media Tool',
+    description: 'Browse 1,516+ free client-side tools across all categories on Public Media Tool.',
+    path: '/categories',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Tool Categories',
+      description: 'Browse all categories of free client-side browser tools on Public Media Tool.',
+      url: 'https://aimaeditz.github.io/public-media-tool/categories',
+    },
+  });
 
   // Compute unique departments and counts dynamically from categories
   const departments = useMemo(() => {

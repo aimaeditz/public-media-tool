@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ChevronRight, AlertTriangle, HelpCircle, ChevronDown, ChevronUp, Scale, CheckCircle, ShieldAlert, FileCode2 } from 'lucide-react';
 import { CATEGORIES } from '../lib/categories';
+import { useSeo } from '../lib/useSeo';
 
 interface DisclaimerPageProps {
   navigate: (path: string) => void;
@@ -10,16 +11,11 @@ const TOTAL_CATEGORIES = CATEGORIES.length;
 const TOTAL_TOOLS = CATEGORIES.reduce((acc, cat) => acc + (cat.count || 0), 0);
 
 export const DisclaimerPage: React.FC<DisclaimerPageProps> = ({ navigate }) => {
-  useEffect(() => {
-    document.title = 'Disclaimer — Public Media Tool';
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        `Read the official Legal Disclaimer for Public Media Tool (PMT). Understand our independent status, trademark notices, and as-is conditions across our ${TOTAL_TOOLS.toLocaleString()}+ browser tools.`
-      );
-    }
-  }, []);
+  useSeo({
+    title: 'Disclaimer — Public Media Tool',
+    description: `Read the official Legal Disclaimer for Public Media Tool (PMT). Understand our independent status, trademark notices, and as-is conditions across our ${TOTAL_TOOLS.toLocaleString()}+ browser tools.`,
+    path: '/disclaimer',
+  });
 
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 

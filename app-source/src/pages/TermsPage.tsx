@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ChevronRight, FileText, HelpCircle, ChevronDown, ChevronUp, CheckCircle, AlertOctagon, ShieldCheck, Scale, Award } from 'lucide-react';
 import { CATEGORIES } from '../lib/categories';
+import { useSeo } from '../lib/useSeo';
 
 interface TermsPageProps {
   navigate: (path: string) => void;
@@ -10,16 +11,11 @@ const TOTAL_CATEGORIES = CATEGORIES.length;
 const TOTAL_TOOLS = CATEGORIES.reduce((acc, cat) => acc + (cat.count || 0), 0);
 
 export const TermsPage: React.FC<TermsPageProps> = ({ navigate }) => {
-  useEffect(() => {
-    document.title = 'Terms of Service — Public Media Tool';
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        `Review the Terms of Service for Public Media Tool (PMT). Learn about our service guidelines, commercial usage permissions, and liability conditions across our ${TOTAL_TOOLS.toLocaleString()}+ browser utilities.`
-      );
-    }
-  }, []);
+  useSeo({
+    title: 'Terms of Service — Public Media Tool',
+    description: `Review the Terms of Service for Public Media Tool (PMT). Learn about our service guidelines, commercial usage permissions, and liability conditions across our ${TOTAL_TOOLS.toLocaleString()}+ browser utilities.`,
+    path: '/terms',
+  });
 
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 

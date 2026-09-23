@@ -4,6 +4,7 @@ import { getIconComponent, formatNumber } from '../lib/utils';
 import { Search, ArrowRight, Filter, Sparkles, X, RotateCcw, Loader2, ChevronDown } from 'lucide-react';
 import { useToolsStore } from '../lib/tools-store';
 import { LazyRender } from '../components/tools/LazyRender';
+import { useSeo } from '../lib/useSeo';
 
 interface ToolsPageProps {
   navigate: (path: string) => void;
@@ -21,6 +22,20 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
   const totalToolsCount = useMemo(() => {
     return CATEGORIES.reduce((s, c) => s + (c.count || 0), 0);
   }, []);
+
+  useSeo({
+    title: 'All Online Tools — Public Media Tool',
+    description: `Explore the complete collection of ${totalToolsCount.toLocaleString()}+ free, private, client-side online tools and utilities on Public Media Tool.`,
+    path: '/tools',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'All Online Tools',
+      description: 'Explore the complete collection of free client-side online tools on Public Media Tool.',
+      url: 'https://aimaeditz.github.io/public-media-tool/tools',
+      numberOfItems: totalToolsCount,
+    },
+  });
 
   const selectedCatObj = useMemo(() => {
     return CATEGORIES.find((c) => c.id === selectedCat);

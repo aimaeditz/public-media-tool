@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Send,
   CheckCircle2,
@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { CATEGORIES } from '../lib/categories';
+import { useSeo } from '../lib/useSeo';
 
 interface ContactPageProps {
   navigate?: (path: string) => void;
@@ -27,16 +28,11 @@ const TOTAL_CATEGORIES = CATEGORIES.length;
 const TOTAL_TOOLS = CATEGORIES.reduce((acc, cat) => acc + (cat.count || 0), 0);
 
 export const ContactPage: React.FC<ContactPageProps> = ({ navigate }) => {
-  useEffect(() => {
-    document.title = 'Contact & Support — Public Media Tool';
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        `Contact the Public Media Tool (PMT) support team. Submit tool suggestions, bug reports, and feedback for our suite of ${TOTAL_TOOLS.toLocaleString()}+ browser tools.`
-      );
-    }
-  }, []);
+  useSeo({
+    title: 'Contact & Support — Public Media Tool',
+    description: `Contact the Public Media Tool (PMT) support team. Submit tool suggestions, bug reports, and feedback for our suite of ${TOTAL_TOOLS.toLocaleString()}+ browser tools.`,
+    path: '/contact',
+  });
 
   // TODO: Replace with Web3Forms/Formspree when ready
   // Recipient: aimaeditz.info@gmail.com

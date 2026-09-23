@@ -1,21 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ChevronRight, Award, HelpCircle, ChevronDown, ChevronUp, Sparkles, Heart, Globe, Layers, Feather } from 'lucide-react';
+import { useSeo } from '../lib/useSeo';
 
 interface CreditsPageProps {
   navigate: (path: string) => void;
 }
 
 export const CreditsPage: React.FC<CreditsPageProps> = ({ navigate }) => {
-  useEffect(() => {
-    document.title = 'Credits & Attributions — Public Media Tool';
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        'Acknowledging the open-source creators, icon designers, open typography, and international standards bodies that inspire Public Media Tool (PMT).'
-      );
-    }
-  }, []);
+  useSeo({
+    title: 'Credits & Attributions — Public Media Tool',
+    description: 'Acknowledging the open-source creators, icon designers, open typography, and international standards bodies that inspire Public Media Tool (PMT).',
+    path: '/credits',
+  });
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 

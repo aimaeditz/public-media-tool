@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { TOOLS } from '../lib/tools-data';
 import { SEARCH_INDEX } from '../lib/search-index';
+import { CATEGORIES } from '../lib/categories';
 import { getIconComponent, formatNumber } from '../lib/utils';
 import { Share2, ShieldCheck, ChevronRight, Check, HelpCircle } from 'lucide-react';
 import { useToolsStore } from '../lib/tools-store';
+import { useSeo } from '../lib/useSeo';
 
 const ToolRunner = React.lazy(() => import('../components/tools/ToolRunner').then(m => ({ default: m.ToolRunner })));
 
@@ -95,16 +97,62 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
     ],
   });
 
+  const categorySlug = tool?.category
+    ? (CATEGORIES.find((c) => c.id === tool.category)?.slug ||
+       tool.category.toLowerCase().replace(/ & /g, '-').replace(/\s+/g, '-'))
+    : 'general';
+
+  const toolDesc = (tool.shortDesc || tool.description || '').slice(0, 155);
+
+  useSeo({
+    title: `${tool.name} — Free Online Tool | Public Media Tool`,
+    description: toolDesc,
+    path: `/tools/${slug}`,
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'SoftwareApplication',
+          name: tool.name,
+          description: tool.shortDesc || tool.description,
+          applicationCategory: 'UtilitiesApplication',
+          operatingSystem: 'Any (runs in browser)',
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+          },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://aimaeditz.github.io/public-media-tool/',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: tool.category || 'Categories',
+              item: `https://aimaeditz.github.io/public-media-tool/categories/${categorySlug}`,
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: tool.name,
+              item: `https://aimaeditz.github.io/public-media-tool/tools/${slug}`,
+            },
+          ],
+        },
+      ],
+    },
+  });
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (tool) {
-      document.title = `${tool.name} - Free Online Client-Side Tool | Public Media Tool`;
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) {
-        metaDesc.setAttribute('content', `${tool.name}: ${tool.shortDesc} 100% private, client-side execution in your browser.`);
-      }
-    }
-  }, [tool]);
+  }, [slug]);
 
   const IconComp = getIconComponent(tool.iconName);
 

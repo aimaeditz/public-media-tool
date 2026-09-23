@@ -9,5 +9,9 @@
     "build:root": "npm --prefix app-source run build:root",
     "lint": "npm --prefix app-source run lint",
     "postinstall": "npm --prefix app-source install"
+  },
+  "dependencies": {
+    "jspdf": "^4.2.1",
+    "pdfjs-dist": "^6.3.289"
   }
 }

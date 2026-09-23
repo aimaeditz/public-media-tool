@@ -107,8 +107,22 @@ export const ToolRunner: React.FC<ToolRunnerProps> = ({ tool }) => {
     case 'markdown-editor-previewer':
       return <MarkdownEditorTool onCopy={triggerCopyNotice} copied={copied} />;
     case 'pdf-page-inspector':
-      return <PdfInspectorTool />;
+    case 'pdf-splitter':
+    case 'pdf-to-text':
+    case 'pdf-image-extractor':
+    case 'pdf-merger':
+    case 'pdf-compressor':
+      return <ComprehensivePdfToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
     default:
+      if (
+        tool.category === 'PDF Tools' ||
+        tool.category === 'PDF Inspection & Analysis' ||
+        tool.category === 'PDF Document Utilities' ||
+        tool.slug.includes('pdf') ||
+        tool.name.toLowerCase().includes('pdf')
+      ) {
+        return <ComprehensivePdfToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+      }
       if (
         tool.category === 'Text Tools' ||
         tool.category === 'Text Formatting' ||

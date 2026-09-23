@@ -68,7 +68,15 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
     shortDesc: 'Instant client-side browser utility for high-performance productivity.',
     description:
       'Fast, private client-side execution with zero latency and 100% browser data security.',
-    category: 'Text Tools' as const,
+    category: (
+      slug.includes('pdf') ? 'PDF Document Utilities' :
+      (slug.includes('image') || slug.includes('photo') || slug.includes('icon') || slug.includes('png') || slug.includes('jpg')) ? 'Image Tools' :
+      (slug.includes('calc') || slug.includes('convert')) ? 'Calculator Tools' :
+      (slug.includes('code') || slug.includes('json') || slug.includes('sql') || slug.includes('yaml') || slug.includes('xml') || slug.includes('dev') || slug.includes('jwt')) ? 'Developer Tools' :
+      (slug.includes('color') || slug.includes('hex') || slug.includes('rgb') || slug.includes('gradient')) ? 'Color Tools' :
+      (slug.includes('password') || slug.includes('hash') || slug.includes('sha') || slug.includes('security')) ? 'Security Tools' :
+      'Text Tools'
+    ) as any,
     iconName: 'Wrench',
     isPopular: false,
     isLatest: false,

@@ -11,7 +11,7 @@
     "postinstall": "npm --prefix app-source install"
   },
   "dependencies": {
-    "jspdf": "^4.2.1",
-    "pdfjs-dist": "^6.3.289"
+    "jspdf": "^3.0.1",
+    "pdfjs-dist": "^4.9.155"
   }
 }

@@ -1,0 +1,4002 @@
+[
+  {
+    "index": 1,
+    "id": "password-generator",
+    "name": "Strong Password & Key Generator",
+    "slug": "password-generator",
+    "category": "Cryptography & Hashing",
+    "shortDesc": "Generate secure, high-entropy passwords with custom length and character sets."
+  },
+  {
+    "index": 2,
+    "id": "volume-unit-converter-smart",
+    "name": "Volume Unit Converter (Smart)",
+    "slug": "volume-unit-converter-smart",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side volume unit converter tool for content creators."
+  },
+  {
+    "index": 3,
+    "id": "general-ledger-helper-dynamic",
+    "name": "General Ledger Helper Dynamic",
+    "slug": "general-ledger-helper-dynamic",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side general ledger helper tool for writers."
+  },
+  {
+    "index": 4,
+    "id": "sleep-cycle-calculator-private",
+    "name": "Sleep Cycle Calculator (Private)",
+    "slug": "sleep-cycle-calculator-private",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side sleep cycle calculator tool for engineers."
+  },
+  {
+    "index": 5,
+    "id": "browser-weekly-schedule-builder",
+    "name": "Browser Weekly Schedule Builder",
+    "slug": "browser-weekly-schedule-builder",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side weekly schedule builder tool for security compliance."
+  },
+  {
+    "index": 6,
+    "id": "nps-retirement-calculator-private",
+    "name": "NPS Retirement Calculator (Private)",
+    "slug": "nps-retirement-calculator-private",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side nps retirement calculator tool for engineers."
+  },
+  {
+    "index": 7,
+    "id": "audio-player-preview-online",
+    "name": "Audio Player Preview Online",
+    "slug": "audio-player-preview-online",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side audio player preview tool for writers."
+  },
+  {
+    "index": 8,
+    "id": "online-cgpa-calculator",
+    "name": "Online CGPA Calculator",
+    "slug": "online-cgpa-calculator",
+    "category": "Education",
+    "shortDesc": "Instant client-side cgpa calculator tool for seo analysts."
+  },
+  {
+    "index": 9,
+    "id": "universal-page-inspector",
+    "name": "Universal Page Inspector",
+    "slug": "universal-page-inspector",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side page inspector tool for developers."
+  },
+  {
+    "index": 10,
+    "id": "smart-random-username-generator",
+    "name": "Smart Random Username Generator",
+    "slug": "smart-random-username-generator",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random username generator tool for developers."
+  },
+  {
+    "index": 11,
+    "id": "browser-pdf-link-extractor",
+    "name": "Browser PDF Link Extractor",
+    "slug": "browser-pdf-link-extractor",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side pdf link extractor tool for everyday use."
+  },
+  {
+    "index": 12,
+    "id": "easy-zip-extractor-inspector",
+    "name": "Easy ZIP Extractor Inspector",
+    "slug": "easy-zip-extractor-inspector",
+    "category": "File Tools",
+    "shortDesc": "Instant client-side zip extractor inspector tool for daily operations."
+  },
+  {
+    "index": 13,
+    "id": "private-standard-deviation-calculator",
+    "name": "Private Standard Deviation Calculator",
+    "slug": "private-standard-deviation-calculator",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side standard deviation calculator tool for marketers."
+  },
+  {
+    "index": 14,
+    "id": "universal-date-difference-calculator",
+    "name": "Universal Date Difference Calculator",
+    "slug": "universal-date-difference-calculator",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side date difference calculator tool for developers."
+  },
+  {
+    "index": 15,
+    "id": "dynamic-pregnancy-due-date-calculator",
+    "name": "Dynamic Pregnancy Due Date Calculator",
+    "slug": "dynamic-pregnancy-due-date-calculator",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side pregnancy due date calculator tool for developers."
+  },
+  {
+    "index": 16,
+    "id": "dynamic-stock-profit-calculator",
+    "name": "Dynamic Stock Profit Calculator",
+    "slug": "dynamic-stock-profit-calculator",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side stock profit calculator tool for developers."
+  },
+  {
+    "index": 17,
+    "id": "ebitda-margin-calculator-dynamic",
+    "name": "EBITDA Margin Calculator Dynamic",
+    "slug": "ebitda-margin-calculator-dynamic",
+    "category": "Accounting",
+    "shortDesc": "Instant client-side ebitda margin calculator tool for specialists."
+  },
+  {
+    "index": 18,
+    "id": "receipt-builder-smart",
+    "name": "Receipt Builder Smart",
+    "slug": "receipt-builder-smart",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side receipt builder tool for web professionals."
+  },
+  {
+    "index": 19,
+    "id": "client-side-ringtone-maker",
+    "name": "Client-Side Ringtone Maker",
+    "slug": "client-side-ringtone-maker",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side ringtone maker tool for social media managers."
+  },
+  {
+    "index": 20,
+    "id": "easy-diagram-maker-prep",
+    "name": "Easy Diagram Maker Prep",
+    "slug": "easy-diagram-maker-prep",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side diagram maker prep tool for daily operations."
+  },
+  {
+    "index": 21,
+    "id": "online-trial-balance-checker",
+    "name": "Online Trial Balance Checker",
+    "slug": "online-trial-balance-checker",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side trial balance checker tool for social media managers."
+  },
+  {
+    "index": 22,
+    "id": "color-code-converter-online",
+    "name": "Color Code Converter (Online)",
+    "slug": "color-code-converter-online",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side color code converter tool for content creators."
+  },
+  {
+    "index": 23,
+    "id": "email-template-generator-private",
+    "name": "Email Template Generator Private",
+    "slug": "email-template-generator-private",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side email template generator tool for students."
+  },
+  {
+    "index": 24,
+    "id": "zodiac-sign-finder-universal",
+    "name": "Zodiac Sign Finder Universal",
+    "slug": "zodiac-sign-finder-universal",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side zodiac sign finder tool for digital publishing."
+  },
+  {
+    "index": 25,
+    "id": "master-aes-encryption-tool",
+    "name": "Master AES Encryption Tool",
+    "slug": "master-aes-encryption-tool",
+    "category": "Password & Security Tools",
+    "shortDesc": "Instant client-side aes encryption tool tool for analysts."
+  },
+  {
+    "index": 26,
+    "id": "online-property-down-payment-planner",
+    "name": "Online Property Down Payment Planner",
+    "slug": "online-property-down-payment-planner",
+    "category": "Real Estate",
+    "shortDesc": "Instant client-side property down payment planner tool for precision tasks."
+  },
+  {
+    "index": 27,
+    "id": "bank-reconciliation-helper-client-side",
+    "name": "Bank Reconciliation Helper Client-Side",
+    "slug": "bank-reconciliation-helper-client-side",
+    "category": "Accounting",
+    "shortDesc": "Instant client-side bank reconciliation helper tool for precision tasks."
+  },
+  {
+    "index": 28,
+    "id": "week-number-calculator-master",
+    "name": "Week Number Calculator Master",
+    "slug": "week-number-calculator-master",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side week number calculator tool for students."
+  },
+  {
+    "index": 29,
+    "id": "advanced-marks-to-percentage-calculator",
+    "name": "Advanced Marks to Percentage Calculator",
+    "slug": "advanced-marks-to-percentage-calculator",
+    "category": "Education",
+    "shortDesc": "Instant client-side marks to percentage calculator tool for data analysts."
+  },
+  {
+    "index": 30,
+    "id": "easy-student-transcript-builder",
+    "name": "Easy Student Transcript Builder",
+    "slug": "easy-student-transcript-builder",
+    "category": "Education",
+    "shortDesc": "Instant client-side student transcript builder tool for financial advisors."
+  },
+  {
+    "index": 31,
+    "id": "master-triadic-palette-generator",
+    "name": "Master Triadic Palette Generator",
+    "slug": "master-triadic-palette-generator",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side triadic palette generator tool for analysts."
+  },
+  {
+    "index": 32,
+    "id": "smart-alarm-clock-helper",
+    "name": "Smart Alarm Clock Helper",
+    "slug": "smart-alarm-clock-helper",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side alarm clock helper tool for developers."
+  },
+  {
+    "index": 33,
+    "id": "data-normalization-checker-smart",
+    "name": "Data Normalization Checker (Smart)",
+    "slug": "data-normalization-checker-smart",
+    "category": "Networking & Data Management",
+    "shortDesc": "Instant client-side data normalization checker tool for specialists."
+  },
+  {
+    "index": 34,
+    "id": "advanced-png-to-webp",
+    "name": "Advanced PNG to WEBP",
+    "slug": "advanced-png-to-webp",
+    "category": "Image Optimization & Conversion",
+    "shortDesc": "Instant client-side png to webp tool for data processing."
+  },
+  {
+    "index": 35,
+    "id": "universal-bpm-metronome-tool",
+    "name": "Universal BPM Metronome Tool",
+    "slug": "universal-bpm-metronome-tool",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side bpm metronome tool tool for specialists."
+  },
+  {
+    "index": 36,
+    "id": "credit-score-estimator-dynamic",
+    "name": "Credit Score Estimator Dynamic",
+    "slug": "credit-score-estimator-dynamic",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side credit score estimator tool for web professionals."
+  },
+  {
+    "index": 37,
+    "id": "browser-password-generator",
+    "name": "Browser Password Generator",
+    "slug": "browser-password-generator",
+    "category": "Generators",
+    "shortDesc": "Instant client-side password generator tool for financial advisors."
+  },
+  {
+    "index": 38,
+    "id": "home-value-appreciation-client-side",
+    "name": "Home Value Appreciation Client-Side",
+    "slug": "home-value-appreciation-client-side",
+    "category": "Real Estate",
+    "shortDesc": "Instant client-side home value appreciation tool for precision tasks."
+  },
+  {
+    "index": 39,
+    "id": "uuid-v4-generator-universal",
+    "name": "UUID v4 Generator Universal",
+    "slug": "uuid-v4-generator-universal",
+    "category": "Generators",
+    "shortDesc": "Instant client-side uuid v4 generator tool for digital publishers."
+  },
+  {
+    "index": 40,
+    "id": "permutations-npr-calculator-universal",
+    "name": "Permutations nPr Calculator Universal",
+    "slug": "permutations-npr-calculator-universal",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side permutations npr calculator tool for digital publishing."
+  },
+  {
+    "index": 41,
+    "id": "smart-dither-filter",
+    "name": "Smart Dither Filter",
+    "slug": "smart-dither-filter",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side dither filter tool for data processing."
+  },
+  {
+    "index": 42,
+    "id": "user-agent-parser-private",
+    "name": "User Agent Parser Private",
+    "slug": "user-agent-parser-private",
+    "category": "Data & Schema Tools",
+    "shortDesc": "Instant client-side user agent parser tool for writers."
+  },
+  {
+    "index": 43,
+    "id": "advanced-poisson-distribution-calculator",
+    "name": "Advanced Poisson Distribution Calculator",
+    "slug": "advanced-poisson-distribution-calculator",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side poisson distribution calculator tool for daily operations."
+  },
+  {
+    "index": 44,
+    "id": "master-frequency-unit-converter",
+    "name": "Master Frequency Unit Converter",
+    "slug": "master-frequency-unit-converter",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side frequency unit converter tool for analysts."
+  },
+  {
+    "index": 45,
+    "id": "advanced-vat-tax-calculator",
+    "name": "Advanced VAT Tax Calculator",
+    "slug": "advanced-vat-tax-calculator",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side vat tax calculator tool for security compliance."
+  },
+  {
+    "index": 46,
+    "id": "hex-code-validator-client-side",
+    "name": "Hex Code Validator Client-Side",
+    "slug": "hex-code-validator-client-side",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side hex code validator tool for writers."
+  },
+  {
+    "index": 47,
+    "id": "bandwidth-download-time-easy",
+    "name": "Bandwidth Download Time (Easy)",
+    "slug": "bandwidth-download-time-easy",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side bandwidth download time tool for engineers."
+  },
+  {
+    "index": 48,
+    "id": "income-tax-estimator-smart",
+    "name": "Income Tax Estimator Smart",
+    "slug": "income-tax-estimator-smart",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side income tax estimator tool for web professionals."
+  },
+  {
+    "index": 49,
+    "id": "private-color-converter",
+    "name": "Private Color Converter",
+    "slug": "private-color-converter",
+    "category": "Data & Schema Tools",
+    "shortDesc": "Instant client-side color converter tool for marketers."
+  },
+  {
+    "index": 50,
+    "id": "browser-margin-of-error-calculator",
+    "name": "Browser Margin of Error Calculator",
+    "slug": "browser-margin-of-error-calculator",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side margin of error calculator tool for financial advisors."
+  },
+  {
+    "index": 51,
+    "id": "freight-shipping-cost-estimator-smart",
+    "name": "Freight Shipping Cost Estimator (Smart)",
+    "slug": "freight-shipping-cost-estimator-smart",
+    "category": "Inventory & Logistics",
+    "shortDesc": "Instant client-side freight shipping cost estimator tool for specialists."
+  },
+  {
+    "index": 52,
+    "id": "browser-code-diff-checker",
+    "name": "Browser Code Diff Checker",
+    "slug": "browser-code-diff-checker",
+    "category": "Data & Schema Tools",
+    "shortDesc": "Instant client-side code diff checker tool for analysts."
+  },
+  {
+    "index": 53,
+    "id": "universal-badge-maker",
+    "name": "Universal Badge Maker",
+    "slug": "universal-badge-maker",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side badge maker tool for data analysts."
+  },
+  {
+    "index": 54,
+    "id": "blood-pressure-category-checker-universal",
+    "name": "Blood Pressure Category Checker Universal",
+    "slug": "blood-pressure-category-checker-universal",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side blood pressure category checker tool for web professionals."
+  },
+  {
+    "index": 55,
+    "id": "client-side-tempo-modifier",
+    "name": "Client-Side Tempo Modifier",
+    "slug": "client-side-tempo-modifier",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side tempo modifier tool for seo analysts."
+  },
+  {
+    "index": 56,
+    "id": "advanced-nanoid-generator",
+    "name": "Advanced NanoID Generator",
+    "slug": "advanced-nanoid-generator",
+    "category": "Data & Schema Tools",
+    "shortDesc": "Instant client-side nanoid generator tool for everyday use."
+  },
+  {
+    "index": 57,
+    "id": "container-load-calculator-dynamic",
+    "name": "Container Load Calculator Dynamic",
+    "slug": "container-load-calculator-dynamic",
+    "category": "Inventory & Logistics",
+    "shortDesc": "Instant client-side container load calculator tool for specialists."
+  },
+  {
+    "index": 58,
+    "id": "force-unit-converter-universal",
+    "name": "Force Unit Converter Universal",
+    "slug": "force-unit-converter-universal",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side force unit converter tool for web designers."
+  },
+  {
+    "index": 59,
+    "id": "packing-slip-generator-client-side",
+    "name": "Packing Slip Generator Client-Side",
+    "slug": "packing-slip-generator-client-side",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side packing slip generator tool for students."
+  },
+  {
+    "index": 60,
+    "id": "advanced-freelance-invoice-builder",
+    "name": "Advanced Freelance Invoice Builder",
+    "slug": "advanced-freelance-invoice-builder",
+    "category": "Office & Project Management",
+    "shortDesc": "Instant client-side freelance invoice builder tool for precision tasks."
+  },
+  {
+    "index": 61,
+    "id": "universal-contract-builder-template",
+    "name": "Universal Contract Builder Template",
+    "slug": "universal-contract-builder-template",
+    "category": "Legal & Public Services",
+    "shortDesc": "Instant client-side contract builder template tool for specialists."
+  },
+  {
+    "index": 62,
+    "id": "percentage-calculator",
+    "name": "Universal Percentage & Percent Change Calculator",
+    "slug": "percentage-calculator",
+    "category": "Financial Calculators",
+    "shortDesc": "Calculate percentage of a value, percentage increases, decreases, and difference ratios."
+  },
+  {
+    "index": 63,
+    "id": "online-music-key-transposer",
+    "name": "Online Music Key Transposer",
+    "slug": "online-music-key-transposer",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side music key transposer tool for precision tasks."
+  },
+  {
+    "index": 64,
+    "id": "file-duplicate-finder-master",
+    "name": "File Duplicate Finder (Master)",
+    "slug": "file-duplicate-finder-master",
+    "category": "File Tools",
+    "shortDesc": "Instant client-side file duplicate finder tool for engineers."
+  },
+  {
+    "index": 65,
+    "id": "private-random-hashtag-generator",
+    "name": "Private Random Hashtag Generator",
+    "slug": "private-random-hashtag-generator",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random hashtag generator tool for social media managers."
+  },
+  {
+    "index": 66,
+    "id": "power-factor-correction-helper-private",
+    "name": "Power Factor Correction Helper (Private)",
+    "slug": "power-factor-correction-helper-private",
+    "category": "Engineering Tools",
+    "shortDesc": "Instant client-side power factor correction helper tool for precision tasks."
+  },
+  {
+    "index": 67,
+    "id": "client-side-html-entity-decoder",
+    "name": "Client-Side HTML Entity Decoder",
+    "slug": "client-side-html-entity-decoder",
+    "category": "Web & API Utilities",
+    "shortDesc": "Instant client-side html entity decoder tool for seo specialists."
+  },
+  {
+    "index": 68,
+    "id": "file-diff-inspector-easy",
+    "name": "File Diff Inspector Easy",
+    "slug": "file-diff-inspector-easy",
+    "category": "File Tools",
+    "shortDesc": "Instant client-side file diff inspector tool for business leaders."
+  },
+  {
+    "index": 69,
+    "id": "compost-volume-calculator-client-side",
+    "name": "Compost Volume Calculator Client-Side",
+    "slug": "compost-volume-calculator-client-side",
+    "category": "Agriculture & Environment",
+    "shortDesc": "Instant client-side compost volume calculator tool for precision tasks."
+  },
+  {
+    "index": 70,
+    "id": "purchase-order-generator-custom",
+    "name": "Purchase Order Generator Custom",
+    "slug": "purchase-order-generator-custom",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side purchase order generator tool for digital publishers."
+  },
+  {
+    "index": 71,
+    "id": "smart-jwt-decoder",
+    "name": "Smart JWT Decoder",
+    "slug": "smart-jwt-decoder",
+    "category": "Data & Schema Tools",
+    "shortDesc": "Instant client-side jwt decoder tool for data processing."
+  },
+  {
+    "index": 72,
+    "id": "margin-adjuster-dynamic",
+    "name": "Margin Adjuster Dynamic",
+    "slug": "margin-adjuster-dynamic",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side margin adjuster tool for writers."
+  },
+  {
+    "index": 73,
+    "id": "xirr-return-calculator-advanced",
+    "name": "XIRR Return Calculator Advanced",
+    "slug": "xirr-return-calculator-advanced",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side xirr return calculator tool for digital publishers."
+  },
+  {
+    "index": 74,
+    "id": "url-security-cipher-private",
+    "name": "URL Security Cipher Private",
+    "slug": "url-security-cipher-private",
+    "category": "Password & Security Tools",
+    "shortDesc": "Instant client-side url security cipher tool for students."
+  },
+  {
+    "index": 75,
+    "id": "client-side-linear-regression-model",
+    "name": "Client-Side Linear Regression Model",
+    "slug": "client-side-linear-regression-model",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side linear regression model tool for social media managers."
+  },
+  {
+    "index": 76,
+    "id": "llc-registration-checklist-dynamic",
+    "name": "LLC Registration Checklist Dynamic",
+    "slug": "llc-registration-checklist-dynamic",
+    "category": "Legal & Public Services",
+    "shortDesc": "Instant client-side llc registration checklist tool for specialists."
+  },
+  {
+    "index": 77,
+    "id": "master-stopwatch-tool",
+    "name": "Master Stopwatch Tool",
+    "slug": "master-stopwatch-tool",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side stopwatch tool tool for financial advisors."
+  },
+  {
+    "index": 78,
+    "id": "product-margin-calculator-master",
+    "name": "Product Margin Calculator Master",
+    "slug": "product-margin-calculator-master",
+    "category": "E-commerce",
+    "shortDesc": "Instant client-side product margin calculator tool for specialists."
+  },
+  {
+    "index": 79,
+    "id": "chord-progression-generator-master",
+    "name": "Chord Progression Generator Master",
+    "slug": "chord-progression-generator-master",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side chord progression generator tool for specialists."
+  },
+  {
+    "index": 80,
+    "id": "threshold-filter-easy",
+    "name": "Threshold Filter Easy",
+    "slug": "threshold-filter-easy",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side threshold filter tool for students."
+  },
+  {
+    "index": 81,
+    "id": "custom-rotator",
+    "name": "Custom Rotator",
+    "slug": "custom-rotator",
+    "category": "Image Optimization & Conversion",
+    "shortDesc": "Instant client-side rotator tool for ui ux testing."
+  },
+  {
+    "index": 82,
+    "id": "private-running-pace-calculator",
+    "name": "Private Running Pace Calculator",
+    "slug": "private-running-pace-calculator",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side running pace calculator tool for seo specialists."
+  },
+  {
+    "index": 83,
+    "id": "audio-waveform-comparer-private",
+    "name": "Audio Waveform Comparer Private",
+    "slug": "audio-waveform-comparer-private",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side audio waveform comparer tool for students."
+  },
+  {
+    "index": 84,
+    "id": "greatest-common-divisor-gcd-private",
+    "name": "Greatest Common Divisor GCD Private",
+    "slug": "greatest-common-divisor-gcd-private",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side greatest common divisor gcd tool for students."
+  },
+  {
+    "index": 85,
+    "id": "binomial-distribution-calculator-online",
+    "name": "Binomial Distribution Calculator (Online)",
+    "slug": "binomial-distribution-calculator-online",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side binomial distribution calculator tool for content marketers."
+  },
+  {
+    "index": 86,
+    "id": "vendor-directory-table-private",
+    "name": "Vendor Directory Table Private",
+    "slug": "vendor-directory-table-private",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side vendor directory table tool for students."
+  },
+  {
+    "index": 87,
+    "id": "clothing-size-converter-browser",
+    "name": "Clothing Size Converter Browser",
+    "slug": "clothing-size-converter-browser",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side clothing size converter tool for finance managers."
+  },
+  {
+    "index": 88,
+    "id": "client-side-pregnancy-due-date",
+    "name": "Client-Side Pregnancy Due Date",
+    "slug": "client-side-pregnancy-due-date",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side pregnancy due date tool for marketers."
+  },
+  {
+    "index": 89,
+    "id": "password-generator-checker",
+    "name": "Secure Password Generator & Entropy Tester",
+    "slug": "password-generator-checker",
+    "category": "Cryptography & Hashing",
+    "shortDesc": "Generate strong random passwords and calculate cryptographic entropy strength."
+  },
+  {
+    "index": 90,
+    "id": "online-rebar-steel-weight-calculator",
+    "name": "Online Rebar Steel Weight Calculator",
+    "slug": "online-rebar-steel-weight-calculator",
+    "category": "Construction Tools",
+    "shortDesc": "Instant client-side rebar steel weight calculator tool for precision tasks."
+  },
+  {
+    "index": 91,
+    "id": "body-fat-percentage-custom",
+    "name": "Body Fat Percentage Custom",
+    "slug": "body-fat-percentage-custom",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side body fat percentage tool for digital publishing."
+  },
+  {
+    "index": 92,
+    "id": "color-inverter-master",
+    "name": "Color Inverter (Master)",
+    "slug": "color-inverter-master",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side color inverter tool for engineers."
+  },
+  {
+    "index": 93,
+    "id": "online-countdown-timer",
+    "name": "Online Countdown Timer",
+    "slug": "online-countdown-timer",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side countdown timer tool for social media managers."
+  },
+  {
+    "index": 94,
+    "id": "universal-arithmetic-calculator",
+    "name": "Universal Arithmetic Calculator",
+    "slug": "universal-arithmetic-calculator",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side arithmetic calculator tool for developers."
+  },
+  {
+    "index": 95,
+    "id": "7z-file-inspector-dynamic",
+    "name": "7Z File Inspector Dynamic",
+    "slug": "7z-file-inspector-dynamic",
+    "category": "File Tools",
+    "shortDesc": "Instant client-side 7z file inspector tool for writers."
+  },
+  {
+    "index": 96,
+    "id": "easy-wind-energy-output-estimator",
+    "name": "Easy Wind Energy Output Estimator",
+    "slug": "easy-wind-energy-output-estimator",
+    "category": "Electrical & Solar",
+    "shortDesc": "Instant client-side wind energy output estimator tool for specialists."
+  },
+  {
+    "index": 97,
+    "id": "online-polynomial-solver",
+    "name": "Online Polynomial Solver",
+    "slug": "online-polynomial-solver",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side polynomial solver tool for social media managers."
+  },
+  {
+    "index": 98,
+    "id": "add-subtract-days-calculator-master",
+    "name": "Add Subtract Days Calculator Master",
+    "slug": "add-subtract-days-calculator-master",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side add subtract days calculator tool for business leaders."
+  },
+  {
+    "index": 99,
+    "id": "pdf-page-crop-inspector-smart",
+    "name": "PDF Page Crop Inspector Smart",
+    "slug": "pdf-page-crop-inspector-smart",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side pdf page crop inspector tool for web designers."
+  },
+  {
+    "index": 100,
+    "id": "universal-pdf-bookmark-inspector",
+    "name": "Universal PDF Bookmark Inspector",
+    "slug": "universal-pdf-bookmark-inspector",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side pdf bookmark inspector tool for ui ux testing."
+  },
+  {
+    "index": 101,
+    "id": "advanced-sales-commission-calculator",
+    "name": "Advanced Sales Commission Calculator",
+    "slug": "advanced-sales-commission-calculator",
+    "category": "HR & Payroll",
+    "shortDesc": "Instant client-side sales commission calculator tool for precision tasks."
+  },
+  {
+    "index": 102,
+    "id": "cash-flow-projection-tool-smart",
+    "name": "Cash Flow Projection Tool (Smart)",
+    "slug": "cash-flow-projection-tool-smart",
+    "category": "Accounting",
+    "shortDesc": "Instant client-side cash flow projection tool tool for specialists."
+  },
+  {
+    "index": 103,
+    "id": "universal-contract-template-prep",
+    "name": "Universal Contract Template Prep",
+    "slug": "universal-contract-template-prep",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side contract template prep tool for data analysts."
+  },
+  {
+    "index": 104,
+    "id": "timezone-converter-dynamic",
+    "name": "Timezone Converter Dynamic",
+    "slug": "timezone-converter-dynamic",
+    "category": "Data & Schema Tools",
+    "shortDesc": "Instant client-side timezone converter tool for web designers."
+  },
+  {
+    "index": 105,
+    "id": "browser-roi-calculator",
+    "name": "Browser ROI Calculator",
+    "slug": "browser-roi-calculator",
+    "category": "Everyday Calculators",
+    "shortDesc": "Instant client-side roi calculator tool for everyday use."
+  },
+  {
+    "index": 106,
+    "id": "quadratic-formula-solver-advanced",
+    "name": "Quadratic Formula Solver Advanced",
+    "slug": "quadratic-formula-solver-advanced",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side quadratic formula solver tool for digital publishers."
+  },
+  {
+    "index": 107,
+    "id": "custom-json-to-yaml",
+    "name": "Custom JSON to YAML",
+    "slug": "custom-json-to-yaml",
+    "category": "Web & API Utilities",
+    "shortDesc": "Instant client-side json to yaml tool for ui ux testing."
+  },
+  {
+    "index": 108,
+    "id": "gif-frame-extractor-universal",
+    "name": "GIF Frame Extractor Universal",
+    "slug": "gif-frame-extractor-universal",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side gif frame extractor tool for digital publishing."
+  },
+  {
+    "index": 109,
+    "id": "smart-greeting-card-builder",
+    "name": "Smart Greeting Card Builder",
+    "slug": "smart-greeting-card-builder",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side greeting card builder tool for workflow efficiency."
+  },
+  {
+    "index": 110,
+    "id": "browser-profit-loss-statement-builder",
+    "name": "Browser Profit & Loss Statement Builder",
+    "slug": "browser-profit-loss-statement-builder",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side profit & loss statement builder tool for security compliance."
+  },
+  {
+    "index": 111,
+    "id": "curl-to-fetch-converter-easy",
+    "name": "CURL to Fetch Converter Easy",
+    "slug": "curl-to-fetch-converter-easy",
+    "category": "Data & Schema Tools",
+    "shortDesc": "Instant client-side curl to fetch converter tool for students."
+  },
+  {
+    "index": 112,
+    "id": "private-week-number-calculator",
+    "name": "Private Week Number Calculator",
+    "slug": "private-week-number-calculator",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side week number calculator tool for marketers."
+  },
+  {
+    "index": 113,
+    "id": "dynamic-daily-water-intake",
+    "name": "Dynamic Daily Water Intake",
+    "slug": "dynamic-daily-water-intake",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side daily water intake tool for developers."
+  },
+  {
+    "index": 114,
+    "id": "advanced-csv-column-reorder-tool",
+    "name": "Advanced CSV Column Reorder Tool",
+    "slug": "advanced-csv-column-reorder-tool",
+    "category": "Networking & Data Management",
+    "shortDesc": "Instant client-side csv column reorder tool tool for precision tasks."
+  },
+  {
+    "index": 115,
+    "id": "easy-capital-gains-tax-calculator",
+    "name": "Easy Capital Gains Tax Calculator",
+    "slug": "easy-capital-gains-tax-calculator",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side capital gains tax calculator tool for financial advisors."
+  },
+  {
+    "index": 116,
+    "id": "hvac-cooling-load-estimator-client-side",
+    "name": "HVAC Cooling Load Estimator Client-Side",
+    "slug": "hvac-cooling-load-estimator-client-side",
+    "category": "Engineering Tools",
+    "shortDesc": "Instant client-side hvac cooling load estimator tool for precision tasks."
+  },
+  {
+    "index": 117,
+    "id": "tip-bill-splitter-universal",
+    "name": "Tip Bill Splitter Universal",
+    "slug": "tip-bill-splitter-universal",
+    "category": "Everyday Calculators",
+    "shortDesc": "Instant client-side tip bill splitter tool for web designers."
+  },
+  {
+    "index": 118,
+    "id": "online-depth-of-field-dof-calculator",
+    "name": "Online Depth of Field DOF Calculator",
+    "slug": "online-depth-of-field-dof-calculator",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side depth of field dof calculator tool for precision tasks."
+  },
+  {
+    "index": 119,
+    "id": "flowchart-builder-prep-client-side",
+    "name": "Flowchart Builder Prep Client-Side",
+    "slug": "flowchart-builder-prep-client-side",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side flowchart builder prep tool for students."
+  },
+  {
+    "index": 120,
+    "id": "smart-quadratic-equation-solver",
+    "name": "Smart Quadratic Equation Solver",
+    "slug": "smart-quadratic-equation-solver",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side quadratic equation solver tool for data processing."
+  },
+  {
+    "index": 121,
+    "id": "json-validator-master",
+    "name": "JSON Validator Master",
+    "slug": "json-validator-master",
+    "category": "Web & API Utilities",
+    "shortDesc": "Instant client-side json validator tool for finance managers."
+  },
+  {
+    "index": 122,
+    "id": "client-side-trade-in-value-estimator",
+    "name": "Client-Side Trade-In Value Estimator",
+    "slug": "client-side-trade-in-value-estimator",
+    "category": "Automotive",
+    "shortDesc": "Instant client-side trade-in value estimator tool for specialists."
+  },
+  {
+    "index": 123,
+    "id": "browser-w2-1099-tax-estimator",
+    "name": "Browser W2 1099 Tax Estimator",
+    "slug": "browser-w2-1099-tax-estimator",
+    "category": "HR & Payroll",
+    "shortDesc": "Instant client-side w2 1099 tax estimator tool for specialists."
+  },
+  {
+    "index": 124,
+    "id": "forex-exchange-estimator-online",
+    "name": "Forex Exchange Estimator (Online)",
+    "slug": "forex-exchange-estimator-online",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side forex exchange estimator tool for content marketers."
+  },
+  {
+    "index": 125,
+    "id": "online-mortgage-calculator",
+    "name": "Online Mortgage Calculator",
+    "slug": "online-mortgage-calculator",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side mortgage calculator tool for seo analysts."
+  },
+  {
+    "index": 126,
+    "id": "award-maker-master",
+    "name": "Award Maker Master",
+    "slug": "award-maker-master",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side award maker tool for students."
+  },
+  {
+    "index": 127,
+    "id": "online-sepia-filter",
+    "name": "Online Sepia Filter",
+    "slug": "online-sepia-filter",
+    "category": "Image Optimization & Conversion",
+    "shortDesc": "Instant client-side sepia filter tool for marketers."
+  },
+  {
+    "index": 128,
+    "id": "fuel-efficiency-converter-advanced",
+    "name": "Fuel Efficiency Converter Advanced",
+    "slug": "fuel-efficiency-converter-advanced",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side fuel efficiency converter tool for digital publishing."
+  },
+  {
+    "index": 129,
+    "id": "universal-work-days-hours-calculator",
+    "name": "Universal Work Days Hours Calculator",
+    "slug": "universal-work-days-hours-calculator",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side work days hours calculator tool for security audits."
+  },
+  {
+    "index": 130,
+    "id": "custom-noise-generator",
+    "name": "Custom Noise Generator",
+    "slug": "custom-noise-generator",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side noise generator tool for security audits."
+  },
+  {
+    "index": 131,
+    "id": "sip-investment-calculator-client-side",
+    "name": "SIP Investment Calculator Client-Side",
+    "slug": "sip-investment-calculator-client-side",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side sip investment calculator tool for students."
+  },
+  {
+    "index": 132,
+    "id": "cycling-speed-calculator-smart",
+    "name": "Cycling Speed Calculator Smart",
+    "slug": "cycling-speed-calculator-smart",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side cycling speed calculator tool for web professionals."
+  },
+  {
+    "index": 133,
+    "id": "pdf-stamp-generator-custom",
+    "name": "PDF Stamp Generator Custom",
+    "slug": "pdf-stamp-generator-custom",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side pdf stamp generator tool for digital publishing."
+  },
+  {
+    "index": 134,
+    "id": "meditation-timer-custom",
+    "name": "Meditation Timer Custom",
+    "slug": "meditation-timer-custom",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side meditation timer tool for digital publishers."
+  },
+  {
+    "index": 135,
+    "id": "browser-exercise-rep-counter",
+    "name": "Browser Exercise Rep Counter",
+    "slug": "browser-exercise-rep-counter",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side exercise rep counter tool for daily operations."
+  },
+  {
+    "index": 136,
+    "id": "json-formatter-validator",
+    "name": "JSON Formatter & Validator",
+    "slug": "json-formatter-validator",
+    "category": "Code Formatters",
+    "shortDesc": "Beautify, validate, minify, and fix JSON code syntax with error line highlighting."
+  },
+  {
+    "index": 137,
+    "id": "rgb-to-hex-converter-master",
+    "name": "RGB to HEX Converter Master",
+    "slug": "rgb-to-hex-converter-master",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side rgb to hex converter tool for finance managers."
+  },
+  {
+    "index": 138,
+    "id": "jwt-decoder",
+    "name": "JSON Web Token (JWT) Header & Payload Decoder",
+    "slug": "jwt-decoder",
+    "category": "Web Tools",
+    "shortDesc": "Decode JWT token header, payload claims, expiration time, and signatures."
+  },
+  {
+    "index": 139,
+    "id": "advanced-sitemap-xml-generator",
+    "name": "Advanced Sitemap XML Generator",
+    "slug": "advanced-sitemap-xml-generator",
+    "category": "Data & Schema Tools",
+    "shortDesc": "Instant client-side sitemap xml generator tool for analysts."
+  },
+  {
+    "index": 140,
+    "id": "guid-generator-client-side",
+    "name": "GUID Generator Client-Side",
+    "slug": "guid-generator-client-side",
+    "category": "Password & Security Tools",
+    "shortDesc": "Instant client-side guid generator tool for students."
+  },
+  {
+    "index": 141,
+    "id": "universal-color-mixer",
+    "name": "Universal Color Mixer",
+    "slug": "universal-color-mixer",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side color mixer tool for ui ux testing."
+  },
+  {
+    "index": 142,
+    "id": "image-color-extractor-private",
+    "name": "Image Color Extractor (Private)",
+    "slug": "image-color-extractor-private",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side image color extractor tool for engineers."
+  },
+  {
+    "index": 143,
+    "id": "easy-depreciation-schedule-calculator",
+    "name": "Easy Depreciation Schedule Calculator",
+    "slug": "easy-depreciation-schedule-calculator",
+    "category": "Accounting",
+    "shortDesc": "Instant client-side depreciation schedule calculator tool for specialists."
+  },
+  {
+    "index": 144,
+    "id": "quotation-builder-master",
+    "name": "Quotation Builder Master",
+    "slug": "quotation-builder-master",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side quotation builder tool for business leaders."
+  },
+  {
+    "index": 145,
+    "id": "resolution-scaler-client-side",
+    "name": "Resolution Scaler Client-Side",
+    "slug": "resolution-scaler-client-side",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side resolution scaler tool for writers."
+  },
+  {
+    "index": 146,
+    "id": "smart-timesheet-calculator",
+    "name": "Smart Timesheet Calculator",
+    "slug": "smart-timesheet-calculator",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side timesheet calculator tool for developers."
+  },
+  {
+    "index": 147,
+    "id": "pixel-to-rem-converter-master",
+    "name": "Pixel to REM Converter Master",
+    "slug": "pixel-to-rem-converter-master",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side pixel to rem converter tool for students."
+  },
+  {
+    "index": 148,
+    "id": "vin-decoder-helper-easy",
+    "name": "VIN Decoder Helper Easy",
+    "slug": "vin-decoder-helper-easy",
+    "category": "Automotive",
+    "shortDesc": "Instant client-side vin decoder helper tool for precision tasks."
+  },
+  {
+    "index": 149,
+    "id": "random-song-generator-custom",
+    "name": "Random Song Generator Custom",
+    "slug": "random-song-generator-custom",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random song generator tool for digital publishers."
+  },
+  {
+    "index": 150,
+    "id": "universal-web-audio-recorder",
+    "name": "Universal Web Audio Recorder",
+    "slug": "universal-web-audio-recorder",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side web audio recorder tool for workflow efficiency."
+  },
+  {
+    "index": 151,
+    "id": "work-schedule-calculator-easy",
+    "name": "Work Schedule Calculator Easy",
+    "slug": "work-schedule-calculator-easy",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side work schedule calculator tool for business leaders."
+  },
+  {
+    "index": 152,
+    "id": "universal-brand-color-inspector",
+    "name": "Universal Brand Color Inspector",
+    "slug": "universal-brand-color-inspector",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side brand color inspector tool for data processing."
+  },
+  {
+    "index": 153,
+    "id": "inverter-capacity-calculator-client-side",
+    "name": "Inverter Capacity Calculator Client-Side",
+    "slug": "inverter-capacity-calculator-client-side",
+    "category": "Electrical & Solar",
+    "shortDesc": "Instant client-side inverter capacity calculator tool for precision tasks."
+  },
+  {
+    "index": 154,
+    "id": "wall-paint-area-calculator-smart",
+    "name": "Wall Paint Area Calculator (Smart)",
+    "slug": "wall-paint-area-calculator-smart",
+    "category": "Construction Tools",
+    "shortDesc": "Instant client-side wall paint area calculator tool for specialists."
+  },
+  {
+    "index": 155,
+    "id": "master-fraction-simplifier",
+    "name": "Master Fraction Simplifier",
+    "slug": "master-fraction-simplifier",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side fraction simplifier tool for seo specialists."
+  },
+  {
+    "index": 156,
+    "id": "online-angle-unit-converter",
+    "name": "Online Angle Unit Converter",
+    "slug": "online-angle-unit-converter",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side angle unit converter tool for marketers."
+  },
+  {
+    "index": 157,
+    "id": "browser-json-diff",
+    "name": "Browser JSON Diff",
+    "slug": "browser-json-diff",
+    "category": "Web & API Utilities",
+    "shortDesc": "Instant client-side json diff tool for security audits."
+  },
+  {
+    "index": 158,
+    "id": "online-analogous-palette-generator",
+    "name": "Online Analogous Palette Generator",
+    "slug": "online-analogous-palette-generator",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side analogous palette generator tool for marketers."
+  },
+  {
+    "index": 159,
+    "id": "advanced-car-insurance-estimator",
+    "name": "Advanced Car Insurance Estimator",
+    "slug": "advanced-car-insurance-estimator",
+    "category": "Automotive",
+    "shortDesc": "Instant client-side car insurance estimator tool for precision tasks."
+  },
+  {
+    "index": 160,
+    "id": "tax-deduction-calculator-smart",
+    "name": "Tax Deduction Calculator (Smart)",
+    "slug": "tax-deduction-calculator-smart",
+    "category": "HR & Payroll",
+    "shortDesc": "Instant client-side tax deduction calculator tool for specialists."
+  },
+  {
+    "index": 161,
+    "id": "browser-oil-change-interval-helper",
+    "name": "Browser Oil Change Interval Helper",
+    "slug": "browser-oil-change-interval-helper",
+    "category": "Automotive",
+    "shortDesc": "Instant client-side oil change interval helper tool for specialists."
+  },
+  {
+    "index": 162,
+    "id": "car-depreciation-estimator-smart",
+    "name": "Car Depreciation Estimator (Smart)",
+    "slug": "car-depreciation-estimator-smart",
+    "category": "Automotive",
+    "shortDesc": "Instant client-side car depreciation estimator tool for specialists."
+  },
+  {
+    "index": 163,
+    "id": "raci-matrix-planner-master",
+    "name": "RACI Matrix Planner Master",
+    "slug": "raci-matrix-planner-master",
+    "category": "Office & Project Management",
+    "shortDesc": "Instant client-side raci matrix planner tool for specialists."
+  },
+  {
+    "index": 164,
+    "id": "bmi-calculator",
+    "name": "BMI (Body Mass Index) & Healthy Weight Calculator",
+    "slug": "bmi-calculator",
+    "category": "Financial Calculators",
+    "shortDesc": "Calculate BMI score and healthy weight range for adults based on height and weight."
+  },
+  {
+    "index": 165,
+    "id": "resale-value-calculator-client-side",
+    "name": "Resale Value Calculator Client-Side",
+    "slug": "resale-value-calculator-client-side",
+    "category": "Automotive",
+    "shortDesc": "Instant client-side resale value calculator tool for precision tasks."
+  },
+  {
+    "index": 166,
+    "id": "rounded-corner-tool-dynamic",
+    "name": "Rounded Corner Tool (Dynamic)",
+    "slug": "rounded-corner-tool-dynamic",
+    "category": "Image Optimization & Conversion",
+    "shortDesc": "Instant client-side rounded corner tool tool for content creators."
+  },
+  {
+    "index": 167,
+    "id": "online-inventory-valuation-fifo-lifo",
+    "name": "Online Inventory Valuation FIFO LIFO",
+    "slug": "online-inventory-valuation-fifo-lifo",
+    "category": "Inventory & Logistics",
+    "shortDesc": "Instant client-side inventory valuation fifo lifo tool for precision tasks."
+  },
+  {
+    "index": 168,
+    "id": "hash-sha256-generator-dynamic",
+    "name": "Hash SHA256 Generator Dynamic",
+    "slug": "hash-sha256-generator-dynamic",
+    "category": "Password & Security Tools",
+    "shortDesc": "Instant client-side hash sha256 generator tool for writers."
+  },
+  {
+    "index": 169,
+    "id": "online-reference-list-maker",
+    "name": "Online Reference List Maker",
+    "slug": "online-reference-list-maker",
+    "category": "Education",
+    "shortDesc": "Instant client-side reference list maker tool for social media managers."
+  },
+  {
+    "index": 170,
+    "id": "employee-leave-tracker-easy",
+    "name": "Employee Leave Tracker Easy",
+    "slug": "employee-leave-tracker-easy",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side employee leave tracker tool for business leaders."
+  },
+  {
+    "index": 171,
+    "id": "easy-trial-balance-checker",
+    "name": "Easy Trial Balance Checker",
+    "slug": "easy-trial-balance-checker",
+    "category": "Accounting",
+    "shortDesc": "Instant client-side trial balance checker tool for precision tasks."
+  },
+  {
+    "index": 172,
+    "id": "random-caption-generator-dynamic",
+    "name": "Random Caption Generator Dynamic",
+    "slug": "random-caption-generator-dynamic",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random caption generator tool for web professionals."
+  },
+  {
+    "index": 173,
+    "id": "advanced-truss-member-force-solver",
+    "name": "Advanced Truss Member Force Solver",
+    "slug": "advanced-truss-member-force-solver",
+    "category": "Engineering Tools",
+    "shortDesc": "Instant client-side truss member force solver tool for precision tasks."
+  },
+  {
+    "index": 174,
+    "id": "universal-permutation-npr-calculator",
+    "name": "Universal Permutation nPr Calculator",
+    "slug": "universal-permutation-npr-calculator",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side permutation npr calculator tool for data analysts."
+  },
+  {
+    "index": 175,
+    "id": "smart-random-domain-name-idea",
+    "name": "Smart Random Domain Name Idea",
+    "slug": "smart-random-domain-name-idea",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random domain name idea tool for workflow efficiency."
+  },
+  {
+    "index": 176,
+    "id": "browser-n-up-previewer",
+    "name": "Browser N-Up Previewer",
+    "slug": "browser-n-up-previewer",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side n-up previewer tool for security audits."
+  },
+  {
+    "index": 177,
+    "id": "browser-power-unit-converter",
+    "name": "Browser Power Unit Converter",
+    "slug": "browser-power-unit-converter",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side power unit converter tool for security audits."
+  },
+  {
+    "index": 178,
+    "id": "interest-rate-calculator-master",
+    "name": "Interest Rate Calculator Master",
+    "slug": "interest-rate-calculator-master",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side interest rate calculator tool for business leaders."
+  },
+  {
+    "index": 179,
+    "id": "custom-plagiarism-checker-preview",
+    "name": "Custom Plagiarism Checker Preview",
+    "slug": "custom-plagiarism-checker-preview",
+    "category": "Education",
+    "shortDesc": "Instant client-side plagiarism checker preview tool for data analysts."
+  },
+  {
+    "index": 180,
+    "id": "dynamic-duotone-generator",
+    "name": "Dynamic Duotone Generator",
+    "slug": "dynamic-duotone-generator",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side duotone generator tool for ui ux testing."
+  },
+  {
+    "index": 181,
+    "id": "online-base64-decoder",
+    "name": "Online Base64 Decoder",
+    "slug": "online-base64-decoder",
+    "category": "Web & API Utilities",
+    "shortDesc": "Instant client-side base64 decoder tool for marketers."
+  },
+  {
+    "index": 182,
+    "id": "easy-exam-countdown-timer",
+    "name": "Easy Exam Countdown Timer",
+    "slug": "easy-exam-countdown-timer",
+    "category": "Education",
+    "shortDesc": "Instant client-side exam countdown timer tool for daily operations."
+  },
+  {
+    "index": 183,
+    "id": "public-provident-fund-ppf-dynamic",
+    "name": "Public Provident Fund PPF Dynamic",
+    "slug": "public-provident-fund-ppf-dynamic",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side public provident fund ppf tool for writers."
+  },
+  {
+    "index": 184,
+    "id": "time-format-converter-dynamic",
+    "name": "Time Format Converter (Dynamic)",
+    "slug": "time-format-converter-dynamic",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side time format converter tool for content marketers."
+  },
+  {
+    "index": 185,
+    "id": "apy-calculator-private",
+    "name": "APY Calculator Private",
+    "slug": "apy-calculator-private",
+    "category": "Everyday Calculators",
+    "shortDesc": "Instant client-side apy calculator tool for students."
+  },
+  {
+    "index": 186,
+    "id": "dimension-inspector-browser",
+    "name": "Dimension Inspector Browser",
+    "slug": "dimension-inspector-browser",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side dimension inspector tool for finance managers."
+  },
+  {
+    "index": 187,
+    "id": "lease-agreement-template-master",
+    "name": "Lease Agreement Template Master",
+    "slug": "lease-agreement-template-master",
+    "category": "Legal & Public Services",
+    "shortDesc": "Instant client-side lease agreement template tool for specialists."
+  },
+  {
+    "index": 188,
+    "id": "ssl-cert-inspector-custom",
+    "name": "SSL Cert Inspector Custom",
+    "slug": "ssl-cert-inspector-custom",
+    "category": "Password & Security Tools",
+    "shortDesc": "Instant client-side ssl cert inspector tool for digital publishing."
+  },
+  {
+    "index": 189,
+    "id": "custom-audio-reverser",
+    "name": "Custom Audio Reverser",
+    "slug": "custom-audio-reverser",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side audio reverser tool for workflow efficiency."
+  },
+  {
+    "index": 190,
+    "id": "quiz-score-calculator-client-side",
+    "name": "Quiz Score Calculator Client-Side",
+    "slug": "quiz-score-calculator-client-side",
+    "category": "Education",
+    "shortDesc": "Instant client-side quiz score calculator tool for students."
+  },
+  {
+    "index": 191,
+    "id": "master-cholesterol-ratio-checker",
+    "name": "Master Cholesterol Ratio Checker",
+    "slug": "master-cholesterol-ratio-checker",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side cholesterol ratio checker tool for financial advisors."
+  },
+  {
+    "index": 192,
+    "id": "online-moon-phase-calculator",
+    "name": "Online Moon Phase Calculator",
+    "slug": "online-moon-phase-calculator",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side moon phase calculator tool for developers."
+  },
+  {
+    "index": 193,
+    "id": "balance-sheet-builder-private",
+    "name": "Balance Sheet Builder (Private)",
+    "slug": "balance-sheet-builder-private",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side balance sheet builder tool for engineers."
+  },
+  {
+    "index": 194,
+    "id": "online-weight-mass-converter",
+    "name": "Online Weight Mass Converter",
+    "slug": "online-weight-mass-converter",
+    "category": "Measurement Converters",
+    "shortDesc": "Instant client-side weight mass converter tool for seo specialists."
+  },
+  {
+    "index": 195,
+    "id": "drop-shadow-tool-private",
+    "name": "Drop Shadow Tool Private",
+    "slug": "drop-shadow-tool-private",
+    "category": "Image Optimization & Conversion",
+    "shortDesc": "Instant client-side drop shadow tool tool for students."
+  },
+  {
+    "index": 196,
+    "id": "circuit-breaker-ampere-sizing-master",
+    "name": "Circuit Breaker Ampere Sizing Master",
+    "slug": "circuit-breaker-ampere-sizing-master",
+    "category": "Electrical & Solar",
+    "shortDesc": "Instant client-side circuit breaker ampere sizing tool for specialists."
+  },
+  {
+    "index": 197,
+    "id": "cash-flow-statement-builder-universal",
+    "name": "Cash Flow Statement Builder Universal",
+    "slug": "cash-flow-statement-builder-universal",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side cash flow statement builder tool for web professionals."
+  },
+  {
+    "index": 198,
+    "id": "posterize-filter-client-side",
+    "name": "Posterize Filter (Client-Side)",
+    "slug": "posterize-filter-client-side",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side posterize filter tool for content creators."
+  },
+  {
+    "index": 199,
+    "id": "private-sample-size-calculator",
+    "name": "Private Sample Size Calculator",
+    "slug": "private-sample-size-calculator",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side sample size calculator tool for social media managers."
+  },
+  {
+    "index": 200,
+    "id": "online-crop-tool",
+    "name": "Online Crop Tool",
+    "slug": "online-crop-tool",
+    "category": "Image Optimization & Conversion",
+    "shortDesc": "Instant client-side crop tool tool for seo specialists."
+  },
+  {
+    "index": 201,
+    "id": "browser-blur-filter",
+    "name": "Browser Blur Filter",
+    "slug": "browser-blur-filter",
+    "category": "Image Optimization & Conversion",
+    "shortDesc": "Instant client-side blur filter tool for security audits."
+  },
+  {
+    "index": 202,
+    "id": "tar-archive-inspector-private",
+    "name": "TAR Archive Inspector (Private)",
+    "slug": "tar-archive-inspector-private",
+    "category": "File Tools",
+    "shortDesc": "Instant client-side tar archive inspector tool for engineers."
+  },
+  {
+    "index": 203,
+    "id": "customs-tariff-duty-calculator-client-side",
+    "name": "Customs Tariff Duty Calculator Client-Side",
+    "slug": "customs-tariff-duty-calculator-client-side",
+    "category": "Inventory & Logistics",
+    "shortDesc": "Instant client-side customs tariff duty calculator tool for precision tasks."
+  },
+  {
+    "index": 204,
+    "id": "advanced-promissory-note-generator",
+    "name": "Advanced Promissory Note Generator",
+    "slug": "advanced-promissory-note-generator",
+    "category": "Legal & Public Services",
+    "shortDesc": "Instant client-side promissory note generator tool for precision tasks."
+  },
+  {
+    "index": 205,
+    "id": "protein-requirement-calculator-client-side",
+    "name": "Protein Requirement Calculator Client-Side",
+    "slug": "protein-requirement-calculator-client-side",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side protein requirement calculator tool for students."
+  },
+  {
+    "index": 206,
+    "id": "octal-to-decimal-online",
+    "name": "Octal to Decimal Online",
+    "slug": "octal-to-decimal-online",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side octal to decimal tool for writers."
+  },
+  {
+    "index": 207,
+    "id": "spell-checker-helper-easy",
+    "name": "Spell Checker Helper Easy",
+    "slug": "spell-checker-helper-easy",
+    "category": "Education",
+    "shortDesc": "Instant client-side spell checker helper tool for business leaders."
+  },
+  {
+    "index": 208,
+    "id": "date-range-calculator-master",
+    "name": "Date Range Calculator (Master)",
+    "slug": "date-range-calculator-master",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side date range calculator tool for engineers."
+  },
+  {
+    "index": 209,
+    "id": "random-joke-generator-private",
+    "name": "Random Joke Generator Private",
+    "slug": "random-joke-generator-private",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random joke generator tool for students."
+  },
+  {
+    "index": 210,
+    "id": "shipping-fee-estimator-smart",
+    "name": "Shipping Fee Estimator (Smart)",
+    "slug": "shipping-fee-estimator-smart",
+    "category": "E-commerce",
+    "shortDesc": "Instant client-side shipping fee estimator tool for specialists."
+  },
+  {
+    "index": 211,
+    "id": "unit-converter",
+    "name": "Universal Unit Converter",
+    "slug": "unit-converter",
+    "category": "Measurement Converters",
+    "shortDesc": "Convert length, mass, temperature, area, volume, and data storage metrics."
+  },
+  {
+    "index": 212,
+    "id": "advanced-passphrase-generator",
+    "name": "Advanced Passphrase Generator",
+    "slug": "advanced-passphrase-generator",
+    "category": "Password & Security Tools",
+    "shortDesc": "Instant client-side passphrase generator tool for data processing."
+  },
+  {
+    "index": 213,
+    "id": "freelance-contract-template-builder-master",
+    "name": "Freelance Contract Template Builder Master",
+    "slug": "freelance-contract-template-builder-master",
+    "category": "Office & Project Management",
+    "shortDesc": "Instant client-side freelance contract template builder tool for specialists."
+  },
+  {
+    "index": 214,
+    "id": "transformer-efficiency-calculator-dynamic",
+    "name": "Transformer Efficiency Calculator Dynamic",
+    "slug": "transformer-efficiency-calculator-dynamic",
+    "category": "Engineering Tools",
+    "shortDesc": "Instant client-side transformer efficiency calculator tool for specialists."
+  },
+  {
+    "index": 215,
+    "id": "temperature-converter-master",
+    "name": "Temperature Converter Master",
+    "slug": "temperature-converter-master",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side temperature converter tool for finance managers."
+  },
+  {
+    "index": 216,
+    "id": "online-hair-dye-mix-ratio-helper",
+    "name": "Online Hair Dye Mix Ratio Helper",
+    "slug": "online-hair-dye-mix-ratio-helper",
+    "category": "Events & Lifestyle",
+    "shortDesc": "Instant client-side hair dye mix ratio helper tool for precision tasks."
+  },
+  {
+    "index": 217,
+    "id": "thesaurus-synonym-finder-online",
+    "name": "Thesaurus Synonym Finder Online",
+    "slug": "thesaurus-synonym-finder-online",
+    "category": "Education",
+    "shortDesc": "Instant client-side thesaurus synonym finder tool for writers."
+  },
+  {
+    "index": 218,
+    "id": "hourly-to-salary-dynamic",
+    "name": "Hourly to Salary (Dynamic)",
+    "slug": "hourly-to-salary-dynamic",
+    "category": "Everyday Calculators",
+    "shortDesc": "Instant client-side hourly to salary tool for content creators."
+  },
+  {
+    "index": 219,
+    "id": "easy-yoga-session-timer",
+    "name": "Easy Yoga Session Timer",
+    "slug": "easy-yoga-session-timer",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side yoga session timer tool for financial advisors."
+  },
+  {
+    "index": 220,
+    "id": "online-product-barcode-generator",
+    "name": "Online Product Barcode Generator",
+    "slug": "online-product-barcode-generator",
+    "category": "E-commerce",
+    "shortDesc": "Instant client-side product barcode generator tool for precision tasks."
+  },
+  {
+    "index": 221,
+    "id": "online-random-date-generator",
+    "name": "Online Random Date Generator",
+    "slug": "online-random-date-generator",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random date generator tool for social media managers."
+  },
+  {
+    "index": 222,
+    "id": "credit-card-payoff-easy",
+    "name": "Credit Card Payoff Easy",
+    "slug": "credit-card-payoff-easy",
+    "category": "Everyday Calculators",
+    "shortDesc": "Instant client-side credit card payoff tool for finance managers."
+  },
+  {
+    "index": 223,
+    "id": "universal-sql-table-schema-builder",
+    "name": "Universal SQL Table Schema Builder",
+    "slug": "universal-sql-table-schema-builder",
+    "category": "Networking & Data Management",
+    "shortDesc": "Instant client-side sql table schema builder tool for specialists."
+  },
+  {
+    "index": 224,
+    "id": "binary-to-decimal-dynamic",
+    "name": "Binary to Decimal (Dynamic)",
+    "slug": "binary-to-decimal-dynamic",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side binary to decimal tool for content creators."
+  },
+  {
+    "index": 225,
+    "id": "client-side-reminder-scheduler",
+    "name": "Client-Side Reminder Scheduler",
+    "slug": "client-side-reminder-scheduler",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side reminder scheduler tool for seo analysts."
+  },
+  {
+    "index": 226,
+    "id": "online-vehicle-mileage-estimator",
+    "name": "Online Vehicle Mileage Estimator",
+    "slug": "online-vehicle-mileage-estimator",
+    "category": "Automotive",
+    "shortDesc": "Instant client-side vehicle mileage estimator tool for precision tasks."
+  },
+  {
+    "index": 227,
+    "id": "custom-decimal-to-binary",
+    "name": "Custom Decimal to Binary",
+    "slug": "custom-decimal-to-binary",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side decimal to binary tool for data processing."
+  },
+  {
+    "index": 228,
+    "id": "css-minifier-private",
+    "name": "CSS Minifier Private",
+    "slug": "css-minifier-private",
+    "category": "Web & API Utilities",
+    "shortDesc": "Instant client-side css minifier tool for students."
+  },
+  {
+    "index": 229,
+    "id": "resume-cv-builder-prep-online",
+    "name": "Resume CV Builder Prep Online",
+    "slug": "resume-cv-builder-prep-online",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side resume cv builder prep tool for writers."
+  },
+  {
+    "index": 230,
+    "id": "factorial-calculator-easy",
+    "name": "Factorial Calculator Easy",
+    "slug": "factorial-calculator-easy",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side factorial calculator tool for business leaders."
+  },
+  {
+    "index": 231,
+    "id": "random-logo-text-generator-master",
+    "name": "Random Logo Text Generator (Master)",
+    "slug": "random-logo-text-generator-master",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random logo text generator tool for engineers."
+  },
+  {
+    "index": 232,
+    "id": "graphic-equalizer-advanced",
+    "name": "Graphic Equalizer Advanced",
+    "slug": "graphic-equalizer-advanced",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side graphic equalizer tool for digital publishers."
+  },
+  {
+    "index": 233,
+    "id": "pdf-font-inspector-private",
+    "name": "PDF Font Inspector Private",
+    "slug": "pdf-font-inspector-private",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side pdf font inspector tool for students."
+  },
+  {
+    "index": 234,
+    "id": "custom-statistics-mean-median-mode",
+    "name": "Custom Statistics Mean Median Mode",
+    "slug": "custom-statistics-mean-median-mode",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side statistics mean median mode tool for workflow efficiency."
+  },
+  {
+    "index": 235,
+    "id": "field-of-view-fov-calculator-smart",
+    "name": "Field of View FOV Calculator (Smart)",
+    "slug": "field-of-view-fov-calculator-smart",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side field of view fov calculator tool for specialists."
+  },
+  {
+    "index": 236,
+    "id": "browser-inventory-tracker",
+    "name": "Browser Inventory Tracker",
+    "slug": "browser-inventory-tracker",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side inventory tracker tool for daily operations."
+  },
+  {
+    "index": 237,
+    "id": "smart-color-theory-helper",
+    "name": "Smart Color Theory Helper",
+    "slug": "smart-color-theory-helper",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side color theory helper tool for ui ux testing."
+  },
+  {
+    "index": 238,
+    "id": "color-blindness-simulator-easy",
+    "name": "Color Blindness Simulator Easy",
+    "slug": "color-blindness-simulator-easy",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side color blindness simulator tool for finance managers."
+  },
+  {
+    "index": 239,
+    "id": "fade-in-fade-out-tool-universal",
+    "name": "Fade In Fade Out Tool Universal",
+    "slug": "fade-in-fade-out-tool-universal",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side fade in fade out tool tool for web professionals."
+  },
+  {
+    "index": 240,
+    "id": "advanced-solar-panel-array-roi-calculator",
+    "name": "Advanced Solar Panel Array ROI Calculator",
+    "slug": "advanced-solar-panel-array-roi-calculator",
+    "category": "Electrical & Solar",
+    "shortDesc": "Instant client-side solar panel array roi calculator tool for precision tasks."
+  },
+  {
+    "index": 241,
+    "id": "flipper-dynamic",
+    "name": "Flipper Dynamic",
+    "slug": "flipper-dynamic",
+    "category": "Image Optimization & Conversion",
+    "shortDesc": "Instant client-side flipper tool for writers."
+  },
+  {
+    "index": 242,
+    "id": "correlation-coefficient-smart",
+    "name": "Correlation Coefficient Smart",
+    "slug": "correlation-coefficient-smart",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side correlation coefficient tool for web professionals."
+  },
+  {
+    "index": 243,
+    "id": "age-birthday-calculator",
+    "name": "Exact Chronological Age & Birthday Calculator",
+    "slug": "age-birthday-calculator",
+    "category": "Financial Calculators",
+    "shortDesc": "Calculate exact age in years, months, days, hours, and days until next birthday."
+  },
+  {
+    "index": 244,
+    "id": "universal-grade-percentage-converter",
+    "name": "Universal Grade Percentage Converter",
+    "slug": "universal-grade-percentage-converter",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side grade percentage converter tool for data processing."
+  },
+  {
+    "index": 245,
+    "id": "ratio-proportion-solver-online",
+    "name": "Ratio Proportion Solver Online",
+    "slug": "ratio-proportion-solver-online",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side ratio proportion solver tool for writers."
+  },
+  {
+    "index": 246,
+    "id": "smart-pdf-form-inspector",
+    "name": "Smart PDF Form Inspector",
+    "slug": "smart-pdf-form-inspector",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side pdf form inspector tool for developers."
+  },
+  {
+    "index": 247,
+    "id": "client-side-package-json-inspector",
+    "name": "Client-Side Package.json Inspector",
+    "slug": "client-side-package-json-inspector",
+    "category": "Data & Schema Tools",
+    "shortDesc": "Instant client-side package.json inspector tool for developers."
+  },
+  {
+    "index": 248,
+    "id": "cart-abandonment-rate-calculator-dynamic",
+    "name": "Cart Abandonment Rate Calculator Dynamic",
+    "slug": "cart-abandonment-rate-calculator-dynamic",
+    "category": "E-commerce",
+    "shortDesc": "Instant client-side cart abandonment rate calculator tool for specialists."
+  },
+  {
+    "index": 249,
+    "id": "custom-pdf-linearize-inspector",
+    "name": "Custom PDF Linearize Inspector",
+    "slug": "custom-pdf-linearize-inspector",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side pdf linearize inspector tool for data processing."
+  },
+  {
+    "index": 250,
+    "id": "aspect-ratio-cropper-guide-master",
+    "name": "Aspect Ratio Cropper Guide Master",
+    "slug": "aspect-ratio-cropper-guide-master",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side aspect ratio cropper guide tool for specialists."
+  },
+  {
+    "index": 251,
+    "id": "fluid-pipe-pressure-drop-calculator-smart",
+    "name": "Fluid Pipe Pressure Drop Calculator (Smart)",
+    "slug": "fluid-pipe-pressure-drop-calculator-smart",
+    "category": "Engineering Tools",
+    "shortDesc": "Instant client-side fluid pipe pressure drop calculator tool for specialists."
+  },
+  {
+    "index": 252,
+    "id": "easy-hash-md5-generator",
+    "name": "Easy Hash MD5 Generator",
+    "slug": "easy-hash-md5-generator",
+    "category": "Password & Security Tools",
+    "shortDesc": "Instant client-side hash md5 generator tool for everyday use."
+  },
+  {
+    "index": 253,
+    "id": "rest-interval-timer-online",
+    "name": "Rest Interval Timer Online",
+    "slug": "rest-interval-timer-online",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side rest interval timer tool for writers."
+  },
+  {
+    "index": 254,
+    "id": "solar-energy-offset-calculator-master",
+    "name": "Solar Energy Offset Calculator Master",
+    "slug": "solar-energy-offset-calculator-master",
+    "category": "Agriculture & Environment",
+    "shortDesc": "Instant client-side solar energy offset calculator tool for specialists."
+  },
+  {
+    "index": 255,
+    "id": "advanced-file-organizer-sorter",
+    "name": "Advanced File Organizer Sorter",
+    "slug": "advanced-file-organizer-sorter",
+    "category": "File Tools",
+    "shortDesc": "Instant client-side file organizer sorter tool for security compliance."
+  },
+  {
+    "index": 256,
+    "id": "universal-crypto-profit-calculator",
+    "name": "Universal Crypto Profit Calculator",
+    "slug": "universal-crypto-profit-calculator",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side crypto profit calculator tool for data analysts."
+  },
+  {
+    "index": 257,
+    "id": "universal-ring-size-converter",
+    "name": "Universal Ring Size Converter",
+    "slug": "universal-ring-size-converter",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side ring size converter tool for data processing."
+  },
+  {
+    "index": 258,
+    "id": "master-terms-of-service-generator",
+    "name": "Master Terms of Service Generator",
+    "slug": "master-terms-of-service-generator",
+    "category": "Legal & Public Services",
+    "shortDesc": "Instant client-side terms of service generator tool for specialists."
+  },
+  {
+    "index": 259,
+    "id": "perpetual-calendar-universal",
+    "name": "Perpetual Calendar Universal",
+    "slug": "perpetual-calendar-universal",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side perpetual calendar tool for web professionals."
+  },
+  {
+    "index": 260,
+    "id": "universal-resizer",
+    "name": "Universal Resizer",
+    "slug": "universal-resizer",
+    "category": "Image Optimization & Conversion",
+    "shortDesc": "Instant client-side resizer tool for developers."
+  },
+  {
+    "index": 261,
+    "id": "word-counter",
+    "name": "Word & Character Counter",
+    "slug": "word-counter",
+    "category": "Text Formatting",
+    "shortDesc": "Instant real-time word, character, sentence, paragraph, and reading time counter."
+  },
+  {
+    "index": 262,
+    "id": "online-task-priority-matrix",
+    "name": "Online Task Priority Matrix",
+    "slug": "online-task-priority-matrix",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side task priority matrix tool for seo analysts."
+  },
+  {
+    "index": 263,
+    "id": "unix-timestamp-converter",
+    "name": "Epoch Unix Timestamp Converter",
+    "slug": "unix-timestamp-converter",
+    "category": "Code Formatters",
+    "shortDesc": "Convert Unix epoch timestamps (seconds/milliseconds) to human readable dates."
+  },
+  {
+    "index": 264,
+    "id": "mortgage-loan-calculator",
+    "name": "Mortgage & Loan Principal Payment Calculator",
+    "slug": "mortgage-loan-calculator",
+    "category": "Financial Calculators",
+    "shortDesc": "Calculate monthly loan payments, interest breakdowns, and total amortization schedules."
+  },
+  {
+    "index": 265,
+    "id": "color-picker-converter",
+    "name": "Color Picker & Multi-Format Converter",
+    "slug": "color-picker-converter",
+    "category": "Color Palettes & Contrast",
+    "shortDesc": "Pick colors and convert between HEX, RGB, HSL, HSV, CMYK, and CSS string values."
+  },
+  {
+    "index": 266,
+    "id": "url-encoder-decoder",
+    "name": "URL Encoder & Decoder (encodeURIComponent)",
+    "slug": "url-encoder-decoder",
+    "category": "Web Tools",
+    "shortDesc": "Encode or decode strings for safe query parameter transmission."
+  },
+  {
+    "index": 267,
+    "id": "bmi-calculator-smart",
+    "name": "BMI Calculator (Smart)",
+    "slug": "bmi-calculator-smart",
+    "category": "Everyday Calculators",
+    "shortDesc": "Instant client-side bmi calculator tool for content creators."
+  },
+  {
+    "index": 268,
+    "id": "client-side-pdf-security-check",
+    "name": "Client-Side PDF Security Check",
+    "slug": "client-side-pdf-security-check",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side pdf security check tool for seo specialists."
+  },
+  {
+    "index": 269,
+    "id": "emboss-filter-master",
+    "name": "Emboss Filter (Master)",
+    "slug": "emboss-filter-master",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side emboss filter tool for engineers."
+  },
+  {
+    "index": 270,
+    "id": "matrix-arithmetic-calculator-dynamic",
+    "name": "Matrix Arithmetic Calculator Dynamic",
+    "slug": "matrix-arithmetic-calculator-dynamic",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side matrix arithmetic calculator tool for web designers."
+  },
+  {
+    "index": 271,
+    "id": "dynamic-limit-calculator",
+    "name": "Dynamic Limit Calculator",
+    "slug": "dynamic-limit-calculator",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side limit calculator tool for developers."
+  },
+  {
+    "index": 272,
+    "id": "client-side-grammar-checker-helper",
+    "name": "Client-Side Grammar Checker Helper",
+    "slug": "client-side-grammar-checker-helper",
+    "category": "Education",
+    "shortDesc": "Instant client-side grammar checker helper tool for seo analysts."
+  },
+  {
+    "index": 273,
+    "id": "universal-dictionary-lookup-helper",
+    "name": "Universal Dictionary Lookup Helper",
+    "slug": "universal-dictionary-lookup-helper",
+    "category": "Education",
+    "shortDesc": "Instant client-side dictionary lookup helper tool for workflow efficiency."
+  },
+  {
+    "index": 274,
+    "id": "color-darkener-smart",
+    "name": "Color Darkener Smart",
+    "slug": "color-darkener-smart",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side color darkener tool for web designers."
+  },
+  {
+    "index": 275,
+    "id": "random-tagline-generator-easy",
+    "name": "Random Tagline Generator (Easy)",
+    "slug": "random-tagline-generator-easy",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random tagline generator tool for engineers."
+  },
+  {
+    "index": 276,
+    "id": "online-brake-wear-inspector",
+    "name": "Online Brake Wear Inspector",
+    "slug": "online-brake-wear-inspector",
+    "category": "Automotive",
+    "shortDesc": "Instant client-side brake wear inspector tool for specialists."
+  },
+  {
+    "index": 277,
+    "id": "universal-freelance-hourly-rate-calculator",
+    "name": "Universal Freelance Hourly Rate Calculator",
+    "slug": "universal-freelance-hourly-rate-calculator",
+    "category": "Office & Project Management",
+    "shortDesc": "Instant client-side freelance hourly rate calculator tool for specialists."
+  },
+  {
+    "index": 278,
+    "id": "easy-delivery-note-builder",
+    "name": "Easy Delivery Note Builder",
+    "slug": "easy-delivery-note-builder",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side delivery note builder tool for daily operations."
+  },
+  {
+    "index": 279,
+    "id": "test-question-builder-smart",
+    "name": "Test Question Builder Smart",
+    "slug": "test-question-builder-smart",
+    "category": "Education",
+    "shortDesc": "Instant client-side test question builder tool for web professionals."
+  },
+  {
+    "index": 280,
+    "id": "easy-greenhouse-area-estimator",
+    "name": "Easy Greenhouse Area Estimator",
+    "slug": "easy-greenhouse-area-estimator",
+    "category": "Agriculture & Environment",
+    "shortDesc": "Instant client-side greenhouse area estimator tool for specialists."
+  },
+  {
+    "index": 281,
+    "id": "universal-js-minifier",
+    "name": "Universal JS Minifier",
+    "slug": "universal-js-minifier",
+    "category": "Web & API Utilities",
+    "shortDesc": "Instant client-side js minifier tool for ui ux testing."
+  },
+  {
+    "index": 282,
+    "id": "soil-ph-amendment-estimator-smart",
+    "name": "Soil pH Amendment Estimator (Smart)",
+    "slug": "soil-ph-amendment-estimator-smart",
+    "category": "Agriculture & Environment",
+    "shortDesc": "Instant client-side soil ph amendment estimator tool for specialists."
+  },
+  {
+    "index": 283,
+    "id": "smart-net-present-value-npv",
+    "name": "Smart Net Present Value NPV",
+    "slug": "smart-net-present-value-npv",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side net present value npv tool for developers."
+  },
+  {
+    "index": 284,
+    "id": "universal-stock-level-auditor",
+    "name": "Universal Stock Level Auditor",
+    "slug": "universal-stock-level-auditor",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side stock level auditor tool for workflow efficiency."
+  },
+  {
+    "index": 285,
+    "id": "browser-color-scheme-generator",
+    "name": "Browser Color Scheme Generator",
+    "slug": "browser-color-scheme-generator",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side color scheme generator tool for security audits."
+  },
+  {
+    "index": 286,
+    "id": "percent-difference-master",
+    "name": "Percent Difference Master",
+    "slug": "percent-difference-master",
+    "category": "Everyday Calculators",
+    "shortDesc": "Instant client-side percent difference tool for finance managers."
+  },
+  {
+    "index": 287,
+    "id": "client-side-jwt-decoder-inspector",
+    "name": "Client-Side JWT Decoder Inspector",
+    "slug": "client-side-jwt-decoder-inspector",
+    "category": "Password & Security Tools",
+    "shortDesc": "Instant client-side jwt decoder inspector tool for seo specialists."
+  },
+  {
+    "index": 288,
+    "id": "exif-metadata-viewer-custom",
+    "name": "EXIF Metadata Viewer Custom",
+    "slug": "exif-metadata-viewer-custom",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side exif metadata viewer tool for digital publishing."
+  },
+  {
+    "index": 289,
+    "id": "universal-pixelator",
+    "name": "Universal Pixelator",
+    "slug": "universal-pixelator",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side pixelator tool for ui ux testing."
+  },
+  {
+    "index": 290,
+    "id": "crc32-checksum-universal",
+    "name": "CRC32 Checksum Universal",
+    "slug": "crc32-checksum-universal",
+    "category": "Password & Security Tools",
+    "shortDesc": "Instant client-side crc32 checksum tool for web designers."
+  },
+  {
+    "index": 291,
+    "id": "roman-numerals-converter-easy",
+    "name": "Roman Numerals Converter Easy",
+    "slug": "roman-numerals-converter-easy",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side roman numerals converter tool for finance managers."
+  },
+  {
+    "index": 292,
+    "id": "online-percent-change-calculator",
+    "name": "Online Percent Change Calculator",
+    "slug": "online-percent-change-calculator",
+    "category": "Everyday Calculators",
+    "shortDesc": "Instant client-side percent change calculator tool for seo specialists."
+  },
+  {
+    "index": 293,
+    "id": "client-side-exponential-growth-calculator",
+    "name": "Client-Side Exponential Growth Calculator",
+    "slug": "client-side-exponential-growth-calculator",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side exponential growth calculator tool for seo analysts."
+  },
+  {
+    "index": 294,
+    "id": "car-loan-payment-calculator-master",
+    "name": "Car Loan Payment Calculator Master",
+    "slug": "car-loan-payment-calculator-master",
+    "category": "Automotive",
+    "shortDesc": "Instant client-side car loan payment calculator tool for specialists."
+  },
+  {
+    "index": 295,
+    "id": "trend-extrapolation-custom",
+    "name": "Trend Extrapolation Custom",
+    "slug": "trend-extrapolation-custom",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side trend extrapolation tool for digital publishers."
+  },
+  {
+    "index": 296,
+    "id": "browser-random-fact-generator",
+    "name": "Browser Random Fact Generator",
+    "slug": "browser-random-fact-generator",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random fact generator tool for daily operations."
+  },
+  {
+    "index": 297,
+    "id": "easy-regex-generator",
+    "name": "Easy Regex Generator",
+    "slug": "easy-regex-generator",
+    "category": "Data & Schema Tools",
+    "shortDesc": "Instant client-side regex generator tool for analysts."
+  },
+  {
+    "index": 298,
+    "id": "pdf-redaction-marker-master",
+    "name": "PDF Redaction Marker (Master)",
+    "slug": "pdf-redaction-marker-master",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side pdf redaction marker tool for engineers."
+  },
+  {
+    "index": 299,
+    "id": "browser-macronutrient-calculator",
+    "name": "Browser Macronutrient Calculator",
+    "slug": "browser-macronutrient-calculator",
+    "category": "Everyday Calculators",
+    "shortDesc": "Instant client-side macronutrient calculator tool for security audits."
+  },
+  {
+    "index": 300,
+    "id": "random-phone-generator-universal",
+    "name": "Random Phone Generator Universal",
+    "slug": "random-phone-generator-universal",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random phone generator tool for web professionals."
+  },
+  {
+    "index": 301,
+    "id": "unix-timestamp-converter-client-side",
+    "name": "Unix Timestamp Converter Client-Side",
+    "slug": "unix-timestamp-converter-client-side",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side unix timestamp converter tool for students."
+  },
+  {
+    "index": 302,
+    "id": "custom-credit-note-builder",
+    "name": "Custom Credit Note Builder",
+    "slug": "custom-credit-note-builder",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side credit note builder tool for workflow efficiency."
+  },
+  {
+    "index": 303,
+    "id": "master-code-syntax-highlighter",
+    "name": "Master Code Syntax Highlighter",
+    "slug": "master-code-syntax-highlighter",
+    "category": "Data & Schema Tools",
+    "shortDesc": "Instant client-side code syntax highlighter tool for seo specialists."
+  },
+  {
+    "index": 304,
+    "id": "universal-exif-metadata-inspector",
+    "name": "Universal EXIF Metadata Inspector",
+    "slug": "universal-exif-metadata-inspector",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side exif metadata inspector tool for specialists."
+  },
+  {
+    "index": 305,
+    "id": "universal-loan-payment-emi-calculator",
+    "name": "Universal Loan Payment EMI Calculator",
+    "slug": "universal-loan-payment-emi-calculator",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side loan payment emi calculator tool for developers."
+  },
+  {
+    "index": 306,
+    "id": "collage-builder-master",
+    "name": "Collage Builder Master",
+    "slug": "collage-builder-master",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side collage builder tool for students."
+  },
+  {
+    "index": 307,
+    "id": "easy-compound-interest-calculator",
+    "name": "Easy Compound Interest Calculator",
+    "slug": "easy-compound-interest-calculator",
+    "category": "Everyday Calculators",
+    "shortDesc": "Instant client-side compound interest calculator tool for everyday use."
+  },
+  {
+    "index": 308,
+    "id": "screen-snippet-code-generator-advanced",
+    "name": "Screen Snippet Code Generator Advanced",
+    "slug": "screen-snippet-code-generator-advanced",
+    "category": "Data & Schema Tools",
+    "shortDesc": "Instant client-side screen snippet code generator tool for finance managers."
+  },
+  {
+    "index": 309,
+    "id": "ev-driving-range-estimator-dynamic",
+    "name": "EV Driving Range Estimator (Dynamic)",
+    "slug": "ev-driving-range-estimator-dynamic",
+    "category": "Automotive",
+    "shortDesc": "Instant client-side ev driving range estimator tool for precision tasks."
+  },
+  {
+    "index": 310,
+    "id": "universal-product-sku-generator",
+    "name": "Universal Product SKU Generator",
+    "slug": "universal-product-sku-generator",
+    "category": "E-commerce",
+    "shortDesc": "Instant client-side product sku generator tool for specialists."
+  },
+  {
+    "index": 311,
+    "id": "copyright-notice-builder-private",
+    "name": "Copyright Notice Builder (Private)",
+    "slug": "copyright-notice-builder-private",
+    "category": "Legal & Public Services",
+    "shortDesc": "Instant client-side copyright notice builder tool for precision tasks."
+  },
+  {
+    "index": 312,
+    "id": "meta-tag-generator",
+    "name": "SEO Meta Tag & OpenGraph Generator",
+    "slug": "meta-tag-generator",
+    "category": "SERP & Search Optimization",
+    "shortDesc": "Generate HTML meta tags, OpenGraph social card tags, and Twitter Cards."
+  },
+  {
+    "index": 313,
+    "id": "cover-letter-generator-master",
+    "name": "Cover Letter Generator (Master)",
+    "slug": "cover-letter-generator-master",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side cover letter generator tool for engineers."
+  },
+  {
+    "index": 314,
+    "id": "online-blood-sugar-log-helper",
+    "name": "Online Blood Sugar Log Helper",
+    "slug": "online-blood-sugar-log-helper",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side blood sugar log helper tool for social media managers."
+  },
+  {
+    "index": 315,
+    "id": "universal-payroll-salary-calculator",
+    "name": "Universal Payroll Salary Calculator",
+    "slug": "universal-payroll-salary-calculator",
+    "category": "HR & Payroll",
+    "shortDesc": "Instant client-side payroll salary calculator tool for specialists."
+  },
+  {
+    "index": 316,
+    "id": "csv-to-json-smart",
+    "name": "CSV to JSON (Smart)",
+    "slug": "csv-to-json-smart",
+    "category": "Web & API Utilities",
+    "shortDesc": "Instant client-side csv to json tool for content creators."
+  },
+  {
+    "index": 317,
+    "id": "watermark-generator-private",
+    "name": "Watermark Generator (Private)",
+    "slug": "watermark-generator-private",
+    "category": "Image Optimization & Conversion",
+    "shortDesc": "Instant client-side watermark generator tool for engineers."
+  },
+  {
+    "index": 318,
+    "id": "private-image-comparer",
+    "name": "Private Image Comparer",
+    "slug": "private-image-comparer",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side image comparer tool for marketers."
+  },
+  {
+    "index": 319,
+    "id": "custom-binarize-filter",
+    "name": "Custom Binarize Filter",
+    "slug": "custom-binarize-filter",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side binarize filter tool for everyday use."
+  },
+  {
+    "index": 320,
+    "id": "advanced-pdf-booklet-preview",
+    "name": "Advanced PDF Booklet Preview",
+    "slug": "advanced-pdf-booklet-preview",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side pdf booklet preview tool for security audits."
+  },
+  {
+    "index": 321,
+    "id": "random-recipe-generator-browser",
+    "name": "Random Recipe Generator Browser",
+    "slug": "random-recipe-generator-browser",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random recipe generator tool for business leaders."
+  },
+  {
+    "index": 322,
+    "id": "smart-pitch-shifter",
+    "name": "Smart Pitch Shifter",
+    "slug": "smart-pitch-shifter",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side pitch shifter tool for developers."
+  },
+  {
+    "index": 323,
+    "id": "pythagorean-theorem-calculator-client-side",
+    "name": "Pythagorean Theorem Calculator (Client-Side)",
+    "slug": "pythagorean-theorem-calculator-client-side",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side pythagorean theorem calculator tool for content creators."
+  },
+  {
+    "index": 324,
+    "id": "advanced-random-favicon-generator",
+    "name": "Advanced Random Favicon Generator",
+    "slug": "advanced-random-favicon-generator",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random favicon generator tool for security compliance."
+  },
+  {
+    "index": 325,
+    "id": "private-dominant-color-finder",
+    "name": "Private Dominant Color Finder",
+    "slug": "private-dominant-color-finder",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side dominant color finder tool for seo specialists."
+  },
+  {
+    "index": 326,
+    "id": "grayscale-filter-universal",
+    "name": "Grayscale Filter Universal",
+    "slug": "grayscale-filter-universal",
+    "category": "Image Optimization & Conversion",
+    "shortDesc": "Instant client-side grayscale filter tool for web designers."
+  },
+  {
+    "index": 327,
+    "id": "smart-privacy-policy-generator",
+    "name": "Smart Privacy Policy Generator",
+    "slug": "smart-privacy-policy-generator",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side privacy policy generator tool for workflow efficiency."
+  },
+  {
+    "index": 328,
+    "id": "browser-random-address-generator",
+    "name": "Browser Random Address Generator",
+    "slug": "browser-random-address-generator",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random address generator tool for security compliance."
+  },
+  {
+    "index": 329,
+    "id": "master-torque-unit-converter",
+    "name": "Master Torque Unit Converter",
+    "slug": "master-torque-unit-converter",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side torque unit converter tool for seo specialists."
+  },
+  {
+    "index": 330,
+    "id": "file-format-converter-dynamic",
+    "name": "File Format Converter (Dynamic)",
+    "slug": "file-format-converter-dynamic",
+    "category": "File Tools",
+    "shortDesc": "Instant client-side file format converter tool for content marketers."
+  },
+  {
+    "index": 331,
+    "id": "advanced-random-business-name",
+    "name": "Advanced Random Business Name",
+    "slug": "advanced-random-business-name",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random business name tool for daily operations."
+  },
+  {
+    "index": 332,
+    "id": "calorie-tdee-calculator-dynamic",
+    "name": "Calorie TDEE Calculator Dynamic",
+    "slug": "calorie-tdee-calculator-dynamic",
+    "category": "Everyday Calculators",
+    "shortDesc": "Instant client-side calorie tdee calculator tool for writers."
+  },
+  {
+    "index": 333,
+    "id": "label-maker-prep-browser",
+    "name": "Label Maker Prep Browser",
+    "slug": "label-maker-prep-browser",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side label maker prep tool for business leaders."
+  },
+  {
+    "index": 334,
+    "id": "pf-pension-contribution-helper-client-side",
+    "name": "PF Pension Contribution Helper Client-Side",
+    "slug": "pf-pension-contribution-helper-client-side",
+    "category": "HR & Payroll",
+    "shortDesc": "Instant client-side pf pension contribution helper tool for precision tasks."
+  },
+  {
+    "index": 335,
+    "id": "browser-target-heart-rate-zone",
+    "name": "Browser Target Heart Rate Zone",
+    "slug": "browser-target-heart-rate-zone",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side target heart rate zone tool for security compliance."
+  },
+  {
+    "index": 336,
+    "id": "browser-conic-gradient-builder",
+    "name": "Browser Conic Gradient Builder",
+    "slug": "browser-conic-gradient-builder",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side conic gradient builder tool for everyday use."
+  },
+  {
+    "index": 337,
+    "id": "advanced-wbs-work-breakdown-structure-builder",
+    "name": "Advanced WBS Work Breakdown Structure Builder",
+    "slug": "advanced-wbs-work-breakdown-structure-builder",
+    "category": "Office & Project Management",
+    "shortDesc": "Instant client-side wbs work breakdown structure builder tool for precision tasks."
+  },
+  {
+    "index": 338,
+    "id": "easy-ovulation-calculator",
+    "name": "Easy Ovulation Calculator",
+    "slug": "easy-ovulation-calculator",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side ovulation calculator tool for analysts."
+  },
+  {
+    "index": 339,
+    "id": "advanced-drip-irrigation-flow-calculator",
+    "name": "Advanced Drip Irrigation Flow Calculator",
+    "slug": "advanced-drip-irrigation-flow-calculator",
+    "category": "Agriculture & Environment",
+    "shortDesc": "Instant client-side drip irrigation flow calculator tool for precision tasks."
+  },
+  {
+    "index": 340,
+    "id": "smart-chi-square-calculator",
+    "name": "Smart Chi-Square Calculator",
+    "slug": "smart-chi-square-calculator",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side chi-square calculator tool for workflow efficiency."
+  },
+  {
+    "index": 341,
+    "id": "online-business-letterhead-builder",
+    "name": "Online Business Letterhead Builder",
+    "slug": "online-business-letterhead-builder",
+    "category": "Office & Project Management",
+    "shortDesc": "Instant client-side business letterhead builder tool for precision tasks."
+  },
+  {
+    "index": 342,
+    "id": "complex-number-arithmetic-universal",
+    "name": "Complex Number Arithmetic Universal",
+    "slug": "complex-number-arithmetic-universal",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side complex number arithmetic tool for web professionals."
+  },
+  {
+    "index": 343,
+    "id": "browser-opacity-adjuster",
+    "name": "Browser Opacity Adjuster",
+    "slug": "browser-opacity-adjuster",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side opacity adjuster tool for everyday use."
+  },
+  {
+    "index": 344,
+    "id": "browser-markup-percentage-calculator",
+    "name": "Browser Markup Percentage Calculator",
+    "slug": "browser-markup-percentage-calculator",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side markup percentage calculator tool for daily operations."
+  },
+  {
+    "index": 345,
+    "id": "custom-header-footer-prep",
+    "name": "Custom Header Footer Prep",
+    "slug": "custom-header-footer-prep",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side header footer prep tool for ui ux testing."
+  },
+  {
+    "index": 346,
+    "id": "master-brightness-adjuster",
+    "name": "Master Brightness Adjuster",
+    "slug": "master-brightness-adjuster",
+    "category": "Image Optimization & Conversion",
+    "shortDesc": "Instant client-side brightness adjuster tool for analysts."
+  },
+  {
+    "index": 347,
+    "id": "electricity-appliance-cost-easy",
+    "name": "Electricity Appliance Cost (Easy)",
+    "slug": "electricity-appliance-cost-easy",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side electricity appliance cost tool for engineers."
+  },
+  {
+    "index": 348,
+    "id": "savings-growth-estimator-universal",
+    "name": "Savings Growth Estimator Universal",
+    "slug": "savings-growth-estimator-universal",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side savings growth estimator tool for web professionals."
+  },
+  {
+    "index": 349,
+    "id": "universal-crop-yield-per-acre-calculator",
+    "name": "Universal Crop Yield Per Acre Calculator",
+    "slug": "universal-crop-yield-per-acre-calculator",
+    "category": "Agriculture & Environment",
+    "shortDesc": "Instant client-side crop yield per acre calculator tool for specialists."
+  },
+  {
+    "index": 350,
+    "id": "smart-lean-body-mass-calculator",
+    "name": "Smart Lean Body Mass Calculator",
+    "slug": "smart-lean-body-mass-calculator",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side lean body mass calculator tool for developers."
+  },
+  {
+    "index": 351,
+    "id": "client-project-milestone-tracker-smart",
+    "name": "Client Project Milestone Tracker (Smart)",
+    "slug": "client-project-milestone-tracker-smart",
+    "category": "Office & Project Management",
+    "shortDesc": "Instant client-side client project milestone tracker tool for specialists."
+  },
+  {
+    "index": 352,
+    "id": "advanced-quick-note-pad",
+    "name": "Advanced Quick Note Pad",
+    "slug": "advanced-quick-note-pad",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side quick note pad tool for data analysts."
+  },
+  {
+    "index": 353,
+    "id": "advanced-terms-of-service-generator",
+    "name": "Advanced Terms of Service Generator",
+    "slug": "advanced-terms-of-service-generator",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side terms of service generator tool for daily operations."
+  },
+  {
+    "index": 354,
+    "id": "custom-toll-cost-calculator",
+    "name": "Custom Toll Cost Calculator",
+    "slug": "custom-toll-cost-calculator",
+    "category": "Automotive",
+    "shortDesc": "Instant client-side toll cost calculator tool for specialists."
+  },
+  {
+    "index": 355,
+    "id": "browser-day-of-year-converter",
+    "name": "Browser Day of Year Converter",
+    "slug": "browser-day-of-year-converter",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side day of year converter tool for analysts."
+  },
+  {
+    "index": 356,
+    "id": "markup-calculator-online",
+    "name": "Markup Calculator Online",
+    "slug": "markup-calculator-online",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side markup calculator tool for writers."
+  },
+  {
+    "index": 357,
+    "id": "universal-pet-calorie-requirement-calculator",
+    "name": "Universal Pet Calorie Requirement Calculator",
+    "slug": "universal-pet-calorie-requirement-calculator",
+    "category": "Agriculture & Environment",
+    "shortDesc": "Instant client-side pet calorie requirement calculator tool for specialists."
+  },
+  {
+    "index": 358,
+    "id": "universal-decimal-to-octal",
+    "name": "Universal Decimal to Octal",
+    "slug": "universal-decimal-to-octal",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side decimal to octal tool for ui ux testing."
+  },
+  {
+    "index": 359,
+    "id": "json-field-extractor-master",
+    "name": "JSON Field Extractor Master",
+    "slug": "json-field-extractor-master",
+    "category": "Networking & Data Management",
+    "shortDesc": "Instant client-side json field extractor tool for specialists."
+  },
+  {
+    "index": 360,
+    "id": "private-tailwind-color-palette",
+    "name": "Private Tailwind Color Palette",
+    "slug": "private-tailwind-color-palette",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side tailwind color palette tool for seo specialists."
+  },
+  {
+    "index": 361,
+    "id": "advanced-steganography-text-encoder",
+    "name": "Advanced Steganography Text Encoder",
+    "slug": "advanced-steganography-text-encoder",
+    "category": "Password & Security Tools",
+    "shortDesc": "Instant client-side steganography text encoder tool for security audits."
+  },
+  {
+    "index": 362,
+    "id": "probability-events-calculator-dynamic",
+    "name": "Probability Events Calculator Dynamic",
+    "slug": "probability-events-calculator-dynamic",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side probability events calculator tool for writers."
+  },
+  {
+    "index": 363,
+    "id": "custom-file-metadata-reader",
+    "name": "Custom File Metadata Reader",
+    "slug": "custom-file-metadata-reader",
+    "category": "File Tools",
+    "shortDesc": "Instant client-side file metadata reader tool for data analysts."
+  },
+  {
+    "index": 364,
+    "id": "custom-noise-remover-filter",
+    "name": "Custom Noise Remover Filter",
+    "slug": "custom-noise-remover-filter",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side noise remover filter tool for data analysts."
+  },
+  {
+    "index": 365,
+    "id": "jwt-decoder-inspector",
+    "name": "JSON Web Token (JWT) Decoder & Header Inspector",
+    "slug": "jwt-decoder-inspector",
+    "category": "Code Formatters",
+    "shortDesc": "Decode JWT token header, payload claims, and expiration timestamps."
+  },
+  {
+    "index": 366,
+    "id": "universal-salon-appointment-scheduler",
+    "name": "Universal Salon Appointment Scheduler",
+    "slug": "universal-salon-appointment-scheduler",
+    "category": "Events & Lifestyle",
+    "shortDesc": "Instant client-side salon appointment scheduler tool for specialists."
+  },
+  {
+    "index": 367,
+    "id": "unit-converter-length-weight",
+    "name": "Universal Unit Converter (Length, Weight, Volume)",
+    "slug": "unit-converter-length-weight",
+    "category": "Measurement Converters",
+    "shortDesc": "Convert metric and imperial units for length, mass, volume, temperature, and speed."
+  },
+  {
+    "index": 368,
+    "id": "gradient-generator-css",
+    "name": "CSS Linear & Radial Gradient Generator",
+    "slug": "gradient-generator-css",
+    "category": "Color Palettes & Contrast",
+    "shortDesc": "Design smooth multi-stop linear and radial CSS gradient backgrounds."
+  },
+  {
+    "index": 369,
+    "id": "css-gradient-generator",
+    "name": "CSS Gradient Generator",
+    "slug": "css-gradient-generator",
+    "category": "Color Palettes & Contrast",
+    "shortDesc": "Create gorgeous linear and radial CSS gradients with multi-stop color controls."
+  },
+  {
+    "index": 370,
+    "id": "page-rotator-smart",
+    "name": "Page Rotator (Smart)",
+    "slug": "page-rotator-smart",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side page rotator tool for content creators."
+  },
+  {
+    "index": 371,
+    "id": "advanced-rem-to-pixel-converter",
+    "name": "Advanced REM to Pixel Converter",
+    "slug": "advanced-rem-to-pixel-converter",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side rem to pixel converter tool for everyday use."
+  },
+  {
+    "index": 372,
+    "id": "universal-letter-template-builder",
+    "name": "Universal Letter Template Builder",
+    "slug": "universal-letter-template-builder",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side letter template builder tool for workflow efficiency."
+  },
+  {
+    "index": 373,
+    "id": "custom-fibonacci-sequence-generator",
+    "name": "Custom Fibonacci Sequence Generator",
+    "slug": "custom-fibonacci-sequence-generator",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side fibonacci sequence generator tool for data analysts."
+  },
+  {
+    "index": 374,
+    "id": "final-exam-grade-calculator-online",
+    "name": "Final Exam Grade Calculator (Online)",
+    "slug": "final-exam-grade-calculator-online",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side final exam grade calculator tool for content creators."
+  },
+  {
+    "index": 375,
+    "id": "age-birthday-calculator-master",
+    "name": "Age Birthday Calculator Master",
+    "slug": "age-birthday-calculator-master",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side age birthday calculator tool for students."
+  },
+  {
+    "index": 376,
+    "id": "online-file-chunk-splitter",
+    "name": "Online File Chunk Splitter",
+    "slug": "online-file-chunk-splitter",
+    "category": "File Tools",
+    "shortDesc": "Instant client-side file chunk splitter tool for social media managers."
+  },
+  {
+    "index": 377,
+    "id": "easy-dropshipping-profit-margin",
+    "name": "Easy Dropshipping Profit Margin",
+    "slug": "easy-dropshipping-profit-margin",
+    "category": "E-commerce",
+    "shortDesc": "Instant client-side dropshipping profit margin tool for specialists."
+  },
+  {
+    "index": 378,
+    "id": "browser-date-comparator",
+    "name": "Browser Date Comparator",
+    "slug": "browser-date-comparator",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side date comparator tool for daily operations."
+  },
+  {
+    "index": 379,
+    "id": "private-hash-sha512",
+    "name": "Private Hash SHA512",
+    "slug": "private-hash-sha512",
+    "category": "Data & Schema Tools",
+    "shortDesc": "Instant client-side hash sha512 tool for seo specialists."
+  },
+  {
+    "index": 380,
+    "id": "master-cagr-growth-rate-calculator",
+    "name": "Master CAGR Growth Rate Calculator",
+    "slug": "master-cagr-growth-rate-calculator",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side cagr growth rate calculator tool for financial advisors."
+  },
+  {
+    "index": 381,
+    "id": "step-distance-converter-master",
+    "name": "Step Distance Converter (Master)",
+    "slug": "step-distance-converter-master",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side step distance converter tool for engineers."
+  },
+  {
+    "index": 382,
+    "id": "scientific-calculator-online",
+    "name": "Full Scientific Calculator (Trig, Log, Exponents)",
+    "slug": "scientific-calculator-online",
+    "category": "Financial Calculators",
+    "shortDesc": "Perform advanced scientific calculations: sin, cos, tan, log, ln, square root, power, and factorial."
+  },
+  {
+    "index": 383,
+    "id": "css-gradient-background-generator",
+    "name": "CSS Linear & Radial Gradient Studio",
+    "slug": "css-gradient-background-generator",
+    "category": "Web Tools",
+    "shortDesc": "Create multi-stop CSS gradients with angle controls and copy background CSS."
+  },
+  {
+    "index": 384,
+    "id": "browser-lease-agreement-formatter",
+    "name": "Browser Lease Agreement Formatter",
+    "slug": "browser-lease-agreement-formatter",
+    "category": "Real Estate",
+    "shortDesc": "Instant client-side lease agreement formatter tool for specialists."
+  },
+  {
+    "index": 385,
+    "id": "random-avatar-generator-online",
+    "name": "Random Avatar Generator Online",
+    "slug": "random-avatar-generator-online",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random avatar generator tool for writers."
+  },
+  {
+    "index": 386,
+    "id": "pomodoro-timer-advanced",
+    "name": "Pomodoro Timer Advanced",
+    "slug": "pomodoro-timer-advanced",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side pomodoro timer tool for digital publishers."
+  },
+  {
+    "index": 387,
+    "id": "advanced-restaurant-pos-billing-tip-calculator",
+    "name": "Advanced Restaurant POS Billing Tip Calculator",
+    "slug": "advanced-restaurant-pos-billing-tip-calculator",
+    "category": "Dining & Food Service",
+    "shortDesc": "Instant client-side restaurant pos billing tip calculator tool for precision tasks."
+  },
+  {
+    "index": 388,
+    "id": "metadata-viewer-master",
+    "name": "Metadata Viewer Master",
+    "slug": "metadata-viewer-master",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side metadata viewer tool for finance managers."
+  },
+  {
+    "index": 389,
+    "id": "standard-deviation-calculator-master",
+    "name": "Standard Deviation Calculator (Master)",
+    "slug": "standard-deviation-calculator-master",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side standard deviation calculator tool for engineers."
+  },
+  {
+    "index": 390,
+    "id": "employee-payslip-generator-advanced",
+    "name": "Employee Payslip Generator Advanced",
+    "slug": "employee-payslip-generator-advanced",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side employee payslip generator tool for digital publishers."
+  },
+  {
+    "index": 391,
+    "id": "smart-cron-expression-parser",
+    "name": "Smart Cron Expression Parser",
+    "slug": "smart-cron-expression-parser",
+    "category": "Data & Schema Tools",
+    "shortDesc": "Instant client-side cron expression parser tool for ui ux testing."
+  },
+  {
+    "index": 392,
+    "id": "skin-care-routine-planner-master",
+    "name": "Skin Care Routine Planner Master",
+    "slug": "skin-care-routine-planner-master",
+    "category": "Events & Lifestyle",
+    "shortDesc": "Instant client-side skin care routine planner tool for specialists."
+  },
+  {
+    "index": 393,
+    "id": "private-business-card-previewer",
+    "name": "Private Business Card Previewer",
+    "slug": "private-business-card-previewer",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side business card previewer tool for seo analysts."
+  },
+  {
+    "index": 394,
+    "id": "car-rental-cost-estimator-advanced",
+    "name": "Car Rental Cost Estimator Advanced",
+    "slug": "car-rental-cost-estimator-advanced",
+    "category": "Automotive",
+    "shortDesc": "Instant client-side car rental cost estimator tool for specialists."
+  },
+  {
+    "index": 395,
+    "id": "npk-fertilizer-mixture-calculator-master",
+    "name": "NPK Fertilizer Mixture Calculator Master",
+    "slug": "npk-fertilizer-mixture-calculator-master",
+    "category": "Agriculture & Environment",
+    "shortDesc": "Instant client-side npk fertilizer mixture calculator tool for specialists."
+  },
+  {
+    "index": 396,
+    "id": "uuid-security-key-generator-smart",
+    "name": "UUID Security Key Generator (Smart)",
+    "slug": "uuid-security-key-generator-smart",
+    "category": "Password & Security Tools",
+    "shortDesc": "Instant client-side uuid security key generator tool for content creators."
+  },
+  {
+    "index": 397,
+    "id": "pressure-unit-converter-dynamic",
+    "name": "Pressure Unit Converter Dynamic",
+    "slug": "pressure-unit-converter-dynamic",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side pressure unit converter tool for writers."
+  },
+  {
+    "index": 398,
+    "id": "gst-tax-calculator-master",
+    "name": "GST Tax Calculator (Master)",
+    "slug": "gst-tax-calculator-master",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side gst tax calculator tool for engineers."
+  },
+  {
+    "index": 399,
+    "id": "unix-timestamp-converter-easy",
+    "name": "Unix Timestamp Converter (Easy)",
+    "slug": "unix-timestamp-converter-easy",
+    "category": "Data & Schema Tools",
+    "shortDesc": "Instant client-side unix timestamp converter tool for engineers."
+  },
+  {
+    "index": 400,
+    "id": "image-resizer",
+    "name": "Image Resizer & Aspect Ratio Tool",
+    "slug": "image-resizer",
+    "category": "Image Resizing & Cropping",
+    "shortDesc": "Resize PNG, JPG, and WebP images by exact pixel dimensions or percentage."
+  },
+  {
+    "index": 401,
+    "id": "currency-converter-static",
+    "name": "Currency & Exchange Rate Reference Calculator",
+    "slug": "currency-converter-static",
+    "category": "Measurement Converters",
+    "shortDesc": "Convert major world currencies (USD, EUR, GBP, JPY, AUD, CAD) with reference rates."
+  },
+  {
+    "index": 402,
+    "id": "smart-svg-optimizer",
+    "name": "Smart SVG Optimizer",
+    "slug": "smart-svg-optimizer",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side svg optimizer tool for ui ux testing."
+  },
+  {
+    "index": 403,
+    "id": "regex-tester-debugger",
+    "name": "Regular Expression (RegEx) Tester",
+    "slug": "regex-tester-debugger",
+    "category": "Code Formatters",
+    "shortDesc": "Test and debug JavaScript RegEx patterns with real-time match highlighting."
+  },
+  {
+    "index": 404,
+    "id": "palette-generator",
+    "name": "Harmonic Color Palette Generator",
+    "slug": "palette-generator",
+    "category": "Color Palettes & Contrast",
+    "shortDesc": "Generate complementary, triadic, monochromatic, and analogous color palettes."
+  },
+  {
+    "index": 405,
+    "id": "universal-ad-campaign-roas-calculator",
+    "name": "Universal Ad Campaign ROAS Calculator",
+    "slug": "universal-ad-campaign-roas-calculator",
+    "category": "Marketing & Creator Tools",
+    "shortDesc": "Instant client-side ad campaign roas calculator tool for specialists."
+  },
+  {
+    "index": 406,
+    "id": "dynamic-ratio-proportions-calculator",
+    "name": "Dynamic Ratio Proportions Calculator",
+    "slug": "dynamic-ratio-proportions-calculator",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side ratio proportions calculator tool for ui ux testing."
+  },
+  {
+    "index": 407,
+    "id": "dynamic-csr-generator-helper",
+    "name": "Dynamic CSR Generator Helper",
+    "slug": "dynamic-csr-generator-helper",
+    "category": "Password & Security Tools",
+    "shortDesc": "Instant client-side csr generator helper tool for developers."
+  },
+  {
+    "index": 408,
+    "id": "non-disclosure-agreement-nda-online",
+    "name": "Non-Disclosure Agreement NDA (Online)",
+    "slug": "non-disclosure-agreement-nda-online",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side non-disclosure agreement nda tool for content marketers."
+  },
+  {
+    "index": 409,
+    "id": "easy-polynomial-interpolation",
+    "name": "Easy Polynomial Interpolation",
+    "slug": "easy-polynomial-interpolation",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side polynomial interpolation tool for financial advisors."
+  },
+  {
+    "index": 410,
+    "id": "percentage-calculator-universal",
+    "name": "Percentage Calculator Universal",
+    "slug": "percentage-calculator-universal",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side percentage calculator tool for students."
+  },
+  {
+    "index": 411,
+    "id": "advanced-monthly-budget-planner",
+    "name": "Advanced Monthly Budget Planner",
+    "slug": "advanced-monthly-budget-planner",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side monthly budget planner tool for daily operations."
+  },
+  {
+    "index": 412,
+    "id": "bmr-calculator-private",
+    "name": "BMR Calculator (Private)",
+    "slug": "bmr-calculator-private",
+    "category": "Everyday Calculators",
+    "shortDesc": "Instant client-side bmr calculator tool for engineers."
+  },
+  {
+    "index": 413,
+    "id": "browser-least-common-multiple-lcm",
+    "name": "Browser Least Common Multiple LCM",
+    "slug": "browser-least-common-multiple-lcm",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side least common multiple lcm tool for daily operations."
+  },
+  {
+    "index": 414,
+    "id": "online-project-quote-estimate-builder",
+    "name": "Online Project Quote Estimate Builder",
+    "slug": "online-project-quote-estimate-builder",
+    "category": "Office & Project Management",
+    "shortDesc": "Instant client-side project quote estimate builder tool for precision tasks."
+  },
+  {
+    "index": 415,
+    "id": "grid-splitter-online",
+    "name": "Grid Splitter (Online)",
+    "slug": "grid-splitter-online",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side grid splitter tool for content creators."
+  },
+  {
+    "index": 416,
+    "id": "client-side-hue-shifter",
+    "name": "Client-Side Hue Shifter",
+    "slug": "client-side-hue-shifter",
+    "category": "Image Optimization & Conversion",
+    "shortDesc": "Instant client-side hue shifter tool for seo specialists."
+  },
+  {
+    "index": 417,
+    "id": "gantt-chart-previewer-dynamic",
+    "name": "Gantt Chart Previewer Dynamic",
+    "slug": "gantt-chart-previewer-dynamic",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side gantt chart previewer tool for writers."
+  },
+  {
+    "index": 418,
+    "id": "online-algebra-equation-solver",
+    "name": "Online Algebra Equation Solver",
+    "slug": "online-algebra-equation-solver",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side algebra equation solver tool for seo analysts."
+  },
+  {
+    "index": 419,
+    "id": "lorem-ipsum-generator-client-side",
+    "name": "Lorem Ipsum Generator Client-Side",
+    "slug": "lorem-ipsum-generator-client-side",
+    "category": "Generators",
+    "shortDesc": "Instant client-side lorem ipsum generator tool for students."
+  },
+  {
+    "index": 420,
+    "id": "master-habit-tracker-table",
+    "name": "Master Habit Tracker Table",
+    "slug": "master-habit-tracker-table",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side habit tracker table tool for financial advisors."
+  },
+  {
+    "index": 421,
+    "id": "palette-generator-dynamic",
+    "name": "Palette Generator Dynamic",
+    "slug": "palette-generator-dynamic",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side palette generator tool for writers."
+  },
+  {
+    "index": 422,
+    "id": "image-to-pdf-prep-advanced",
+    "name": "Image to PDF Prep Advanced",
+    "slug": "image-to-pdf-prep-advanced",
+    "category": "PDF Document Utilities",
+    "shortDesc": "Instant client-side image to pdf prep tool for digital publishing."
+  },
+  {
+    "index": 423,
+    "id": "advanced-calorie-deficit-surplus-calculator",
+    "name": "Advanced Calorie Deficit Surplus Calculator",
+    "slug": "advanced-calorie-deficit-surplus-calculator",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side calorie deficit surplus calculator tool for data analysts."
+  },
+  {
+    "index": 424,
+    "id": "typescript-interface-from-json",
+    "name": "JSON to TypeScript Interface Generator",
+    "slug": "typescript-interface-from-json",
+    "category": "Web & API Utilities",
+    "shortDesc": "Convert JSON API response payloads into strongly typed TypeScript interfaces."
+  },
+  {
+    "index": 425,
+    "id": "compound-interest-calculator",
+    "name": "Compound Interest & Investment Growth Calculator",
+    "slug": "compound-interest-calculator",
+    "category": "Financial Calculators",
+    "shortDesc": "Calculate compound interest growth over time with regular monthly deposits."
+  },
+  {
+    "index": 426,
+    "id": "gpa-grade-point-calculator",
+    "name": "College & High School Cumulative GPA Calculator",
+    "slug": "gpa-grade-point-calculator",
+    "category": "Financial Calculators",
+    "shortDesc": "Calculate semester or cumulative Grade Point Average (GPA) on a 4.0 scale."
+  },
+  {
+    "index": 427,
+    "id": "aes-encryption-decryption",
+    "name": "AES-256 Encryption & Decryption Tool",
+    "slug": "aes-encryption-decryption",
+    "category": "Cryptography & Hashing",
+    "shortDesc": "Encrypt text messages using AES-256-GCM / CBC with a secret passphrase."
+  },
+  {
+    "index": 428,
+    "id": "password-strength-meter",
+    "name": "Password Strength & Time-to-Crack Analyzer",
+    "slug": "password-strength-meter",
+    "category": "Cryptography & Hashing",
+    "shortDesc": "Test password vulnerability against common dictionary lists and estimate crack times."
+  },
+  {
+    "index": 429,
+    "id": "http-status-code-reference",
+    "name": "HTTP Status Codes Dictionary & Search",
+    "slug": "http-status-code-reference",
+    "category": "Web Tools",
+    "shortDesc": "Search all 1xx, 2xx, 3xx, 4xx, 5xx HTTP response codes with cause & solutions."
+  },
+  {
+    "index": 430,
+    "id": "custom-recurring-deposit-rd-calculator",
+    "name": "Custom Recurring Deposit RD Calculator",
+    "slug": "custom-recurring-deposit-rd-calculator",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side recurring deposit rd calculator tool for workflow efficiency."
+  },
+  {
+    "index": 431,
+    "id": "workout-routine-planner-private",
+    "name": "Workout Routine Planner Private",
+    "slug": "workout-routine-planner-private",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side workout routine planner tool for students."
+  },
+  {
+    "index": 432,
+    "id": "universal-discount-savings-calculator",
+    "name": "Universal Discount Savings Calculator",
+    "slug": "universal-discount-savings-calculator",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side discount savings calculator tool for workflow efficiency."
+  },
+  {
+    "index": 433,
+    "id": "client-side-certificate-builder",
+    "name": "Client-Side Certificate Builder",
+    "slug": "client-side-certificate-builder",
+    "category": "Education",
+    "shortDesc": "Instant client-side certificate builder tool for social media managers."
+  },
+  {
+    "index": 434,
+    "id": "universal-mortgage-loan-payment-calculator",
+    "name": "Universal Mortgage Loan Payment Calculator",
+    "slug": "universal-mortgage-loan-payment-calculator",
+    "category": "Real Estate",
+    "shortDesc": "Instant client-side mortgage loan payment calculator tool for specialists."
+  },
+  {
+    "index": 435,
+    "id": "color-blender-online",
+    "name": "Color Blender Online",
+    "slug": "color-blender-online",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side color blender tool for writers."
+  },
+  {
+    "index": 436,
+    "id": "random-email-generator-private",
+    "name": "Random Email Generator (Private)",
+    "slug": "random-email-generator-private",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random email generator tool for engineers."
+  },
+  {
+    "index": 437,
+    "id": "ev-charging-cost-estimator-private",
+    "name": "EV Charging Cost Estimator Private",
+    "slug": "ev-charging-cost-estimator-private",
+    "category": "Automotive",
+    "shortDesc": "Instant client-side ev charging cost estimator tool for specialists."
+  },
+  {
+    "index": 438,
+    "id": "advanced-cost-per-acquisition-cpa-calculator",
+    "name": "Advanced Cost Per Acquisition CPA Calculator",
+    "slug": "advanced-cost-per-acquisition-cpa-calculator",
+    "category": "Marketing & Creator Tools",
+    "shortDesc": "Instant client-side cost per acquisition cpa calculator tool for precision tasks."
+  },
+  {
+    "index": 439,
+    "id": "browser-device-spec-inspector",
+    "name": "Browser User-Agent & Device Spec Inspector",
+    "slug": "browser-device-spec-inspector",
+    "category": "Web Tools",
+    "shortDesc": "Inspect browser engine, operating system, device screen resolution, and hardware."
+  },
+  {
+    "index": 440,
+    "id": "custom-livestock-feed-calorie-calculator",
+    "name": "Custom Livestock Feed Calorie Calculator",
+    "slug": "custom-livestock-feed-calorie-calculator",
+    "category": "Agriculture & Environment",
+    "shortDesc": "Instant client-side livestock feed calorie calculator tool for precision tasks."
+  },
+  {
+    "index": 441,
+    "id": "base64-encoder-decoder",
+    "name": "Base64 Encoder & Decoder",
+    "slug": "base64-encoder-decoder",
+    "category": "Code Formatters",
+    "shortDesc": "Encode string data to Base64 or decode Base64 back into plain text."
+  },
+  {
+    "index": 442,
+    "id": "discount-tax-calculator",
+    "name": "Discount & Sales Tax Calculator",
+    "slug": "discount-tax-calculator",
+    "category": "Financial Calculators",
+    "shortDesc": "Calculate final prices, savings, tax amounts, and percentage discounts."
+  },
+  {
+    "index": 443,
+    "id": "pregnancy-due-date-calculator",
+    "name": "Pregnancy Due Date & Trimester Calculator",
+    "slug": "pregnancy-due-date-calculator",
+    "category": "Financial Calculators",
+    "shortDesc": "Calculate estimated baby due date based on Last Menstrual Period (LMP)."
+  },
+  {
+    "index": 444,
+    "id": "utm-builder-generator",
+    "name": "Google Analytics UTM Tracking Link Builder",
+    "slug": "utm-builder-generator",
+    "category": "SERP & Search Optimization",
+    "shortDesc": "Build clean campaign tracking links with utm_source, utm_medium, and utm_campaign."
+  },
+  {
+    "index": 445,
+    "id": "case-converter-text",
+    "name": "Case Converter (camelCase, snake_case, kebab-case, PascalCase)",
+    "slug": "case-converter-text",
+    "category": "Measurement Converters",
+    "shortDesc": "Transform string variable names between camelCase, snake_case, kebab-case, and PascalCase."
+  },
+  {
+    "index": 446,
+    "id": "css-flexbox-playground-generator",
+    "name": "CSS Flexbox Visual Layout Generator",
+    "slug": "css-flexbox-playground-generator",
+    "category": "Web Tools",
+    "shortDesc": "Interactively test flex-direction, justify-content, align-items, and copy CSS code."
+  },
+  {
+    "index": 447,
+    "id": "total-daily-energy-expenditure-tdee-master",
+    "name": "Total Daily Energy Expenditure TDEE Master",
+    "slug": "total-daily-energy-expenditure-tdee-master",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side total daily energy expenditure tdee tool for business leaders."
+  },
+  {
+    "index": 448,
+    "id": "advanced-pace-calculator-running",
+    "name": "Advanced Pace Calculator Running",
+    "slug": "advanced-pace-calculator-running",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side pace calculator running tool for security compliance."
+  },
+  {
+    "index": 449,
+    "id": "smart-loan-payoff-calculator",
+    "name": "Smart Loan Payoff Calculator",
+    "slug": "smart-loan-payoff-calculator",
+    "category": "Everyday Calculators",
+    "shortDesc": "Instant client-side loan payoff calculator tool for developers."
+  },
+  {
+    "index": 450,
+    "id": "jpg-to-webp-smart",
+    "name": "JPG to WEBP (Smart)",
+    "slug": "jpg-to-webp-smart",
+    "category": "Image Optimization & Conversion",
+    "shortDesc": "Instant client-side jpg to webp tool for content creators."
+  },
+  {
+    "index": 451,
+    "id": "office-expense-voucher-builder-smart",
+    "name": "Office Expense Voucher Builder (Smart)",
+    "slug": "office-expense-voucher-builder-smart",
+    "category": "Office & Project Management",
+    "shortDesc": "Instant client-side office expense voucher builder tool for specialists."
+  },
+  {
+    "index": 452,
+    "id": "online-age-calculator",
+    "name": "Online Age Calculator",
+    "slug": "online-age-calculator",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side age calculator tool for seo analysts."
+  },
+  {
+    "index": 453,
+    "id": "client-side-random-palette-generator",
+    "name": "Client-Side Random Palette Generator",
+    "slug": "client-side-random-palette-generator",
+    "category": "Generators",
+    "shortDesc": "Instant client-side random palette generator tool for social media managers."
+  },
+  {
+    "index": 454,
+    "id": "solar-battery-storage-sizing-smart",
+    "name": "Solar Battery Storage Sizing (Smart)",
+    "slug": "solar-battery-storage-sizing-smart",
+    "category": "Electrical & Solar",
+    "shortDesc": "Instant client-side solar battery storage sizing tool for specialists."
+  },
+  {
+    "index": 455,
+    "id": "client-side-attendance-tracker",
+    "name": "Client-Side Attendance Tracker",
+    "slug": "client-side-attendance-tracker",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side attendance tracker tool for seo analysts."
+  },
+  {
+    "index": 456,
+    "id": "decimal-to-hex-private",
+    "name": "Decimal to Hex Private",
+    "slug": "decimal-to-hex-private",
+    "category": "Scientific Converters",
+    "shortDesc": "Instant client-side decimal to hex tool for students."
+  },
+  {
+    "index": 457,
+    "id": "advanced-estimate-builder",
+    "name": "Advanced Estimate Builder",
+    "slug": "advanced-estimate-builder",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side estimate builder tool for data analysts."
+  },
+  {
+    "index": 458,
+    "id": "easy-file-locker-inspector",
+    "name": "Easy File Locker Inspector",
+    "slug": "easy-file-locker-inspector",
+    "category": "File Tools",
+    "shortDesc": "Instant client-side file locker inspector tool for financial advisors."
+  },
+  {
+    "index": 459,
+    "id": "advanced-quiz-question-builder",
+    "name": "Advanced Quiz Question Builder",
+    "slug": "advanced-quiz-question-builder",
+    "category": "Education",
+    "shortDesc": "Instant client-side quiz question builder tool for security compliance."
+  },
+  {
+    "index": 460,
+    "id": "ping-latency-estimator-smart",
+    "name": "Ping Latency Estimator (Smart)",
+    "slug": "ping-latency-estimator-smart",
+    "category": "Networking & Data Management",
+    "shortDesc": "Instant client-side ping latency estimator tool for specialists."
+  },
+  {
+    "index": 461,
+    "id": "smart-time-addition-calculator",
+    "name": "Smart Time Addition Calculator",
+    "slug": "smart-time-addition-calculator",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side time addition calculator tool for ui ux testing."
+  },
+  {
+    "index": 462,
+    "id": "refund-policy-generator-client-side",
+    "name": "Refund Policy Generator Client-Side",
+    "slug": "refund-policy-generator-client-side",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side refund policy generator tool for writers."
+  },
+  {
+    "index": 463,
+    "id": "advanced-time-zone-converter",
+    "name": "Advanced Time Zone Converter",
+    "slug": "advanced-time-zone-converter",
+    "category": "Date & Time",
+    "shortDesc": "Instant client-side time zone converter tool for data analysts."
+  },
+  {
+    "index": 464,
+    "id": "net-worth-calculator-client-side",
+    "name": "Net Worth Calculator Client-Side",
+    "slug": "net-worth-calculator-client-side",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side net worth calculator tool for writers."
+  },
+  {
+    "index": 465,
+    "id": "easy-catering-event-budget-estimator",
+    "name": "Easy Catering Event Budget Estimator",
+    "slug": "easy-catering-event-budget-estimator",
+    "category": "Dining & Food Service",
+    "shortDesc": "Instant client-side catering event budget estimator tool for specialists."
+  },
+  {
+    "index": 466,
+    "id": "easy-xml-to-json",
+    "name": "Easy XML to JSON",
+    "slug": "easy-xml-to-json",
+    "category": "Web & API Utilities",
+    "shortDesc": "Instant client-side xml to json tool for everyday use."
+  },
+  {
+    "index": 467,
+    "id": "easy-podcast-episode-editor-prep",
+    "name": "Easy Podcast Episode Editor Prep",
+    "slug": "easy-podcast-episode-editor-prep",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side podcast episode editor prep tool for financial advisors."
+  },
+  {
+    "index": 468,
+    "id": "car-tire-size-calculator-dynamic",
+    "name": "Car Tire Size Calculator Dynamic",
+    "slug": "car-tire-size-calculator-dynamic",
+    "category": "Automotive",
+    "shortDesc": "Instant client-side car tire size calculator tool for specialists."
+  },
+  {
+    "index": 469,
+    "id": "payback-period-calculator-easy",
+    "name": "Payback Period Calculator Easy",
+    "slug": "payback-period-calculator-easy",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side payback period calculator tool for business leaders."
+  },
+  {
+    "index": 470,
+    "id": "paragraph-structure-helper-advanced",
+    "name": "Paragraph Structure Helper Advanced",
+    "slug": "paragraph-structure-helper-advanced",
+    "category": "Education",
+    "shortDesc": "Instant client-side paragraph structure helper tool for digital publishers."
+  },
+  {
+    "index": 471,
+    "id": "vignette-generator-easy",
+    "name": "Vignette Generator (Easy)",
+    "slug": "vignette-generator-easy",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side vignette generator tool for engineers."
+  },
+  {
+    "index": 472,
+    "id": "z-test-calculator-easy",
+    "name": "Z-Test Calculator (Easy)",
+    "slug": "z-test-calculator-easy",
+    "category": "Math Tools",
+    "shortDesc": "Instant client-side z-test calculator tool for engineers."
+  },
+  {
+    "index": 473,
+    "id": "network-port-lookup-master",
+    "name": "Network Port Lookup Master",
+    "slug": "network-port-lookup-master",
+    "category": "Networking & Data Management",
+    "shortDesc": "Instant client-side network port lookup tool for specialists."
+  },
+  {
+    "index": 474,
+    "id": "universal-office-memo-formatter",
+    "name": "Universal Office Memo Formatter",
+    "slug": "universal-office-memo-formatter",
+    "category": "Office & Project Management",
+    "shortDesc": "Instant client-side office memo formatter tool for specialists."
+  },
+  {
+    "index": 475,
+    "id": "price-list-builder-smart",
+    "name": "Price List Builder Smart",
+    "slug": "price-list-builder-smart",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side price list builder tool for web professionals."
+  },
+  {
+    "index": 476,
+    "id": "universal-aspect-ratio-scaler",
+    "name": "Universal Aspect Ratio Scaler",
+    "slug": "universal-aspect-ratio-scaler",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side aspect ratio scaler tool for data processing."
+  },
+  {
+    "index": 477,
+    "id": "food-portion-size-estimator-master",
+    "name": "Food Portion Size Estimator Master",
+    "slug": "food-portion-size-estimator-master",
+    "category": "Dining & Food Service",
+    "shortDesc": "Instant client-side food portion size estimator tool for specialists."
+  },
+  {
+    "index": 478,
+    "id": "overtime-pay-calculator-online",
+    "name": "Overtime Pay Calculator Online",
+    "slug": "overtime-pay-calculator-online",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side overtime pay calculator tool for web designers."
+  },
+  {
+    "index": 479,
+    "id": "online-hex-to-rgb-converter",
+    "name": "Online HEX to RGB Converter",
+    "slug": "online-hex-to-rgb-converter",
+    "category": "Color Converters & Gradients",
+    "shortDesc": "Instant client-side hex to rgb converter tool for seo specialists."
+  },
+  {
+    "index": 480,
+    "id": "gross-margin-calculator-private",
+    "name": "Gross Margin Calculator Private",
+    "slug": "gross-margin-calculator-private",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side gross margin calculator tool for students."
+  },
+  {
+    "index": 481,
+    "id": "master-audio-volume-amplifier",
+    "name": "Master Audio Volume Amplifier",
+    "slug": "master-audio-volume-amplifier",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side audio volume amplifier tool for financial advisors."
+  },
+  {
+    "index": 482,
+    "id": "custom-healthy-fat-calculator",
+    "name": "Custom Healthy Fat Calculator",
+    "slug": "custom-healthy-fat-calculator",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side healthy fat calculator tool for workflow efficiency."
+  },
+  {
+    "index": 483,
+    "id": "easy-car-spec-comparison-tool",
+    "name": "Easy Car Spec Comparison Tool",
+    "slug": "easy-car-spec-comparison-tool",
+    "category": "Automotive",
+    "shortDesc": "Instant client-side car spec comparison tool tool for specialists."
+  },
+  {
+    "index": 484,
+    "id": "client-side-internal-rate-of-return-irr",
+    "name": "Client-Side Internal Rate of Return IRR",
+    "slug": "client-side-internal-rate-of-return-irr",
+    "category": "Finance Tools",
+    "shortDesc": "Instant client-side internal rate of return irr tool for seo analysts."
+  },
+  {
+    "index": 485,
+    "id": "asset-depreciation-calculator-smart",
+    "name": "Asset Depreciation Calculator Smart",
+    "slug": "asset-depreciation-calculator-smart",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side asset depreciation calculator tool for web designers."
+  },
+  {
+    "index": 486,
+    "id": "fraction-arithmetic-calculator-advanced",
+    "name": "Fraction Arithmetic Calculator Advanced",
+    "slug": "fraction-arithmetic-calculator-advanced",
+    "category": "Math Calculators",
+    "shortDesc": "Instant client-side fraction arithmetic calculator tool for finance managers."
+  },
+  {
+    "index": 487,
+    "id": "client-side-ideal-body-weight-calculator",
+    "name": "Client-Side Ideal Body Weight Calculator",
+    "slug": "client-side-ideal-body-weight-calculator",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side ideal body weight calculator tool for seo analysts."
+  },
+  {
+    "index": 488,
+    "id": "image-compressor",
+    "name": "Image File Compressor",
+    "slug": "image-compressor",
+    "category": "Image Resizing & Cropping",
+    "shortDesc": "Reduce image file size with adjustable compression quality sliders."
+  },
+  {
+    "index": 489,
+    "id": "date-duration-difference-calculator",
+    "name": "Days Between Dates Duration Calculator",
+    "slug": "date-duration-difference-calculator",
+    "category": "Financial Calculators",
+    "shortDesc": "Calculate total days, business workdays, and weeks between two calendar dates."
+  },
+  {
+    "index": 490,
+    "id": "screen-resolution-px-rem-converter",
+    "name": "PX to REM & EM CSS Converter",
+    "slug": "screen-resolution-px-rem-converter",
+    "category": "Measurement Converters",
+    "shortDesc": "Convert pixel (px) font measurements to rem and em relative CSS units."
+  },
+  {
+    "index": 491,
+    "id": "css-box-shadow-builder",
+    "name": "CSS Box Shadow & Drop Shadow Builder",
+    "slug": "css-box-shadow-builder",
+    "category": "Web Tools",
+    "shortDesc": "Interactively adjust X/Y offset, blur radius, spread, opacity, and inset shadow."
+  },
+  {
+    "index": 492,
+    "id": "css-box-shadow-generator",
+    "name": "CSS Box Shadow & Glow Generator",
+    "slug": "css-box-shadow-generator",
+    "category": "Code Formatters",
+    "shortDesc": "Design smooth multi-layered CSS box-shadows with blur, spread, and inset controls."
+  },
+  {
+    "index": 493,
+    "id": "shipment-tracker-helper-master",
+    "name": "Shipment Tracker Helper (Master)",
+    "slug": "shipment-tracker-helper-master",
+    "category": "Business Tools",
+    "shortDesc": "Instant client-side shipment tracker helper tool for engineers."
+  },
+  {
+    "index": 494,
+    "id": "aes-decryption-tool-advanced",
+    "name": "AES Decryption Tool Advanced",
+    "slug": "aes-decryption-tool-advanced",
+    "category": "Password & Security Tools",
+    "shortDesc": "Instant client-side aes decryption tool tool for digital publishing."
+  },
+  {
+    "index": 495,
+    "id": "bmr-calculator-browser",
+    "name": "BMR Calculator Browser",
+    "slug": "bmr-calculator-browser",
+    "category": "Health & Fitness",
+    "shortDesc": "Instant client-side bmr calculator tool for students."
+  },
+  {
+    "index": 496,
+    "id": "test-score-analyzer-smart",
+    "name": "Test Score Analyzer (Smart)",
+    "slug": "test-score-analyzer-smart",
+    "category": "Education",
+    "shortDesc": "Instant client-side test score analyzer tool for content marketers."
+  },
+  {
+    "index": 497,
+    "id": "guitar-tuner-pitch-reference-smart",
+    "name": "Guitar Tuner Pitch Reference (Smart)",
+    "slug": "guitar-tuner-pitch-reference-smart",
+    "category": "Audio & Music Production",
+    "shortDesc": "Instant client-side guitar tuner pitch reference tool for specialists."
+  },
+  {
+    "index": 498,
+    "id": "cap-rate-calculator-private",
+    "name": "Cap Rate Calculator (Private)",
+    "slug": "cap-rate-calculator-private",
+    "category": "Real Estate",
+    "shortDesc": "Instant client-side cap rate calculator tool for precision tasks."
+  },
+  {
+    "index": 499,
+    "id": "advanced-invoice-builder",
+    "name": "Advanced Invoice Builder",
+    "slug": "advanced-invoice-builder",
+    "category": "Productivity",
+    "shortDesc": "Instant client-side invoice builder tool for security compliance."
+  },
+  {
+    "index": 500,
+    "id": "easy-ico-converter",
+    "name": "Easy ICO Converter",
+    "slug": "easy-ico-converter",
+    "category": "Photo Filters & Effects",
+    "shortDesc": "Instant client-side ico converter tool for analysts."
+  }
+]

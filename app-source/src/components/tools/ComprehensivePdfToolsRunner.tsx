@@ -289,7 +289,7 @@ export const ComprehensivePdfToolsRunner: React.FC<ComprehensivePdfToolsRunnerPr
         canvas.height = viewport.height;
         const ctx = canvas.getContext('2d');
         if (ctx) {
-          await page.render({ canvasContext: ctx, viewport }).promise;
+          await (page.render as any)({ canvasContext: ctx, viewport, canvas }).promise;
           thumbs.push(canvas.toDataURL('image/png'));
         }
       }

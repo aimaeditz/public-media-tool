@@ -2007,13 +2007,24 @@ const MarkdownEditorTool: React.FC<{ onCopy: () => void; copied: boolean }> = ({
 const PdfInspectorTool: React.FC = () => {
   const [fileInfo, setFileInfo] = useState<{ name: string; size: string; pages: number } | null>(null);
 
-  const handleFile = (file: File) => {
+  const handleFile = async (file: File) => {
     if (file.type !== 'application/pdf') return;
-    setFileInfo({
-      name: file.name,
-      size: (file.size / (1024 * 1024)).toFixed(2) + ' MB',
-      pages: Math.floor(Math.random() * 12) + 1, // Simulated client parsed count
-    });
+    try {
+      const buffer = await file.arrayBuffer();
+      const { PDFDocument } = await import('pdf-lib');
+      const pdfDoc = await PDFDocument.load(buffer, { ignoreEncryption: true });
+      setFileInfo({
+        name: file.name,
+        size: (file.size / (1024 * 1024)).toFixed(2) + ' MB',
+        pages: pdfDoc.getPageCount(),
+      });
+    } catch (e) {
+      setFileInfo({
+        name: file.name,
+        size: (file.size / (1024 * 1024)).toFixed(2) + ' MB',
+        pages: 1,
+      });
+    }
   };
 
   return (

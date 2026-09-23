@@ -48,9 +48,11 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
       name: 'Website',
       url: 'http://multitubeviews.com',
       icon: Globe,
-      hidden: false,
+      hidden: true,
     },
   ];
+
+  const hasVisibleSocials = socialLinks.some((s) => !s.hidden);
 
   return (
     <footer className="relative bg-slate-100/80 border-t border-slate-200 text-slate-700 overflow-hidden pt-8 sm:pt-12 pb-6 sm:pb-8 mt-8 sm:mt-12 md:mt-16">
@@ -202,7 +204,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
         <div className="pt-6 sm:pt-8 border-t border-slate-200/80 flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-4 text-[11px] sm:text-xs text-slate-500">
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left">
             <span>© 2026 Public Media Tool (publicmediatool.com). All rights reserved.</span>
-            <div className="hidden sm:block text-slate-300">•</div>
+            {hasVisibleSocials && <div className="hidden sm:block text-slate-300">•</div>}
             {/* Social Icons */}
             <div className="flex items-center gap-2 pt-1 sm:pt-0">
               {socialLinks.map((social) => {

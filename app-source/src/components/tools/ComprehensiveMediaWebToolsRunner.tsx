@@ -375,7 +375,7 @@ export const ComprehensiveMediaWebToolsRunner: React.FC<Props> = ({ tool, onCopy
         setIsRecording(true);
         setRecordingSeconds(0);
       } catch (err) {
-        alert('Microphone access denied or not available.');
+        console.warn('Microphone access denied or not available.');
       }
     }
   };
@@ -388,7 +388,7 @@ export const ComprehensiveMediaWebToolsRunner: React.FC<Props> = ({ tool, onCopy
     } else {
       const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
       if (!SpeechRecognition) {
-        alert('Speech Recognition is not supported in this browser. Please use Chrome, Edge, or Safari.');
+        setTranscriptText('Speech Recognition is not supported in this browser. Please use Chrome, Edge, or Safari.');
         return;
       }
       const recognition = new SpeechRecognition();
@@ -439,7 +439,7 @@ export const ComprehensiveMediaWebToolsRunner: React.FC<Props> = ({ tool, onCopy
       setZipTotalSize(file.size);
       setZipUncompressedSize(totalUncompressed);
     } catch (err) {
-      alert('Error parsing ZIP file.');
+      console.warn('Error parsing ZIP file:', err);
     }
   };
 

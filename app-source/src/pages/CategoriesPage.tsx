@@ -13,14 +13,14 @@ export const CategoriesPage: React.FC<CategoriesPageProps> = ({ navigate }) => {
   const [selectedDepartment, setSelectedDepartment] = useState<string>('All');
 
   useSeo({
-    title: 'Tool Categories — Public Media Tool',
-    description: 'Browse 1,516+ free client-side tools across all categories on Public Media Tool.',
+    title: 'Tool Categories — Public Media Tool (PMT)',
+    description: 'Browse all tool categories on Public Media Tool (PMT). Find free, private, browser-based tools for text, developer utilities, math, images, and audio with no signup.',
     path: '/categories',
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       name: 'Tool Categories',
-      description: 'Browse all categories of free client-side browser tools on Public Media Tool.',
+      description: 'Browse all tool categories on Public Media Tool (PMT). Find free, private, browser-based tools for text, developer utilities, math, images, and audio with no signup.',
       url: 'https://aimaeditz.github.io/public-media-tool/categories',
     },
   });

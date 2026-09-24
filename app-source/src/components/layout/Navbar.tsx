@@ -60,7 +60,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, navigate, onOpenSea
           >
             {/* Geometric PMT Monogram Hexagon Logo */}
             <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shrink-0">
-              <svg viewBox="0 0 100 100" className="w-8 h-8 sm:w-10 sm:h-10 drop-shadow-sm">
+              <svg viewBox="0 0 100 100" className="w-8 h-8 sm:w-10 sm:h-10 drop-shadow-sm" role="img" aria-label="Public Media Tool Logo">
+                <title>Public Media Tool Logo</title>
                 <defs>
                   <linearGradient id="pmtGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#6366F1" />

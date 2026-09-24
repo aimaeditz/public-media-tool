@@ -40,9 +40,11 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
     category = CATEGORIES[0];
   }
 
+  const catDesc = `Explore free online ${category.name} tools on Public Media Tool (PMT). Browser-based, 100% private, and fast with no signup or file uploads required.`;
+
   useSeo({
     title: `${category.name} Tools — Public Media Tool`,
-    description: category.description || `Explore ${category.name} free browser tools on Public Media Tool.`,
+    description: catDesc,
     path: `/categories/${categorySlug}`,
     jsonLd: {
       '@context': 'https://schema.org',

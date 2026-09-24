@@ -16,9 +16,11 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ navigate, onOpenSearchWithQuery }) => {
+  const homeDesc = 'Public Media Tool (PMT) provides 1,516+ free online, browser-based tools. Simple, 100% private, and fast with zero signups or file uploads.';
+
   useSeo({
-    title: 'Public Media Tool — 1,516+ Free Browser-Based Tools',
-    description: '1,516+ free browser-based tools. Simple. Private. Fast. No AI, no signup required, 100% client-side execution.',
+    title: 'Public Media Tool (PMT) — 1,516+ Free Browser-Based Tools',
+    description: homeDesc,
     path: '/',
     jsonLd: {
       '@context': 'https://schema.org',
@@ -28,12 +30,13 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate, onOpenSearchWithQu
           name: 'Public Media Tool',
           alternateName: 'PMT',
           url: 'https://aimaeditz.github.io/public-media-tool/',
-          description: '1,516+ free browser-based tools. Simple. Private. Fast. No AI, no signup required, 100% client-side execution.',
+          description: homeDesc,
         },
         {
           '@type': 'Organization',
           name: 'Public Media Tool',
           url: 'https://aimaeditz.github.io/public-media-tool/',
+          logo: 'https://aimaeditz.github.io/public-media-tool/apple-touch-icon.png',
         },
       ],
     },

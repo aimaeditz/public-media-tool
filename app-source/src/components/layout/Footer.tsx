@@ -69,7 +69,8 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
           <div className="space-y-2 sm:space-y-3">
             <div className="flex items-center gap-2.5 sm:gap-3">
               <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center shrink-0">
-                <svg viewBox="0 0 100 100" className="w-7 h-7 sm:w-8 sm:h-8">
+                <svg viewBox="0 0 100 100" className="w-7 h-7 sm:w-8 sm:h-8" role="img" aria-label="Public Media Tool Logo">
+                  <title>Public Media Tool Logo</title>
                   <defs>
                     <linearGradient id="footerPmtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="#6366F1" />

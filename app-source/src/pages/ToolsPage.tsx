@@ -24,14 +24,14 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
   }, []);
 
   useSeo({
-    title: 'All Online Tools — Public Media Tool',
-    description: `Explore the complete collection of ${totalToolsCount.toLocaleString()}+ free, private, client-side online tools and utilities on Public Media Tool.`,
+    title: 'All Online Tools — Public Media Tool (PMT)',
+    description: 'Explore 1,516+ free browser-based tools on Public Media Tool (PMT). Fast, 100% private online utilities for text, code, math, and media with no signup required.',
     path: '/tools',
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       name: 'All Online Tools',
-      description: 'Explore the complete collection of free client-side online tools on Public Media Tool.',
+      description: 'Explore 1,516+ free browser-based tools on Public Media Tool (PMT). Fast, 100% private online utilities with no signup required.',
       url: 'https://aimaeditz.github.io/public-media-tool/tools',
       numberOfItems: totalToolsCount,
     },

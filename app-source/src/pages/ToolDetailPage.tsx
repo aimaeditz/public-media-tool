@@ -102,7 +102,21 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
        tool.category.toLowerCase().replace(/ & /g, '-').replace(/\s+/g, '-'))
     : 'general';
 
-  const toolDesc = (tool.shortDesc || tool.description || '').slice(0, 155);
+  const rawShort = tool.shortDesc || tool.description || 'Fast online utility';
+  const cleanShort = rawShort.endsWith('.') ? rawShort.slice(0, -1) : rawShort;
+  
+  let toolDesc = `${tool.name} — a free, private, browser-based tool. ${cleanShort}. No signup, no upload, works instantly.`;
+  if (toolDesc.length > 158) {
+    toolDesc = `${tool.name} — free, private, browser-based tool. ${cleanShort}. Works instantly with no signup or upload.`;
+  }
+  if (toolDesc.length > 158) {
+    toolDesc = `${tool.name} — free, private, browser-based tool. ${cleanShort}. No signup required.`;
+  }
+  if (toolDesc.length > 158) {
+    const maxShortLen = Math.max(20, 155 - (tool.name.length + 52));
+    const trimmedShort = cleanShort.length > maxShortLen ? cleanShort.slice(0, maxShortLen - 3) + '...' : cleanShort;
+    toolDesc = `${tool.name} — free, private, browser-based tool. ${trimmedShort}. No signup required.`;
+  }
 
   useSeo({
     title: `${tool.name} — Free Online Tool | Public Media Tool`,

@@ -9,18 +9,18 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig(() => {
   return {
-    base: '/public-media-tool/',
+    base: process.env.VITE_BASE_PATH || '/',
     plugins: [
       react(),
       tailwindcss(),
       {
-        name: 'redirect-root-to-base',
+        name: 'handle-gh-pages-prefix',
         configureServer(server) {
           server.middlewares.use((req, res, next) => {
-            if (req.url === '/' || req.url === '') {
-              res.writeHead(302, { Location: '/public-media-tool/' });
-              res.end();
-              return;
+            if (req.url?.startsWith('/public-media-tool/')) {
+              req.url = req.url.replace('/public-media-tool/', '/');
+            } else if (req.url === '/public-media-tool') {
+              req.url = '/';
             }
             next();
           });

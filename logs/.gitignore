@@ -1,0 +1,5 @@
+# Ignore SEO push operational logs and cache state
+*.log
+*.log.*
+seo-push-state.json
+related-tools-rotation.json

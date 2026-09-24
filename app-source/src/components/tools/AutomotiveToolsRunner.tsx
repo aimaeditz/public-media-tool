@@ -11,7 +11,9 @@ import {
   Percent,
   Copy,
   Check,
-  Download
+  Download,
+  RotateCcw,
+  Sparkles
 } from 'lucide-react';
 
 interface Props {
@@ -20,11 +22,81 @@ interface Props {
   copied: boolean;
 }
 
+function downloadTextFile(filename: string, text: string) {
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+interface ActionToolbarProps {
+  label: string;
+  onReset?: () => void;
+  onCopy?: () => void;
+  onDownload?: () => void;
+  downloadLabel?: string;
+  copyLabel?: string;
+  isCopied?: boolean;
+}
+
+const AutoActionToolbar: React.FC<ActionToolbarProps> = ({
+  label,
+  onReset,
+  onCopy,
+  onDownload,
+  downloadLabel = 'Export TXT',
+  copyLabel = 'Copy Summary',
+  isCopied
+}) => (
+  <div className="flex flex-wrap items-center justify-between gap-3 p-3 bg-slate-900 text-white rounded-2xl shadow-sm">
+    <div className="flex items-center gap-2 pl-2">
+      <span className="text-xs uppercase font-extrabold tracking-wider text-indigo-400">{label}</span>
+    </div>
+    <div className="flex items-center gap-2">
+      {onReset && (
+        <button
+          type="button"
+          onClick={onReset}
+          className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer"
+        >
+          <RotateCcw className="w-3.5 h-3.5" />
+          <span>Reset Defaults</span>
+        </button>
+      )}
+      {onCopy && (
+        <button
+          type="button"
+          onClick={onCopy}
+          className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer"
+        >
+          {isCopied ? <Check className="w-3.5 h-3.5 text-emerald-300" /> : <Copy className="w-3.5 h-3.5" />}
+          <span>{isCopied ? 'Copied!' : copyLabel}</span>
+        </button>
+      )}
+      {onDownload && (
+        <button
+          type="button"
+          onClick={onDownload}
+          className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer"
+        >
+          <Download className="w-3.5 h-3.5" />
+          <span>{downloadLabel}</span>
+        </button>
+      )}
+    </div>
+  </div>
+);
+
 export const AutomotiveToolsRunner: React.FC<Props> = ({ tool, onCopy, copied }) => {
   const slug = tool.slug;
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
-  const handleCopyText = (text: string, key = 'default') => {
+  const safeCopy = (text: string, key = 'default') => {
     navigator.clipboard.writeText(text);
     setCopiedKey(key);
     onCopy();
@@ -125,21 +197,17 @@ export const AutomotiveToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
 
   return (
     <div className="space-y-6">
-      {/* HEADER BANNER */}
-      <div className="bg-slate-900 text-white p-5 rounded-2xl flex items-center justify-between shadow-xs">
-        <div className="flex items-center gap-3">
-          <Car className="w-6 h-6 text-indigo-400" />
-          <div>
-            <h3 className="font-bold text-base">{tool.name}</h3>
-            <p className="text-xs text-slate-400">{tool.shortDesc}</p>
-          </div>
-        </div>
-        <span className="text-xs font-semibold px-2.5 py-1 bg-indigo-500/20 text-indigo-300 rounded-full">Automotive Intelligence</span>
-      </div>
-
       {/* 47. FUEL COST CALCULATOR */}
       {slug === 'universal-fuel-cost-calculator' && (
         <div className="space-y-6">
+          <AutoActionToolbar
+            label="Fuel Calculator Actions"
+            onReset={() => { setFuelDistance(350); setFuelMpg(28); setFuelPricePerGal(3.65); setFuelRoundTrip(true); setFuelPassengers(2); }}
+            onCopy={() => safeCopy(`Fuel Cost Estimate:\\nDistance: ${fuelMetrics.totalDist} miles\\nGallons: ${fuelMetrics.gallonsNeeded.toFixed(1)} gal\\nTotal Cost: $${fuelMetrics.totalCost.toFixed(2)}\\nCost Per Person: $${fuelMetrics.costPerPerson.toFixed(2)}`, 'fuel')}
+            onDownload={() => downloadTextFile('fuel_cost_estimate.txt', `Universal Fuel Cost Calculator Specs\\nTotal Distance: ${fuelMetrics.totalDist} mi\\nFuel Required: ${fuelMetrics.gallonsNeeded.toFixed(2)} gal\\nFuel Price: $${fuelPricePerGal.toFixed(2)}/gal\\nTotal Fuel Cost: $${fuelMetrics.totalCost.toFixed(2)}\\nCost per Mile: $${fuelMetrics.costPerMile.toFixed(2)}/mi\\nCost per Person (${fuelPassengers} pax): $${fuelMetrics.costPerPerson.toFixed(2)}`)}
+            isCopied={copiedKey === 'fuel'}
+          />
+
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-white p-5 rounded-2xl border border-slate-200">
             <div>
               <label className="text-xs font-semibold text-slate-600 block mb-1">One-Way Distance (miles)</label>
@@ -188,6 +256,14 @@ export const AutomotiveToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       {/* 48. VEHICLE MILEAGE ESTIMATOR */}
       {slug === 'online-vehicle-mileage-estimator' && (
         <div className="space-y-6">
+          <AutoActionToolbar
+            label="Mileage Estimator Actions"
+            onReset={() => { setOdometerStart(45200); setOdometerEnd(45580); setFuelAddedGal(12.8); setFuelUnitCost(3.75); }}
+            onCopy={() => safeCopy(`Vehicle Mileage Metrics:\\nTrip Distance: ${mileageMetrics.tripDistance} miles\\nEconomy: ${mileageMetrics.mpg.toFixed(1)} MPG (${mileageMetrics.lPer100km.toFixed(1)} L/100km)\\nTrip Cost: $${mileageMetrics.tripCost.toFixed(2)}\\nCost Per Mile: $${mileageMetrics.costPerMile.toFixed(2)}/mi`, 'mileage')}
+            onDownload={() => downloadTextFile('vehicle_mileage_report.txt', `Vehicle Mileage Estimator Report\\nOdometer Start: ${odometerStart}\\nOdometer End: ${odometerEnd}\\nTrip Distance: ${mileageMetrics.tripDistance} miles\\nFuel Added: ${fuelAddedGal} gal\\nEconomy: ${mileageMetrics.mpg.toFixed(2)} MPG (${mileageMetrics.lPer100km.toFixed(2)} L/100km)\\nTrip Cost: $${mileageMetrics.tripCost.toFixed(2)}\\nCost/Mile: $${mileageMetrics.costPerMile.toFixed(2)}/mi`)}
+            isCopied={copiedKey === 'mileage'}
+          />
+
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-white p-5 rounded-2xl border border-slate-200">
             <div>
               <label className="text-xs font-semibold text-slate-600 block mb-1">Odometer Start</label>
@@ -232,6 +308,14 @@ export const AutomotiveToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       {/* 49. CAR LOAN PAYMENT CALCULATOR MASTER */}
       {slug === 'car-loan-payment-calculator-master' && (
         <div className="space-y-6">
+          <AutoActionToolbar
+            label="Car Loan Actions"
+            onReset={() => { setCarPrice(32000); setCarDownPayment(5000); setCarTradeIn(2000); setCarTaxRate(7.5); setCarInterestRate(5.99); setCarLoanTermMonths(60); }}
+            onCopy={() => safeCopy(`Car Loan Estimate:\\nMonthly Payment: $${carLoanMetrics.monthlyPayment.toFixed(2)}/mo\\nAmount Financed: $${carLoanMetrics.totalFinanced.toLocaleString()}\\nTotal Interest: $${carLoanMetrics.totalInterest.toFixed(2)}\\nTotal Out of Pocket: $${(carLoanMetrics.totalPaid + carDownPayment).toFixed(2)}`, 'loan')}
+            onDownload={() => downloadTextFile('car_loan_schedule.txt', `Car Loan Payment Calculator Specs\\nVehicle Price: $${carPrice.toLocaleString()}\\nDown Payment: $${carDownPayment.toLocaleString()}\\nTrade-In: $${carTradeIn.toLocaleString()}\\nSales Tax: ${carTaxRate}% ($${carLoanMetrics.taxAmount.toFixed(2)})\\nAmount Financed: $${carLoanMetrics.totalFinanced.toLocaleString()}\\nInterest Rate: ${carInterestRate}% APR\\nLoan Term: ${carLoanTermMonths} Months\\n\\nMonthly Payment: $${carLoanMetrics.monthlyPayment.toFixed(2)}/mo\\nTotal Interest: $${carLoanMetrics.totalInterest.toFixed(2)}\\nTotal Cost: $${(carLoanMetrics.totalPaid + carDownPayment).toFixed(2)}`)}
+            isCopied={copiedKey === 'loan'}
+          />
+
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 bg-white p-5 rounded-2xl border border-slate-200">
             <div>
               <label className="text-xs font-semibold text-slate-600 block mb-1">Vehicle Price ($)</label>
@@ -288,6 +372,14 @@ export const AutomotiveToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       {/* 50. ADVANCED CAR INSURANCE ESTIMATOR */}
       {slug === 'advanced-car-insurance-estimator' && (
         <div className="space-y-6">
+          <AutoActionToolbar
+            label="Insurance Estimator Actions"
+            onReset={() => { setVehicleValue(28000); setDriverAgeGroup('adult'); setCoverageTier('full'); setDeductible(1000); setAnnualMiles(12000); }}
+            onCopy={() => safeCopy(`Car Insurance Estimate:\\nMonthly Premium: $${insuranceMetrics.monthlyPremium.toFixed(2)}/mo\\nAnnual Premium: $${insuranceMetrics.annualPremium.toFixed(2)}/yr\\nTier: ${coverageTier} | Deductible: $${deductible}`, 'insurance')}
+            onDownload={() => downloadTextFile('insurance_estimate.txt', `Advanced Car Insurance Estimator Specs\\nVehicle Value: $${vehicleValue.toLocaleString()}\\nDriver Age: ${driverAgeGroup}\\nCoverage: ${coverageTier}\\nDeductible: $${deductible}\\nAnnual Miles: ${annualMiles}\\n\\nEstimated Monthly Premium: $${insuranceMetrics.monthlyPremium.toFixed(2)}/mo\\nEstimated Annual Premium: $${insuranceMetrics.annualPremium.toFixed(2)}/yr`)}
+            isCopied={copiedKey === 'insurance'}
+          />
+
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-white p-5 rounded-2xl border border-slate-200">
             <div>
               <label className="text-xs font-semibold text-slate-600 block mb-1">Vehicle Market Value ($)</label>

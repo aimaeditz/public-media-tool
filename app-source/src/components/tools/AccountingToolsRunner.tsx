@@ -29,12 +29,67 @@ interface Props {
   copied: boolean;
 }
 
+
+interface ActionToolbarProps {
+  label: string;
+  onReset?: () => void;
+  onCopy?: () => void;
+  onDownload?: () => void;
+  downloadLabel?: string;
+  copyLabel?: string;
+  isCopied?: boolean;
+}
+
+const ActionToolbar: React.FC<ActionToolbarProps> = ({
+  label,
+  onReset,
+  onCopy,
+  onDownload,
+  downloadLabel = 'Export TXT',
+  copyLabel = 'Copy Summary',
+  isCopied
+}) => (
+  <div className="flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl border border-slate-200">
+    <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">{label}</span>
+    <div className="flex flex-wrap items-center gap-2">
+      {onReset && (
+        <button
+          type="button"
+          onClick={onReset}
+          className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition-colors"
+        >
+          <RotateCcw className="w-3.5 h-3.5" /> Reset Defaults
+        </button>
+      )}
+      {onCopy && (
+        <button
+          type="button"
+          onClick={onCopy}
+          className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition-colors"
+        >
+          {isCopied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+          <span>{isCopied ? 'Copied' : copyLabel}</span>
+        </button>
+      )}
+      {onDownload && (
+        <button
+          type="button"
+          onClick={onDownload}
+          className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-lg flex items-center gap-1.5 transition-colors"
+        >
+          <Download className="w-3.5 h-3.5" /> {downloadLabel}
+        </button>
+      )}
+    </div>
+  </div>
+);
+
 export const AccountingToolsRunner: React.FC<Props> = ({ tool, onCopy, copied }) => {
   const slug = tool.slug;
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
   const handleCopyText = (text: string, key = 'default') => {
-    navigator.clipboard.writeText(text);
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).catch(() => {}); }
     setCopiedKey(key);
     onCopy();
     setTimeout(() => setCopiedKey(null), 2000);
@@ -510,6 +565,60 @@ export const AccountingToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
     setNewTbCredit('');
   };
 
+  
+  
+  const formattedTbExport = useMemo(() => {
+    let out = 'Account Title\tCategory\tDebit ($)\tCredit ($)\n';
+    tbAccounts.forEach((a) => {
+      out += `${a.name}\t${a.category}\t${a.debit ? a.debit.toFixed(2) : '-'}\t${a.credit ? a.credit.toFixed(2) : '-'}\n`;
+    });
+    out += `\nTOTALS:\t\t${tbMetrics.totalDebits.toFixed(2)}\t${tbMetrics.totalCredits.toFixed(2)}\tStatus: ${tbMetrics.isBalanced ? 'BALANCED' : 'OUT OF BALANCE'}`;
+    return out;
+  }, [tbAccounts, tbMetrics]);
+
+  const resetBsDefaults = () => {
+    setBsCash(48500); setBsAR(24000); setBsInventory(31500); setBsPrepaid(4200);
+    setBsPPE(115000); setBsIntangibles(25000); setBsAP(19500); setBsShortDebt(12000);
+    setBsAccrued(6800); setBsLongDebt(65000); setBsStock(50000); setBsRetained(90900);
+  };
+  const resetPlDefaults = () => {
+    setPlGrossSales(240000); setPlServiceRevenue(45000); setPlDiscounts(5000);
+    setPlRawMaterials(68000); setPlDirectLabor(42000); setPlShipping(8500);
+    setPlSalaries(52000); setPlMarketing(18000); setPlRent(14400); setPlUtilities(6200);
+    setPlOtherOpex(7500); setPlDepreciation(8000); setPlInterestExpense(3500); setPlTaxRatePct(21);
+  };
+  const resetCfDefaults = () => {
+    setCfStartingBalance(50000); setCfMonthlySales(38000); setCfMonthlyReceivables(6000);
+    setCfMonthlyPayroll(22000); setCfMonthlyVendors(9500); setCfMonthlyRent(4000);
+    setCfMonthlyTaxLoan(2500); setCfProjectionMonths(6);
+  };
+  const resetBrDefaults = () => {
+    setBrBankStatementBal(34250.75); setBrDepositsInTransit(4800.0); setBrOutstandingChecks(2650.5);
+    setBrBookBalance(36780.25); setBrInterestEarned(45.0); setBrBankServiceFees(25.0); setBrNsfChecks(400.0);
+  };
+  const resetDeprDefaults = () => {
+    setDeprCost(45000); setDeprSalvage(5000); setDeprLifespan(5); setDeprMethod('straight-line');
+  };
+  const resetBadDebtDefaults = () => {
+    setArCurrent(85000); setArRateCurrent(1.0); setAr30(32000); setArRate30(3.5);
+    setAr60(14000); setArRate60(10.0); setAr90(6500); setArRate90(25.0);
+    setAr120Plus(3800); setArRate120Plus(60.0); setExistingAllowance(1200);
+  };
+  const resetEbDefaults = () => {
+    setEbRevenue(520000); setEbCogs(195000); setEbSga(145000);
+    setEbDepreciation(24000); setEbAmortization(8000); setEbEvMultiplier(7.5);
+  };
+  const resetGpDefaults = () => {
+    setGpSellingPrice(120); setGpCostOfGoods(65); setGpUnitsSold(500); setGpTargetMarginPct(55);
+  };
+  const resetNmDefaults = () => {
+    setNmRevenue(350000); setNmCogs(140000); setNmOpex(110000); setNmInterest(6000); setNmTaxRate(22);
+  };
+  const resetGstDefaults = () => {
+    setGstSales18(120000); setGstSales12(40000); setGstSales5(25000); setGstSales0(10000);
+    setGstPurchases18(60000); setGstPurchases12(20000); setGstPurchases5(15000); setGstRcmPayable(1200);
+  };
+
   return (
     <div className="space-y-6">
       {/* HEADER BANNER */}
@@ -635,6 +744,13 @@ export const AccountingToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       {/* 2. BALANCE SHEET CALCULATOR MASTER */}
       {slug === 'balance-sheet-calculator-master' && (
         <div className="space-y-6">
+          <ActionToolbar
+            label="Balance Sheet Actions"
+            onReset={resetBsDefaults}
+            onCopy={() => handleCopyText(`Balance Sheet Summary:\nTotal Assets: ${bsMetrics.totalAssets}\nTotal Liabilities: ${bsMetrics.totalLiabilities}\nTotal Equity: ${bsMetrics.totalEquity}\nWorking Capital: ${bsMetrics.workingCapital}\nBalanced: ${bsMetrics.isBalanced}`, 'bs')}
+            onDownload={() => downloadTextFile('balance_sheet_summary.txt', `Balance Sheet Summary\n\nTotal Assets: ${bsMetrics.totalAssets}\nTotal Liabilities: ${bsMetrics.totalLiabilities}\nTotal Equity: ${bsMetrics.totalEquity}\nWorking Capital: ${bsMetrics.workingCapital}\nBalanced: ${bsMetrics.isBalanced}`)}
+            isCopied={copiedKey === 'bs'}
+          />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* ASSETS */}
             <div className="bg-white p-5 rounded-2xl border border-slate-200 space-y-3">
@@ -711,7 +827,7 @@ export const AccountingToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
             <div className={`p-4 rounded-xl border text-center ${bsMetrics.isBalanced ? 'bg-emerald-50 border-emerald-300' : 'bg-rose-50 border-rose-300'}`}>
               <p className="text-xs font-medium text-slate-700">Accounting Equation</p>
               <p className="text-lg font-bold font-mono mt-1 text-slate-900">{bsMetrics.isBalanced ? 'Assets = Liab + Equity' : 'Out of Balance'}</p>
-              <p className="text-[11px] font-semibold text-slate-600 mt-1">Working Cap: ${bsMetrics.workingCapital.toLocaleString()}</p>
+              <p className="text-[11px] font-semibold text-slate-600 mt-1">Working Capital: ${bsMetrics.workingCapital.toLocaleString()}</p>
             </div>
           </div>
         </div>
@@ -720,6 +836,13 @@ export const AccountingToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       {/* 3. ADVANCED PROFIT AND LOSS ESTIMATOR */}
       {slug === 'advanced-profit-and-loss-estimator' && (
         <div className="space-y-6">
+          <ActionToolbar
+            label="P&L Statement Actions"
+            onReset={resetPlDefaults}
+            onCopy={() => handleCopyText(`Profit & Loss Summary:\nNet Revenue: ${plMetrics.netRevenue}\nGross Profit: ${plMetrics.grossProfit} (${plMetrics.grossMarginPct.toFixed(1)}%)\nEBITDA: ${plMetrics.ebitda}\nNet Income: ${plMetrics.netIncome} (${plMetrics.netMarginPct.toFixed(1)}%)`, 'pl')}
+            onDownload={() => downloadTextFile('profit_loss_summary.txt', `Profit & Loss Statement\nNet Revenue: ${plMetrics.netRevenue}\nGross Profit: ${plMetrics.grossProfit}\nEBITDA: ${plMetrics.ebitda}\nNet Income: ${plMetrics.netIncome}`)}
+            isCopied={copiedKey === 'pl'}
+          />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white p-5 rounded-2xl border border-slate-200 space-y-3">
               <h4 className="font-bold text-sm text-slate-800 border-b pb-2">1. Revenues & Sales ($)</h4>
@@ -788,6 +911,20 @@ export const AccountingToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       {/* 4. CASH FLOW PROJECTION */}
       {slug === 'cash-flow-projection-tool-smart' && (
         <div className="space-y-6">
+          <ActionToolbar
+            label="Cash Flow Controls"
+            onReset={resetCfDefaults}
+            onCopy={() => handleCopyText(`Cash Flow Forecast:\nStarting Balance: ${cfStartingBalance}\nMonthly Net: ${cfSchedule.netMonthly}\nEnd Balance: ${cfSchedule.finalBalance}\nRunway: ${cfSchedule.runwayMonths}`, 'cf')}
+            onDownload={() => {
+              let csv = 'Month,Opening Balance,Inflow,Outflow,Net,Closing Balance\n';
+              cfSchedule.schedule.forEach(r => {
+                csv += `${r.month},${r.openBal},${r.inflow},${r.outflow},${r.net},${r.closeBal}\n`;
+              });
+              downloadTextFile('cash_flow_forecast.csv', csv);
+            }}
+            downloadLabel="Export CSV"
+            isCopied={copiedKey === 'cf'}
+          />
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-white p-5 rounded-2xl border border-slate-200">
             <div>
               <label className="text-xs font-semibold text-slate-600 block mb-1">Starting Cash Balance ($)</label>
@@ -851,6 +988,13 @@ export const AccountingToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       {/* 5. BANK RECONCILIATION HELPER */}
       {slug === 'bank-reconciliation-helper-client-side' && (
         <div className="space-y-6">
+          <ActionToolbar
+            label="Bank Reconciliation Actions"
+            onReset={resetBrDefaults}
+            onCopy={() => handleCopyText(`Bank Reconciliation:\nAdjusted Bank Balance: ${brMetrics.adjustedBankBal.toFixed(2)}\nAdjusted Book Balance: ${brMetrics.adjustedBookBal.toFixed(2)}\nVariance: ${brMetrics.variance.toFixed(2)}\nStatus: ${brMetrics.isReconciled ? 'Reconciled' : 'Out of Balance'}`, 'br')}
+            onDownload={() => downloadTextFile('bank_reconciliation.txt', `Bank Reconciliation Report\nBank Balance: ${brBankStatementBal}\nBook Balance: ${brBookBalance}\nVariance: ${brMetrics.variance.toFixed(2)}\nStatus: ${brMetrics.isReconciled ? 'Reconciled' : 'Discrepancy'}`)}
+            isCopied={copiedKey === 'br'}
+          />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white p-5 rounded-2xl border border-slate-200 space-y-3">
               <h4 className="font-bold text-sm text-slate-800 border-b pb-2">Bank Statement Side</h4>
@@ -897,6 +1041,20 @@ export const AccountingToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       {/* 6. EASY DEPRECIATION SCHEDULE */}
       {slug === 'easy-depreciation-schedule-calculator' && (
         <div className="space-y-6">
+          <ActionToolbar
+            label="Depreciation Actions"
+            onReset={resetDeprDefaults}
+            onCopy={() => handleCopyText(`Depreciation Schedule:\nCost: ${deprCost}\nSalvage: ${deprSalvage}\nLifespan: ${deprLifespan} Years\nMethod: ${deprMethod}`, 'depr')}
+            onDownload={() => {
+              let csv = 'Year,Beginning Book Value,Depreciation Expense,Accumulated Depr,Ending Book Value\n';
+              deprSchedule.forEach(r => {
+                csv += `${r.year},${r.startVal.toFixed(2)},${r.exp.toFixed(2)},${r.accumulated.toFixed(2)},${r.endVal.toFixed(2)}\n`;
+              });
+              downloadTextFile('depreciation_schedule.csv', csv);
+            }}
+            downloadLabel="Export CSV"
+            isCopied={copiedKey === 'depr'}
+          />
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-white p-5 rounded-2xl border border-slate-200">
             <div>
               <label className="text-xs font-semibold text-slate-600 block mb-1">Asset Initial Cost ($)</label>
@@ -966,6 +1124,13 @@ export const AccountingToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       {/* 7. CUSTOM BAD DEBT ESTIMATOR */}
       {slug === 'custom-bad-debt-estimator' && (
         <div className="space-y-6">
+          <ActionToolbar
+            label="Bad Debt & AR Aging Actions"
+            onReset={resetBadDebtDefaults}
+            onCopy={() => handleCopyText(`Bad Debt Estimate:\nTotal AR: ${badDebtMetrics.totalAr}\nEstimated Doubtful: ${badDebtMetrics.targetAllowance.toFixed(2)}\nNet Realizable AR: ${badDebtMetrics.netRealizableAr.toFixed(2)}`, 'bd')}
+            onDownload={() => downloadTextFile('ar_aging_bad_debt.txt', `AR Aging & Bad Debt Report\nTotal AR: ${badDebtMetrics.totalAr}\nTarget Allowance: ${badDebtMetrics.targetAllowance.toFixed(2)}\nNet Realizable: ${badDebtMetrics.netRealizableAr.toFixed(2)}`)}
+            isCopied={copiedKey === 'bd'}
+          />
           <div className="bg-white p-5 rounded-2xl border border-slate-200 space-y-4">
             <h4 className="font-bold text-sm text-slate-800">Accounts Receivable Aging Buckets</h4>
             <div className="space-y-3">
@@ -1022,6 +1187,13 @@ export const AccountingToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       {/* 8. EBITDA MARGIN CALCULATOR DYNAMIC */}
       {slug === 'ebitda-margin-calculator-dynamic' && (
         <div className="space-y-6">
+          <ActionToolbar
+            label="EBITDA Valuation Actions"
+            onReset={resetEbDefaults}
+            onCopy={() => handleCopyText(`EBITDA Analysis:\nRevenue: ${ebRevenue}\nEBITDA: ${ebMetrics.ebitda} (${ebMetrics.ebitdaMargin.toFixed(1)}%)\nEBIT: ${ebMetrics.ebit}\nEnterprise Value Proxy: ${ebMetrics.enterpriseValueProxy.toFixed(0)}`, 'eb')}
+            onDownload={() => downloadTextFile('ebitda_analysis.txt', `EBITDA Valuation Report\nRevenue: ${ebRevenue}\nEBITDA: ${ebMetrics.ebitda}\nMargin: ${ebMetrics.ebitdaMargin.toFixed(1)}%\nEnterprise Value: ${ebMetrics.enterpriseValueProxy.toFixed(0)}`)}
+            isCopied={copiedKey === 'eb'}
+          />
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 bg-white p-5 rounded-2xl border border-slate-200">
             <div>
               <label className="text-xs font-semibold text-slate-600 block mb-1">Total Revenue ($)</label>
@@ -1072,6 +1244,13 @@ export const AccountingToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       {/* 9. GROSS PROFIT MARGIN CALCULATOR */}
       {slug === 'gross-profit-margin-calculator-private' && (
         <div className="space-y-6">
+          <ActionToolbar
+            label="Gross Margin Actions"
+            onReset={resetGpDefaults}
+            onCopy={() => handleCopyText(`Gross Profit Analysis:\nSelling Price: ${gpSellingPrice}\nUnit Profit: ${gpMetrics.unitGrossProfit.toFixed(2)}\nGross Margin: ${gpMetrics.grossMarginPct.toFixed(2)}%\nMarkup: ${gpMetrics.markupPct.toFixed(2)}%\nBatch Profit: ${gpMetrics.totalBatchProfit}`, 'gp')}
+            onDownload={() => downloadTextFile('gross_profit_summary.txt', `Gross Profit Summary\nSelling Price: ${gpSellingPrice}\nUnit Profit: ${gpMetrics.unitGrossProfit.toFixed(2)}\nGross Margin: ${gpMetrics.grossMarginPct.toFixed(2)}%\nMarkup: ${gpMetrics.markupPct.toFixed(2)}%\nTotal Batch Profit: ${gpMetrics.totalBatchProfit}`)}
+            isCopied={copiedKey === 'gp'}
+          />
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-white p-5 rounded-2xl border border-slate-200">
             <div>
               <label className="text-xs font-semibold text-slate-600 block mb-1">Selling Price per Unit ($)</label>
@@ -1116,6 +1295,13 @@ export const AccountingToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       {/* 10. BROWSER NET MARGIN ESTIMATOR */}
       {slug === 'browser-net-margin-estimator' && (
         <div className="space-y-6">
+          <ActionToolbar
+            label="Net Margin Actions"
+            onReset={resetNmDefaults}
+            onCopy={() => handleCopyText(`Net Margin Analysis:\nRevenue: ${nmRevenue}\nOperating Margin: ${nmMetrics.operatingMargin.toFixed(1)}%\nNet Income: ${nmMetrics.netIncome} (${nmMetrics.netMargin.toFixed(1)}%)\nTaxes: ${Math.round(nmMetrics.tax)}`, 'nm')}
+            onDownload={() => downloadTextFile('net_margin_summary.txt', `Net Margin Summary\nRevenue: ${nmRevenue}\nGross Margin: ${nmMetrics.grossMargin.toFixed(1)}%\nOperating Margin: ${nmMetrics.operatingMargin.toFixed(1)}%\nNet Margin: ${nmMetrics.netMargin.toFixed(1)}%\nNet Income: ${nmMetrics.netIncome}`)}
+            isCopied={copiedKey === 'nm'}
+          />
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 bg-white p-5 rounded-2xl border border-slate-200">
             <div>
               <label className="text-xs font-semibold text-slate-600 block mb-1">Total Revenue ($)</label>
@@ -1166,6 +1352,13 @@ export const AccountingToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       {/* 11. GST RETURN HELPER UNIVERSAL */}
       {slug === 'gst-return-helper-universal' && (
         <div className="space-y-6">
+          <ActionToolbar
+            label="GST Return Actions"
+            onReset={resetGstDefaults}
+            onCopy={() => handleCopyText(`GST Tax Return:\nOutput GST Liability: ${gstMetrics.totalOutputGst.toFixed(2)}\nInput Tax Credit (ITC): ${gstMetrics.totalItc.toFixed(2)}\nNet GST Payable: ${Math.abs(gstMetrics.netGstPayable).toFixed(2)}`, 'gst')}
+            onDownload={() => downloadTextFile('gst_return_summary.txt', `GST Tax Return Report\nTotal Output GST: ${gstMetrics.totalOutputGst.toFixed(2)}\nTotal ITC: ${gstMetrics.totalItc.toFixed(2)}\nNet GST: ${Math.abs(gstMetrics.netGstPayable).toFixed(2)}`)}
+            isCopied={copiedKey === 'gst'}
+          />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white p-5 rounded-2xl border border-slate-200 space-y-3">
               <h4 className="font-bold text-sm text-slate-800 border-b pb-2">Outward Supplies / Sales ($)</h4>
@@ -1214,6 +1407,26 @@ export const AccountingToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       {/* 12. EASY TRIAL BALANCE CHECKER */}
       {slug === 'easy-trial-balance-checker' && (
         <div className="space-y-6">
+          <ActionToolbar
+            label="Trial Balance Actions"
+            onReset={() => {
+              setTbAccounts([
+                { id: '1', name: 'Cash and Cash Equivalents', category: 'Asset', debit: 45000, credit: 0 },
+                { id: '2', name: 'Accounts Receivable', category: 'Asset', debit: 18500, credit: 0 },
+                { id: '3', name: 'Prepaid Insurance', category: 'Asset', debit: 2400, credit: 0 },
+                { id: '4', name: 'Equipment & Computers', category: 'Asset', debit: 32000, credit: 0 },
+                { id: '5', name: 'Accounts Payable', category: 'Liability', debit: 0, credit: 14200 },
+                { id: '6', name: 'Bank Notes Payable', category: 'Liability', debit: 0, credit: 25000 },
+                { id: '7', name: 'Common Stock Equity', category: 'Equity', debit: 0, credit: 50000 },
+                { id: '8', name: 'Retained Earnings', category: 'Equity', debit: 0, credit: 8700 },
+                { id: '9', name: 'Consulting Services Revenue', category: 'Revenue', debit: 0, credit: 42000 },
+                { id: '10', name: 'Salary & Wage Expense', category: 'Expense', debit: 42000, credit: 0 }
+              ]);
+            }}
+            onCopy={() => handleCopyText(`Trial Balance:\nTotal Debits: ${tbMetrics.totalDebits.toFixed(2)}\nTotal Credits: ${tbMetrics.totalCredits.toFixed(2)}\nBalanced: ${tbMetrics.isBalanced}`, 'tb')}
+            onDownload={() => downloadTextFile('trial_balance.txt', formattedTbExport)}
+            isCopied={copiedKey === 'tb'}
+          />
           <div className="bg-white p-5 rounded-2xl border border-slate-200 space-y-4">
             <h4 className="font-bold text-sm text-slate-800">Add Account to Trial Balance</h4>
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">

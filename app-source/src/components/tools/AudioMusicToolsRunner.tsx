@@ -153,6 +153,74 @@ const AudioActionToolbar: React.FC<AudioActionToolbarProps> = ({
   </div>
 );
 
+
+// Robust Biquad Filter Implementation (RBJ Audio EQ Cookbook)
+function applyBiquadFilter(
+  data: Float32Array,
+  sampleRate: number,
+  type: 'lowshelf' | 'peaking' | 'highshelf' | 'highpass',
+  freq: number,
+  gainDb = 0,
+  q = 1.0
+): Float32Array {
+  const out = new Float32Array(data.length);
+  const A = Math.pow(10, gainDb / 40);
+  const w0 = 2 * Math.PI * Math.min(freq, sampleRate * 0.45) / sampleRate;
+  const cosw0 = Math.cos(w0);
+  const sinw0 = Math.sin(w0);
+  const alpha = sinw0 / (2 * q);
+
+  let b0 = 1, b1 = 0, b2 = 0, a0 = 1, a1 = 0, a2 = 0;
+
+  if (type === 'peaking') {
+    b0 = 1 + alpha * A;
+    b1 = -2 * cosw0;
+    b2 = 1 - alpha * A;
+    a0 = 1 + alpha / A;
+    a1 = -2 * cosw0;
+    a2 = 1 - alpha / A;
+  } else if (type === 'lowshelf') {
+    const sqrtA = Math.sqrt(A);
+    b0 = A * ((A + 1) - (A - 1) * cosw0 + 2 * sqrtA * alpha);
+    b1 = 2 * A * ((A - 1) - (A + 1) * cosw0);
+    b2 = A * ((A + 1) - (A - 1) * cosw0 - 2 * sqrtA * alpha);
+    a0 = (A + 1) + (A - 1) * cosw0 + 2 * sqrtA * alpha;
+    a1 = -2 * ((A - 1) + (A + 1) * cosw0);
+    a2 = (A + 1) + (A - 1) * cosw0 - 2 * sqrtA * alpha;
+  } else if (type === 'highshelf') {
+    const sqrtA = Math.sqrt(A);
+    b0 = A * ((A + 1) + (A - 1) * cosw0 + 2 * sqrtA * alpha);
+    b1 = -2 * A * ((A - 1) + (A + 1) * cosw0);
+    b2 = A * ((A + 1) + (A - 1) * cosw0 - 2 * sqrtA * alpha);
+    a0 = (A + 1) - (A - 1) * cosw0 + 2 * sqrtA * alpha;
+    a1 = 2 * ((A - 1) - (A + 1) * cosw0);
+    a2 = (A + 1) - (A - 1) * cosw0 - 2 * sqrtA * alpha;
+  } else if (type === 'highpass') {
+    b0 = (1 + cosw0) / 2;
+    b1 = -(1 + cosw0);
+    b2 = (1 + cosw0) / 2;
+    a0 = 1 + alpha;
+    a1 = -2 * cosw0;
+    a2 = 1 - alpha;
+  }
+
+  const normB0 = b0 / a0;
+  const normB1 = b1 / a0;
+  const normB2 = b2 / a0;
+  const normA1 = a1 / a0;
+  const normA2 = a2 / a0;
+
+  let x1 = 0, x2 = 0, y1 = 0, y2 = 0;
+  for (let i = 0; i < data.length; i++) {
+    const x0 = data[i];
+    const y0 = normB0 * x0 + normB1 * x1 + normB2 * x2 - normA1 * y1 - normA2 * y2;
+    x2 = x1; x1 = x0;
+    y2 = y1; y1 = y0;
+    out[i] = y0;
+  }
+  return out;
+}
+
 export const AudioMusicToolsRunner: React.FC<Props> = ({ tool, onCopy, copied }) => {
   const slug = tool.slug;
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
@@ -884,26 +952,26 @@ export const AudioMusicToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
     setIsProcessing(false);
   };
 
-  // DSP: Graphic Equalizer Advanced (5 bands)
+  // DSP: Graphic Equalizer Advanced (5 discrete IIR bands)
   const processGraphicEq = () => {
     if (!audioBuffer) return;
     setIsProcessing(true);
     const ctx = getAudioCtx();
-    const newBuffer = ctx.createBuffer(audioBuffer.numberOfChannels, audioBuffer.length, audioBuffer.sampleRate);
-    const gains = [
-      Math.pow(10, eqBass / 20),
-      Math.pow(10, eqLowMid / 20),
-      Math.pow(10, eqMid / 20),
-      Math.pow(10, eqHighMid / 20),
-      Math.pow(10, eqTreble / 20)
-    ];
-    const avgGain = (gains[0] + gains[1] + gains[2] + gains[3] + gains[4]) / 5;
+    const sr = audioBuffer.sampleRate;
+    const newBuffer = ctx.createBuffer(audioBuffer.numberOfChannels, audioBuffer.length, sr);
 
     for (let c = 0; c < audioBuffer.numberOfChannels; c++) {
-      const src = audioBuffer.getChannelData(c);
+      let channelData = new Float32Array(audioBuffer.getChannelData(c));
+      // Cascade 5 independent band filters
+      channelData = applyBiquadFilter(channelData, sr, 'lowshelf', 60, eqBass);
+      channelData = applyBiquadFilter(channelData, sr, 'peaking', 250, eqLowMid, 1.0);
+      channelData = applyBiquadFilter(channelData, sr, 'peaking', 1000, eqMid, 1.0);
+      channelData = applyBiquadFilter(channelData, sr, 'peaking', 4000, eqHighMid, 1.0);
+      channelData = applyBiquadFilter(channelData, sr, 'highshelf', 12000, eqTreble);
+
       const dst = newBuffer.getChannelData(c);
       for (let i = 0; i < audioBuffer.length; i++) {
-        dst[i] = Math.max(-1, Math.min(1, src[i] * avgGain));
+        dst[i] = Math.max(-1, Math.min(1, channelData[i]));
       }
     }
     const wav = audioBufferToWav(newBuffer);
@@ -911,21 +979,33 @@ export const AudioMusicToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
     setIsProcessing(false);
   };
 
-  // DSP: Smart Pitch Shift
+  // DSP: Smart Pitch Shift (Granular Overlap-Add preserving duration)
   const processPitchShift = () => {
     if (!audioBuffer) return;
     setIsProcessing(true);
     const ctx = getAudioCtx();
+    const sr = audioBuffer.sampleRate;
+    const newBuffer = ctx.createBuffer(audioBuffer.numberOfChannels, audioBuffer.length, sr);
     const rateFactor = Math.pow(2, pitchSemitones / 12);
-    const newLength = Math.max(1, Math.floor(audioBuffer.length / rateFactor));
-    const newBuffer = ctx.createBuffer(audioBuffer.numberOfChannels, newLength, audioBuffer.sampleRate);
+    const grainSize = Math.floor(sr * 0.04);
+    const hopSize = Math.floor(grainSize / 2);
 
     for (let c = 0; c < audioBuffer.numberOfChannels; c++) {
       const src = audioBuffer.getChannelData(c);
       const dst = newBuffer.getChannelData(c);
-      for (let i = 0; i < newLength; i++) {
-        const srcIdx = Math.floor(i * rateFactor);
-        dst[i] = srcIdx < audioBuffer.length ? src[srcIdx] : 0;
+      const temp = new Float32Array(audioBuffer.length);
+
+      for (let pos = 0; pos < audioBuffer.length - grainSize; pos += hopSize) {
+        for (let g = 0; g < grainSize; g++) {
+          const win = 0.5 * (1 - Math.cos((2 * Math.PI * g) / grainSize));
+          const srcIdx = Math.min(src.length - 1, Math.floor(pos + g * rateFactor));
+          if (pos + g < temp.length) {
+            temp[pos + g] += src[srcIdx] * win;
+          }
+        }
+      }
+      for (let i = 0; i < audioBuffer.length; i++) {
+        dst[i] = Math.max(-1, Math.min(1, temp[i]));
       }
     }
     const wav = audioBufferToWav(newBuffer);
@@ -1013,24 +1093,26 @@ export const AudioMusicToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
   const [ringtoneStart, setRingtoneStart] = useState<number>(0);
   const [ringtoneDuration, setRingtoneDuration] = useState<number>(30);
 
-  // DSP: Noise Remover Gate & Rumble Filter
+  // DSP: Noise Remover Gate & Rumble High-Pass Filter
   const processNoiseRemover = () => {
     if (!audioBuffer) return;
     setIsProcessing(true);
     const ctx = getAudioCtx();
-    const newBuffer = ctx.createBuffer(audioBuffer.numberOfChannels, audioBuffer.length, audioBuffer.sampleRate);
+    const sr = audioBuffer.sampleRate;
+    const newBuffer = ctx.createBuffer(audioBuffer.numberOfChannels, audioBuffer.length, sr);
     const thresholdLinear = Math.pow(10, noiseGateThreshold / 20);
 
     for (let c = 0; c < audioBuffer.numberOfChannels; c++) {
-      const src = audioBuffer.getChannelData(c);
+      // 1. Apply High-Pass Rumble Filter
+      const highPassed = applyBiquadFilter(audioBuffer.getChannelData(c), sr, 'highpass', highPassCutoff);
       const dst = newBuffer.getChannelData(c);
       for (let i = 0; i < audioBuffer.length; i++) {
-        const absVal = Math.abs(src[i]);
-        // Soft-knee noise gate attenuation
+        const absVal = Math.abs(highPassed[i]);
+        // 2. Apply Noise Gate Threshold
         if (absVal < thresholdLinear) {
-          dst[i] = src[i] * 0.05; // 26dB attenuation for noise floor
+          dst[i] = highPassed[i] * 0.05;
         } else {
-          dst[i] = src[i];
+          dst[i] = highPassed[i];
         }
       }
     }
@@ -1077,11 +1159,13 @@ export const AudioMusicToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
     setIsProcessing(false);
   };
 
-  // Tool 39: Speech to Text Recognizer
+  // Tool 39: Speech to Text Recognizer (Honest Browser API Detection)
+  const [speechApiSupported, setSpeechApiSupported] = useState<boolean>(true);
   const startSpeechRecognition = () => {
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      setTranscriptText('Speech Recognition API not supported in this browser environment. Showing demo transcribed text: "Welcome to Public Media Tool audio processing suite."');
+      setSpeechApiSupported(false);
+      setIsRecognizing(false);
       return;
     }
     try {
@@ -1090,7 +1174,7 @@ export const AudioMusicToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       recognition.interimResults = true;
       recognition.lang = 'en-US';
 
-      recognition.onstart = () => setIsRecognizing(true);
+      recognition.onstart = () => { setIsRecognizing(true); setSpeechApiSupported(true); };
       recognition.onerror = () => setIsRecognizing(false);
       recognition.onend = () => setIsRecognizing(false);
       recognition.onresult = (event: any) => {
@@ -1102,7 +1186,8 @@ export const AudioMusicToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       };
       recognition.start();
     } catch (e) {
-      setTranscriptText('Listening simulated: "Audio track processing successfully completed."');
+      setSpeechApiSupported(false);
+      setIsRecognizing(false);
     }
   };
 
@@ -1137,6 +1222,36 @@ export const AudioMusicToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
   
   // Block 5 Tool States (Tools 41-46)
   // Tool 41: Podcast Editor Prep
+    // Tool 41: Podcast Mastering (Intro/Outro Fade + Ducking)
+  const processPodcastMastering = () => {
+    if (!audioBuffer) return;
+    setIsProcessing(true);
+    const ctx = getAudioCtx();
+    const sr = audioBuffer.sampleRate;
+    const newBuffer = ctx.createBuffer(audioBuffer.numberOfChannels, audioBuffer.length, sr);
+    const introSamples = Math.min(audioBuffer.length / 2, Math.floor(podcastIntroDuration * sr));
+    const outroSamples = Math.min(audioBuffer.length / 2, Math.floor(podcastOutroDuration * sr));
+    const duckGain = Math.pow(10, podcastDuckLevel / 20);
+
+    for (let c = 0; c < audioBuffer.numberOfChannels; c++) {
+      const src = audioBuffer.getChannelData(c);
+      const dst = newBuffer.getChannelData(c);
+      for (let i = 0; i < audioBuffer.length; i++) {
+        let gain = duckGain;
+        if (i < introSamples) {
+          gain = (i / introSamples) * duckGain;
+        } else if (i >= audioBuffer.length - outroSamples) {
+          const remain = audioBuffer.length - 1 - i;
+          gain = (remain / outroSamples) * duckGain;
+        }
+        dst[i] = src[i] * gain;
+      }
+    }
+    const wav = audioBufferToWav(newBuffer);
+    setProcessedUrl(URL.createObjectURL(wav));
+    setIsProcessing(false);
+  };
+
   const [podcastIntroDuration, setPodcastIntroDuration] = useState<number>(3);
   const [podcastOutroDuration, setPodcastOutroDuration] = useState<number>(3);
   const [podcastDuckLevel, setPodcastDuckLevel] = useState<number>(-12);
@@ -2380,7 +2495,7 @@ Standard Target Loudness: -16 LUFS (Broadcast)`)}
                   <Sparkles className="w-4 h-4" /> Load Sample Audio Track
                 </button>
               )}
-              <button type="button" onClick={() => { if (audioBuffer) processBitrateCompression(); }} disabled={!audioBuffer || isProcessing} className="px-5 py-2.5 bg-purple-600 hover:bg-purple-700 disabled:bg-slate-300 text-white text-xs font-bold rounded-xl flex items-center gap-2">
+              <button type="button" onClick={() => { if (audioBuffer) processPodcastMastering(); }} disabled={!audioBuffer || isProcessing} className="px-5 py-2.5 bg-purple-600 hover:bg-purple-700 disabled:bg-slate-300 text-white text-xs font-bold rounded-xl flex items-center gap-2">
                 <Scissors className="w-4 h-4" /> Master Podcast Episode
               </button>
             </div>

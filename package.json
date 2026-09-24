@@ -13,5 +13,8 @@
   "dependencies": {
     "jspdf": "^3.0.1",
     "pdfjs-dist": "^4.9.155"
+  },
+  "devDependencies": {
+    "puppeteer": "^25.12.0"
   }
 }

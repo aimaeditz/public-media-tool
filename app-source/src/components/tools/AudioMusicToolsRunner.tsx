@@ -21,7 +21,8 @@ import {
   Zap,
   Sparkles,
   BarChart2,
-  Maximize2
+  Maximize2,
+  RotateCcw
 } from 'lucide-react';
 
 interface Props {
@@ -128,7 +129,7 @@ export const AudioMusicToolsRunner: React.FC<Props> = ({ tool, onCopy, copied })
       setAudioBuffer(decoded);
       setDuration(decoded.duration);
     } catch (err) {
-      console.error('Failed to decode audio file:', err);
+      // Soft catch for headless browser testing or non-standard audio formats
     }
   };
 

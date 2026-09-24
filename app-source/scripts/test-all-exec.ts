@@ -1,9 +1,17 @@
+import fs from 'fs';
+import path from 'path';
 import { GlobalWindow } from 'happy-dom';
 
 const window = new GlobalWindow();
 (global as any).window = window;
 (global as any).document = window.document;
-(global as any).navigator = window.navigator;
+try {
+  (global as any).navigator = window.navigator;
+} catch (e) {
+  try {
+    Object.defineProperty(globalThis, 'navigator', { value: window.navigator, configurable: true, writable: true });
+  } catch (err) {}
+}
 (global as any).HTMLElement = window.HTMLElement;
 (global as any).HTMLInputElement = window.HTMLInputElement;
 (global as any).HTMLTextAreaElement = window.HTMLTextAreaElement;
@@ -24,13 +32,30 @@ const window = new GlobalWindow();
     destination: {}
   };
 };
-(global as any).webkitAudioContext = (global as any).AudioContext;
+if (!globalThis.URL.createObjectURL || typeof globalThis.URL.createObjectURL === 'function') {
+  globalThis.URL.createObjectURL = () => 'blob:mock-url';
+  globalThis.URL.revokeObjectURL = () => {};
+}
 const nativeCrypto = globalThis.crypto;
-(global as any).crypto = {
-  subtle: nativeCrypto?.subtle,
-  randomUUID: nativeCrypto?.randomUUID ? nativeCrypto.randomUUID.bind(nativeCrypto) : () => '11111111-2222-3333-4444-555555555555',
-  getRandomValues: nativeCrypto?.getRandomValues ? nativeCrypto.getRandomValues.bind(nativeCrypto) : ((arr: any) => arr)
-};
+try {
+  (global as any).crypto = {
+    subtle: nativeCrypto?.subtle,
+    randomUUID: nativeCrypto?.randomUUID ? nativeCrypto.randomUUID.bind(nativeCrypto) : () => '11111111-2222-3333-4444-555555555555',
+    getRandomValues: nativeCrypto?.getRandomValues ? nativeCrypto.getRandomValues.bind(nativeCrypto) : ((arr: any) => arr)
+  };
+} catch (e) {
+  try {
+    Object.defineProperty(globalThis, 'crypto', {
+      value: {
+        subtle: nativeCrypto?.subtle,
+        randomUUID: nativeCrypto?.randomUUID ? nativeCrypto.randomUUID.bind(nativeCrypto) : () => '11111111-2222-3333-4444-555555555555',
+        getRandomValues: nativeCrypto?.getRandomValues ? nativeCrypto.getRandomValues.bind(nativeCrypto) : ((arr: any) => arr)
+      },
+      configurable: true,
+      writable: true
+    });
+  } catch (err) {}
+}
 
 // Mock canvas getContext
 if (window.HTMLCanvasElement) {
@@ -636,9 +661,9 @@ async function runFullMeaningfulAudit() {
   });
 
   // Save report files
-  await Bun.write('FULL_AUDIT_REPORT_TOOLS_1_TO_1516_MEANINGFUL.txt', reportText);
-  await Bun.write('app-source/public/FULL_AUDIT_REPORT_TOOLS_1_TO_1516_MEANINGFUL.txt', reportText);
-  await Bun.write('real_tested_tools_1_1516_meaningful.json', JSON.stringify(results, null, 2));
+  fs.writeFileSync('FULL_AUDIT_REPORT_TOOLS_1_TO_1516_MEANINGFUL.txt', reportText, 'utf8');
+  fs.writeFileSync('app-source/public/FULL_AUDIT_REPORT_TOOLS_1_TO_1516_MEANINGFUL.txt', reportText, 'utf8');
+  fs.writeFileSync('real_tested_tools_1_1516_meaningful.json', JSON.stringify(results, null, 2), 'utf8');
 
   console.log(`Saved report to FULL_AUDIT_REPORT_TOOLS_1_TO_1516_MEANINGFUL.txt`);
 }

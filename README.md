@@ -16,7 +16,8 @@ If any of the above appears to have changed or gone missing, that is a mistake �
 
 Premium web app with 1,516+ free non-AI browser-based tools. Simple. Private. Fast. Zero server uploads.
 
-🌐 **Live Demo**: [https://aimaeditz.github.io/public-media-tool/](https://aimaeditz.github.io/public-media-tool/)
+🌐 **Live Website**: [https://publicmediatool.com/](https://publicmediatool.com/)  
+*(Legacy GitHub Pages mirror: https://aimaeditz.github.io/public-media-tool/)*
 
 ---
 

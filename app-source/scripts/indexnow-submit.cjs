@@ -3,8 +3,10 @@ const path = require('path');
 const https = require('https');
 
 const KEY = 'f13a52c928b143a4970e18c130f4e229';
-const HOST = 'aimaeditz.github.io';
-const KEY_LOCATION = `https://${HOST}/public-media-tool/${KEY}.txt`;
+// Legacy GitHub Pages host kept as fallback reference
+const LEGACY_GITHUB_PAGES_HOST = 'aimaeditz.github.io';
+const HOST = 'publicmediatool.com';
+const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/indexnow';
 const BATCH_SIZE = 500;
 

@@ -5,7 +5,7 @@ import { CATEGORIES } from '../lib/categories';
 import { getIconComponent, formatNumber } from '../lib/utils';
 import { Share2, ShieldCheck, ChevronRight, Check, HelpCircle } from 'lucide-react';
 import { useToolsStore } from '../lib/tools-store';
-import { useSeo } from '../lib/useSeo';
+import { useSeo, BASE_URL } from '../lib/useSeo';
 
 const ToolRunner = React.lazy(() => import('../components/tools/ToolRunner').then(m => ({ default: m.ToolRunner })));
 
@@ -144,19 +144,19 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
               '@type': 'ListItem',
               position: 1,
               name: 'Home',
-              item: 'https://aimaeditz.github.io/public-media-tool/',
+              item: `${BASE_URL}/`,
             },
             {
               '@type': 'ListItem',
               position: 2,
               name: tool.category || 'Categories',
-              item: `https://aimaeditz.github.io/public-media-tool/categories/${categorySlug}`,
+              item: `${BASE_URL}/categories/${categorySlug}`,
             },
             {
               '@type': 'ListItem',
               position: 3,
               name: tool.name,
-              item: `https://aimaeditz.github.io/public-media-tool/tools/${slug}`,
+              item: `${BASE_URL}/tools/${slug}`,
             },
           ],
         },

@@ -9,7 +9,10 @@ export interface SeoInput {
   jsonLd?: object;
 }
 
-const BASE_URL = 'https://aimaeditz.github.io/public-media-tool';
+// Unused legacy GitHub Pages URL kept as a fallback constant
+export const LEGACY_GITHUB_PAGES_URL = 'https://aimaeditz.github.io/public-media-tool';
+// Active canonical domain URL
+export const BASE_URL = 'https://publicmediatool.com';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
 
 export function useSeo({ title, description, path, type = 'website', image, jsonLd }: SeoInput) {

@@ -4,7 +4,7 @@ import { getIconComponent, formatNumber } from '../lib/utils';
 import { ArrowRight, ChevronRight, Loader2, Sparkles } from 'lucide-react';
 import { useToolsStore } from '../lib/tools-store';
 import { LazyRender } from '../components/tools/LazyRender';
-import { useSeo } from '../lib/useSeo';
+import { useSeo, BASE_URL } from '../lib/useSeo';
 
 interface CategoryDetailPageProps {
   categorySlug: string;
@@ -51,7 +51,7 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
       '@type': 'CollectionPage',
       name: `${category.name} Tools`,
       description: category.description,
-      url: `https://aimaeditz.github.io/public-media-tool/categories/${categorySlug}`,
+      url: `${BASE_URL}/categories/${categorySlug}`,
       numberOfItems: category.count,
     },
   });

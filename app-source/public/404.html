@@ -7,9 +7,9 @@
       // Single Page Apps for GitHub Pages
       // MIT License
       // https://github.com/rafgraph/spa-github-pages
-      // This script takes the current url and converts the path and query
-      // into just query string parameter format to redirect to index.html
-      var pathSegmentsToKeep = 1;
+      // Custom domain (publicmediatool.com) serves from root (0 segments to keep)
+      // Legacy github.io/repo-name path kept 1 segment
+      var pathSegmentsToKeep = window.location.hostname.endsWith('github.io') ? 1 : 0;
 
       var l = window.location;
       l.replace(

@@ -4,7 +4,7 @@ import { getIconComponent, formatNumber } from '../lib/utils';
 import { Search, ArrowRight, Filter, Sparkles, X, RotateCcw, Loader2, ChevronDown } from 'lucide-react';
 import { useToolsStore } from '../lib/tools-store';
 import { LazyRender } from '../components/tools/LazyRender';
-import { useSeo } from '../lib/useSeo';
+import { useSeo, BASE_URL } from '../lib/useSeo';
 
 interface ToolsPageProps {
   navigate: (path: string) => void;
@@ -32,7 +32,7 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ navigate, initialQuery = '
       '@type': 'CollectionPage',
       name: 'All Online Tools',
       description: 'Explore 1,516+ free browser-based tools on Public Media Tool (PMT). Fast, 100% private online utilities with no signup required.',
-      url: 'https://aimaeditz.github.io/public-media-tool/tools',
+      url: `${BASE_URL}/tools`,
       numberOfItems: totalToolsCount,
     },
   });

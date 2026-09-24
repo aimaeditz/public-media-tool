@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { CATEGORIES } from '../lib/categories';
 import { getIconComponent } from '../lib/utils';
 import { ArrowRight, Search, X, Sparkles } from 'lucide-react';
-import { useSeo } from '../lib/useSeo';
+import { useSeo, BASE_URL } from '../lib/useSeo';
 
 interface CategoriesPageProps {
   navigate: (path: string) => void;
@@ -21,7 +21,7 @@ export const CategoriesPage: React.FC<CategoriesPageProps> = ({ navigate }) => {
       '@type': 'CollectionPage',
       name: 'Tool Categories',
       description: 'Browse all tool categories on Public Media Tool (PMT). Find free, private, browser-based tools for text, developer utilities, math, images, and audio with no signup.',
-      url: 'https://aimaeditz.github.io/public-media-tool/categories',
+      url: `${BASE_URL}/categories`,
     },
   });
 

@@ -193,10 +193,10 @@ export const ComprehensiveMediaWebToolsRunner: React.FC<Props> = ({ tool, onCopy
   // -------------------------------------------------------------
   const [metaTitle, setMetaTitle] = useState<string>('Best Non-AI Client-Side Developer Tools | Public Media Tool');
   const [metaDesc, setMetaDesc] = useState<string>('Explore 1,516+ free client-side tools for developers, audio engineers, writers, and designers. 100% private in-browser computation with zero server uploads.');
-  const [metaUrl, setMetaUrl] = useState<string>('https://aimaeditz.github.io/public-media-tool/');
+  const [metaUrl, setMetaUrl] = useState<string>('https://publicmediatool.com/');
   const [metaKeywords, setMetaKeywords] = useState<string>('privacy, developer tools, offline, audio editor, pdf converter, seo');
-  const [robotsTxtRules, setRobotsTxtRules] = useState<string>('User-agent: *\nAllow: /\nDisallow: /private/\n\nSitemap: https://aimaeditz.github.io/public-media-tool/sitemap.xml');
-  const [sitemapUrls, setSitemapUrls] = useState<string>('https://aimaeditz.github.io/public-media-tool/\nhttps://aimaeditz.github.io/public-media-tool/tools\nhttps://aimaeditz.github.io/public-media-tool/categories');
+  const [robotsTxtRules, setRobotsTxtRules] = useState<string>('User-agent: *\nAllow: /\nDisallow: /private/\n\nSitemap: https://publicmediatool.com/sitemap.xml');
+  const [sitemapUrls, setSitemapUrls] = useState<string>('https://publicmediatool.com/\nhttps://publicmediatool.com/tools\nhttps://publicmediatool.com/categories');
   const [schemaType, setSchemaType] = useState<string>('WebApplication');
   const [schemaAppName, setSchemaAppName] = useState<string>('Public Media Tool');
   const [schemaAppCategory, setSchemaAppCategory] = useState<string>('DeveloperApplication');
@@ -205,7 +205,7 @@ export const ComprehensiveMediaWebToolsRunner: React.FC<Props> = ({ tool, onCopy
   // -------------------------------------------------------------
   // MARKETING & VIDEO STATES
   // -------------------------------------------------------------
-  const [utmUrl, setUtmUrl] = useState<string>('https://aimaeditz.github.io/public-media-tool/');
+  const [utmUrl, setUtmUrl] = useState<string>('https://publicmediatool.com/');
   const [utmSource, setUtmSource] = useState<string>('newsletter');
   const [utmMedium, setUtmMedium] = useState<string>('email');
   const [utmCampaign, setUtmCampaign] = useState<string>('march_release');

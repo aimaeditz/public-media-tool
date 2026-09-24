@@ -8,7 +8,7 @@ import { WhyChooseUs } from '../components/sections/WhyChooseUs';
 import { HowItWorks } from '../components/sections/HowItWorks';
 import { FaqSection } from '../components/sections/FaqSection';
 import { NewsletterSection } from '../components/sections/NewsletterSection';
-import { useSeo } from '../lib/useSeo';
+import { useSeo, BASE_URL } from '../lib/useSeo';
 
 interface HomePageProps {
   navigate: (path: string) => void;
@@ -29,14 +29,14 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate, onOpenSearchWithQu
           '@type': 'WebSite',
           name: 'Public Media Tool',
           alternateName: 'PMT',
-          url: 'https://aimaeditz.github.io/public-media-tool/',
+          url: `${BASE_URL}/`,
           description: homeDesc,
         },
         {
           '@type': 'Organization',
           name: 'Public Media Tool',
-          url: 'https://aimaeditz.github.io/public-media-tool/',
-          logo: 'https://aimaeditz.github.io/public-media-tool/apple-touch-icon.png',
+          url: `${BASE_URL}/`,
+          logo: `${BASE_URL}/apple-touch-icon.png`,
         },
       ],
     },

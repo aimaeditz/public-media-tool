@@ -17,12 +17,17 @@ const DisclaimerPage = React.lazy(() => import('./pages/DisclaimerPage').then(m 
 const TermsPage = React.lazy(() => import('./pages/TermsPage').then(m => ({ default: m.TermsPage })));
 const CreditsPage = React.lazy(() => import('./pages/CreditsPage').then(m => ({ default: m.CreditsPage })));
 
-const BASE_PATH = '/public-media-tool';
+// Root-relative routing for custom domain publicmediatool.com
+const BASE_PATH: string = '';
+// Unused legacy fallback constant for original GitHub Pages subpath
+const LEGACY_GITHUB_PAGES_BASE = '/public-media-tool';
 
 const getRelativePath = (pathname: string) => {
   let p = pathname;
-  if (p.startsWith(BASE_PATH)) {
+  if (BASE_PATH && p.startsWith(BASE_PATH)) {
     p = p.slice(BASE_PATH.length);
+  } else if (p.startsWith(LEGACY_GITHUB_PAGES_BASE)) {
+    p = p.slice(LEGACY_GITHUB_PAGES_BASE.length);
   }
   if (!p || p === '' || p === '/' || p === '/404.html' || p === '/index.html') {
     return '/';
@@ -55,7 +60,7 @@ export default function App() {
     const relPath = getRelativePath(path);
     setCurrentPath(relPath);
     if (typeof window !== 'undefined') {
-      const isGH = window.location.pathname.startsWith(BASE_PATH);
+      const isGH = BASE_PATH !== '' && window.location.pathname.startsWith(BASE_PATH);
       const fullPath = isGH
         ? (relPath === '/' ? BASE_PATH + '/' : BASE_PATH + relPath)
         : (relPath === '/' ? '/' : relPath);

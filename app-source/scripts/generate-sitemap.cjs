@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const BASE_URL = 'https://aimaeditz.github.io/public-media-tool';
+// Legacy GitHub Pages base URL kept as fallback reference
+const LEGACY_GITHUB_PAGES_URL = 'https://aimaeditz.github.io/public-media-tool';
+// Active canonical base URL for custom domain
+const BASE_URL = 'https://publicmediatool.com';
 const PUBLIC_DIR = path.resolve(__dirname, '../public');
 
 // 1. Read categories from src/lib/categories.ts

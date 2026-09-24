@@ -14,5 +14,7 @@
     "jspdf": "^3.0.1",
     "pdfjs-dist": "^4.9.155"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
 }

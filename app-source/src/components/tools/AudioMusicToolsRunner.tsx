@@ -162,7 +162,7 @@ function applyBiquadFilter(
   freq: number,
   gainDb = 0,
   q = 1.0
-): Float32Array {
+): Float32Array<ArrayBuffer> {
   const out = new Float32Array(data.length);
   const A = Math.pow(10, gainDb / 40);
   const w0 = 2 * Math.PI * Math.min(freq, sampleRate * 0.45) / sampleRate;

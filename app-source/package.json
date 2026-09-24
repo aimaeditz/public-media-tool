@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "node scripts/generate-assets.cjs && node scripts/generate-sitemap.cjs && vite build",
     "build:root": "node scripts/generate-assets.cjs && node scripts/generate-sitemap.cjs && vite build && node scripts/copy-to-root.cjs",
+    "postbuild:root": "node scripts/indexnow-submit.cjs || true",
+    "indexnow": "node scripts/indexnow-submit.cjs",
     "preview": "vite preview",
     "lint": "tsc --noEmit"
   },

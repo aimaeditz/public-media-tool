@@ -28,23 +28,31 @@ import {
   AlertCircle
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { Batch1TextToolsRunner } from './Batch1TextToolsRunner';
-import { ComprehensiveImageToolsRunner } from './ComprehensiveImageToolsRunner';
-import { ComprehensivePdfToolsRunner } from './ComprehensivePdfToolsRunner';
-import { ComprehensiveDevToolsRunner } from './ComprehensiveDevToolsRunner';
-import { ComprehensiveCalculatorToolsRunner } from './ComprehensiveCalculatorToolsRunner';
-import { ComprehensiveColorToolsRunner } from './ComprehensiveColorToolsRunner';
-import { ComprehensiveSecurityToolsRunner } from './ComprehensiveSecurityToolsRunner';
-import { ComprehensiveMediaWebToolsRunner } from './ComprehensiveMediaWebToolsRunner';
-import { ComprehensiveMathFinanceToolsRunner } from './ComprehensiveMathFinanceToolsRunner';
-import { ComprehensiveIndustryToolsRunner } from './ComprehensiveIndustryToolsRunner';
-import { AccountingToolsRunner } from './AccountingToolsRunner';
-import { AudioMusicToolsRunner } from './AudioMusicToolsRunner';
-import { AutomotiveToolsRunner } from './AutomotiveToolsRunner';
+
+const Batch1TextToolsRunner = React.lazy(() => import('./Batch1TextToolsRunner').then(m => ({ default: m.Batch1TextToolsRunner })));
+const ComprehensiveImageToolsRunner = React.lazy(() => import('./ComprehensiveImageToolsRunner').then(m => ({ default: m.ComprehensiveImageToolsRunner })));
+const ComprehensivePdfToolsRunner = React.lazy(() => import('./ComprehensivePdfToolsRunner').then(m => ({ default: m.ComprehensivePdfToolsRunner })));
+const ComprehensiveDevToolsRunner = React.lazy(() => import('./ComprehensiveDevToolsRunner').then(m => ({ default: m.ComprehensiveDevToolsRunner })));
+const ComprehensiveCalculatorToolsRunner = React.lazy(() => import('./ComprehensiveCalculatorToolsRunner').then(m => ({ default: m.ComprehensiveCalculatorToolsRunner })));
+const ComprehensiveColorToolsRunner = React.lazy(() => import('./ComprehensiveColorToolsRunner').then(m => ({ default: m.ComprehensiveColorToolsRunner })));
+const ComprehensiveSecurityToolsRunner = React.lazy(() => import('./ComprehensiveSecurityToolsRunner').then(m => ({ default: m.ComprehensiveSecurityToolsRunner })));
+const ComprehensiveMediaWebToolsRunner = React.lazy(() => import('./ComprehensiveMediaWebToolsRunner').then(m => ({ default: m.ComprehensiveMediaWebToolsRunner })));
+const ComprehensiveMathFinanceToolsRunner = React.lazy(() => import('./ComprehensiveMathFinanceToolsRunner').then(m => ({ default: m.ComprehensiveMathFinanceToolsRunner })));
+const ComprehensiveIndustryToolsRunner = React.lazy(() => import('./ComprehensiveIndustryToolsRunner').then(m => ({ default: m.ComprehensiveIndustryToolsRunner })));
+const AccountingToolsRunner = React.lazy(() => import('./AccountingToolsRunner').then(m => ({ default: m.AccountingToolsRunner })));
+const AudioMusicToolsRunner = React.lazy(() => import('./AudioMusicToolsRunner').then(m => ({ default: m.AudioMusicToolsRunner })));
+const AutomotiveToolsRunner = React.lazy(() => import('./AutomotiveToolsRunner').then(m => ({ default: m.AutomotiveToolsRunner })));
 
 interface ToolRunnerProps {
   tool: Tool;
 }
+
+const RunnerLoadingFallback = () => (
+  <div className="py-12 flex flex-col items-center justify-center min-h-[300px] space-y-3">
+    <div className="w-8 h-8 text-indigo-600 animate-spin border-4 border-slate-200 border-t-indigo-600 rounded-full" />
+    <span className="text-xs font-semibold text-slate-500">Loading tool modules...</span>
+  </div>
+);
 
 export const ToolRunner: React.FC<ToolRunnerProps> = ({ tool }) => {
   const [copied, setCopied] = useState(false);
@@ -66,203 +74,211 @@ export const ToolRunner: React.FC<ToolRunnerProps> = ({ tool }) => {
     }
   };
 
-  switch (tool.slug) {
-    case 'word-counter':
-      return <WordCounterTool onCopy={triggerCopyNotice} copied={copied} />;
-    case 'case-converter':
-      return <CaseConverterTool onCopy={triggerCopyNotice} copied={copied} />;
-    case 'lorem-ipsum-generator':
-      return <LoremIpsumTool onCopy={triggerCopyNotice} copied={copied} />;
-    case 'image-resizer':
-      return <ImageResizerTool onSuccess={triggerConfetti} />;
-    case 'image-format-converter':
-      return <ImageFormatConverterTool onSuccess={triggerConfetti} />;
-    case 'color-picker-from-image':
-      return <ImageColorPickerTool onCopy={triggerCopyNotice} copied={copied} />;
-    case 'json-formatter-validator':
-      return <JsonFormatterTool onCopy={triggerCopyNotice} copied={copied} />;
-    case 'base64-encoder-decoder':
-      return <Base64Tool onCopy={triggerCopyNotice} copied={copied} />;
-    case 'uuid-generator':
-      return <UuidGeneratorTool onCopy={triggerCopyNotice} copied={copied} />;
-    case 'color-contrast-checker':
-      return <ColorContrastTool />;
-    case 'hex-rgb-hsl-converter':
-      return <HexRgbConverterTool onCopy={triggerCopyNotice} copied={copied} />;
-    case 'css-gradient-generator':
-      return <CssGradientTool onCopy={triggerCopyNotice} copied={copied} />;
-    case 'meta-tag-generator':
-      return <MetaTagGeneratorTool onCopy={triggerCopyNotice} copied={copied} />;
-    case 'keyword-density-analyzer':
-      return <KeywordDensityTool />;
-    case 'unit-converter':
-      return <UnitConverterTool onCopy={triggerCopyNotice} copied={copied} />;
-    case 'discount-tax-calculator':
-      return <DiscountTaxTool />;
-    case 'password-generator':
-      return <PasswordGeneratorTool onCopy={triggerCopyNotice} copied={copied} />;
-    case 'hash-generator':
-      return <HashGeneratorTool onCopy={triggerCopyNotice} copied={copied} />;
-    case 'url-encoder-decoder':
-      return <UrlEncoderTool onCopy={triggerCopyNotice} copied={copied} />;
-    case 'qr-code-generator':
-      return <QrCodeTool onSuccess={triggerConfetti} />;
-    case 'markdown-editor-previewer':
-      return <MarkdownEditorTool onCopy={triggerCopyNotice} copied={copied} />;
-    case 'pdf-page-inspector':
-    case 'pdf-splitter':
-    case 'pdf-to-text':
-    case 'pdf-image-extractor':
-    case 'pdf-merger':
-    case 'pdf-compressor':
-      return <ComprehensivePdfToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-    default:
-      if (
-        tool.category === 'PDF Tools' ||
-        tool.category === 'PDF Inspection & Analysis' ||
-        tool.category === 'PDF Document Utilities' ||
-        tool.slug.includes('pdf') ||
-        tool.name.toLowerCase().includes('pdf')
-      ) {
+  const renderRunner = () => {
+    switch (tool.slug) {
+      case 'word-counter':
+        return <WordCounterTool onCopy={triggerCopyNotice} copied={copied} />;
+      case 'case-converter':
+        return <CaseConverterTool onCopy={triggerCopyNotice} copied={copied} />;
+      case 'lorem-ipsum-generator':
+        return <LoremIpsumTool onCopy={triggerCopyNotice} copied={copied} />;
+      case 'image-resizer':
+        return <ImageResizerTool onSuccess={triggerConfetti} />;
+      case 'image-format-converter':
+        return <ImageFormatConverterTool onSuccess={triggerConfetti} />;
+      case 'color-picker-from-image':
+        return <ImageColorPickerTool onCopy={triggerCopyNotice} copied={copied} />;
+      case 'json-formatter-validator':
+        return <JsonFormatterTool onCopy={triggerCopyNotice} copied={copied} />;
+      case 'base64-encoder-decoder':
+        return <Base64Tool onCopy={triggerCopyNotice} copied={copied} />;
+      case 'uuid-generator':
+        return <UuidGeneratorTool onCopy={triggerCopyNotice} copied={copied} />;
+      case 'color-contrast-checker':
+        return <ColorContrastTool />;
+      case 'hex-rgb-hsl-converter':
+        return <HexRgbConverterTool onCopy={triggerCopyNotice} copied={copied} />;
+      case 'css-gradient-generator':
+        return <CssGradientTool onCopy={triggerCopyNotice} copied={copied} />;
+      case 'meta-tag-generator':
+        return <MetaTagGeneratorTool onCopy={triggerCopyNotice} copied={copied} />;
+      case 'keyword-density-analyzer':
+        return <KeywordDensityTool />;
+      case 'unit-converter':
+        return <UnitConverterTool onCopy={triggerCopyNotice} copied={copied} />;
+      case 'discount-tax-calculator':
+        return <DiscountTaxTool />;
+      case 'password-generator':
+        return <PasswordGeneratorTool onCopy={triggerCopyNotice} copied={copied} />;
+      case 'hash-generator':
+        return <HashGeneratorTool onCopy={triggerCopyNotice} copied={copied} />;
+      case 'url-encoder-decoder':
+        return <UrlEncoderTool onCopy={triggerCopyNotice} copied={copied} />;
+      case 'qr-code-generator':
+        return <QrCodeTool onSuccess={triggerConfetti} />;
+      case 'markdown-editor-previewer':
+        return <MarkdownEditorTool onCopy={triggerCopyNotice} copied={copied} />;
+      case 'pdf-page-inspector':
+      case 'pdf-splitter':
+      case 'pdf-to-text':
+      case 'pdf-image-extractor':
+      case 'pdf-merger':
+      case 'pdf-compressor':
         return <ComprehensivePdfToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
-        tool.category === 'Text Tools' ||
-        tool.category === 'Text Formatting' ||
-        tool.category === 'Text Analysis' ||
-        tool.category === 'Text Generators & Encoding'
-      ) {
-        return <Batch1TextToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
-        tool.category === 'Image Tools' ||
-        tool.category === 'Image Resizing & Cropping' ||
-        tool.category === 'Image Optimization & Conversion' ||
-        tool.category === 'Photo Filters & Effects'
-      ) {
-        return <ComprehensiveImageToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
-        tool.category === 'PDF Tools' ||
-        tool.category === 'PDF Inspection & Analysis' ||
-        tool.category === 'PDF Document Utilities'
-      ) {
-        return <ComprehensivePdfToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
-        tool.category === 'Developer Tools' ||
-        tool.category === 'Code Formatters' ||
-        tool.category === 'Web & API Utilities' ||
-        tool.category === 'Data & Schema Tools'
-      ) {
-        return <ComprehensiveDevToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
-        tool.category === 'Calculator Tools' ||
-        tool.category === 'Converter Tools' ||
-        tool.category === 'Financial Calculators' ||
-        tool.category === 'Everyday Calculators' ||
-        tool.category === 'Math Calculators' ||
-        tool.category === 'Measurement Converters' ||
-        tool.category === 'Scientific Converters'
-      ) {
-        return <ComprehensiveCalculatorToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
-        tool.category === 'Color Tools' ||
-        tool.category === 'Color Palettes & Contrast' ||
-        tool.category === 'Color Converters & Gradients'
-      ) {
-        return <ComprehensiveColorToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
-        tool.category === 'Security Tools' ||
-        tool.category === 'Cryptography & Hashing' ||
-        tool.category === 'Password & Security Tools'
-      ) {
-        return <ComprehensiveSecurityToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
-        tool.category === 'Accounting'
-      ) {
-        return <AccountingToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
-        tool.category === 'Audio Tools' ||
-        tool.category === 'Audio & Music Production'
-      ) {
-        return <AudioMusicToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
-        tool.category === 'Automotive'
-      ) {
-        return <AutomotiveToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
-        tool.category === 'SEO Tools' ||
-        tool.category === 'SERP & Search Optimization' ||
-        tool.category === 'Meta Tags & Structured Data' ||
-        tool.category === 'Content & Keyword SEO' ||
-        tool.category === 'Social Media Tools' ||
-        tool.category === 'Video Tools' ||
-        tool.category === 'Web Tools' ||
-        tool.category === 'File Tools' ||
-        tool.category === 'Marketing & Creator Tools'
-      ) {
-        return <ComprehensiveMediaWebToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
-        tool.category === 'Math Tools' ||
-        tool.category === 'Finance Tools' ||
-        tool.category === 'Business Tools' ||
-        tool.category === 'Date & Time' ||
-        tool.category === 'Health & Fitness' ||
-        tool.category === 'Productivity' ||
-        tool.category === 'Education' ||
-        tool.category === 'Generators' ||
-        tool.category === 'Unit Converters'
-      ) {
-        return <ComprehensiveMathFinanceToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
-        tool.category === 'HR & Payroll' ||
-        tool.category === 'Freelancing' ||
-        tool.category === 'Real Estate' ||
-        tool.category === 'Legal Tools' ||
-        tool.category === 'Legal & Public Services' ||
-        tool.category === 'E-commerce' ||
-        tool.category === 'Inventory & Logistics' ||
-        tool.category === 'Restaurant & Cafe' ||
-        tool.category === 'Dining & Food Service' ||
-        tool.category === 'Events & Lifestyle' ||
-        tool.category === 'Engineering' ||
-        tool.category === 'Engineering Tools' ||
-        tool.category === 'Construction' ||
-        tool.category === 'Construction Tools' ||
-        tool.category === 'Electrical & Solar' ||
-        tool.category === 'Agriculture' ||
-        tool.category === 'Agriculture & Environment' ||
-        tool.category === 'Environment & Energy' ||
-        tool.category === 'Marketing & Advertising' ||
-        tool.category === 'YouTube Creator Tools' ||
-        tool.category === 'Travel Tools' ||
-        tool.category === 'Beauty & Salon' ||
-        tool.category === 'Wedding & Event' ||
-        tool.category === 'Photography' ||
-        tool.category === 'Music Production' ||
-        tool.category === 'Pets & Animals' ||
-        tool.category === 'Government & Public Services' ||
-        tool.category === 'Office Administration' ||
-        tool.category === 'Office & Project Management' ||
-        tool.category === 'Networking' ||
-        tool.category === 'Networking & Data Management' ||
-        tool.category === 'Data Management' ||
-        tool.category === 'Project Management'
-      ) {
-        return <ComprehensiveIndustryToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      return <UniversalInteractiveToolRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-  }
+      default:
+        if (
+          tool.category === 'PDF Tools' ||
+          tool.category === 'PDF Inspection & Analysis' ||
+          tool.category === 'PDF Document Utilities' ||
+          tool.slug.includes('pdf') ||
+          tool.name.toLowerCase().includes('pdf')
+        ) {
+          return <ComprehensivePdfToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+        }
+        if (
+          tool.category === 'Text Tools' ||
+          tool.category === 'Text Formatting' ||
+          tool.category === 'Text Analysis' ||
+          tool.category === 'Text Generators & Encoding'
+        ) {
+          return <Batch1TextToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+        }
+        if (
+          tool.category === 'Image Tools' ||
+          tool.category === 'Image Resizing & Cropping' ||
+          tool.category === 'Image Optimization & Conversion' ||
+          tool.category === 'Photo Filters & Effects'
+        ) {
+          return <ComprehensiveImageToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+        }
+        if (
+          tool.category === 'PDF Tools' ||
+          tool.category === 'PDF Inspection & Analysis' ||
+          tool.category === 'PDF Document Utilities'
+        ) {
+          return <ComprehensivePdfToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+        }
+        if (
+          tool.category === 'Developer Tools' ||
+          tool.category === 'Code Formatters' ||
+          tool.category === 'Web & API Utilities' ||
+          tool.category === 'Data & Schema Tools'
+        ) {
+          return <ComprehensiveDevToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+        }
+        if (
+          tool.category === 'Calculator Tools' ||
+          tool.category === 'Converter Tools' ||
+          tool.category === 'Financial Calculators' ||
+          tool.category === 'Everyday Calculators' ||
+          tool.category === 'Math Calculators' ||
+          tool.category === 'Measurement Converters' ||
+          tool.category === 'Scientific Converters'
+        ) {
+          return <ComprehensiveCalculatorToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+        }
+        if (
+          tool.category === 'Color Tools' ||
+          tool.category === 'Color Palettes & Contrast' ||
+          tool.category === 'Color Converters & Gradients'
+        ) {
+          return <ComprehensiveColorToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+        }
+        if (
+          tool.category === 'Security Tools' ||
+          tool.category === 'Cryptography & Hashing' ||
+          tool.category === 'Password & Security Tools'
+        ) {
+          return <ComprehensiveSecurityToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+        }
+        if (
+          tool.category === 'Accounting'
+        ) {
+          return <AccountingToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+        }
+        if (
+          tool.category === 'Audio Tools' ||
+          tool.category === 'Audio & Music Production'
+        ) {
+          return <AudioMusicToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+        }
+        if (
+          tool.category === 'Automotive'
+        ) {
+          return <AutomotiveToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+        }
+        if (
+          tool.category === 'SEO Tools' ||
+          tool.category === 'SERP & Search Optimization' ||
+          tool.category === 'Meta Tags & Structured Data' ||
+          tool.category === 'Content & Keyword SEO' ||
+          tool.category === 'Social Media Tools' ||
+          tool.category === 'Video Tools' ||
+          tool.category === 'Web Tools' ||
+          tool.category === 'File Tools' ||
+          tool.category === 'Marketing & Creator Tools'
+        ) {
+          return <ComprehensiveMediaWebToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+        }
+        if (
+          tool.category === 'Math Tools' ||
+          tool.category === 'Finance Tools' ||
+          tool.category === 'Business Tools' ||
+          tool.category === 'Date & Time' ||
+          tool.category === 'Health & Fitness' ||
+          tool.category === 'Productivity' ||
+          tool.category === 'Education' ||
+          tool.category === 'Generators' ||
+          tool.category === 'Unit Converters'
+        ) {
+          return <ComprehensiveMathFinanceToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+        }
+        if (
+          tool.category === 'HR & Payroll' ||
+          tool.category === 'Freelancing' ||
+          tool.category === 'Real Estate' ||
+          tool.category === 'Legal Tools' ||
+          tool.category === 'Legal & Public Services' ||
+          tool.category === 'E-commerce' ||
+          tool.category === 'Inventory & Logistics' ||
+          tool.category === 'Restaurant & Cafe' ||
+          tool.category === 'Dining & Food Service' ||
+          tool.category === 'Events & Lifestyle' ||
+          tool.category === 'Engineering' ||
+          tool.category === 'Engineering Tools' ||
+          tool.category === 'Construction' ||
+          tool.category === 'Construction Tools' ||
+          tool.category === 'Electrical & Solar' ||
+          tool.category === 'Agriculture' ||
+          tool.category === 'Agriculture & Environment' ||
+          tool.category === 'Environment & Energy' ||
+          tool.category === 'Marketing & Advertising' ||
+          tool.category === 'YouTube Creator Tools' ||
+          tool.category === 'Travel Tools' ||
+          tool.category === 'Beauty & Salon' ||
+          tool.category === 'Wedding & Event' ||
+          tool.category === 'Photography' ||
+          tool.category === 'Music Production' ||
+          tool.category === 'Pets & Animals' ||
+          tool.category === 'Government & Public Services' ||
+          tool.category === 'Office Administration' ||
+          tool.category === 'Office & Project Management' ||
+          tool.category === 'Networking' ||
+          tool.category === 'Networking & Data Management' ||
+          tool.category === 'Data Management' ||
+          tool.category === 'Project Management'
+        ) {
+          return <ComprehensiveIndustryToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+        }
+        return <UniversalInteractiveToolRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
+    }
+  };
+
+  return (
+    <React.Suspense fallback={<RunnerLoadingFallback />}>
+      {renderRunner()}
+    </React.Suspense>
+  );
 };
 
 /* =========================================================================

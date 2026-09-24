@@ -64,7 +64,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
       </div>
 
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 pb-8 sm:pb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 md:gap-10 pb-8 sm:pb-12">
           {/* Col 1: Brand */}
           <div className="space-y-2 sm:space-y-3">
             <div className="flex items-center gap-2.5 sm:gap-3">
@@ -167,7 +167,32 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
             </ul>
           </div>
 
-          {/* Col 4: Stay Updated */}
+          {/* Col 4: MTV Hub */}
+          <div className="footer-mtv-hub">
+            <h4 className="font-heading font-bold text-slate-900 text-xs sm:text-sm mb-2.5 sm:mb-4 uppercase tracking-wider">MTV Hub</h4>
+            <ul className="grid grid-cols-2 sm:grid-cols-1 gap-1.5 sm:space-y-2 sm:gap-0 text-xs">
+              {[
+                { name: 'AI Tools', url: 'https://www.multitubeviews.com/ai-tools' },
+                { name: 'Creator Tools', url: 'https://www.multitubeviews.com/creator-tools' },
+                { name: 'Converter Tools', url: 'https://www.multitubeviews.com/media-converter-tools' },
+                { name: 'Platforms', url: 'https://www.multitubeviews.com/platforms' },
+                { name: 'AI Prompts', url: 'https://www.multitubeviews.com/ai-prompt' },
+              ].map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-indigo-600 transition-colors cursor-pointer text-left block truncate max-w-full"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 5: Stay Updated */}
           <div className="space-y-2.5 sm:space-y-3">
             <h4 className="font-heading font-bold text-slate-900 text-xs sm:text-sm uppercase tracking-wider">Stay Updated</h4>
             <p className="text-xs text-slate-600">Get notified when new browser tools are added.</p>

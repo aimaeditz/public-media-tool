@@ -38,9 +38,6 @@ import { ComprehensiveSecurityToolsRunner } from './ComprehensiveSecurityToolsRu
 import { ComprehensiveMediaWebToolsRunner } from './ComprehensiveMediaWebToolsRunner';
 import { ComprehensiveMathFinanceToolsRunner } from './ComprehensiveMathFinanceToolsRunner';
 import { ComprehensiveIndustryToolsRunner } from './ComprehensiveIndustryToolsRunner';
-import { AccountingToolsRunner } from './AccountingToolsRunner';
-import { AudioMusicToolsRunner } from './AudioMusicToolsRunner';
-import { AutomotiveToolsRunner } from './AutomotiveToolsRunner';
 
 interface ToolRunnerProps {
   tool: Tool;
@@ -183,28 +180,14 @@ export const ToolRunner: React.FC<ToolRunnerProps> = ({ tool }) => {
         return <ComprehensiveSecurityToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
       }
       if (
-        tool.category === 'Accounting'
-      ) {
-        return <AccountingToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
-        tool.category === 'Audio Tools' ||
-        tool.category === 'Audio & Music Production'
-      ) {
-        return <AudioMusicToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
-        tool.category === 'Automotive'
-      ) {
-        return <AutomotiveToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
-      }
-      if (
         tool.category === 'SEO Tools' ||
         tool.category === 'SERP & Search Optimization' ||
         tool.category === 'Meta Tags & Structured Data' ||
         tool.category === 'Content & Keyword SEO' ||
         tool.category === 'Social Media Tools' ||
         tool.category === 'Video Tools' ||
+        tool.category === 'Audio Tools' ||
+        tool.category === 'Audio & Music Production' ||
         tool.category === 'Web Tools' ||
         tool.category === 'File Tools' ||
         tool.category === 'Marketing & Creator Tools'
@@ -220,11 +203,13 @@ export const ToolRunner: React.FC<ToolRunnerProps> = ({ tool }) => {
         tool.category === 'Productivity' ||
         tool.category === 'Education' ||
         tool.category === 'Generators' ||
-        tool.category === 'Unit Converters'
+        tool.category === 'Unit Converters' ||
+        tool.category === 'Automotive'
       ) {
         return <ComprehensiveMathFinanceToolsRunner tool={tool} onCopy={triggerCopyNotice} copied={copied} />;
       }
       if (
+        tool.category === 'Accounting' ||
         tool.category === 'HR & Payroll' ||
         tool.category === 'Freelancing' ||
         tool.category === 'Real Estate' ||

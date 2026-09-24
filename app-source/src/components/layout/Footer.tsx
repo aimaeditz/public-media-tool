@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, Send, Check, Sparkles, Youtube, Instagram, Music2, MessageCircle, Globe } from 'lucide-react';
+import { Send, Check, Youtube, Instagram, Music2, MessageCircle, Globe } from 'lucide-react';
 import { CATEGORIES } from '../../lib/categories';
 
 interface FooterProps {
@@ -201,9 +201,9 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
         </div>
 
         {/* Bottom Legal & Copyright Bar */}
-        <div className="pt-6 sm:pt-8 border-t border-slate-200/80 flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-4 text-[11px] sm:text-xs text-slate-500">
+        <div className="pmt-footer-bottom-row pt-6 sm:pt-8 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-[11px] sm:text-xs text-slate-500">
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left">
-            <span>© 2026 Public Media Tool (publicmediatool.com). All rights reserved.</span>
+            <span>© 2026 Public Media Tool (PMT). All rights reserved.</span>
             {hasVisibleSocials && <div className="hidden sm:block text-slate-300">•</div>}
             {/* Social Icons */}
             <div className="flex items-center gap-2 pt-1 sm:pt-0">
@@ -223,14 +223,6 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
                 );
               })}
             </div>
-          </div>
-
-          <div className="text-center text-[10px] sm:text-[11px] text-slate-400 max-w-sm">
-            Disclaimer: Not affiliated with any third-party trademark. All browser tools run 100% client-side.
-          </div>
-
-          <div className="flex items-center gap-1 font-medium text-slate-600">
-            Made with <Heart className="w-3.5 h-3.5 text-pink-500 fill-pink-500 inline" /> for developers & creators
           </div>
         </div>
       </div>

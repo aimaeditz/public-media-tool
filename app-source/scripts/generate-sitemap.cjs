@@ -84,20 +84,7 @@ try {
   console.error('[generate-sitemap] Error reading long tail pages:', err);
 }
 
-// 4. Read guide pages from src/lib/guides-data.ts
-let guideSlugs = [];
-try {
-  const gdPath = path.resolve(__dirname, '../src/lib/guides-data.ts');
-  const gdContent = fs.readFileSync(gdPath, 'utf8');
-  const matches = gdContent.match(/slug:\s*'([^']+)'/g);
-  if (matches) {
-    guideSlugs = matches.map(m => m.replace(/slug:\s*'/, '').replace(/'$/, ''));
-  }
-} catch (err) {
-  console.error('[generate-sitemap] Error reading guides data:', err);
-}
-
-console.log(`[generate-sitemap] Loaded ${categories.length} categories, ${tools.length} tools, ${longTailPaths.length} long-tail routes, and ${guideSlugs.length} guide routes for sitemap.`);
+console.log(`[generate-sitemap] Loaded ${categories.length} categories, ${tools.length} tools, and ${longTailPaths.length} long-tail routes for sitemap.`);
 
 // Escape XML special characters
 function escapeXml(unsafe) {
@@ -154,12 +141,6 @@ for (const tool of tools) {
 for (const ltPath of longTailPaths) {
   const fullUrl = ltPath.startsWith('/') ? `${BASE_URL}${ltPath}` : `${BASE_URL}/${ltPath}`;
   addUrl(fullUrl, 'weekly', 0.8);
-}
-
-// Guide pages
-addUrl(`${BASE_URL}/guides`, 'monthly', 0.7);
-for (const slug of guideSlugs) {
-  addUrl(`${BASE_URL}/guides/${slug}`, 'monthly', 0.7);
 }
 
 // Static informational pages

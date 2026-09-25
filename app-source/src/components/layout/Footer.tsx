@@ -165,14 +165,6 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
                   Contact & Support
                 </button>
               </li>
-              <li>
-                <button
-                  onClick={() => navigate('/guides')}
-                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left block"
-                >
-                  All Guides
-                </button>
-              </li>
             </ul>
           </div>
 

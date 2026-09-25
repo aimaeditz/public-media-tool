@@ -1,0 +1,54 @@
+name: Auto-SEO & Indexing
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  auto-seo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Regenerate Sitemap and Build Assets
+        run: npm run build:root
+
+      - name: Run Auto-SEO and IndexNow Submissions
+        run: npm run auto-seo
+
+      - name: Ping Google Sitemap
+        run: |
+          curl -s -I "https://www.google.com/ping?sitemap=https://publicmediatool.com/sitemap.xml" || true
+
+      - name: Ping Bing Sitemap
+        run: |
+          curl -s -I "https://www.bing.com/ping?sitemap=https://publicmediatool.com/sitemap.xml" || true
+
+      - name: Commit and Push Updated Sitemap (if changed)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml robots.txt app-source/public/sitemap.xml public/sitemap.xml || true
+          if git diff --staged --quiet; then
+            echo "No changes to sitemap or robots.txt to commit."
+          else
+            git commit -m "chore(seo): auto-update sitemap & robots [skip ci]"
+            git push
+          fi

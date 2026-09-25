@@ -7,6 +7,7 @@
     "dev": "npm --prefix app-source run dev",
     "build": "npm --prefix app-source run build:root",
     "build:root": "npm --prefix app-source run build:root",
+    "auto-seo": "node scripts/auto-submit.cjs",
     "lint": "npm --prefix app-source run lint",
     "postinstall": "npm --prefix app-source install"
   },

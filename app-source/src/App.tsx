@@ -5,19 +5,86 @@ import { SearchModal } from './components/layout/SearchModal';
 import { useToolsStore } from './lib/tools-store';
 import { Loader2 } from 'lucide-react';
 import { getLongTailPageByPath } from './lib/long-tail-data';
+import { checkVersionAndClearCache } from './lib/version-check';
 
-const HomePage = React.lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })));
-const ToolsPage = React.lazy(() => import('./pages/ToolsPage').then(m => ({ default: m.ToolsPage })));
-const ToolDetailPage = React.lazy(() => import('./pages/ToolDetailPage').then(m => ({ default: m.ToolDetailPage })));
-const LongTailPage = React.lazy(() => import('./pages/LongTailPage').then(m => ({ default: m.LongTailPage })));
-const CategoriesPage = React.lazy(() => import('./pages/CategoriesPage').then(m => ({ default: m.CategoriesPage })));
-const CategoryDetailPage = React.lazy(() => import('./pages/CategoryDetailPage').then(m => ({ default: m.CategoryDetailPage })));
-const AboutPage = React.lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
-const ContactPage = React.lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
-const PrivacyPolicyPage = React.lazy(() => import('./pages/PrivacyPolicyPage').then(m => ({ default: m.PrivacyPolicyPage })));
-const DisclaimerPage = React.lazy(() => import('./pages/DisclaimerPage').then(m => ({ default: m.DisclaimerPage })));
-const TermsPage = React.lazy(() => import('./pages/TermsPage').then(m => ({ default: m.TermsPage })));
-const CreditsPage = React.lazy(() => import('./pages/CreditsPage').then(m => ({ default: m.CreditsPage })));
+// Helper to auto-retry dynamic imports when Vite chunk hashes mismatch on new deployments
+function lazyWithRetry<T extends React.ComponentType<any>>(
+  componentImport: () => Promise<{ default: T }>
+) {
+  return React.lazy(async () => {
+    const pageHasBeenReloaded = sessionStorage.getItem('pmt_chunk_reloaded');
+    try {
+      const component = await componentImport();
+      sessionStorage.removeItem('pmt_chunk_reloaded');
+      return component;
+    } catch (error) {
+      console.warn('[PMT] Chunk loading failed, attempting automatic reload...', error);
+      if (!pageHasBeenReloaded) {
+        sessionStorage.setItem('pmt_chunk_reloaded', 'true');
+        window.location.reload();
+        return new Promise<{ default: T }>(() => {});
+      }
+      sessionStorage.removeItem('pmt_chunk_reloaded');
+      throw error;
+    }
+  });
+}
+
+const HomePage = lazyWithRetry(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })));
+const ToolsPage = lazyWithRetry(() => import('./pages/ToolsPage').then(m => ({ default: m.ToolsPage })));
+const ToolDetailPage = lazyWithRetry(() => import('./pages/ToolDetailPage').then(m => ({ default: m.ToolDetailPage })));
+const LongTailPage = lazyWithRetry(() => import('./pages/LongTailPage').then(m => ({ default: m.LongTailPage })));
+const CategoriesPage = lazyWithRetry(() => import('./pages/CategoriesPage').then(m => ({ default: m.CategoriesPage })));
+const CategoryDetailPage = lazyWithRetry(() => import('./pages/CategoryDetailPage').then(m => ({ default: m.CategoryDetailPage })));
+const AboutPage = lazyWithRetry(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
+const ContactPage = lazyWithRetry(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
+const PrivacyPolicyPage = lazyWithRetry(() => import('./pages/PrivacyPolicyPage').then(m => ({ default: m.PrivacyPolicyPage })));
+const DisclaimerPage = lazyWithRetry(() => import('./pages/DisclaimerPage').then(m => ({ default: m.DisclaimerPage })));
+const TermsPage = lazyWithRetry(() => import('./pages/TermsPage').then(m => ({ default: m.TermsPage })));
+const CreditsPage = lazyWithRetry(() => import('./pages/CreditsPage').then(m => ({ default: m.CreditsPage })));
+
+// ErrorBoundary component to prevent white screen on unexpected route errors
+class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: any) {
+    console.error('Routing/Render Error caught:', error);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="flex-1 flex flex-col items-center justify-center py-20 px-4 text-center">
+          <h2 className="text-2xl font-bold text-slate-800 mb-2">Page failed to load</h2>
+          <p className="text-slate-600 mb-6 max-w-md">
+            A new update of Public Media Tool is available or your browser cached an older bundle.
+          </p>
+          <button
+            onClick={() => {
+              if ('caches' in window) {
+                caches.keys().then((names) => {
+                  names.forEach((name) => caches.delete(name));
+                });
+              }
+              window.location.reload();
+            }}
+            className="px-6 py-2.5 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors shadow-sm"
+          >
+            Refresh Page
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 // Root-relative routing for custom domain publicmediatool.com
 const BASE_PATH: string = '';
@@ -56,6 +123,7 @@ export default function App() {
 
   useEffect(() => {
     initStore();
+    checkVersionAndClearCache();
   }, [initStore]);
 
   const navigate = (path: string) => {
@@ -155,13 +223,15 @@ export default function App() {
       />
 
       <main className="flex-1 flex flex-col">
-        <React.Suspense fallback={
-          <div className="flex-1 flex items-center justify-center py-20 min-h-[400px]">
-            <Loader2 className="w-8 h-8 text-indigo-600 animate-spin" />
-          </div>
-        }>
-          {renderContent()}
-        </React.Suspense>
+        <ErrorBoundary>
+          <React.Suspense fallback={
+            <div className="flex-1 flex items-center justify-center py-20 min-h-[400px]">
+              <Loader2 className="w-8 h-8 text-indigo-600 animate-spin" />
+            </div>
+          }>
+            {renderContent()}
+          </React.Suspense>
+        </ErrorBoundary>
       </main>
 
       <Footer navigate={navigate} />

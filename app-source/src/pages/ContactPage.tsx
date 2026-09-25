@@ -14,7 +14,9 @@ import {
   MessageSquare,
   Bug,
   Lightbulb,
-  Building2
+  Building2,
+  AlertCircle,
+  Loader2
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { CATEGORIES } from '../lib/categories';
@@ -26,6 +28,8 @@ interface ContactPageProps {
 
 const TOTAL_CATEGORIES = CATEGORIES.length;
 const TOTAL_TOOLS = CATEGORIES.reduce((acc, cat) => acc + (cat.count || 0), 0);
+const WEB3FORMS_ACCESS_KEY = '950eff83-4fa3-4244-b10c-e5b9b2fefb4c';
+const RECIPIENT_EMAIL = 'aimaeditz.info@gmail.com';
 
 export const ContactPage: React.FC<ContactPageProps> = ({ navigate }) => {
   useSeo({
@@ -34,14 +38,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({ navigate }) => {
     path: '/contact',
   });
 
-  // TODO: Replace with Web3Forms/Formspree when ready
-  // Recipient: aimaeditz.info@gmail.com
-  const RECIPIENT_EMAIL = 'aimaeditz.info@gmail.com';
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('General Feedback');
   const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -72,32 +74,56 @@ export const ContactPage: React.FC<ContactPageProps> = ({ navigate }) => {
     }
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Validate required fields (name, email, message)
-    if (name.trim() && email.trim() && message.trim()) {
-      // Simple mailto fallback / placeholder action (no Web3Forms yet)
-      const mailtoUrl = `mailto:${RECIPIENT_EMAIL}?subject=${encodeURIComponent(
-        `[PMT Inquiry] ${subject}`
-      )}&body=${encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-      )}`;
+    setErrorMessage(null);
 
-      // Placeholder action log
-      console.log(`Form submission received for ${RECIPIENT_EMAIL}`, {
-        name,
-        email,
-        subject,
-        message,
-        mailtoUrl
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+      setErrorMessage('Please fill out all required fields (Name, Email, and Message).');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('access_key', WEB3FORMS_ACCESS_KEY);
+      formData.append('name', trimmedName);
+      formData.append('email', trimmedEmail);
+      formData.append('subject', `[PMT Support] ${subject} - from ${trimmedName}`);
+      formData.append('topic', subject);
+      formData.append('message', trimmedMessage);
+      formData.append('from_name', 'Public Media Tool Contact Form');
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
       });
 
-      setSubmitted(true);
-      try {
-        confetti({ particleCount: 40, spread: 70, origin: { y: 0.7 } });
-      } catch (err) {
-        // Fallback if confetti is blocked
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitted(true);
+        setName('');
+        setEmail('');
+        setSubject('General Feedback');
+        setMessage('');
+        try {
+          confetti({ particleCount: 40, spread: 70, origin: { y: 0.7 } });
+        } catch (err) {
+          // Fallback if confetti is blocked
+        }
+      } else {
+        setErrorMessage(data.message || 'Failed to send message. Please try again or email us directly.');
       }
+    } catch (err: any) {
+      setErrorMessage(err?.message || 'A network error occurred while sending your message. Please try again or email us directly.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -208,11 +234,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ navigate }) => {
                   Message sent! We'll reply within 24-48 hours.
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                  Thank you for reaching out, <span className="font-semibold text-slate-900">{name}</span> ({email}). We have received your inquiry and our support team will respond directly to your inbox.
+                  Thank you for reaching out to Public Media Tool. We have received your inquiry and our support team will respond directly to your inbox within 24-48 hours.
                 </p>
                 <div className="pt-1">
                   <a
-                    href={`mailto:${RECIPIENT_EMAIL}?subject=${encodeURIComponent(`[PMT] ${subject}`)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`}
+                    href={`mailto:${RECIPIENT_EMAIL}`}
                     className="inline-flex items-center gap-1.5 text-xs text-purple-600 hover:text-purple-700 underline font-medium"
                   >
                     <Mail className="w-3.5 h-3.5" />
@@ -224,7 +250,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ navigate }) => {
                     type="button"
                     onClick={() => {
                       setSubmitted(false);
-                      setMessage('');
+                      setErrorMessage(null);
                     }}
                     className="mt-2 px-5 sm:px-6 py-2 sm:py-2.5 text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 rounded-xl shadow-md transition-all cursor-pointer"
                   >
@@ -234,6 +260,16 @@ export const ContactPage: React.FC<ContactPageProps> = ({ navigate }) => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                {errorMessage && (
+                  <div className="p-3.5 sm:p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs sm:text-sm flex items-start gap-2.5">
+                    <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-rose-600 shrink-0 mt-0.5" />
+                    <div className="space-y-0.5 flex-1">
+                      <p className="font-semibold text-rose-900">Unable to send message</p>
+                      <p className="text-rose-700 text-xs">{errorMessage}</p>
+                    </div>
+                  </div>
+                )}
+
                 {/* Your Name * */}
                 <div>
                   <label className="text-xs font-semibold text-slate-700 block mb-1.5">
@@ -242,10 +278,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ navigate }) => {
                   <input
                     type="text"
                     required
+                    disabled={isSubmitting}
                     placeholder="e.g. Alex Morgan"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500 bg-slate-50/50 focus:bg-white transition-all text-slate-900 placeholder:text-slate-400"
+                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500 bg-slate-50/50 focus:bg-white disabled:opacity-60 transition-all text-slate-900 placeholder:text-slate-400"
                   />
                 </div>
 
@@ -257,10 +294,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ navigate }) => {
                   <input
                     type="email"
                     required
+                    disabled={isSubmitting}
                     placeholder="yourname@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500 bg-slate-50/50 focus:bg-white transition-all text-slate-900 placeholder:text-slate-400"
+                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500 bg-slate-50/50 focus:bg-white disabled:opacity-60 transition-all text-slate-900 placeholder:text-slate-400"
                   />
                   <p className="mt-1 text-[10px] sm:text-[11px] text-slate-500">
                     Used strictly to send our direct reply
@@ -274,8 +312,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ navigate }) => {
                   </label>
                   <select
                     value={subject}
+                    disabled={isSubmitting}
                     onChange={(e) => setSubject(e.target.value)}
-                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500 bg-slate-50/50 focus:bg-white transition-all text-slate-900 cursor-pointer"
+                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500 bg-slate-50/50 focus:bg-white disabled:opacity-60 transition-all text-slate-900 cursor-pointer"
                   >
                     <option value="General Feedback">General Feedback & Questions</option>
                     <option value="Feature Request">New Tool or Feature Request</option>
@@ -292,20 +331,31 @@ export const ContactPage: React.FC<ContactPageProps> = ({ navigate }) => {
                   <textarea
                     required
                     rows={5}
+                    disabled={isSubmitting}
                     placeholder="Write your detailed message, feedback, tool suggestion, or bug description here..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full p-3.5 sm:p-4 text-xs sm:text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500 bg-slate-50/50 focus:bg-white transition-all text-slate-900 placeholder:text-slate-400 resize-y"
+                    className="w-full p-3.5 sm:p-4 text-xs sm:text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500 bg-slate-50/50 focus:bg-white disabled:opacity-60 transition-all text-slate-900 placeholder:text-slate-400 resize-y"
                   />
                 </div>
 
                 {/* Full-width gradient submit button */}
                 <button
                   type="submit"
-                  className="w-full py-3 sm:py-3.5 px-6 text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-purple-600 via-purple-600 to-pink-500 hover:from-purple-700 hover:via-purple-700 hover:to-pink-600 rounded-xl shadow-lg shadow-purple-500/25 hover:shadow-purple-500/35 transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
+                  disabled={isSubmitting}
+                  className="w-full py-3 sm:py-3.5 px-6 text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-purple-600 via-purple-600 to-pink-500 hover:from-purple-700 hover:via-purple-700 hover:to-pink-600 disabled:opacity-60 disabled:cursor-not-allowed rounded-xl shadow-lg shadow-purple-500/25 hover:shadow-purple-500/35 transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
                 >
-                  <span>Send Message</span>
-                  <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-spin" />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Send Message</span>
+                      <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    </>
+                  )}
                 </button>
               </form>
             )}

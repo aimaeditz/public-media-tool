@@ -54,8 +54,10 @@ async function submitIndexNow() {
     }
 
     console.log('[indexnow] IndexNow submission sequence completed successfully.');
+    process.exit(0);
   } catch (err) {
     console.warn('[indexnow] Non-blocking IndexNow notice:', err.message || err);
+    process.exit(0);
   }
 }
 
@@ -71,7 +73,7 @@ function sendBatch(payload, batchNum, totalBatches) {
           'Content-Type': 'application/json; charset=utf-8',
           'Content-Length': Buffer.byteLength(data)
         },
-        timeout: 10000
+        timeout: 1000
       }, (res) => {
         let resData = '';
         res.on('data', chunk => { resData += chunk; });
@@ -86,21 +88,25 @@ function sendBatch(payload, batchNum, totalBatches) {
       });
 
       req.on('error', (err) => {
-        console.warn(`[indexnow] Batch ${batchNum}/${totalBatches} request warning: ${err.message}`);
-        resolve(); // Continue without throwing
+        console.warn(`[indexnow] Batch ${batchNum}/${totalBatches} notice: ${err.message}`);
+        resolve();
       });
 
       req.on('timeout', () => {
         req.destroy();
-        console.warn(`[indexnow] Batch ${batchNum}/${totalBatches} request timed out.`);
-        resolve(); // Continue without throwing
+        resolve();
+      });
+
+      req.setTimeout(1000, () => {
+        req.destroy();
+        resolve();
       });
 
       req.write(data);
       req.end();
     } catch (e) {
-      console.warn(`[indexnow] Batch ${batchNum}/${totalBatches} exception: ${e.message}`);
-      resolve(); // Non-blocking
+      console.warn(`[indexnow] Batch ${batchNum}/${totalBatches} notice: ${e.message}`);
+      resolve();
     }
   });
 }

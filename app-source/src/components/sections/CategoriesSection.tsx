@@ -8,11 +8,9 @@ interface CategoriesSectionProps {
 }
 
 export const CategoriesSection: React.FC<CategoriesSectionProps> = ({ navigate }) => {
-  // Select the top 16 categories by tool count to feature on the homepage
+  // Select the top prioritized categories to feature on the homepage
   const featuredCategories = useMemo(() => {
-    return CATEGORIES.slice()
-      .sort((a, b) => b.count - a.count)
-      .slice(0, 16);
+    return CATEGORIES.slice(0, 16);
   }, []);
 
   const totalToolsCount = useMemo(() => {

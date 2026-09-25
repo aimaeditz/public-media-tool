@@ -235,7 +235,17 @@ export const tools: Tool[] = [
       "compost volume calculator",
       "client-side",
       "browser tool",
-      "client side"
+      "client side",
+      "compost volume calculator client-side",
+      "compost volume calculator client side",
+      "compost volume calculator client-side online",
+      "free compost volume calculator client-side",
+      "online compost volume calculator client-side tool",
+      "compost volume calculator client-side free",
+      "browser compost volume calculator client-side",
+      "best compost volume calculator client-side",
+      "instant compost volume calculator client-side",
+      "private compost volume calculator client-side"
     ],
     "howToUse": [
       {
@@ -263,6 +273,58 @@ export const tools: Tool[] = [
         "question": "Are there usage limits on Compost Volume Calculator Client-Side?",
         "answer": "No, you can use this tool unlimited times for free without any signups or subscriptions."
       }
+    ],
+    "keywords": [
+      "compost volume calculator client-side",
+      "compost volume calculator client side",
+      "compost volume calculator client-side online",
+      "free compost volume calculator client-side",
+      "online compost volume calculator client-side tool",
+      "compost volume calculator client-side free",
+      "browser compost volume calculator client-side",
+      "best compost volume calculator client-side",
+      "instant compost volume calculator client-side",
+      "private compost volume calculator client-side",
+      "client side compost volume calculator client-side",
+      "compost volume calculator client-side no signup",
+      "compost volume calculator client-side no login",
+      "compost volume calculator client-side without registration",
+      "compost volume calculator client-side safe private",
+      "compost volume calculator client-side zero upload",
+      "compost volume calculator client-side web utility",
+      "how to use compost volume calculator client-side",
+      "how to compost volume calculator online",
+      "easy compost volume calculator client-side online",
+      "quick compost volume calculator client-side",
+      "simple compost volume calculator client-side",
+      "compost volume calculator client-side agriculture & environment",
+      "agriculture & environment tools online",
+      "free agriculture & environment utilities",
+      "best compost volume calculator client-side in agriculture & environment",
+      "compost volume calculator client-side for developers",
+      "compost volume calculator client-side for students",
+      "compost volume calculator client-side for professionals",
+      "compost volume calculator client-side for engineers",
+      "compost volume calculator client-side for creators",
+      "compost volume calculator client-side calculation",
+      "compost volume calculator client-side formula",
+      "accurate compost volume calculator client-side",
+      "instant compost volume calculator client-side results",
+      "calculate compost volume accurately",
+      "compost volume calculator client-side step by step",
+      "online math compost volume calculator client-side",
+      "compost volume calculator client-side 2026",
+      "compost volume calculator client-side desktop mobile",
+      "compost volume calculator client-side fastest",
+      "compost volume calculator client-side modern",
+      "compost volume calculator client-side free download",
+      "compost volume calculator client-side instant output",
+      "compost volume calculator client-side web app",
+      "compost volume calculator client-side open web utility",
+      "compost volume calculator client-side no ads hassle",
+      "compost volume calculator client-side trusted",
+      "compost volume calculator client-side secure local",
+      "compost volume calculator client-side unlimited usage"
     ]
   },
   {
@@ -706,5 +768,3 @@ export const tools: Tool[] = [
     ]
   }
 ];
-
-export default tools;

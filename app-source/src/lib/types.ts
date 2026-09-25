@@ -19,6 +19,7 @@ export interface Tool {
   iconName: string;
   usageCount: number;
   tags: string[];
+  keywords?: string[];
   isPopular?: boolean;
   isLatest?: boolean;
   howToUse?: ToolStep[];

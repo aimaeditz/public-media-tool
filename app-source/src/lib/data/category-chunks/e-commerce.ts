@@ -103,7 +103,17 @@ export const tools: Tool[] = [
       "product margin calculator",
       "master",
       "browser tool",
-      "client side"
+      "client side",
+      "product margin calculator master",
+      "product margin calculator master online",
+      "free product margin calculator master",
+      "online product margin calculator master tool",
+      "product margin calculator master free",
+      "browser product margin calculator master",
+      "best product margin calculator master",
+      "instant product margin calculator master",
+      "private product margin calculator master",
+      "client side product margin calculator master"
     ],
     "howToUse": [
       {
@@ -131,6 +141,58 @@ export const tools: Tool[] = [
         "question": "Are there usage limits on Product Margin Calculator Master?",
         "answer": "No, you can use this tool unlimited times for free without any signups or subscriptions."
       }
+    ],
+    "keywords": [
+      "product margin calculator master",
+      "product margin calculator master online",
+      "free product margin calculator master",
+      "online product margin calculator master tool",
+      "product margin calculator master free",
+      "browser product margin calculator master",
+      "best product margin calculator master",
+      "instant product margin calculator master",
+      "private product margin calculator master",
+      "client side product margin calculator master",
+      "product margin calculator master no signup",
+      "product margin calculator master no login",
+      "product margin calculator master without registration",
+      "product margin calculator master safe private",
+      "product margin calculator master zero upload",
+      "product margin calculator master web utility",
+      "how to use product margin calculator master",
+      "how to product margin calculator online",
+      "easy product margin calculator master online",
+      "quick product margin calculator master",
+      "simple product margin calculator master",
+      "product margin calculator master e-commerce",
+      "e-commerce tools online",
+      "free e-commerce utilities",
+      "best product margin calculator master in e-commerce",
+      "product margin calculator master for developers",
+      "product margin calculator master for students",
+      "product margin calculator master for professionals",
+      "product margin calculator master for engineers",
+      "product margin calculator master for creators",
+      "product margin calculator master calculation",
+      "product margin calculator master formula",
+      "accurate product margin calculator master",
+      "instant product margin calculator master results",
+      "calculate product margin accurately",
+      "product margin calculator master step by step",
+      "online math product margin calculator master",
+      "product margin calculator master 2026",
+      "product margin calculator master desktop mobile",
+      "product margin calculator master fastest",
+      "product margin calculator master modern",
+      "product margin calculator master free download",
+      "product margin calculator master instant output",
+      "product margin calculator master web app",
+      "product margin calculator master open web utility",
+      "product margin calculator master no ads hassle",
+      "product margin calculator master trusted",
+      "product margin calculator master secure local",
+      "product margin calculator master unlimited usage",
+      "product margin calculator master high precision"
     ]
   },
   {
@@ -442,5 +504,3 @@ export const tools: Tool[] = [
     ]
   }
 ];
-
-export default tools;

@@ -59,7 +59,17 @@ export const tools: Tool[] = [
       "rebar steel weight calculator",
       "online",
       "browser tool",
-      "client side"
+      "client side",
+      "online rebar steel weight calculator",
+      "online rebar steel weight calculator online",
+      "free online rebar steel weight calculator",
+      "online online rebar steel weight calculator tool",
+      "online rebar steel weight calculator free",
+      "browser online rebar steel weight calculator",
+      "best online rebar steel weight calculator",
+      "instant online rebar steel weight calculator",
+      "private online rebar steel weight calculator",
+      "client side online rebar steel weight calculator"
     ],
     "howToUse": [
       {
@@ -87,6 +97,58 @@ export const tools: Tool[] = [
         "question": "Are there usage limits on Online Rebar Steel Weight Calculator?",
         "answer": "No, you can use this tool unlimited times for free without any signups or subscriptions."
       }
+    ],
+    "keywords": [
+      "online rebar steel weight calculator",
+      "online rebar steel weight calculator online",
+      "free online rebar steel weight calculator",
+      "online online rebar steel weight calculator tool",
+      "online rebar steel weight calculator free",
+      "browser online rebar steel weight calculator",
+      "best online rebar steel weight calculator",
+      "instant online rebar steel weight calculator",
+      "private online rebar steel weight calculator",
+      "client side online rebar steel weight calculator",
+      "online rebar steel weight calculator no signup",
+      "online rebar steel weight calculator no login",
+      "online rebar steel weight calculator without registration",
+      "online rebar steel weight calculator safe private",
+      "online rebar steel weight calculator zero upload",
+      "online rebar steel weight calculator web utility",
+      "how to use online rebar steel weight calculator",
+      "how to online rebar steel online",
+      "easy online rebar steel weight calculator online",
+      "quick online rebar steel weight calculator",
+      "simple online rebar steel weight calculator",
+      "online rebar steel weight calculator construction tools",
+      "construction tools tools online",
+      "free construction tools utilities",
+      "best online rebar steel weight calculator in construction tools",
+      "online rebar steel weight calculator for developers",
+      "online rebar steel weight calculator for students",
+      "online rebar steel weight calculator for professionals",
+      "online rebar steel weight calculator for engineers",
+      "online rebar steel weight calculator for creators",
+      "online rebar steel weight calculator calculation",
+      "online rebar steel weight calculator formula",
+      "accurate online rebar steel weight calculator",
+      "instant online rebar steel weight calculator results",
+      "calculate online rebar accurately",
+      "online rebar steel weight calculator step by step",
+      "online math online rebar steel weight calculator",
+      "online rebar steel weight calculator 2026",
+      "online rebar steel weight calculator desktop mobile",
+      "online rebar steel weight calculator fastest",
+      "online rebar steel weight calculator modern",
+      "online rebar steel weight calculator free download",
+      "online rebar steel weight calculator instant output",
+      "online rebar steel weight calculator web app",
+      "online rebar steel weight calculator open web utility",
+      "online rebar steel weight calculator no ads hassle",
+      "online rebar steel weight calculator trusted",
+      "online rebar steel weight calculator secure local",
+      "online rebar steel weight calculator unlimited usage",
+      "online rebar steel weight calculator high precision"
     ]
   },
   {
@@ -354,5 +416,3 @@ export const tools: Tool[] = [
     ]
   }
 ];
-
-export default tools;

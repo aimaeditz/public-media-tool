@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { TOOLS } from '../lib/tools-data';
+import { Tool, ToolStep, ToolFaq } from '../lib/types';
+import { TOOLS, TOTAL_TOOLS } from '../lib/tools-data';
 import { SEARCH_INDEX } from '../lib/search-index';
 import { CATEGORIES } from '../lib/categories';
 import { getIconComponent, formatNumber } from '../lib/utils';
-import { Share2, ShieldCheck, ChevronRight, Check, HelpCircle } from 'lucide-react';
+import { Share2, ShieldCheck, ChevronRight, Check, HelpCircle, Tag, Layers, ArrowRight } from 'lucide-react';
 import { useToolsStore } from '../lib/tools-store';
 import { useSeo, BASE_URL } from '../lib/useSeo';
 
@@ -33,7 +34,7 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
     }
   }, [slug, foundTool, searchItem, loadCategory]);
 
-  const tool = foundTool || (searchItem ? {
+  const tool: Tool = (foundTool || (searchItem ? {
     id: searchItem.id,
     slug: searchItem.slug,
     name: searchItem.name,
@@ -45,6 +46,7 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
     isLatest: false,
     usageCount: searchItem.usageCount || 1000,
     tags: searchItem.tags || [slug],
+    keywords: searchItem.keywords || searchItem.tags || [slug],
     howToUse: [
       { step: 1, title: 'Input Parameters', desc: `Provide or customize the values for ${searchItem.name}.` },
       { step: 2, title: 'Process Instantly', desc: 'Results are computed immediately in your browser with zero latency.' },
@@ -84,6 +86,7 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
     isLatest: false,
     usageCount: 1500,
     tags: [slug, 'online tool', 'browser utility'],
+    keywords: [slug, 'online tool', 'browser utility'],
     howToUse: [
       { step: 1, title: 'Configure Input', desc: 'Input your raw text, numbers, or parameters in the interface.' },
       { step: 2, title: 'Execute Tool', desc: 'The client-side engine executes the algorithm locally in your browser.' },
@@ -95,7 +98,7 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
         answer: 'Yes, all tools on Public Media Tool are free and run client-side without registration.',
       },
     ],
-  });
+  })) as Tool;
 
   const categorySlug = tool?.category
     ? (CATEGORIES.find((c) => c.id === tool.category)?.slug ||
@@ -118,49 +121,100 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
     toolDesc = `${tool.name} — free, private, browser-based tool. ${trimmedShort}. No signup required.`;
   }
 
+  const howToUseSteps = (tool.howToUse && Array.isArray(tool.howToUse) && tool.howToUse.length > 0)
+    ? tool.howToUse
+    : [
+        { step: 1, title: 'Input Parameters', desc: `Provide or customize the values for ${tool.name}.` },
+        { step: 2, title: 'Calculate Instantly', desc: 'Results are computed immediately in your browser with zero latency.' },
+        { step: 3, title: 'Copy & Use', desc: 'Copy formatted output or download generated files securely to your device.' },
+      ];
+
+  const toolFaqs = (tool.faqs && Array.isArray(tool.faqs) && tool.faqs.length > 0)
+    ? tool.faqs
+    : [
+        {
+          question: `Is ${tool.name} free to use?`,
+          answer: 'Yes, 100% free with unlimited local browser operations and no account required.',
+        },
+        {
+          question: 'Is my input data uploaded to any remote server?',
+          answer: 'No! All processing runs directly on your machine via client-side Web APIs.',
+        },
+      ];
+
+  // Rich Schema.org Graph
+  const schemaGraph: any[] = [
+    {
+      '@type': 'SoftwareApplication',
+      name: tool.name,
+      description: tool.shortDesc || tool.description,
+      applicationCategory: 'UtilitiesApplication',
+      operatingSystem: 'Any (runs in browser)',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: `${BASE_URL}/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: tool.category || 'Categories',
+          item: `${BASE_URL}/categories/${categorySlug}`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: tool.name,
+          item: `${BASE_URL}/tools/${slug}`,
+        },
+      ],
+    },
+  ];
+
+  if (toolFaqs.length > 0) {
+    schemaGraph.push({
+      '@type': 'FAQPage',
+      mainEntity: toolFaqs.map((faq: ToolFaq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    });
+  }
+
+  if (howToUseSteps.length > 0) {
+    schemaGraph.push({
+      '@type': 'HowTo',
+      name: `How to use ${tool.name}`,
+      step: howToUseSteps.map((s: ToolStep) => ({
+        '@type': 'HowToStep',
+        position: s.step,
+        name: s.title,
+        text: s.desc,
+      })),
+    });
+  }
+
   useSeo({
     title: `${tool.name} — Free Online Tool | Public Media Tool`,
     description: toolDesc,
     path: `/tools/${slug}`,
     jsonLd: {
       '@context': 'https://schema.org',
-      '@graph': [
-        {
-          '@type': 'SoftwareApplication',
-          name: tool.name,
-          description: tool.shortDesc || tool.description,
-          applicationCategory: 'UtilitiesApplication',
-          operatingSystem: 'Any (runs in browser)',
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'USD',
-          },
-        },
-        {
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            {
-              '@type': 'ListItem',
-              position: 1,
-              name: 'Home',
-              item: `${BASE_URL}/`,
-            },
-            {
-              '@type': 'ListItem',
-              position: 2,
-              name: tool.category || 'Categories',
-              item: `${BASE_URL}/categories/${categorySlug}`,
-            },
-            {
-              '@type': 'ListItem',
-              position: 3,
-              name: tool.name,
-              item: `${BASE_URL}/tools/${slug}`,
-            },
-          ],
-        },
-      ],
+      '@graph': schemaGraph,
     },
   });
 
@@ -188,26 +242,10 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
     .sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0))
     .slice(0, 4);
 
-  const howToUseSteps = (tool.howToUse && Array.isArray(tool.howToUse) && tool.howToUse.length > 0)
-    ? tool.howToUse
-    : [
-        { step: 1, title: 'Input Parameters', desc: `Provide or customize the values for ${tool.name}.` },
-        { step: 2, title: 'Calculate Instantly', desc: 'Results are computed immediately in your browser with zero latency.' },
-        { step: 3, title: 'Copy & Use', desc: 'Copy formatted output or download generated files securely to your device.' },
-      ];
-
-  const toolFaqs = (tool.faqs && Array.isArray(tool.faqs) && tool.faqs.length > 0)
-    ? tool.faqs
-    : [
-        {
-          question: `Is ${tool.name} free to use?`,
-          answer: 'Yes, 100% free with unlimited local browser operations and no account required.',
-        },
-        {
-          question: 'Is my input data uploaded to any remote server?',
-          answer: 'No! All processing runs directly on your machine via client-side Web APIs.',
-        },
-      ];
+  const allTags = Array.from(new Set([
+    ...(tool.tags || []),
+    ...(tool.keywords || [])
+  ])).filter(Boolean);
 
   return (
     <div className="pt-6 sm:pt-10 pb-16 sm:pb-32 lg:pb-36 bg-slate-50 min-h-screen">
@@ -218,7 +256,7 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
           <ChevronRight className="w-3.5 h-3.5 shrink-0" />
           <button onClick={() => navigate('/categories')} className="hover:text-indigo-600 shrink-0 cursor-pointer">Categories</button>
           <ChevronRight className="w-3.5 h-3.5 shrink-0" />
-          <span className="text-slate-800 shrink-0">{tool.category}</span>
+          <button onClick={() => navigate(`/categories/${categorySlug}`)} className="text-slate-800 hover:text-indigo-600 shrink-0 cursor-pointer">{tool.category}</button>
           <ChevronRight className="w-3.5 h-3.5 shrink-0" />
           <span className="text-indigo-600 font-bold truncate max-w-[180px] sm:max-w-none">{tool.name}</span>
         </nav>
@@ -231,9 +269,12 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
             </div>
             <div>
               <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
-                <span className="text-[10px] font-bold px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded-full border border-indigo-100 uppercase">
+                <button 
+                  onClick={() => navigate(`/categories/${categorySlug}`)}
+                  className="text-[10px] font-bold px-2 py-0.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors rounded-full border border-indigo-100 uppercase cursor-pointer"
+                >
                   {tool.category}
-                </span>
+                </button>
                 <span className="text-[10px] font-bold px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-100 flex items-center gap-1">
                   <ShieldCheck className="w-3 h-3" /> 100% Client-Side
                 </span>
@@ -274,7 +315,7 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
         <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-200/80 space-y-3 sm:space-y-4">
           <h3 className="font-heading font-bold text-base sm:text-lg text-slate-900">How to use {tool.name}</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
-            {howToUseSteps.map((step) => (
+            {howToUseSteps.map((step: ToolStep) => (
               <div key={step.step} className="p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1">
                 <span className="text-xs font-bold text-indigo-600">Step 0{step.step}</span>
                 <p className="font-bold text-slate-800 text-xs sm:text-sm">{step.title}</p>
@@ -291,7 +332,7 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
               <HelpCircle className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-indigo-600" /> Frequently Asked Questions
             </h3>
             <div className="space-y-2.5 sm:space-y-3">
-              {toolFaqs.map((faq, i) => (
+              {toolFaqs.map((faq: ToolFaq, i: number) => (
                 <div key={i} className="p-3.5 sm:p-4 rounded-xl bg-slate-50 border border-slate-200/60 space-y-1">
                   <p className="font-bold text-slate-800 text-xs sm:text-sm">{faq.question}</p>
                   <p className="text-xs text-slate-600 leading-relaxed">{faq.answer}</p>
@@ -301,12 +342,53 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
           </div>
         )}
 
+        {/* Semantic Keyword Tags / Search Topics */}
+        {allTags.length > 0 && (
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-200/80 space-y-3">
+            <h3 className="font-heading font-bold text-sm sm:text-base text-slate-900 flex items-center gap-2">
+              <Tag className="w-4 h-4 text-indigo-600" /> Targeted Search Queries & Capabilities
+            </h3>
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
+              {allTags.slice(0, 35).map((tag: string, idx: number) => (
+                <span
+                  key={idx}
+                  className="px-2.5 py-1 text-[11px] font-medium bg-slate-50 text-slate-700 border border-slate-200/80 rounded-lg hover:border-indigo-300 hover:text-indigo-600 transition-colors"
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Hub-and-Spoke Category Hub Link */}
+        <div className="bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 rounded-2xl sm:rounded-3xl p-5 sm:p-7 border border-indigo-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="space-y-1 text-center sm:text-left">
+            <div className="flex items-center justify-center sm:justify-start gap-1.5 text-xs font-bold text-indigo-700 uppercase tracking-wider">
+              <Layers className="w-4 h-4" /> Category Hub
+            </div>
+            <h3 className="text-base sm:text-lg font-bold text-slate-900">
+              Explore More {tool.category} Tools
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600">
+              Discover all related free online browser utilities in the {tool.category} category.
+            </p>
+          </div>
+          <button
+            onClick={() => navigate(`/categories/${categorySlug}`)}
+            className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-1.5 shrink-0 cursor-pointer"
+          >
+            <span>View {tool.category} Hub</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+
         {/* Related Tools Grid */}
         {relatedTools.length > 0 && (
           <div className="space-y-3 sm:space-y-4 pt-2 sm:pt-4">
             <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900">Related {tool.category}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-              {relatedTools.map((rel) => {
+              {relatedTools.map((rel: Tool) => {
                 const RelIcon = getIconComponent(rel.iconName);
                 return (
                   <div
@@ -333,7 +415,7 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
               Need another browser utility?
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Explore 1,516+ free, instant, and private tools across 38+ specialized categories on Public Media Tool.
+              Explore {formatNumber(TOTAL_TOOLS)}+ free, instant, and private tools across {CATEGORIES.length}+ specialized categories on Public Media Tool.
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 shrink-0">
@@ -355,3 +437,4 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
     </div>
   );
 };
+

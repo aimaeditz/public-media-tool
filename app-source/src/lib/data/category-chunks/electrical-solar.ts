@@ -279,7 +279,17 @@ export const tools: Tool[] = [
       "wind energy output estimator",
       "easy",
       "browser tool",
-      "client side"
+      "client side",
+      "easy wind energy output estimator",
+      "easy wind energy output estimator online",
+      "free easy wind energy output estimator",
+      "online easy wind energy output estimator tool",
+      "easy wind energy output estimator free",
+      "browser easy wind energy output estimator",
+      "best easy wind energy output estimator",
+      "instant easy wind energy output estimator",
+      "private easy wind energy output estimator",
+      "client side easy wind energy output estimator"
     ],
     "howToUse": [
       {
@@ -307,6 +317,58 @@ export const tools: Tool[] = [
         "question": "Are there usage limits on Easy Wind Energy Output Estimator?",
         "answer": "No, you can use this tool unlimited times for free without any signups or subscriptions."
       }
+    ],
+    "keywords": [
+      "easy wind energy output estimator",
+      "easy wind energy output estimator online",
+      "free easy wind energy output estimator",
+      "online easy wind energy output estimator tool",
+      "easy wind energy output estimator free",
+      "browser easy wind energy output estimator",
+      "best easy wind energy output estimator",
+      "instant easy wind energy output estimator",
+      "private easy wind energy output estimator",
+      "client side easy wind energy output estimator",
+      "easy wind energy output estimator no signup",
+      "easy wind energy output estimator no login",
+      "easy wind energy output estimator without registration",
+      "easy wind energy output estimator safe private",
+      "easy wind energy output estimator zero upload",
+      "easy wind energy output estimator web utility",
+      "how to use easy wind energy output estimator",
+      "how to easy wind energy online",
+      "easy easy wind energy output estimator online",
+      "quick easy wind energy output estimator",
+      "simple easy wind energy output estimator",
+      "easy wind energy output estimator electrical & solar",
+      "electrical & solar tools online",
+      "free electrical & solar utilities",
+      "best easy wind energy output estimator in electrical & solar",
+      "easy wind energy output estimator for developers",
+      "easy wind energy output estimator for students",
+      "easy wind energy output estimator for professionals",
+      "easy wind energy output estimator for engineers",
+      "easy wind energy output estimator for creators",
+      "easy wind energy output estimator calculation",
+      "easy wind energy output estimator formula",
+      "accurate easy wind energy output estimator",
+      "instant easy wind energy output estimator results",
+      "calculate easy wind accurately",
+      "easy wind energy output estimator step by step",
+      "online math easy wind energy output estimator",
+      "easy wind energy output estimator 2026",
+      "easy wind energy output estimator desktop mobile",
+      "easy wind energy output estimator fastest",
+      "easy wind energy output estimator modern",
+      "easy wind energy output estimator free download",
+      "easy wind energy output estimator instant output",
+      "easy wind energy output estimator web app",
+      "easy wind energy output estimator open web utility",
+      "easy wind energy output estimator no ads hassle",
+      "easy wind energy output estimator trusted",
+      "easy wind energy output estimator secure local",
+      "easy wind energy output estimator unlimited usage",
+      "easy wind energy output estimator high precision"
     ]
   },
   {
@@ -354,5 +416,3 @@ export const tools: Tool[] = [
     ]
   }
 ];
-
-export default tools;

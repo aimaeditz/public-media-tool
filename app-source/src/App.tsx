@@ -7,24 +7,49 @@ import { Loader2 } from 'lucide-react';
 import { getLongTailPageByPath } from './lib/long-tail-data';
 import { checkVersionAndClearCache } from './lib/version-check';
 
+// Safe storage wrapper to prevent crashes in private windows or iframe embeds
+const safeSessionStorage = {
+  getItem(key: string): string | null {
+    try {
+      return sessionStorage.getItem(key);
+    } catch (e) {
+      return null;
+    }
+  },
+  setItem(key: string, value: string): void {
+    try {
+      sessionStorage.setItem(key, value);
+    } catch (e) {
+      // ignore
+    }
+  },
+  removeItem(key: string): void {
+    try {
+      sessionStorage.removeItem(key);
+    } catch (e) {
+      // ignore
+    }
+  }
+};
+
 // Helper to auto-retry dynamic imports when Vite chunk hashes mismatch on new deployments
 function lazyWithRetry<T extends React.ComponentType<any>>(
   componentImport: () => Promise<{ default: T }>
 ) {
   return React.lazy(async () => {
-    const pageHasBeenReloaded = sessionStorage.getItem('pmt_chunk_reloaded');
+    const pageHasBeenReloaded = safeSessionStorage.getItem('pmt_chunk_reloaded');
     try {
       const component = await componentImport();
-      sessionStorage.removeItem('pmt_chunk_reloaded');
+      safeSessionStorage.removeItem('pmt_chunk_reloaded');
       return component;
     } catch (error) {
       console.warn('[PMT] Chunk loading failed, attempting automatic reload...', error);
       if (!pageHasBeenReloaded) {
-        sessionStorage.setItem('pmt_chunk_reloaded', 'true');
+        safeSessionStorage.setItem('pmt_chunk_reloaded', 'true');
         window.location.reload();
         return new Promise<{ default: T }>(() => {});
       }
-      sessionStorage.removeItem('pmt_chunk_reloaded');
+      safeSessionStorage.removeItem('pmt_chunk_reloaded');
       throw error;
     }
   });

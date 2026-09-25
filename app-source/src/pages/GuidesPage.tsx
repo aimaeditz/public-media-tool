@@ -21,7 +21,7 @@ export const GuidesPage: React.FC<GuidesPageProps> = ({ navigate }) => {
 
   return (
     <div className="pt-6 sm:pt-12 pb-16 sm:pb-32 bg-slate-50 min-h-screen">
-      <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
         
         {/* Breadcrumb */}
         <nav className="flex items-center text-xs font-semibold text-slate-500 space-x-2 px-1" id="guides-breadcrumb">
@@ -53,7 +53,7 @@ export const GuidesPage: React.FC<GuidesPageProps> = ({ navigate }) => {
           </div>
 
           {/* Guides Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 sm:mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6 sm:mt-8">
             {GUIDES.map((guide) => (
               <article
                 key={guide.slug}

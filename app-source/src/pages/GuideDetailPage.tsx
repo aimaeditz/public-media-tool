@@ -129,7 +129,7 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ guideSlug, nav
 
   return (
     <div className="pt-6 sm:pt-12 pb-16 sm:pb-32 bg-slate-50 min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
+      <div className="max-w-[1400px] mx-auto px-5 md:px-10 space-y-8 sm:space-y-12">
         
         {/* Navigation & Actions Row */}
         <div className="flex flex-wrap items-center justify-between gap-4">
@@ -167,28 +167,55 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ guideSlug, nav
           
           {/* Meta header */}
           <div className="space-y-4 border-b border-slate-100 pb-6 sm:pb-8">
-            <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 px-3 py-1 bg-indigo-50 rounded-full border border-indigo-100">
-              <BookOpen className="w-3.5 h-3.5" /> {guide.category}
-            </span>
-            
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold font-heading text-slate-900 tracking-tight leading-tight sm:leading-none">
-              {guide.h1}
-            </h1>
+            <div className="max-w-[900px] mx-auto w-full space-y-4">
+              <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 px-3 py-1 bg-indigo-50 rounded-full border border-indigo-100">
+                <BookOpen className="w-3.5 h-3.5" /> {guide.category}
+              </span>
+              
+              <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold font-heading text-slate-900 tracking-tight leading-tight sm:leading-none">
+                {guide.h1}
+              </h1>
 
-            <div className="flex items-center gap-4 text-slate-400 text-xs font-medium">
-              <span className="flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-slate-400" /> {guide.readTime}
-              </span>
-              <span className="text-slate-200">•</span>
-              <span className="flex items-center gap-1.5">
-                <Calendar className="w-4 h-4 text-slate-400" /> Updated {guide.publishedDate}
-              </span>
+              <div className="flex items-center gap-4 text-slate-400 text-xs font-medium">
+                <span className="flex items-center gap-1.5">
+                  <Clock className="w-4 h-4 text-slate-400" /> {guide.readTime}
+                </span>
+                <span className="text-slate-200">•</span>
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="w-4 h-4 text-slate-400" /> Updated {guide.publishedDate}
+                </span>
+              </div>
             </div>
           </div>
 
+          {/* Hero Image */}
+          {guide.heroImage && (
+            <div className="w-full overflow-hidden rounded-2xl border border-slate-200 shadow-sm my-6">
+              <img 
+                src={guide.heroImage} 
+                alt={guide.heroImageAlt || guide.h1} 
+                className="w-full h-auto max-h-[480px] object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          )}
+
           {/* Core Content Body */}
           <div 
-            className="prose prose-slate max-w-none prose-headings:font-heading prose-headings:font-bold prose-headings:text-slate-950 prose-p:leading-relaxed prose-li:leading-relaxed text-xs sm:text-base text-slate-700 space-y-6 sm:space-y-8"
+            className="prose prose-slate max-w-none prose-headings:font-heading prose-headings:font-bold prose-headings:text-slate-950 prose-p:leading-relaxed prose-li:leading-relaxed text-xs sm:text-base text-slate-700 space-y-6 sm:space-y-8
+                       [&_p]:max-w-[900px] [&_p]:mx-auto
+                       [&_h1]:max-w-[900px] [&_h1]:mx-auto
+                       [&_h2]:max-w-[900px] [&_h2]:mx-auto
+                       [&_h3]:max-w-[900px] [&_h3]:mx-auto
+                       [&_h4]:max-w-[900px] [&_h4]:mx-auto
+                       [&_h5]:max-w-[900px] [&_h5]:mx-auto
+                       [&_h6]:max-w-[900px] [&_h6]:mx-auto
+                       [&_ul]:max-w-[900px] [&_ul]:mx-auto
+                       [&_ol]:max-w-[900px] [&_ol]:mx-auto
+                       [&_blockquote]:max-w-[900px] [&_blockquote]:mx-auto
+                       [&_table]:max-w-[900px] [&_table]:mx-auto
+                       [&_hr]:max-w-[900px] [&_hr]:mx-auto
+                       [&_pre]:w-full [&_pre]:max-w-none [&_code]:w-full [&_code]:max-w-none [&_img]:w-full [&_img]:max-w-none"
             dangerouslySetInnerHTML={{ __html: guide.content }}
           />
 

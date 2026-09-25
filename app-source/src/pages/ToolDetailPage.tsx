@@ -77,7 +77,7 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
     isLatest: false,
     usageCount: searchItem.usageCount || 1000,
     tags: searchItem.tags || [slug],
-    keywords: searchItem.keywords || searchItem.tags || [slug],
+    keywords: (searchItem as any).keywords || searchItem.tags || [slug],
   } : {
     id: slug,
     slug: slug,

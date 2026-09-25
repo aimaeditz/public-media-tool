@@ -8,36 +8,40 @@ if (!fs.existsSync(publicDir)) {
   fs.mkdirSync(publicDir, { recursive: true });
 }
 
-// 1. Base PMT Logo SVG for icons
-const getIconSvg = (size) => `
-<svg width="${size}" height="${size}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+// 1. PMT Logo SVG with rounded dark container for app icons & android chrome
+const getAppIconSvg = (size) => `
+<svg width="${size}" height="${size}" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pmtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#EC4899" />
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E1B4B" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="100" fill="url(#bgGrad)" />
+  <polygon points="256,60 435,163 435,349 256,452 77,349 77,163" fill="url(#pmtGrad)" />
+  <text x="256" y="298" fill="#FFFFFF" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="136" font-weight="900" text-anchor="middle" letter-spacing="-3">PMT</text>
+</svg>
+`;
+
+// 2. PMT Logo SVG for Favicons (Hexagon with PMT text, gradient fill #6366F1 -> #EC4899)
+const getFaviconSvg = (size) => `
+<svg width="${size}" height="${size}" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="pmtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#6366F1" />
       <stop offset="100%" stop-color="#EC4899" />
     </linearGradient>
   </defs>
-  <rect width="100" height="100" rx="20" fill="#0F172A" />
-  <polygon points="50,12 85,31 85,69 50,88 15,69 15,31" fill="url(#pmtGrad)" />
-  <text x="50" y="58" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="800" text-anchor="middle" letter-spacing="-1">PMT</text>
+  <polygon points="256,20 472,144 472,368 256,492 40,368 40,144" fill="url(#pmtGrad)" />
+  <text x="256" y="302" fill="#FFFFFF" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="160" font-weight="900" text-anchor="middle" letter-spacing="-4">PMT</text>
 </svg>
 `;
 
-// Clean transparent icon SVG for smaller favicons
-const getFaviconTransparentSvg = (size) => `
-<svg width="${size}" height="${size}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="pmtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6366F1" />
-      <stop offset="100%" stop-color="#EC4899" />
-    </linearGradient>
-  </defs>
-  <polygon points="50,5 92,28 92,72 50,95 8,72 8,28" fill="url(#pmtGrad)" />
-  <text x="50" y="59" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="800" text-anchor="middle" letter-spacing="-1">PMT</text>
-</svg>
-`;
-
-// OG Image SVG (1200x630)
+// 3. OG Social Image (1200x630)
 const ogImageSvg = `
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -99,6 +103,37 @@ const ogImageSvg = `
 </svg>
 `;
 
+// Multi-resolution ICO builder
+function createIco(images) {
+  const count = images.length;
+  const header = Buffer.alloc(6);
+  header.writeUInt16LE(0, 0); // Reserved
+  header.writeUInt16LE(1, 2); // Image type 1 = ICO
+  header.writeUInt16LE(count, 4); // Number of images
+
+  let currentOffset = 6 + count * 16;
+  const dirBuffers = [];
+  const imageBuffers = [];
+
+  for (const img of images) {
+    const dir = Buffer.alloc(16);
+    dir.writeUInt8(img.width >= 256 ? 0 : img.width, 0);
+    dir.writeUInt8(img.height >= 256 ? 0 : img.height, 1);
+    dir.writeUInt8(0, 2); // Color palette
+    dir.writeUInt8(0, 3); // Reserved
+    dir.writeUInt16LE(1, 4); // Color planes
+    dir.writeUInt16LE(32, 6); // Bits per pixel
+    dir.writeUInt32LE(img.buffer.length, 8); // Image size in bytes
+    dir.writeUInt32LE(currentOffset, 12); // Image data offset
+
+    dirBuffers.push(dir);
+    imageBuffers.push(img.buffer);
+    currentOffset += img.buffer.length;
+  }
+
+  return Buffer.concat([header, ...dirBuffers, ...imageBuffers]);
+}
+
 async function generateAssets() {
   console.log('[generate-assets] Generating app icons and social preview image...');
 
@@ -108,64 +143,69 @@ async function generateAssets() {
     .toFile(path.join(publicDir, 'og-image.png'));
   console.log('✓ Created og-image.png (1200x630)');
 
-  // 2. Favicons
-  await sharp(Buffer.from(getFaviconTransparentSvg(16)))
+  // 2. Favicon PNGs (16x16, 32x32, 48x48)
+  const png16 = await sharp(Buffer.from(getFaviconSvg(16)))
     .resize(16, 16)
     .png()
-    .toFile(path.join(publicDir, 'favicon-16x16.png'));
+    .toBuffer();
+  fs.writeFileSync(path.join(publicDir, 'favicon-16x16.png'), png16);
   console.log('✓ Created favicon-16x16.png');
 
-  await sharp(Buffer.from(getFaviconTransparentSvg(32)))
+  const png32 = await sharp(Buffer.from(getFaviconSvg(32)))
     .resize(32, 32)
     .png()
-    .toFile(path.join(publicDir, 'favicon-32x32.png'));
+    .toBuffer();
+  fs.writeFileSync(path.join(publicDir, 'favicon-32x32.png'), png32);
   console.log('✓ Created favicon-32x32.png');
 
+  const png48 = await sharp(Buffer.from(getFaviconSvg(48)))
+    .resize(48, 48)
+    .png()
+    .toBuffer();
+  fs.writeFileSync(path.join(publicDir, 'favicon-48x48.png'), png48);
+  console.log('✓ Created favicon-48x48.png');
+
   // 3. Apple Touch Icon (180x180)
-  await sharp(Buffer.from(getIconSvg(180)))
+  await sharp(Buffer.from(getAppIconSvg(180)))
     .resize(180, 180)
     .png()
     .toFile(path.join(publicDir, 'apple-touch-icon.png'));
-  console.log('✓ Created apple-touch-icon.png');
+  console.log('✓ Created apple-touch-icon.png (180x180)');
 
-  // 4. Manifest Icons
-  await sharp(Buffer.from(getIconSvg(192)))
+  // 4. Android Chrome Icons (192x192, 512x512)
+  await sharp(Buffer.from(getAppIconSvg(192)))
+    .resize(192, 192)
+    .png()
+    .toFile(path.join(publicDir, 'android-chrome-192x192.png'));
+  console.log('✓ Created android-chrome-192x192.png (192x192)');
+
+  await sharp(Buffer.from(getAppIconSvg(512)))
+    .resize(512, 512)
+    .png()
+    .toFile(path.join(publicDir, 'android-chrome-512x512.png'));
+  console.log('✓ Created android-chrome-512x512.png (512x512)');
+
+  // Legacy/PWA mirror icons
+  await sharp(Buffer.from(getAppIconSvg(192)))
     .resize(192, 192)
     .png()
     .toFile(path.join(publicDir, 'icon-192x192.png'));
   console.log('✓ Created icon-192x192.png');
 
-  await sharp(Buffer.from(getIconSvg(512)))
+  await sharp(Buffer.from(getAppIconSvg(512)))
     .resize(512, 512)
     .png()
     .toFile(path.join(publicDir, 'icon-512x512.png'));
   console.log('✓ Created icon-512x512.png');
 
-  // 5. favicon.ico (32x32 png formatted as ico header or sharp png buffer)
-  const png32Buffer = await sharp(Buffer.from(getFaviconTransparentSvg(32)))
-    .resize(32, 32)
-    .png()
-    .toBuffer();
-
-  // ICO header wrapper for single 32x32 PNG image
-  const icoHeader = Buffer.alloc(6);
-  icoHeader.writeUInt16LE(0, 0); // Reserved
-  icoHeader.writeUInt16LE(1, 2); // Image type (1 = ICO)
-  icoHeader.writeUInt16LE(1, 4); // Number of images
-
-  const icoDirectory = Buffer.alloc(16);
-  icoDirectory.writeUInt8(32, 0); // Width
-  icoDirectory.writeUInt8(32, 1); // Height
-  icoDirectory.writeUInt8(0, 2);  // Palette color count
-  icoDirectory.writeUInt8(0, 3);  // Reserved
-  icoDirectory.writeUInt16LE(1, 4); // Color planes
-  icoDirectory.writeUInt16LE(32, 6); // Bits per pixel
-  icoDirectory.writeUInt32LE(png32Buffer.length, 8); // Size of image data
-  icoDirectory.writeUInt32LE(22, 12); // Offset of image data (6 + 16 = 22)
-
-  const icoBuffer = Buffer.concat([icoHeader, icoDirectory, png32Buffer]);
+  // 5. Multi-size favicon.ico containing 16x16, 32x32, 48x48
+  const icoBuffer = createIco([
+    { width: 16, height: 16, buffer: png16 },
+    { width: 32, height: 32, buffer: png32 },
+    { width: 48, height: 48, buffer: png48 }
+  ]);
   fs.writeFileSync(path.join(publicDir, 'favicon.ico'), icoBuffer);
-  console.log('✓ Created favicon.ico');
+  console.log('✓ Created multi-resolution favicon.ico (16x16, 32x32, 48x48)');
 
   console.log('[generate-assets] All assets generated successfully!');
 }

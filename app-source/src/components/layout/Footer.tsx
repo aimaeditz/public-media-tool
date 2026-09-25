@@ -116,11 +116,11 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
           {/* Col 3: Quick Links */}
           <div>
             <h4 className="font-heading font-bold text-slate-900 text-xs sm:text-sm mb-2.5 sm:mb-4 uppercase tracking-wider">Quick Links</h4>
-            <ul className="grid grid-cols-2 sm:grid-cols-1 gap-1.5 sm:space-y-2 sm:gap-0 text-xs">
+            <ul className="space-y-2 text-xs">
               <li>
                 <button
                   onClick={() => navigate('/privacy-policy')}
-                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
+                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left block"
                 >
                   Privacy Policy
                 </button>
@@ -128,7 +128,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
               <li>
                 <button
                   onClick={() => navigate('/disclaimer')}
-                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
+                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left block"
                 >
                   Disclaimer
                 </button>
@@ -136,7 +136,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
               <li>
                 <button
                   onClick={() => navigate('/terms')}
-                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
+                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left block"
                 >
                   Terms of Service
                 </button>
@@ -144,7 +144,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
               <li>
                 <button
                   onClick={() => navigate('/credits')}
-                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
+                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left block"
                 >
                   Credits
                 </button>
@@ -152,7 +152,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
               <li>
                 <button
                   onClick={() => navigate('/about')}
-                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
+                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left block"
                 >
                   About Us
                 </button>
@@ -160,9 +160,17 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
               <li>
                 <button
                   onClick={() => navigate('/contact')}
-                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left"
+                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left block"
                 >
                   Contact & Support
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigate('/guides')}
+                  className="hover:text-indigo-600 transition-colors cursor-pointer text-left block"
+                >
+                  All Guides
                 </button>
               </li>
             </ul>

@@ -67,6 +67,8 @@ const PrivacyPolicyPage = lazyWithRetry(() => import('./pages/PrivacyPolicyPage'
 const DisclaimerPage = lazyWithRetry(() => import('./pages/DisclaimerPage').then(m => ({ default: m.DisclaimerPage })));
 const TermsPage = lazyWithRetry(() => import('./pages/TermsPage').then(m => ({ default: m.TermsPage })));
 const CreditsPage = lazyWithRetry(() => import('./pages/CreditsPage').then(m => ({ default: m.CreditsPage })));
+const GuidesPage = lazyWithRetry(() => import('./pages/GuidesPage').then(m => ({ default: m.GuidesPage })));
+const GuideDetailPage = lazyWithRetry(() => import('./pages/GuideDetailPage').then(m => ({ default: m.GuideDetailPage })));
 
 // ErrorBoundary component to prevent white screen on unexpected route errors
 class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
@@ -233,6 +235,15 @@ export default function App() {
 
     if (currentPath === '/credits') {
       return <CreditsPage navigate={navigate} />;
+    }
+
+    if (currentPath === '/guides') {
+      return <GuidesPage navigate={navigate} />;
+    }
+
+    if (currentPath.startsWith('/guides/')) {
+      const guideSlug = currentPath.replace('/guides/', '').split('?')[0];
+      return <GuideDetailPage guideSlug={guideSlug} navigate={navigate} />;
     }
 
     // Default fallback

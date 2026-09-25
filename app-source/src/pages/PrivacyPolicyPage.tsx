@@ -136,23 +136,42 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ navigate }
 
           <section className="space-y-2 sm:space-y-4">
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <FileCheck className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-indigo-600" /> 5. External Links & Third-Party Websites
+              <FileCheck className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-indigo-600" /> 5. Google AdSense & Third-Party Advertising Disclosures
             </h2>
             <p>
-              Our pages may contain occasional hyperlinked references to external web standards, documentation portals, or official contact channels. Please note that when navigating away from PMT to an external web property, their respective terms and privacy policies govern. We recommend reviewing external site policies prior to transmitting information.
+              We utilize <strong>Google AdSense</strong> to serve contextual advertisements across our platforms in order to fund ongoing software updates and platform maintenance. Google AdSense, as a third-party vendor, relies on standardized digital identifiers to deliver ads on our pages:
             </p>
+            <ul className="list-disc list-inside space-y-1.5 pl-2 text-slate-600">
+              <li>Google uses third-party cookies (such as the DoubleClick cookie) to serve relevant, personalized advertisements to visitors based on prior browsing history across publicmediatool.com and other websites across the internet.</li>
+              <li>Google's use of advertising cookies enables it and its partner networks to serve ads to users based on their interactions with our pages and other properties online.</li>
+              <li>Users may choose to opt out of personalized advertising by visiting the official <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-indigo-600 font-semibold hover:underline">Google Ad Settings</a> or by navigating to <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" className="text-indigo-600 font-semibold hover:underline">www.aboutads.info</a> to opt out of third-party vendors' cookie usage.</li>
+            </ul>
           </section>
 
           <section className="space-y-2 sm:space-y-4">
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900">6. Policy Revisions & Updates</h2>
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <Shield className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-indigo-600" /> 6. Global Privacy Rights (GDPR & CCPA Compliance)
+            </h2>
             <p>
-              PMT may periodically update this Privacy Policy to reflect technical enhancements or evolving web standard guidelines. Any modifications will be reflected directly on this page with an updated timestamp. Continued usage of PMT after updates are published signifies complete agreement with our privacy principles.
+              We fully respect and uphold global data protection regulations, including the European Union's General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA). Under these frameworks:
+            </p>
+            <ul className="list-disc list-inside space-y-1.5 pl-2 text-slate-600">
+              <li><strong>Right to Know and Access:</strong> Since we operate an account-free, signup-free platform, we do not store, link, or manage any personal names, email addresses, or physical identities. Therefore, we hold no personal databases to retrieve or report on.</li>
+              <li><strong>Right to Erasure (De-registration):</strong> Users have the absolute power to erase all local interface settings, favorite tools, and history logs by clearing cookies and site data directly inside their web browser settings.</li>
+              <li><strong>Zero Behavioral Tracking:</strong> We do not track, profile, or sell user behavior dossiers to data brokers. Your digital footprint remains completely private and self-contained.</li>
+            </ul>
+          </section>
+
+          <section className="space-y-2 sm:space-y-4">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900">7. Policy Revisions & Updates</h2>
+            <p>
+              PMT may periodically update this Privacy Policy to reflect technical enhancements, ad compliance updates, or evolving web standard guidelines. Any modifications will be reflected directly on this page with an updated timestamp. Continued usage of PMT after updates are published signifies complete agreement with our privacy principles.
             </p>
           </section>
 
           <section className="space-y-2 sm:space-y-4">
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <LifeBuoy className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-indigo-600" /> 7. Privacy Inquiries & Direct Contact
+              <LifeBuoy className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-indigo-600" /> 8. Privacy Inquiries & Direct Contact
             </h2>
             <p>
               If you have any questions, security concerns, or technical inquiries regarding our privacy standards or client-side architecture, please submit them through our official <a href="/contact" className="text-indigo-600 font-semibold hover:underline">Contact Page</a>.

@@ -130,7 +130,19 @@ export const DisclaimerPage: React.FC<DisclaimerPageProps> = ({ navigate }) => {
           </section>
 
           <section className="space-y-2 sm:space-y-4">
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900">5. Continuous Modification & Service Updates</h2>
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <Scale className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-amber-600" /> 5. Third-Party Advertisements & Endorsement Disclaimer
+            </h2>
+            <p>
+              Public Media Tool displays contextual third-party advertisements served by Google AdSense to sustain its open operations. PMT does not actively screen, endorse, recommend, or warrant any specific software, products, investment schemes, or digital services promoted in these advertisements.
+            </p>
+            <p>
+              Clicking on any external ad and interacting with the destination service is done solely at your own discretion and monetary risk. PMT assumes zero liability for transactions, software installations, or data policies executed on external ad-redirect destinations.
+            </p>
+          </section>
+
+          <section className="space-y-2 sm:space-y-4">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900">6. Continuous Modification & Service Updates</h2>
             <p>
               PMT reserves the unconditional right to update, modify, refine, optimize, or deprecate any software tool, layout component, mathematical equation, or site page at any time without prior announcement. Updates are performed continuously to maintain browser compatibility, enhance execution speed, and adhere to current web standards.
             </p>

@@ -134,15 +134,30 @@ export const TermsPage: React.FC<TermsPageProps> = ({ navigate }) => {
 
           <section className="space-y-2 sm:space-y-4">
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
-              <Scale className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-indigo-600" /> 5. Limitation of Liability
+              <Scale className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-indigo-600" /> 5. Limitation of Liability & Mathematical Disclaimers
             </h2>
             <p>
-              Under no circumstances shall Public Media Tool (PMT), its developers, maintainers, or affiliates be held liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, loss of profits, data corruption, system downtime, or commercial interruptions) arising out of the use or inability to use our browser utilities.
+              Under no circumstances shall Public Media Tool (PMT), its developers, creators, maintainers, or affiliates be held liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, loss of profits, data corruption, system downtime, file errors, or commercial interruptions) arising out of the use or inability to use our browser utilities.
+            </p>
+            <p>
+              We compile our calculations, encoders, and converters using standard, recognized equations. However, because mathematical variables can vary due to browser floating-point rounding or hardware differences, all calculated outputs are provided strictly as informational guidance. Users must independently verify all results prior to high-stakes scientific or financial deployment.
             </p>
           </section>
 
           <section className="space-y-2 sm:space-y-4">
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900">6. Revisions & Governing Expectations</h2>
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900 flex items-center gap-2">
+              <FileText className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-indigo-600" /> 6. Ads, Sponsorships, & Funding Transparency
+            </h2>
+            <p>
+              To maintain unhindered, free access to our entire catalog of {TOTAL_TOOLS.toLocaleString()}+ utilities, PMT partners with Google AdSense to serve contextual ads. By accessing our pages, you acknowledge and agree that non-intrusive advertisements may be displayed across the workspace. 
+            </p>
+            <p>
+              These advertising assets are governed strictly by Google's terms and privacy parameters. Attempting to artificially inflate ad impressions, script automated clicks, or launch scraping bots to replicate layout components violates our platform integrity.
+            </p>
+          </section>
+
+          <section className="space-y-2 sm:space-y-4">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-slate-900">7. Revisions & Governing Expectations</h2>
             <p>
               PMT reserves the right to amend, update, or revise these Terms of Service at any time to accommodate new tools, security enhancements, or legal standards. Updated versions will be published on this page with an updated timestamp. Continued usage of publicmediatool.com after modifications are posted constitutes complete acceptance of the revised Terms.
             </p>

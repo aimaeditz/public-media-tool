@@ -267,11 +267,30 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
         {/* Security & Client-Side Architecture */}
         <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-200/80 shadow-xs space-y-2.5 sm:space-y-4">
           <h2 className="text-xl sm:text-2xl font-extrabold font-heading text-slate-900 flex items-center gap-2">
-            <Lock className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600" /> Security Architecture
+            <Lock className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600" /> Security & Privacy Architecture
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
             Unlike traditional web applications that transmit sensitive documents, code blocks, and images to third-party cloud infrastructure for processing, Public Media Tool executes all functional logic locally inside your browser session. Whether you are generating secure SHA hashes, resizing graphics, formatting JSON data, or calculating financial rates, all operations remain confined within your system hardware.
           </p>
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            This zero-upload model completely protects you against interception by third parties on public Wi-Fi networks, data scraping by cloud providers, or the accidental caching of proprietary configurations on external backup systems. We leverage standard Web Cryptography APIs, modern File Readers, and HTML5 Canvas context engines to render outputs directly within your device's sandboxed environment, maintaining total safety.
+          </p>
+        </div>
+
+        {/* Our Modern Tech Stack */}
+        <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-200/80 shadow-xs space-y-2.5 sm:space-y-4">
+          <h2 className="text-xl sm:text-2xl font-extrabold font-heading text-slate-900 flex items-center gap-2">
+            <Cpu className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600" /> High-Performance Technology Stack
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            To deliver instantaneous conversions and calculations, our platform is designed around cutting-edge, browser-native libraries and standardized APIs:
+          </p>
+          <ul className="list-disc list-inside space-y-2 text-xs sm:text-sm text-slate-600 pl-2">
+            <li><strong>Web Cryptography (SubtleCrypto):</strong> Implements rapid hashing algorithms such as MD5, SHA-256, and SHA-512 with sub-millisecond calculation responses directly inside the browser thread.</li>
+            <li><strong>PDF-Lib & PDF.js:</strong> Allows users to load, split, merge, and inspect complex PDF structures securely inside the browser, eliminating traditional file server requirements.</li>
+            <li><strong>HTML5 Canvas context:</strong> Grants our image tools hardware-accelerated rendering power to crop, filter, compress, and translate modern graphics formats like WebP, JPEG, and PNG.</li>
+            <li><strong>Standard JS Math & BigInt:</strong> Resolves deep compound interest interest lists and complex amortization arrays with perfect numerical precision, optimized for modern multicore mobile and desktop processors.</li>
+          </ul>
         </div>
 
         {/* About the Creator Section */}
@@ -284,6 +303,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
             Public Media Tool (PMT) is managed as an independent web software initiative dedicated to building accessible, high-utility digital tooling. By prioritizing browser-native processing, PMT delivers free, dependable software utilities that remove friction for users across the globe.
+          </p>
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Our platform operates entirely on static web structures. By removing expensive database hosting and active server operations, we minimize our operational footprint while providing a fast, ad-ready interface. We are continuously adding new single-purpose utilities to help designers, developers, and writers tackle their daily micro-tasks with complete privacy.
           </p>
         </div>
 

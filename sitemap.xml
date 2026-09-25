@@ -9427,6 +9427,54 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://publicmediatool.com/converters/volume/liters-to-gallons</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://publicmediatool.com/converters/volume/cups-to-ml</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://publicmediatool.com/converters/length/meters-to-feet</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://publicmediatool.com/converters/length/inches-to-cm</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://publicmediatool.com/converters/weight/kg-to-lbs</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://publicmediatool.com/converters/temperature/celsius-to-fahrenheit</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://publicmediatool.com/calculators/finance/compound-interest-calculator</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://publicmediatool.com/tools/color/hex-to-rgb-converter</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://publicmediatool.com/about</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>

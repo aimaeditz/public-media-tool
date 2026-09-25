@@ -19,6 +19,9 @@ import {
   Cpu,
   BookmarkPlus,
   Compass,
+  CheckCircle2,
+  Users,
+  Sparkles,
 } from 'lucide-react';
 import { useToolsStore } from '../lib/tools-store';
 import { useSeo, BASE_URL } from '../lib/useSeo';
@@ -26,9 +29,13 @@ import {
   generateToolKeywords,
   generateToolFaqs,
   generateToolHowTo,
+  generateToolFeatures,
+  generateToolWhoItsFor,
   generateLongTailPresets,
   generateToolSchema,
+  generateMetaDescription,
 } from '../lib/seo-engine';
+import { LONG_TAIL_PAGES } from '../lib/long-tail-data';
 
 const ToolRunner = React.lazy(() =>
   import('../components/tools/ToolRunner').then((m) => ({ default: m.ToolRunner }))
@@ -97,24 +104,19 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
   const expandedKeywords = generateToolKeywords(tool);
   const toolFaqs = generateToolFaqs(tool);
   const howToUseSteps = generateToolHowTo(tool);
+  const featuresList = generateToolFeatures(tool);
+  const audienceList = generateToolWhoItsFor(tool);
   const presets = generateLongTailPresets(tool);
   const schemaJsonLd = generateToolSchema(tool, categorySlug);
 
-  // SEO Title: 50-60 chars, Primary keyword first
-  const seoTitle = `${tool.name} — Free Online Tool | Public Media Tool`;
+  // High-Intent SEO Title: 50-60 chars, Primary keyword first
+  let seoTitle = `${tool.name} — Free Online Tool | PMT`;
+  if (seoTitle.length < 45) {
+    seoTitle = `${tool.name} — Free Online Browser Tool | PMT`;
+  }
 
   // Meta description: 135-155 chars, Unique, CTA
-  const rawShort = tool.shortDesc || tool.description || 'Fast online utility';
-  const cleanShort = rawShort.endsWith('.') ? rawShort.slice(0, -1) : rawShort;
-  let toolDesc = `Use ${tool.name} online for free. ${cleanShort}. 100% private, client-side with zero server uploads. Fast, simple, and instant.`;
-  if (toolDesc.length > 155) {
-    toolDesc = `Use ${tool.name} free online. ${cleanShort}. 100% private browser tool with zero uploads. Try now with no signup.`;
-  }
-  if (toolDesc.length > 155) {
-    const maxLen = 152 - (tool.name.length + 55);
-    const trimmed = cleanShort.slice(0, Math.max(10, maxLen)) + '...';
-    toolDesc = `Use ${tool.name} free online. ${trimmed}. 100% private browser tool with zero uploads. Try now.`;
-  }
+  const toolDesc = generateMetaDescription(tool);
 
   useSeo({
     title: seoTitle,
@@ -151,6 +153,11 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
   // Sibling Categories for Cross-Category Discovery
   const siblingCategories = CATEGORIES.filter((c) => c.slug !== categorySlug).slice(0, 4);
 
+  // Programmatic Long-Tail Sub-Pages related to this tool
+  const matchedLongTailPages = LONG_TAIL_PAGES.filter(
+    (lp) => lp.parentToolSlug === tool.slug || lp.categorySlug === categorySlug
+  ).slice(0, 3);
+
   return (
     <div className="pt-6 sm:pt-10 pb-16 sm:pb-32 lg:pb-36 bg-slate-50 min-h-screen">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-10">
@@ -180,7 +187,7 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
               <IconComp className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
             <div>
-              <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
+              <div className="flex items-center gap-1.5 sm:gap-2 mb-1 flex-wrap">
                 <button
                   onClick={() => navigate(`/categories/${categorySlug}`)}
                   className="text-[10px] font-bold px-2 py-0.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors rounded-full border border-indigo-100 uppercase cursor-pointer"
@@ -265,7 +272,7 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
         <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-200/80 space-y-5 sm:space-y-6">
           <div className="space-y-2">
             <h2 className="font-heading font-bold text-lg sm:text-xl text-slate-900">
-              About {tool.name} & Client-Side Capabilities
+              About {tool.name} & Client-Side Architecture
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               <strong>{tool.name}</strong> is an engineered browser-based utility developed for fast, secure, and accurate execution in the {tool.category} domain. Designed with modern client-side standards, all data transformations, calculations, and rendering algorithms occur entirely in your local browser environment.
@@ -301,13 +308,33 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
             </div>
           </div>
 
-          <div className="space-y-2 pt-2">
-            <h3 className="font-heading font-bold text-sm sm:text-base text-slate-900">
-              Who is {tool.name} designed for?
+          {/* Key Features Section */}
+          <div className="space-y-3 pt-2">
+            <h3 className="font-heading font-bold text-base sm:text-lg text-slate-900 flex items-center gap-2">
+              <Sparkles className="w-4.5 h-4.5 text-indigo-600" /> Key Features & Capabilities
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Whether you are a developer, content creator, student, accountant, business owner, or engineer, this tool delivers immediate, accurate outputs without subscription barriers, logins, or tedious software installs.
-            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+              {featuresList.map((feat, idx) => (
+                <div key={idx} className="p-3 rounded-xl bg-slate-50 border border-slate-200/60 flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span className="text-xs text-slate-700 font-medium">{feat}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Who It Is For */}
+          <div className="space-y-2 pt-2">
+            <h3 className="font-heading font-bold text-sm sm:text-base text-slate-900 flex items-center gap-2">
+              <Users className="w-4 h-4 text-indigo-600" /> Who is {tool.name} designed for?
+            </h3>
+            <div className="flex flex-wrap gap-2 pt-1">
+              {audienceList.map((aud, i) => (
+                <span key={i} className="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg">
+                  {aud}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -339,6 +366,34 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
                   <p className="font-bold text-slate-800 text-xs sm:text-sm">{faq.question}</p>
                   <p className="text-xs text-slate-600 leading-relaxed">{faq.answer}</p>
                 </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Specialized Long-Tail Conversion Shortcuts (if matched) */}
+        {matchedLongTailPages.length > 0 && (
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-200/80 space-y-3 sm:space-y-4">
+            <h2 className="font-heading font-bold text-base sm:text-lg text-slate-900 flex items-center gap-2">
+              <Sparkles className="w-4.5 h-4.5 text-indigo-600" /> Specialized Unit Formulas & Worked Calculators
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600">
+              Direct conversion shortcuts with mathematical formulas and lookup tables:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {matchedLongTailPages.map((lp) => (
+                <button
+                  key={lp.slug}
+                  onClick={() => navigate(lp.path)}
+                  className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/20 text-left transition-all cursor-pointer group"
+                >
+                  <div className="flex items-center justify-between text-indigo-600 mb-1">
+                    <span className="text-[11px] font-bold uppercase tracking-wider">{lp.type}</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                  <h4 className="font-bold text-slate-800 text-xs sm:text-sm">{lp.h1}</h4>
+                  <p className="text-[11px] text-slate-500 mt-1 line-clamp-2">{lp.summary}</p>
+                </button>
               ))}
             </div>
           </div>
@@ -399,13 +454,16 @@ export const ToolDetailPage: React.FC<ToolDetailPageProps> = ({ slug, navigate }
                   <div
                     key={rel.id}
                     onClick={() => navigate(`/tools/${rel.slug}`)}
-                    className="p-3.5 sm:p-4 bg-white rounded-xl sm:rounded-2xl border border-slate-200/80 hover:border-indigo-300 hover:shadow-md transition-all cursor-pointer space-y-1.5 sm:space-y-2"
+                    className="p-3.5 sm:p-4 bg-white rounded-xl sm:rounded-2xl border border-slate-200/80 hover:border-indigo-300 hover:shadow-md transition-all cursor-pointer space-y-1.5 sm:space-y-2 group"
                   >
-                    <div className="p-2 sm:p-2.5 rounded-lg bg-indigo-50 text-indigo-700 w-fit">
+                    <div className="p-2 sm:p-2.5 rounded-lg bg-indigo-50 text-indigo-700 w-fit group-hover:scale-105 transition-transform">
                       <RelIcon className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
-                    <p className="font-bold text-slate-800 text-xs sm:text-sm truncate">{rel.name}</p>
+                    <p className="font-bold text-slate-800 text-xs sm:text-sm truncate group-hover:text-indigo-600 transition-colors">{rel.name}</p>
                     <p className="text-xs text-slate-500 line-clamp-2">{rel.shortDesc}</p>
+                    <span className="text-[11px] font-bold text-indigo-600 flex items-center gap-1 pt-1">
+                      Launch Tool <ArrowRight className="w-3 h-3" />
+                    </span>
                   </div>
                 );
               })}

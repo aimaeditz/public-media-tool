@@ -4,10 +4,12 @@ import { Footer } from './components/layout/Footer';
 import { SearchModal } from './components/layout/SearchModal';
 import { useToolsStore } from './lib/tools-store';
 import { Loader2 } from 'lucide-react';
+import { getLongTailPageByPath } from './lib/long-tail-data';
 
 const HomePage = React.lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })));
 const ToolsPage = React.lazy(() => import('./pages/ToolsPage').then(m => ({ default: m.ToolsPage })));
 const ToolDetailPage = React.lazy(() => import('./pages/ToolDetailPage').then(m => ({ default: m.ToolDetailPage })));
+const LongTailPage = React.lazy(() => import('./pages/LongTailPage').then(m => ({ default: m.LongTailPage })));
 const CategoriesPage = React.lazy(() => import('./pages/CategoriesPage').then(m => ({ default: m.CategoriesPage })));
 const CategoryDetailPage = React.lazy(() => import('./pages/CategoryDetailPage').then(m => ({ default: m.CategoryDetailPage })));
 const AboutPage = React.lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
@@ -94,6 +96,12 @@ export default function App() {
 
     if (currentPath === '/tools' || currentPath.startsWith('/tools?')) {
       return <ToolsPage navigate={navigate} initialQuery={initialSearchQuery} />;
+    }
+
+    // Check programmatic long-tail pages first (e.g. /converters/volume/liters-to-gallons, /calculators/...)
+    const longTailMatch = getLongTailPageByPath(currentPath.split('?')[0]);
+    if (longTailMatch) {
+      return <LongTailPage pageData={longTailMatch} navigate={navigate} />;
     }
 
     if (currentPath.startsWith('/tools/')) {

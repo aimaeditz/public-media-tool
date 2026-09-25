@@ -71,7 +71,20 @@ if (tools.length === 0) {
   }
 }
 
-console.log(`[generate-sitemap] Loaded ${categories.length} categories and ${tools.length} tools for sitemap.`);
+// 3. Read programmatic long-tail pages from src/lib/long-tail-data.ts
+let longTailPaths = [];
+try {
+  const ltPath = path.resolve(__dirname, '../src/lib/long-tail-data.ts');
+  const ltContent = fs.readFileSync(ltPath, 'utf8');
+  const matches = ltContent.match(/path:\s*'([^']+)'/g);
+  if (matches) {
+    longTailPaths = matches.map(m => m.replace(/path:\s*'/, '').replace(/'$/, ''));
+  }
+} catch (err) {
+  console.error('[generate-sitemap] Error reading long tail pages:', err);
+}
+
+console.log(`[generate-sitemap] Loaded ${categories.length} categories, ${tools.length} tools, and ${longTailPaths.length} long-tail routes for sitemap.`);
 
 // Escape XML special characters
 function escapeXml(unsafe) {
@@ -122,6 +135,12 @@ for (const tool of tools) {
     seenToolSlugs.add(tool.slug);
     addUrl(`${BASE_URL}/tools/${tool.slug}`, 'weekly', 0.8);
   }
+}
+
+// Programmatic Long-Tail Pages
+for (const ltPath of longTailPaths) {
+  const fullUrl = ltPath.startsWith('/') ? `${BASE_URL}${ltPath}` : `${BASE_URL}/${ltPath}`;
+  addUrl(fullUrl, 'weekly', 0.8);
 }
 
 // Static informational pages

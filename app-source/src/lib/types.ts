@@ -22,6 +22,8 @@ export interface Tool {
   keywords?: string[];
   isPopular?: boolean;
   isLatest?: boolean;
+  features?: string[];
+  relatedTools?: string[];
   howToUse?: ToolStep[];
   faqs?: ToolFaq[];
   [key: string]: any;

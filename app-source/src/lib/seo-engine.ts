@@ -169,6 +169,43 @@ export function generateToolHowTo(tool: Tool): ToolStep[] {
 }
 
 /**
+ * Returns 4-6 key features for the tool.
+ */
+export function generateToolFeatures(tool: Tool): string[] {
+  if (tool.features && Array.isArray(tool.features) && tool.features.length >= 3) {
+    return tool.features;
+  }
+
+  return [
+    '100% Client-Side Engine — Zero data leaves your computer or phone',
+    'Instant Real-Time Results — Sub-millisecond calculation speed',
+    'No Registration or Logins — Free, unrestricted access for all users',
+    'Cross-Device Compatibility — Fully functional on Mobile, Tablet & Desktop',
+    'One-Click Clipboard Export — Copy formatted results seamlessly',
+  ];
+}
+
+/**
+ * Returns audience personas for the tool.
+ */
+export function generateToolWhoItsFor(tool: Tool): string[] {
+  const cat = (tool.category || '').toLowerCase();
+  if (cat.includes('finance') || cat.includes('accounting') || cat.includes('payroll')) {
+    return ['Financial Analysts & Accountants', 'Small Business Owners', 'Freelancers & Contractors', 'Individuals Managing Personal Budgets'];
+  }
+  if (cat.includes('dev') || cat.includes('code') || cat.includes('data') || cat.includes('crypto')) {
+    return ['Software Engineers & Web Developers', 'DevOps & System Administrators', 'Data Analysts & Database Architects', 'Computer Science Students'];
+  }
+  if (cat.includes('image') || cat.includes('photo') || cat.includes('audio') || cat.includes('media')) {
+    return ['Content Creators & Streamers', 'Graphic Designers & Photographers', 'Digital Marketers & Social Media Managers', 'Audio Engineers & Podcasters'];
+  }
+  if (cat.includes('math') || cat.includes('unit') || cat.includes('measurement') || cat.includes('scientific')) {
+    return ['Engineers & Researchers', 'Students & Educators', 'Technical Craftsmen & Architects', 'Everyday Users Needing Exact Conversions'];
+  }
+  return ['Professionals & Specialists', 'Students & Researchers', 'Small Business Teams', 'Everyday Online Users'];
+}
+
+/**
  * Generates programmatic long-tail presets and query shortcuts for the tool.
  */
 export interface LongTailPreset {
@@ -179,8 +216,6 @@ export interface LongTailPreset {
 
 export function generateLongTailPresets(tool: Tool): LongTailPreset[] {
   const name = tool.name;
-  const slug = tool.slug;
-  const cat = tool.category || 'Utilities';
 
   return [
     {
@@ -207,11 +242,36 @@ export function generateLongTailPresets(tool: Tool): LongTailPreset[] {
 }
 
 /**
+ * Builds a strict 135-155 characters meta description with high-intent CTA.
+ */
+export function generateMetaDescription(tool: Tool): string {
+  const rawShort = tool.shortDesc || tool.description || 'Fast online browser utility';
+  const cleanShort = rawShort.endsWith('.') ? rawShort.slice(0, -1) : rawShort;
+  let desc = `Use ${tool.name} online for free. ${cleanShort}. 100% private, client-side with zero server uploads. Fast, simple, and instant.`;
+  if (desc.length > 155) {
+    desc = `Use ${tool.name} free online. ${cleanShort}. 100% private browser tool with zero uploads. Try now with no signup.`;
+  }
+  if (desc.length > 155) {
+    const maxLen = 152 - (tool.name.length + 55);
+    const trimmed = cleanShort.slice(0, Math.max(10, maxLen)) + '...';
+    desc = `Use ${tool.name} free online. ${trimmed}. 100% private browser tool with zero uploads. Try now.`;
+  }
+  if (desc.length < 135) {
+    desc = `${desc} No signup or download required. Try free today.`;
+  }
+  if (desc.length > 155) {
+    desc = desc.slice(0, 152) + '...';
+  }
+  return desc;
+}
+
+/**
  * Generates rich Schema.org structured data graph for rich Google/Bing search snippets.
  */
 export function generateToolSchema(tool: Tool, categorySlug: string) {
   const faqs = generateToolFaqs(tool);
   const steps = generateToolHowTo(tool);
+  const features = generateToolFeatures(tool);
 
   return {
     '@context': 'https://schema.org',
@@ -230,13 +290,18 @@ export function generateToolSchema(tool: Tool, categorySlug: string) {
           priceCurrency: 'USD',
           availability: 'https://schema.org/InStock',
         },
-        featureList: [
-          '100% Client-Side Execution',
-          'Zero Server File Uploads',
-          'Free and Unlimited Usage',
-          'Instant Real-Time Output',
-          'Mobile and Desktop Responsive',
-        ],
+        featureList: features,
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: tool.name,
+        applicationCategory: 'UtilityApplication',
+        operatingSystem: 'Web Browser',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
       },
       {
         '@type': 'BreadcrumbList',

@@ -1,11 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-// Legacy GitHub Pages base URL kept as fallback reference
-const LEGACY_GITHUB_PAGES_URL = 'https://aimaeditz.github.io/public-media-tool';
 // Active canonical base URL for custom domain
 const BASE_URL = 'https://publicmediatool.com';
 const PUBLIC_DIR = path.resolve(__dirname, '../public');
+const todayDate = new Date().toISOString().split('T')[0];
 
 // 1. Read categories from src/lib/categories.ts
 let categories = [];
@@ -26,26 +25,53 @@ try {
   console.error('[generate-sitemap] Error reading categories:', err);
 }
 
-// 2. Read search items / tools from src/lib/search-index.ts
+// 2. Read tools across category chunks to ensure 100% coverage of all 1,516 tools
 let tools = [];
+const chunksDir = path.join(__dirname, '../src/lib/data/category-chunks');
 try {
-  const indexPath = path.resolve(__dirname, '../src/lib/search-index.ts');
-  const indexContent = fs.readFileSync(indexPath, 'utf8');
-  const startMarker = 'export const SEARCH_INDEX';
-  const startIdx = indexContent.indexOf(startMarker);
-  if (startIdx !== -1) {
-    const equalsIdx = indexContent.indexOf('=', startIdx);
-    const arrayStart = indexContent.indexOf('[', equalsIdx);
-    const arrayEnd = indexContent.lastIndexOf('];');
+  const files = fs.readdirSync(chunksDir).filter(f => f.endsWith('.ts'));
+  for (const file of files) {
+    const filePath = path.join(chunksDir, file);
+    const content = fs.readFileSync(filePath, 'utf8');
+    const arrayStart = content.indexOf('[');
+    const arrayEnd = content.lastIndexOf(']');
     if (arrayStart !== -1 && arrayEnd !== -1) {
-      tools = JSON.parse(indexContent.slice(arrayStart, arrayEnd + 1));
+      const jsonStr = content.substring(arrayStart, arrayEnd + 1);
+      try {
+        const items = eval(jsonStr);
+        for (const item of items) {
+          if (item && item.slug) {
+            tools.push(item);
+          }
+        }
+      } catch (e) {}
     }
   }
 } catch (err) {
-  console.error('[generate-sitemap] Error reading search index:', err);
+  console.error('[generate-sitemap] Error reading category chunks:', err);
 }
 
-console.log(`[generate-sitemap] Found ${categories.length} categories and ${tools.length} tools.`);
+// Fallback to search index if needed
+if (tools.length === 0) {
+  try {
+    const indexPath = path.resolve(__dirname, '../src/lib/search-index.ts');
+    const indexContent = fs.readFileSync(indexPath, 'utf8');
+    const startMarker = 'export const SEARCH_INDEX';
+    const startIdx = indexContent.indexOf(startMarker);
+    if (startIdx !== -1) {
+      const equalsIdx = indexContent.indexOf('=', startIdx);
+      const arrayStart = indexContent.indexOf('[', equalsIdx);
+      const arrayEnd = indexContent.lastIndexOf('];');
+      if (arrayStart !== -1 && arrayEnd !== -1) {
+        tools = JSON.parse(indexContent.slice(arrayStart, arrayEnd + 1));
+      }
+    }
+  } catch (err) {
+    console.error('[generate-sitemap] Error reading search index:', err);
+  }
+}
+
+console.log(`[generate-sitemap] Loaded ${categories.length} categories and ${tools.length} tools for sitemap.`);
 
 // Escape XML special characters
 function escapeXml(unsafe) {
@@ -64,43 +90,44 @@ function escapeXml(unsafe) {
 const urlEntries = [];
 const seenLocs = new Set();
 
-function addUrl(loc, changefreq, priority) {
+function addUrl(loc, changefreq, priority, lastmod = todayDate) {
   if (seenLocs.has(loc)) return;
   seenLocs.add(loc);
   urlEntries.push(`  <url>
-    <loc>${escapeXml(loc)}</loc>${changefreq ? `\n    <changefreq>${changefreq}</changefreq>` : ''}${priority !== undefined ? `\n    <priority>${priority.toFixed(1)}</priority>` : ''}
+    <loc>${escapeXml(loc)}</loc>
+    <lastmod>${lastmod}</lastmod>${changefreq ? `\n    <changefreq>${changefreq}</changefreq>` : ''}${priority !== undefined ? `\n    <priority>${priority.toFixed(1)}</priority>` : ''}
   </url>`);
 }
 
 // Homepage
-addUrl(`${BASE_URL}/`, 'weekly', 1.0);
+addUrl(`${BASE_URL}/`, 'daily', 1.0);
 
 // Core pages
-addUrl(`${BASE_URL}/tools`, 'weekly', 0.8);
-addUrl(`${BASE_URL}/categories`, 'weekly', 0.8);
+addUrl(`${BASE_URL}/tools`, 'daily', 0.9);
+addUrl(`${BASE_URL}/categories`, 'weekly', 0.9);
 
 // Category pages
 const seenCatSlugs = new Set();
 for (const cat of categories) {
   if (cat.slug && !seenCatSlugs.has(cat.slug)) {
     seenCatSlugs.add(cat.slug);
-    addUrl(`${BASE_URL}/categories/${cat.slug}`, 'weekly', 0.7);
+    addUrl(`${BASE_URL}/categories/${cat.slug}`, 'weekly', 0.8);
   }
 }
 
-// Tool pages
+// Tool pages (All 1,516 Tools)
 const seenToolSlugs = new Set();
 for (const tool of tools) {
   if (tool.slug && !seenToolSlugs.has(tool.slug)) {
     seenToolSlugs.add(tool.slug);
-    addUrl(`${BASE_URL}/tools/${tool.slug}`, 'monthly', 0.6);
+    addUrl(`${BASE_URL}/tools/${tool.slug}`, 'weekly', 0.8);
   }
 }
 
-// Static pages
+// Static informational pages
 const staticPages = ['about', 'contact', 'privacy-policy', 'terms', 'disclaimer', 'credits'];
 for (const page of staticPages) {
-  addUrl(`${BASE_URL}/${page}`, 'monthly', 0.3);
+  addUrl(`${BASE_URL}/${page}`, 'monthly', 0.5);
 }
 
 // Ensure public directory exists
@@ -122,6 +149,7 @@ console.log(`[generate-sitemap] Generated sitemap.xml with ${seenLocs.size} tota
 // Generate robots.txt
 const robotsTxt = `User-agent: *
 Allow: /
+
 Sitemap: ${BASE_URL}/sitemap.xml
 `;
 

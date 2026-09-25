@@ -9,8 +9,9 @@ interface NotFoundPageProps {
 export const NotFoundPage: React.FC<NotFoundPageProps> = ({ navigate }) => {
   useSeo({
     title: '404 - Page Not Found | Public Media Tool',
-    description: 'The page you are looking for does not exist or has been moved.',
+    description: 'The requested page could not be found on Public Media Tool (PMT). Explore 1,516+ free online browser tools, search categories, or return to homepage.',
     path: '/404',
+    noindex: true,
   });
 
   return (

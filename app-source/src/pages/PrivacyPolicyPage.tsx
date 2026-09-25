@@ -13,7 +13,7 @@ const TOTAL_TOOLS = CATEGORIES.reduce((acc, cat) => acc + (cat.count || 0), 0);
 export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ navigate }) => {
   useSeo({
     title: 'Privacy Policy — Public Media Tool',
-    description: `Read the Privacy Policy for Public Media Tool (PMT). Discover how our 100% client-side browser runtime guarantees total data privacy across our ${TOTAL_TOOLS.toLocaleString()}+ utilities.`,
+    description: 'Privacy Policy for Public Media Tool (PMT). Our 100% client-side engine protects your privacy with zero data collection, tracking, or file server uploads.',
     path: '/privacy-policy',
   });
 

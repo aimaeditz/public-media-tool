@@ -13,7 +13,7 @@ const TOTAL_TOOLS = CATEGORIES.reduce((acc, cat) => acc + (cat.count || 0), 0);
 export const TermsPage: React.FC<TermsPageProps> = ({ navigate }) => {
   useSeo({
     title: 'Terms of Service — Public Media Tool',
-    description: `Review the Terms of Service for Public Media Tool (PMT). Learn about our service guidelines, commercial usage permissions, and liability conditions across our ${TOTAL_TOOLS.toLocaleString()}+ browser utilities.`,
+    description: 'Terms of Service for Public Media Tool (PMT). Read the guidelines governing your use of our free browser tools, client-side processing, and software rights.',
     path: '/terms',
   });
 

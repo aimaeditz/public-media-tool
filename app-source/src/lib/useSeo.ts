@@ -7,6 +7,7 @@ export interface SeoInput {
   type?: 'website' | 'article';
   image?: string;
   jsonLd?: object;
+  noindex?: boolean;
 }
 
 // Unused legacy GitHub Pages URL kept as a fallback constant
@@ -15,7 +16,7 @@ export const LEGACY_GITHUB_PAGES_URL = 'https://aimaeditz.github.io/public-media
 export const BASE_URL = 'https://publicmediatool.com';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
 
-export function useSeo({ title, description, path, type = 'website', image, jsonLd }: SeoInput) {
+export function useSeo({ title, description, path, type = 'website', image, jsonLd, noindex = false }: SeoInput) {
   const jsonLdSerialized = jsonLd ? JSON.stringify(jsonLd) : '';
 
   useEffect(() => {
@@ -35,6 +36,15 @@ export function useSeo({ title, description, path, type = 'website', image, json
       document.head.appendChild(metaDesc);
     }
     metaDesc.setAttribute('content', description);
+
+    // Set/update <meta name="robots">
+    let metaRobots = document.querySelector('meta[name="robots"]');
+    if (!metaRobots) {
+      metaRobots = document.createElement('meta');
+      metaRobots.setAttribute('name', 'robots');
+      document.head.appendChild(metaRobots);
+    }
+    metaRobots.setAttribute('content', noindex ? 'noindex, follow' : 'index, follow');
 
     // 3. Set/update <link rel="canonical">
     let canonicalLink = document.querySelector('link[rel="canonical"]');

@@ -112,14 +112,14 @@ function addUrl(loc, changefreq, priority, lastmod = todayDate) {
   </url>`);
 }
 
-// Homepage
-addUrl(`${BASE_URL}/`, 'daily', 1.0);
+// Homepage (0.9 as specified)
+addUrl(`${BASE_URL}/`, 'daily', 0.9);
 
-// Core pages
-addUrl(`${BASE_URL}/tools`, 'daily', 0.9);
-addUrl(`${BASE_URL}/categories`, 'weekly', 0.9);
+// Core directory pages
+addUrl(`${BASE_URL}/categories`, 'weekly', 0.8);
+addUrl(`${BASE_URL}/tools`, 'weekly', 0.7);
 
-// Category pages
+// Category pages (0.8)
 const seenCatSlugs = new Set();
 for (const cat of categories) {
   if (cat.slug && !seenCatSlugs.has(cat.slug)) {
@@ -128,22 +128,22 @@ for (const cat of categories) {
   }
 }
 
-// Tool pages (All 1,516 Tools)
+// Tool pages (0.7 - All 1,516 Tools)
 const seenToolSlugs = new Set();
 for (const tool of tools) {
   if (tool.slug && !seenToolSlugs.has(tool.slug)) {
     seenToolSlugs.add(tool.slug);
-    addUrl(`${BASE_URL}/tools/${tool.slug}`, 'weekly', 0.8);
+    addUrl(`${BASE_URL}/tools/${tool.slug}`, 'weekly', 0.7);
   }
 }
 
-// Programmatic Long-Tail Pages
+// Programmatic Long-Tail Pages (0.7)
 for (const ltPath of longTailPaths) {
   const fullUrl = ltPath.startsWith('/') ? `${BASE_URL}${ltPath}` : `${BASE_URL}/${ltPath}`;
-  addUrl(fullUrl, 'weekly', 0.8);
+  addUrl(fullUrl, 'weekly', 0.7);
 }
 
-// Static informational pages
+// Static informational / legal pages (0.5)
 const staticPages = ['about', 'contact', 'privacy-policy', 'terms', 'disclaimer', 'credits'];
 for (const page of staticPages) {
   addUrl(`${BASE_URL}/${page}`, 'monthly', 0.5);

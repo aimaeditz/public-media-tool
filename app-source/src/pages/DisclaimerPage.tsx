@@ -13,7 +13,7 @@ const TOTAL_TOOLS = CATEGORIES.reduce((acc, cat) => acc + (cat.count || 0), 0);
 export const DisclaimerPage: React.FC<DisclaimerPageProps> = ({ navigate }) => {
   useSeo({
     title: 'Disclaimer — Public Media Tool',
-    description: `Read the official Legal Disclaimer for Public Media Tool (PMT). Understand our independent status, trademark notices, and as-is conditions across our ${TOTAL_TOOLS.toLocaleString()}+ browser tools.`,
+    description: 'Disclaimer for Public Media Tool (PMT). Legal notice regarding tool calculation accuracy, client-side execution, user responsibility, and service availability.',
     path: '/disclaimer',
   });
 
